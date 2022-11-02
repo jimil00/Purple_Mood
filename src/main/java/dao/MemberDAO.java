@@ -14,8 +14,9 @@ import dto.MemberDTO;
 
 public class MemberDAO {
    private static MemberDAO instance;
-   public static MemberDAO getInstance() {
+   synchronized public static MemberDAO getInstance() {
       if(instance == null) {
+    	  
          instance = new MemberDAO();
       }
       return instance;
@@ -29,7 +30,8 @@ public class MemberDAO {
    }
    
    
-   public static String getSHA256(String input){ // 암호화 메서드
+   // 암호화 메서드
+   public static String getSHA256(String input){
 
       String toReturn = null;
 

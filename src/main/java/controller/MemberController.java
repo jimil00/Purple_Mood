@@ -12,7 +12,7 @@ import dao.MemberDAO;
 import dto.MemberDTO;
 
 
-@WebServlet(".member")
+@WebServlet("*.member")
 public class MemberController extends HttpServlet {
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,7 +36,25 @@ public class MemberController extends HttpServlet {
                String nickname = request.getParameter("nickname");
                boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
                response.getWriter().append(String.valueOf(result));
+         
                
+         // 회원가입
+         }else if(uri.equals("/signup.mem")) {
+				String id = request.getParameter("id");
+				String nickname = request.getParameter("nickname");
+				String pw = request.getParameter("pw");
+				String name = request.getParameter("name");
+				String phone = request.getParameter("phone");
+				String email = request.getParameter("email");
+				String postcode = request.getParameter("postcode");
+				String address1 = request.getParameter("address1");
+				String address2 = request.getParameter("address2");
+
+				int result = MemberDAO.getInstance().insert(new MemberDTO (id,nickname,pw,name,phone,email,postcode,address1,address2,null));
+				request.setAttribute("result", result);
+				response.sendRedirect("/index.jsp");
+
+
          // 마이페이지 회원정보 출력
          }else if(uri.equals("/mypageMemInfo.member")) {
             
