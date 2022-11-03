@@ -3,6 +3,7 @@ package dto;
 import java.sql.Timestamp;
 
 public class BoardDTO {
+	
 	private int b_seq;
 	private String b_category;
 	private String b_writer;
@@ -10,12 +11,13 @@ public class BoardDTO {
 	private String b_title;
 	private String b_content;
 	private int b_view_count;
+	
+	
 	public BoardDTO() {
 		super();
 	}
 	public BoardDTO(int b_seq, String b_category, String b_writer, Timestamp b_write_date, String b_title,
 			String b_content, int b_view_count) {
-		super();
 		this.b_seq = b_seq;
 		this.b_category = b_category;
 		this.b_writer = b_writer;
@@ -24,6 +26,8 @@ public class BoardDTO {
 		this.b_content = b_content;
 		this.b_view_count = b_view_count;
 	}
+	
+	
 	public int getB_seq() {
 		return b_seq;
 	}
@@ -66,8 +70,5 @@ public class BoardDTO {
 	public void setB_view_count(int b_view_count) {
 		this.b_view_count = b_view_count;
 	}
-	
-
-	
 
 }

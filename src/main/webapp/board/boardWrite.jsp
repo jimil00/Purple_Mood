@@ -123,27 +123,53 @@
 
 <body>
 
-	<form method="post" action="boardWrite.board">
+	<form action="boardWrite.board" method="post" enctype="multipart/form-data">
 		<table id="boardWriteView">
 			<tr>
 				<td>제목</td>
-				<td><input type="text" placeholder="제목을 입력하세요."></td>
+				<td><input type="text" id="title" name="title" placeholder="제목을 입력하세요."></td>
 			</tr>
 			<tr>
-				<td>파일첨부</td>
-				<td><input type="file"></td>
+				<td>파일</td>
+				<td><button id="fileAdd" type=button>파일 첨부</button></td>
 			</tr>
 			<tr>
 				<td colspan="2"><textarea id="summernote" name="editordata"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right"><input type="submit" value="작성">
+				<td colspan="2" align="right"><input type="submit" value="작성"><input type="button" id="toBoardList" value="목록으로">
 				</td>
 			</tr>
 		</table>
 	</form>
-
+	<script>
+	
+	let count = 0;
+	$("#fileAdd").on("click",function(){
+		if($("input[type=file]").length > 5){
+			alert("파일은 최대 5개까지만 업로드 가능합니다.");
+			return;
+		}
+		
+		let fileDiv = $("<div>");
+		
+		let inputFile = $("<input>");
+		inputFile.attr("type","file");
+		inputFile.attr("name","file" + count++);
+		
+		let delBtn = $("<a>");
+		delBtn.html("x");
+		delBtn.on("click",function(){
+			$(this).parent().remove();
+		});
+		
+		fileDiv.append(inputFile);
+		fileDiv.append(delBtn);
+		
+		$("#fileAdd").after(fileDiv);
+	})
+	</script>
 </body>
 
 </html>
