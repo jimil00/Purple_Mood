@@ -33,7 +33,7 @@ public class MemberController extends HttpServlet {
       
             
          // NICKNAME 중복체크
-         }else if(uri.equals("/idDuplCheck.member")) {
+         }else if(uri.equals("/nicknameDuplCheck.member")) {
                String nickname = request.getParameter("nickname");
                boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
                response.getWriter().append(String.valueOf(result));
@@ -48,11 +48,12 @@ public class MemberController extends HttpServlet {
 				String name = request.getParameter("name");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
+				String emailAddress = request.getParameter("emailAddress");
 				String postcode = request.getParameter("postcode");
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
 
-				int result = MemberDAO.getInstance().insert(new MemberDTO (id,nickname,pw,name,phone,email,postcode,address1,address2,null));
+				int result = MemberDAO.getInstance().insert(new MemberDTO (id,nickname,pw,name,phone,email+"@"+emailAddress,postcode,address1,address2,null));
 				request.setAttribute("result", result);
 				response.sendRedirect("/index.jsp");
 
@@ -66,7 +67,7 @@ public class MemberController extends HttpServlet {
             request.setAttribute("dto", dto);
             request.getRequestDispatcher("/member/mypageMemInfo.jsp").forward(request, response);
 
-            
+         // 마이페이지 회원정보 수정
          }else if(uri.equals("/updateMemInfo.member")) {
             String nickname = request.getParameter("nickname");
             String pw = request.getParameter("pw");
@@ -90,9 +91,6 @@ public class MemberController extends HttpServlet {
    }
 
 
-
-
-	
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

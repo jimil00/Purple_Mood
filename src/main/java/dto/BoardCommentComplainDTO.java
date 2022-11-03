@@ -3,18 +3,20 @@ package dto;
 import java.sql.Timestamp;
 
 public class BoardCommentComplainDTO {
+	
 	private int bcmcp_seq;
 	private String bcmcp_complainer;
 	private Timestamp bcmcp_date;
 	private int bcm_seq;
 	private String bcm_writer;
 	private String bcm_content;
+
+	
 	public BoardCommentComplainDTO() {
 		super();
 	}
 	public BoardCommentComplainDTO(int bcmcp_seq, String bcmcp_complainer, Timestamp bcmcp_date, int bcm_seq,
 			String bcm_writer, String bcm_content) {
-		super();
 		this.bcmcp_seq = bcmcp_seq;
 		this.bcmcp_complainer = bcmcp_complainer;
 		this.bcmcp_date = bcmcp_date;
@@ -22,6 +24,8 @@ public class BoardCommentComplainDTO {
 		this.bcm_writer = bcm_writer;
 		this.bcm_content = bcm_content;
 	}
+	
+	
 	public int getBcmcp_seq() {
 		return bcmcp_seq;
 	}
@@ -58,6 +62,5 @@ public class BoardCommentComplainDTO {
 	public void setBcm_content(String bcm_content) {
 		this.bcm_content = bcm_content;
 	}
-	
 	
 }

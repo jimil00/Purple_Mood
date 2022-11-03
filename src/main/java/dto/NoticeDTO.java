@@ -3,6 +3,7 @@ package dto;
 import java.sql.Timestamp;
 
 public class NoticeDTO {
+	
 	private int n_seq;
 	private String n_category;
 	private String n_writer;
@@ -10,6 +11,7 @@ public class NoticeDTO {
 	private String n_title;
 	private String n_content;
 	private int n_view_count;
+	
 	
 	public NoticeDTO() {
 		super();
@@ -24,6 +26,8 @@ public class NoticeDTO {
 		this.n_content = n_content;
 		this.n_view_count = n_view_count;
 	}
+	
+	
 	public int getN_seq() {
 		return n_seq;
 	}
@@ -66,6 +70,5 @@ public class NoticeDTO {
 	public void setN_view_count(int n_view_count) {
 		this.n_view_count = n_view_count;
 	}
-	
 	
 }

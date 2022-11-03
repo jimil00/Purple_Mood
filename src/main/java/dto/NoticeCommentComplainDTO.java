@@ -3,62 +3,64 @@ package dto;
 import java.sql.Timestamp;
 
 public class NoticeCommentComplainDTO {
-	private int ncc_seq;
-	private String ncc_complainer;
-	private Timestamp ncc_date;
-	private int nc_seq;
-	private String nc_writer;
-	private String nc_content;
+	
+	private int ncmcp_seq;
+	private String ncmcp_complainer;
+	private Timestamp ncmcp_date;
+	private int ncm_seq;
+	private String ncm_writer;
+	private String ncm_content;
+	
+	
 	public NoticeCommentComplainDTO() {
 		super();
 	}
-	public NoticeCommentComplainDTO(int ncc_seq, String ncc_complainer, Timestamp ncc_date, int nc_seq,
-			String nc_writer, String nc_content) {
-		this.ncc_seq = ncc_seq;
-		this.ncc_complainer = ncc_complainer;
-		this.ncc_date = ncc_date;
-		this.nc_seq = nc_seq;
-		this.nc_writer = nc_writer;
-		this.nc_content = nc_content;
-	}
-	public int getNcc_seq() {
-		return ncc_seq;
-	}
-	public void setNcc_seq(int ncc_seq) {
-		this.ncc_seq = ncc_seq;
-	}
-	public String getNcc_complainer() {
-		return ncc_complainer;
-	}
-	public void setNcc_complainer(String ncc_complainer) {
-		this.ncc_complainer = ncc_complainer;
-	}
-	public Timestamp getNcc_date() {
-		return ncc_date;
-	}
-	public void setNcc_date(Timestamp ncc_date) {
-		this.ncc_date = ncc_date;
-	}
-	public int getNc_seq() {
-		return nc_seq;
-	}
-	public void setNc_seq(int nc_seq) {
-		this.nc_seq = nc_seq;
-	}
-	public String getNc_writer() {
-		return nc_writer;
-	}
-	public void setNc_writer(String nc_writer) {
-		this.nc_writer = nc_writer;
-	}
-	public String getNc_content() {
-		return nc_content;
-	}
-	public void setNc_content(String nc_content) {
-		this.nc_content = nc_content;
+	public NoticeCommentComplainDTO(int ncmcp_seq, String ncmcp_complainer, Timestamp ncmcp_date, int ncm_seq,
+			String ncm_writer, String ncm_content) {
+		this.ncmcp_seq = ncmcp_seq;
+		this.ncmcp_complainer = ncmcp_complainer;
+		this.ncmcp_date = ncmcp_date;
+		this.ncm_seq = ncm_seq;
+		this.ncm_writer = ncm_writer;
+		this.ncm_content = ncm_content;
 	}
 	
 	
-	
+	public int getNcmcp_seq() {
+		return ncmcp_seq;
+	}
+	public void setNcmcp_seq(int ncmcp_seq) {
+		this.ncmcp_seq = ncmcp_seq;
+	}
+	public String getNcmcp_complainer() {
+		return ncmcp_complainer;
+	}
+	public void setNcmcp_complainer(String ncmcp_complainer) {
+		this.ncmcp_complainer = ncmcp_complainer;
+	}
+	public Timestamp getNcmcp_date() {
+		return ncmcp_date;
+	}
+	public void setNcmcp_date(Timestamp ncmcp_date) {
+		this.ncmcp_date = ncmcp_date;
+	}
+	public int getNcm_seq() {
+		return ncm_seq;
+	}
+	public void setNcm_seq(int ncm_seq) {
+		this.ncm_seq = ncm_seq;
+	}
+	public String getNcm_writer() {
+		return ncm_writer;
+	}
+	public void setNcm_writer(String ncm_writer) {
+		this.ncm_writer = ncm_writer;
+	}
+	public String getNcm_content() {
+		return ncm_content;
+	}
+	public void setNcm_content(String ncm_content) {
+		this.ncm_content = ncm_content;
+	}
 
 }
