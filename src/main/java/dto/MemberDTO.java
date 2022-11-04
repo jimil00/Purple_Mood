@@ -3,6 +3,7 @@ package dto;
 import java.sql.Timestamp;
 
 public class MemberDTO {
+	
    private String id;
    private String nickname;
    private String pw;
@@ -18,7 +19,6 @@ public class MemberDTO {
    public MemberDTO() {
       super();
    }
-   
    public MemberDTO(String id, String nickname, String pw, String name, String phone, String email, String postcode,
          String address1, String address2, Timestamp signup_date) {
       this.id = id;
@@ -94,6 +94,5 @@ public class MemberDTO {
    public void setSignup_date(Timestamp signup_date) {
       this.signup_date = signup_date;
    }
-   
    
 }
