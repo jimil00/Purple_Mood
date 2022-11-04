@@ -62,7 +62,7 @@ public class DramaDAO {
 		
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{pstat.setString(1, "%"+dr_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 어캐하져
+		{pstat.setString(1, "%"+dr_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 구현해야 함.
 			
 			try(ResultSet rs = pstat.executeQuery();){
 				List <DramaDTO> list = new ArrayList<>();

@@ -34,7 +34,7 @@ public class MovieDAO {
 
 	public List<MovieDTO> selectByLike_count() throws Exception{
 
-		String sql="select mv_title, mv_img from movie where rownum=6 order by like_count";
+		String sql="select mv_title, mv_img from movie where rownum <=6 order by like_count";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
@@ -58,22 +58,22 @@ public class MovieDAO {
 	}
 
 
-	public  List<DramaDTO> searchBytitle(String dr_title) throws Exception {
+	public  List<MovieDTO> searchBytitle(String mv_title) throws Exception {
 
-		String sql="select dr_title, dr_img from drama where dr_title like ?";
+		String sql="select mv_title, mv_img from movie where mv_title like ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{pstat.setString(1, "%"+dr_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 어캐하져
+		{pstat.setString(1, "%"+mv_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 어캐하져
 
 		try(ResultSet rs = pstat.executeQuery();){
-			List <DramaDTO> list = new ArrayList<>();
+			List <MovieDTO> list = new ArrayList<>();
 
 			while(rs.next()) {
 
-				DramaDTO dto = new DramaDTO();
-				dto.setDr_title(rs.getString("dr_title"));
-				dto.setDr_img(rs.getString("dr_img"));
+				MovieDTO dto = new MovieDTO();
+				dto.setMv_title(rs.getString("mv_title"));
+				dto.setMv_img(rs.getString("mv_img"));
 
 				list.add(dto);
 			}
@@ -84,3 +84,4 @@ public class MovieDAO {
 		}
 
 	}
+}
