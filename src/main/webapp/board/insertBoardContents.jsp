@@ -88,7 +88,7 @@
 	font-style: normal;
 }
 
-#boardWriteView {
+#insertBoardContents {
 	margin: auto;
 }
 </style>
@@ -123,8 +123,8 @@
 
 <body>
 
-	<form action="boardWrite.board" method="post" enctype="multipart/form-data">
-		<table id="boardWriteView">
+	<form action="insertBoardContents.board" method="post" enctype="multipart/form-data">
+		<table id="insertBoardContents">
 			<tr>
 				<td>제목</td>
 				<td><input type="text" id="title" name="title" placeholder="제목을 입력하세요."></td>
