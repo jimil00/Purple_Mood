@@ -80,8 +80,19 @@ public class MemberController extends HttpServlet {
             
             int result = MemberDAO.getInstance().update(new MemberDTO(null, nickname, pw, name, phone, email, postcode, address1, address2, null));
             response.sendRedirect("/mypageMemInfo.member");
-
-         }
+         
+         //로그인
+         }else if(uri.equals("/signin.member")) {
+             String id = request.getParameter("id");
+             String pw = request.getParameter("pw");
+             boolean result= MemberDAO.getInstance().isloginExist(id, pw);
+			if(result) {
+					request.getSession().setAttribute("loginID",id);
+				}
+				response.sendRedirect("/index.jsp");
+          }
+         
+         
          
          
       }catch(Exception e) {
