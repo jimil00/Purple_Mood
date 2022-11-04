@@ -41,7 +41,7 @@ public class MemberController extends HttpServlet {
      
                
          // 회원가입
-         }else if(uri.equals("/signup.mem")) {
+         }else if(uri.equals("/signup.member")) {
 				String id = request.getParameter("id");
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
