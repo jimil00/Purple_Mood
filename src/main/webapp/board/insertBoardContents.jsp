@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,34 +117,48 @@
             });
             $('#summernote').summernote('fontName', '둥근모꼴체');
             $('#summernote').summernote('fontSize', 14);
-
         });
     </script>
 </head>
 
 <body>
 
-	<form action="insertBoardContents.board" method="post" enctype="multipart/form-data">
+	<form action="/insertBoardContents.board" id="insertBoardContents"
+		method="post" enctype="multipart/form-data">
 		<table id="insertBoardContents">
 			<tr>
+				<td><select id="b_category" name="b_category">
+						<option selected value="movie">영화</option>
+						<option value="drama">드라마</option>
+						<option value="onAir">실시간</option>
+						<option value="review">후기</option>
+
+				</select></td>
 				<td>제목</td>
-				<td><input type="text" id="title" name="title" placeholder="제목을 입력하세요."></td>
+				<td><input type="text" id="b_title" name="b_title"
+					placeholder="제목을 입력하세요."></td>
 			</tr>
 			<tr>
 				<td>파일</td>
 				<td><button id="fileAdd" type=button>파일 첨부</button></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea id="summernote" name="editordata"></textarea>
-				</td>
+				<td colspan="2"><textarea id="summernote" name="editordata"
+						form="insertBoardContents"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right"><input type="submit" value="작성"><input type="button" id="toBoardList" value="목록으로">
-				</td>
+				<td colspan="2" align="right"><input type="submit" value="작성"><input
+					type="button" id="toBoardList" value="목록으로"></td>
 			</tr>
 		</table>
 	</form>
 	<script>
+	
+	/*$("select[name=b_category]").change(function(){
+		console.log($(this).value());
+		console.log($("select[name=b_category] option:selected").text());
+	}) */
+	
 	
 	let count = 0;
 	$("#fileAdd").on("click",function(){
@@ -157,6 +172,8 @@
 		let inputFile = $("<input>");
 		inputFile.attr("type","file");
 		inputFile.attr("name","file" + count++);
+		inputFile.attr("onchange",checkFile(this));
+		inputFile.attr("id","eachFile");
 		
 		let delBtn = $("<a>");
 		delBtn.html("x");
@@ -169,6 +186,27 @@
 		
 		$("#fileAdd").after(fileDiv);
 	})
+$("#eachFile").on("change", function checkFile(el){
+
+	// files 로 해당 파일 정보 얻기.
+	var file = el.files;
+
+	// file[0].size 는 파일 용량 정보입니다.
+	if(file[0].size > 1024 * 1024 * 2){
+		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+		alert('2MB 이하 파일만 등록할 수 있습니다.\n\n' + '현재파일 용량 : ' + (Math.round(file[0].size / 1024 / 1024 * 100) / 100) + 'MB');
+	}
+
+	// 체크를 통과했다면 종료.
+	else return;
+
+	// 체크에 걸리면 선택된 내용 취소 처리를 해야함.
+	// 파일선택 폼의 내용은 스크립트로 컨트롤 할 수 없습니다.
+	// 그래서 그냥 새로 폼을 새로 써주는 방식으로 초기화 합니다.
+	// 이렇게 하면 간단 !?
+	el.outerHTML = el.outerHTML;
+})
+
 	</script>
 </body>
 
