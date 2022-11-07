@@ -86,14 +86,21 @@ public class MemberController extends HttpServlet {
              String id = request.getParameter("id");
              String pw = request.getParameter("pw");
              boolean result= MemberDAO.getInstance().isloginExist(id, pw);
+             MemberDTO dto=MemberDAO.getInstance().selectById(id);
+            
 			if(result) {
 					request.getSession().setAttribute("loginID",id);
+					request.setAttribute("dto", dto);
 				}
 				response.sendRedirect("/index.jsp");
-          }
+          
          
-         
-         
+         //로그아웃
+         }else if(uri.equals("/logout.member")) {
+					//로그아웃 기능 
+					request.getSession().invalidate();
+					response.sendRedirect("/index.jsp");
+		}
          
       }catch(Exception e) {
          e.printStackTrace();

@@ -114,7 +114,7 @@ public class MemberDAO {
             rs.next();
             MemberDTO dto = new MemberDTO();
             dto.setId(rs.getString("id"));
-            dto.setId(rs.getString("nickname"));
+            dto.setNickname(rs.getString("nickname"));
             dto.setPw(rs.getString("pw"));
             dto.setName(rs.getString("name"));
             dto.setPhone(rs.getString("phone"));
