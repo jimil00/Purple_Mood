@@ -150,36 +150,66 @@ public class BoardDAO {
 
 
 
-	//게시판 리스트 출력 (R)
-	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
-
-		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
-
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-
-			pstat.setInt(1, start);
-			pstat.setInt(2, end);
-
-			try(ResultSet rs = pstat.executeQuery();){
-
+	// 게시판 리스트 출력 (R)
+//	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
+//
+//		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
+//
+//		try(Connection con = this.getConnection();
+//				PreparedStatement pstat = con.prepareStatement(sql);){
+//
+//			pstat.setInt(1, start);
+//			pstat.setInt(2, end);
+//
+//			try(ResultSet rs = pstat.executeQuery();){
+//
+//				List<BoardDTO> list = new ArrayList<>();
+//				while(rs.next()) {
+//					BoardDTO dto = new BoardDTO();
+//					dto.setB_seq(rs.getInt("B_seq"));
+//					dto.setB_category(rs.getString("b_category"));
+//					dto.setB_writer(rs.getString("b_writer"));
+//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+//					dto.setB_title(rs.getString("b_title"));
+//					dto.setB_content(rs.getString("b_content"));
+//					dto.setB_view_count(rs.getInt("b_view_count"));
+//					list.add(dto);
+//				}
+//				return list;
+//
+//			}
+//		}
+//
+//	}
+		public List<BoardDTO> selectBoardByRange() throws Exception{
+	
+			String sql = "select * from board";
+	
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					ResultSet rs = pstat.executeQuery();
+					){
+	
+	
+	
 				List<BoardDTO> list = new ArrayList<>();
 				while(rs.next()) {
 					BoardDTO dto = new BoardDTO();
-					dto.setB_seq(rs.getInt("B_seq"));
+					dto.setB_seq(rs.getInt("b_seq"));
 					dto.setB_category(rs.getString("b_category"));
 					dto.setB_writer(rs.getString("b_writer"));
 					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+					dto.setB_title(rs.getString("b_title"));
 					dto.setB_content(rs.getString("b_content"));
 					dto.setB_view_count(rs.getInt("b_view_count"));
 					list.add(dto);
 				}
 				return list;
-
+	
 			}
 		}
 
-	}
+
 
 	public int getRecordCount() throws Exception {
 		String sql = "select count(*) from board";
@@ -227,7 +257,7 @@ public class BoardDAO {
 		StringBuilder sb = new StringBuilder();
 
 		if(needPrev) {
-			sb.append("<a href='/list.board?cpage="+(startNavi-1)+"'><</a> ");
+			sb.append("<a href='/boardlist.board?cpage="+(startNavi-1)+"'><</a> ");
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
@@ -244,34 +274,84 @@ public class BoardDAO {
 
 	//게시판 검색 리스트 출력 (R) 페이징해서 다시 해야 함
 	public List<BoardDTO> selectBoardSearchList(String boardSearchOption,String boardSearchWord) throws Exception{
+		List<BoardDTO>list = new ArrayList<>();
 
-		String sql="select * from board where ? like ?";
+		if(boardSearchOption.equals("b_title")) {
+			String sql="select * from board where b_title like ?";
+			try(Connection con = getConnection();
+					PreparedStatement pstat= con.prepareStatement(sql);){
 
-		try(Connection con = getConnection();
-				PreparedStatement pstat= con.prepareStatement(sql);){
+				pstat.setString(1,"%"+boardSearchWord+"%");
 
-			pstat.setString(1,boardSearchOption);
-			pstat.setString(2,"%"+boardSearchWord+"%");
+				try(ResultSet rs = pstat.executeQuery();){
 
-			try(ResultSet rs = pstat.executeQuery();){
 
-				List<BoardDTO>list = new ArrayList<>();
-
-				while(rs.next()) {
-					BoardDTO dto = new BoardDTO();
-					dto.setB_seq(rs.getInt("b_seq"));
-					dto.setB_category(rs.getString("b_category"));
-					dto.setB_writer(rs.getString("b_writer"));
-					dto.setB_write_date(rs.getTimestamp("b_write_date)"));
-					dto.setB_title(rs.getString("b_title"));
-					dto.setB_content(rs.getString("b_content"));
-					dto.setB_view_count(rs.getInt("b_view_count"));
-					list.add(dto);
+					while(rs.next()) {
+						BoardDTO dto = new BoardDTO();
+						dto.setB_seq(rs.getInt("b_seq"));
+						dto.setB_category(rs.getString("b_category"));
+						dto.setB_writer(rs.getString("b_writer"));
+						dto.setB_write_date(rs.getTimestamp("b_write_date"));
+						dto.setB_title(rs.getString("b_title"));
+						dto.setB_content(rs.getString("b_content"));
+						dto.setB_view_count(rs.getInt("b_view_count"));
+						list.add(dto);
+					}
 				}
-				return list;
 			}
+		}else if(boardSearchOption.equals("b_writer")) {
+			String sql="select * from board where b_writer like ?";
+			try(Connection con = getConnection();
+					PreparedStatement pstat= con.prepareStatement(sql);){
+
+				pstat.setString(1,"%"+boardSearchWord+"%");
+
+				try(ResultSet rs = pstat.executeQuery();){
+
+
+					while(rs.next()) {
+						BoardDTO dto = new BoardDTO();
+						dto.setB_seq(rs.getInt("b_seq"));
+						dto.setB_category(rs.getString("b_category"));
+						dto.setB_writer(rs.getString("b_writer"));
+						dto.setB_write_date(rs.getTimestamp("b_write_date"));
+						dto.setB_title(rs.getString("b_title"));
+						dto.setB_content(rs.getString("b_content"));
+						dto.setB_view_count(rs.getInt("b_view_count"));
+						list.add(dto);
+					}
+				}
+			}
+		}else if(boardSearchOption.equals("b_content")) {
+			String sql="select * from board where b_content like ?";
+			try(Connection con = getConnection();
+					PreparedStatement pstat= con.prepareStatement(sql);){
+
+				pstat.setString(1,"%"+boardSearchWord+"%");
+
+				try(ResultSet rs = pstat.executeQuery();){
+
+
+					while(rs.next()) {
+						BoardDTO dto = new BoardDTO();
+						dto.setB_seq(rs.getInt("b_seq"));
+						dto.setB_category(rs.getString("b_category"));
+						dto.setB_writer(rs.getString("b_writer"));
+						dto.setB_write_date(rs.getTimestamp("b_write_date"));
+						dto.setB_title(rs.getString("b_title"));
+						dto.setB_content(rs.getString("b_content"));
+						dto.setB_view_count(rs.getInt("b_view_count"));
+						list.add(dto);
+					}
+				}
+			}
+
+
 		}
+		return list;
+
 	}
+
 
 }
 

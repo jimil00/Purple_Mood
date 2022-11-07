@@ -8,5 +8,6 @@
 </head>
 <body>
 index
+<a href="/boardList.board">게시판</a>
 </body>
 </html>

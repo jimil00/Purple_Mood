@@ -36,19 +36,19 @@ public class BoardController extends HttpServlet {
 			//게시판 리스트 출력 (R)
 			if(uri.equals("/boardList.board")) {
 
-				String bpage = request.getParameter("cpage");
-				int cpage = Integer.parseInt(bpage);
-				request.getSession().setAttribute("boardPage", bpage);
+//				String bpage = request.getParameter("cpage");
+//				int cpage = Integer.parseInt(bpage);
+//				request.getSession().setAttribute("boardPage", bpage);
 
+//				List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
+				List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange();
 
-				List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*10-9, cpage*10);
-
-				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
+//				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
 
 				request.setAttribute("list", list);
-				request.setAttribute("navi", navi);
+//				request.setAttribute("navi", navi);
 
-				request.getRequestDispatcher("/board/boardLis.jsp").forward(request, response);
+				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 
 
 			// 게시판 검색 리스트 출력 (R)
@@ -58,7 +58,9 @@ public class BoardController extends HttpServlet {
 				System.out.println(boardSearchOption + boardSearchWord);
 				List<BoardDTO>list = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord);
 				request.setAttribute("list", list);
-				request.getRequestDispatcher("/boardList.board").forward(request, response);
+				System.out.println(list.size());
+
+				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 
 
 
@@ -114,9 +116,10 @@ public class BoardController extends HttpServlet {
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
 
 				request.setAttribute("dto", dto);
+				System.out.println("here");
 
-				List<BoardFileDTO> filelist = BoardFileDAO.getInstance().selectBoardFile(b_seq);
-				request.setAttribute("filelist", filelist); 
+//				List<BoardFileDTO> filelist = BoardFileDAO.getInstance().selectBoardFile(b_seq);
+//				request.setAttribute("filelist", filelist); 
 
 				List<BoardCommentDTO> commentlist =BoardCommentDAO.getInstance().selectBoardComment(b_seq);
 				request.setAttribute("commentlist", commentlist);
