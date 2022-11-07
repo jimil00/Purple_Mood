@@ -112,7 +112,7 @@
         </div>
         </form>
         <div class="signupbox row">
-            <div class="col-12"><a href="/member/singUp.jsp" class="signup">회원가입</a> | <a href="#">아이디&비밀번호찾기</a></div>
+            <div class="col-12"><a href="/member/signup.jsp" class="signup">회원가입</a> | <a href="#">아이디&비밀번호찾기</a></div>
         </div>
     </div>
 </body>

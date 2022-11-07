@@ -242,7 +242,7 @@ button {
 				</div>
 				<div class="offcanvas-body">
 					<div class="profilebox" style="background: #BDBDBD;"></div>
-					<div class="profiletext">${dto.nickname }</div>
+					<div class="profiletext">${Nickname }</div>
 					<div class="profiletext">
 						<a href="/member/mypageMemInfo.jsp"><button>마이페이지</button></a>
 					</div>
