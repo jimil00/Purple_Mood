@@ -41,7 +41,7 @@ public class MemberController extends HttpServlet {
      
                
          // 회원가입
-         }else if(uri.equals("/signup.mem")) {
+         }else if(uri.equals("/signup.member")) {
 				String id = request.getParameter("id");
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
@@ -80,9 +80,26 @@ public class MemberController extends HttpServlet {
             
             int result = MemberDAO.getInstance().update(new MemberDTO(null, nickname, pw, name, phone, email, postcode, address1, address2, null));
             response.sendRedirect("/mypageMemInfo.member");
-
-         }
          
+         //로그인
+         }else if(uri.equals("/signin.member")) {
+             String id = request.getParameter("id");
+             String pw = request.getParameter("pw");
+             boolean result= MemberDAO.getInstance().isloginExist(id, pw);
+             MemberDTO dto=MemberDAO.getInstance().selectById(id);
+			if(result) {
+					request.getSession().setAttribute("loginID",id);
+					request.setAttribute("Nickname", dto.getNickname());
+				}
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			      
+         
+         //로그아웃
+         }else if(uri.equals("/logout.member")) {
+					//로그아웃 기능 
+					request.getSession().invalidate();
+					response.sendRedirect("/index.jsp");
+		}
          
       }catch(Exception e) {
          e.printStackTrace();

@@ -114,7 +114,7 @@ public class MemberDAO {
             rs.next();
             MemberDTO dto = new MemberDTO();
             dto.setId(rs.getString("id"));
-            dto.setId(rs.getString("nickname"));
+            dto.setNickname(rs.getString("nickname"));
             dto.setPw(rs.getString("pw"));
             dto.setName(rs.getString("name"));
             dto.setPhone(rs.getString("phone"));
@@ -165,4 +165,20 @@ public class MemberDAO {
       }
       
    }
+   
+   
+   //로그인
+   public boolean isloginExist(String id, String pw) throws Exception{
+		String sql="select * from member where id=? and pw=?";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			pstat.setString(2, getSHA256(pw));
+			try(ResultSet rs = pstat.executeQuery();){
+				return rs.next();
+			}
+		}
+	}
+   
 }
