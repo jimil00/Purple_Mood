@@ -51,6 +51,47 @@
   </form>
 <!--검색 전 메인 페이지 -->
 
+<<<<<<< HEAD:src/main/webapp/content/SearchPage.jsp
+=======
+  <!--검색 전 메인 페이지 -->
+  <c:choose> 
+    <c:when test="${not empty list}">
+        <c:forEach var="Like" items="mv_list">
+            <div class="row" id="movie_bar">
+               <div> 영화 리스트</div>
+              <div class="row">
+              <div class="col-6 col-sm-4 col-md-2"><a href="/detail.content?seq=${i.seq }"></a><img src="${Like.mv_img}">좋아요순 영화 포스터 출력 예정</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
+              </div>
+            </div>
+          </c:forEach>
+          </c:when>
+    </c:choose> 
+
+    <!--검색 결과 출력-->
+        <c:choose> 
+          <c:when test="${not empty list}">
+            <c:forEach var="Like" items="mv_list">
+            <div class="row" id="drama_bar">
+               <div>드라마 --js 이용하여 값 출력)</div>
+                <div class="row">
+                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
+                </div>
+              </div>
+            <!-- </div> ? -->
+          </c:forEach>
+        </c:when>
+        </c:choose>
+>>>>>>> 70c19c420e5d2b87be282314ab277f46411315b6:src/main/webapp/SearchMainPage.jsp
 
 <!--검색 결과 출력--> 
         <c:choose>
