@@ -55,7 +55,7 @@
    </table>
    <hr>
    <div class="insertBoardContents">
-      <a href="/insertBoardContents.jsp"><button type="button"
+      <a href="/board/insertBoardContents.jsp"><button type="button"
             id="insertBoardContentsBtn">글쓰기</button></a>
    </div>
       <hr>

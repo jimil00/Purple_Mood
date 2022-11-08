@@ -52,7 +52,6 @@
   <!--검색 전 메인 페이지 -->
   <c:choose> 
     <c:when test="${not empty list}">
-      <c:forEach var="Like" items="mv_list">
         <c:forEach var="Like" items="mv_list">
             <div class="row" id="movie_bar">
                <div> 영화 리스트</div>

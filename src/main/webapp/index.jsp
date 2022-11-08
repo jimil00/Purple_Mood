@@ -125,7 +125,6 @@ button {
 </style>
 </head>
 <body>
-
 	<div class="containers">
 		<div class="row header fixed-top">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
@@ -247,7 +246,7 @@ button {
 					<div class="profiletext">
 						<a href="/member/mypageMemInfo.jsp"><button>마이페이지</button></a>
 					</div>
-					<a href="#">
+					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>
 					</a> <a href="#">
 						<div class="menulink">자유게시판</div>
@@ -293,6 +292,5 @@ button {
 			</div>
 		</c:otherwise>
 	</c:choose>
->>>>>>> a3c38a343c2f2ccba9376f91bd886447061de520
 </body>
 </html>

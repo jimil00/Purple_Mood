@@ -25,12 +25,12 @@ public class BoardCommentController extends HttpServlet {
       try {
          if(uri.equals("/insertBoardComment.boardcomment")) {
 
-            String bcm_writer=request.getParameter("bcm_writer");
+        	String nickname = (String)request.getSession().getAttribute("loginNickname");
             String bcm_content=request.getParameter("bcm_content");
             int b_seq=Integer.parseInt(request.getParameter("b_seq"));
-            BoardCommentDAO dao = BoardCommentDAO.getInstance();
-            dao.insertBoardComment(new BoardCommentDTO(0,bcm_writer,null,bcm_content,b_seq));
-            response.sendRedirect("/");
+            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq));
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
+
 
 //         }else if(uri.equals("/selectBoardComment.boardcomment")) {
 //
@@ -44,16 +44,14 @@ public class BoardCommentController extends HttpServlet {
 
             String bcm_content=request.getParameter("bcm_content");
             int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
-            BoardCommentDAO dao = BoardCommentDAO.getInstance();
-            dao.updateBoardComment(bcm_content,bcm_seq);
-            response.sendRedirect("/");
+            int result = BoardCommentDAO.getInstance().updateBoardComment(bcm_content,bcm_seq);
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 
          }else if(uri.equals("/deleteBoardComment.boardcomment")) {
 
             int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
-            BoardCommentDAO dao=BoardCommentDAO.getInstance();
-            dao.deleteBoardComment(bcm_seq);
-            response.sendRedirect("/");
+            int result = BoardCommentDAO.getInstance().deleteBoardComment(bcm_seq);
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
          }
       }catch(Exception e) {
          e.printStackTrace();
