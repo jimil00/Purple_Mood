@@ -91,7 +91,7 @@ public class MemberController extends HttpServlet {
 					request.getSession().setAttribute("loginID",id);
 					request.setAttribute("Nickname", dto.getNickname());
 				}
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			      
          
          //로그아웃

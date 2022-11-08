@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,8 +132,7 @@ button {
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext" /> <a
-					href="#"><i
-					class="fa-solid fa-magnifying-glass searchboxin"></i></a>
+					href="#"><i class="fa-solid fa-magnifying-glass searchboxin"></i></a>
 			</div>
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
 				<i class="fas fa-bars fa-2x" id="menuicon"
@@ -241,10 +240,13 @@ button {
 						aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
-					<div class="profilebox" style="background: #BDBDBD;"></div>
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
+					<button type="button" id="profileBtn">
+						<i class="fa-solid fa-pen"></i>
+					</button>
 					<div class="profiletext">${Nickname }</div>
 					<div class="profiletext">
-						<a href="/member/mypageMemInfo.jsp"><button>마이페이지</button></a>
+						<button type="button" id="mypageBtn">마이페이지</button>
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>
@@ -256,14 +258,19 @@ button {
 					<button id="logoutBtn">로그아웃</button>
 				</div>
 				<script>
-					$("#logoutBtn").on("click",function(){
-						location.href="/logout.member";
+					$("#profileBtn").on(
+							"click",
+							function() {
+								window.open("/profile.jsp", "",
+										"width=400,height=300");
+							})
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
 					})
-                    $("#btn").on("click",function(){
-                        let col=$("#exampleColorInput").val();
-                        $(".profilebox").css("background-color",col);        
-                    })
-                   </script>
+					$("#mypageBtn").on("click", function() {
+						location.href = "/member/mypageMemInfo.jsp";
+					})
+				</script>
 			</div>
 		</c:when>
 		<c:otherwise>
