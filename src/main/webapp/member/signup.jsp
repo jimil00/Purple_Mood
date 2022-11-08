@@ -190,7 +190,7 @@ input {
 
       $("#id").on("input", function() {
          idCheck = false;
-      })
+      })S
 
       $("#duplCheckID").on(
             "click",
