@@ -28,6 +28,7 @@ public class MemberController extends HttpServlet {
             String id = request.getParameter("id");
             boolean result = MemberDAO.getInstance().isIdExist(id);
             request.setAttribute("result", result);
+            System.out.println(result);
             request.setAttribute("id", id);
             request.getRequestDispatcher("/member/idDuplCheck.jsp").forward(request, response);
       
@@ -55,7 +56,7 @@ public class MemberController extends HttpServlet {
 
 				int result = MemberDAO.getInstance().insert(new MemberDTO (id,nickname,pw,name,phone,email+"@"+emailAddress,postcode,address1,address2,null));
 				request.setAttribute("result", result);
-				response.sendRedirect("/index.jsp");
+				response.sendRedirect("/member/signin.jsp");
 
 
          // 마이페이지 회원정보 출력
@@ -85,11 +86,12 @@ public class MemberController extends HttpServlet {
          }else if(uri.equals("/signin.member")) {
              String id = request.getParameter("id");
              String pw = request.getParameter("pw");
+             String nickname = MemberDAO.getInstance().getNicknameById(id);
              boolean result= MemberDAO.getInstance().isloginExist(id, pw);
              MemberDTO dto=MemberDAO.getInstance().selectById(id);
 			if(result) {
 					request.getSession().setAttribute("loginID",id);
-					request.setAttribute("Nickname", dto.getNickname());
+					request.getSession().setAttribute("loginNickname", nickname);
 				}
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			      

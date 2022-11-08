@@ -248,7 +248,7 @@ button {
 					<div class="profiletext">
 						<button type="button" id="mypageBtn">마이페이지</button>
 					</div>
-					<a href="#">
+					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>
 					</a> <a href="#">
 						<div class="menulink">자유게시판</div>
