@@ -3,15 +3,15 @@ package dto;
 import java.sql.Timestamp;
 
 public class BoardComplainDTO {
-	
+
 	private int bcp_seq;
 	private String bcp_complainer;
 	private Timestamp bcp_date;
 	private int b_seq;
 	private String b_writer;
 	private String b_title;
-	
-	
+
+
 	public BoardComplainDTO() {
 		super();
 	}
@@ -24,8 +24,8 @@ public class BoardComplainDTO {
 		this.b_writer = b_writer;
 		this.b_title = b_title;
 	}
-	
-	
+
+
 	public int getBcp_seq() {
 		return bcp_seq;
 	}
@@ -62,5 +62,5 @@ public class BoardComplainDTO {
 	public void setB_title(String b_title) {
 		this.b_title = b_title;
 	}
-	
+
 }

@@ -34,11 +34,11 @@
          <th>조회수</th>
       </tr>
       <c:choose>
-         <c:when test="${not empty list}">
-            <c:forEach var="i" items="${list}">
+         <c:when test="${not empty board}">
+            <c:forEach var="i" items="${board}">
                <tr>
                   <td>${i.b_seq}</td>
-                  <td>${i.b_title}</td>
+                  <td><a href="/selectBoardContents.board?b_seq=${i.b_seq}">${i.b_title}</a></td>
                   <td>${i.b_content}</td>
                   <td>${i.b_writer}</td>
                   <td>${i.b_write_date}</td>
@@ -55,8 +55,8 @@
    </table>
    <hr>
    <div class="insertBoardContents">
-      <a href="/board/insertBoardContents.jsp"><button type="button"
-            id="insertBoardContentsBtn">글쓰기</button></a>
+      <a href="/board/insertBoardContents.jsp">
+      <button type="button" id="insertBoardContentsBtn">글쓰기</button></a>
    </div>
    <hr>
    <form action="/boardListSearch.board">

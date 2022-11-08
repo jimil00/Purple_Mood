@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +30,36 @@ public class BoardDAO {
 	}
 
 
+
+	//test
+	public List<BoardDTO> select() throws Exception{
+		String sql="select * from board";
+		List<BoardDTO>board=new ArrayList<>();
+		try (
+				Connection con = getConnection();
+				PreparedStatement pstat=con.prepareStatement(sql);){
+			ResultSet rs = pstat.executeQuery();
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setB_seq(rs.getInt("b_seq"));
+				dto.setB_category(rs.getString("b_category"));
+				dto.setB_writer(rs.getString("b_writer"));
+				dto.setB_write_date(rs.getTimestamp("b_write_date"));
+				dto.setB_title(rs.getString("b_title"));
+				dto.setB_content(rs.getString("b_content"));
+				dto.setB_view_count(rs.getInt("b_view_count"));
+				board.add(dto);
+			}
+			return board;
+		}
+	}
 	// 게시글 작성 (C)
 	public int insertBoardContents(BoardDTO dto) throws Exception{
 
 		String sql = "insert into board values(?, ?, ?, sysdate, ?, ?, 0)";
 		//							board_seq.nextval
 		try(Connection con = getConnection();
+
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
 			pstat.setInt(1, dto.getB_seq());
@@ -166,10 +190,11 @@ public class BoardDAO {
 				List<BoardDTO> list = new ArrayList<>();
 				while(rs.next()) {
 					BoardDTO dto = new BoardDTO();
-					dto.setB_seq(rs.getInt("B_seq"));
+					dto.setB_seq(rs.getInt("b_seq"));
 					dto.setB_category(rs.getString("b_category"));
 					dto.setB_writer(rs.getString("b_writer"));
 					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+					dto.setB_title(rs.getString("b_title"));
 					dto.setB_content(rs.getString("b_content"));
 					dto.setB_view_count(rs.getInt("b_view_count"));
 					list.add(dto);
@@ -241,38 +266,146 @@ public class BoardDAO {
 	}
 
 
-
-	//게시판 검색 리스트 출력 (R) 페이징해서 다시 해야 함
-	public List<BoardDTO> selectBoardSearchList(String boardSearchOption,String boardSearchWord) throws Exception{
-
-		String sql="select * from board where ? like ?";
-
+	public List<BoardDTO> setData(String sql,String boardSearchWord) throws Exception {
+		List<BoardDTO>board=new ArrayList<>();
+		String query=sql;
 		try(Connection con = getConnection();
-				PreparedStatement pstat= con.prepareStatement(sql);){
+				PreparedStatement pstat= con.prepareStatement(query);){
 
-			pstat.setString(1,boardSearchOption);
-			pstat.setString(2,"%"+boardSearchWord+"%");
+			pstat.setString(1,"%"+boardSearchWord+"%");
 
 			try(ResultSet rs = pstat.executeQuery();){
-
-				List<BoardDTO>list = new ArrayList<>();
 
 				while(rs.next()) {
 					BoardDTO dto = new BoardDTO();
 					dto.setB_seq(rs.getInt("b_seq"));
 					dto.setB_category(rs.getString("b_category"));
 					dto.setB_writer(rs.getString("b_writer"));
-					dto.setB_write_date(rs.getTimestamp("b_write_date)"));
+					dto.setB_write_date(rs.getTimestamp("b_write_date"));
 					dto.setB_title(rs.getString("b_title"));
 					dto.setB_content(rs.getString("b_content"));
 					dto.setB_view_count(rs.getInt("b_view_count"));
-					list.add(dto);
+					board.add(dto);
+
 				}
-				return list;
+				return board;
 			}
 		}
 	}
 
+	//게시판 검색 리스트 출력 (R) 페이징해서 다시 해야 함
+	public List<BoardDTO> selectBoardSearchList(String boardSearchOption,String boardSearchWord) throws Exception{
+
+		//		String sql="select * from board where ? like ?";
+		//		
+		//		if(boardSearchOption.equals("b_title")) {
+		//			
+		//		}
+		//
+		//		try(Connection con = getConnection();
+		//				PreparedStatement pstat= con.prepareStatement(sql);){
+		//
+		//			pstat.setString(1,boardSearchOption);
+		//			pstat.setString(2,"%"+boardSearchWord+"%");
+		//
+		//			try(ResultSet rs = pstat.executeQuery();){
+		//
+		//				List<BoardDTO>list = new ArrayList<>();
+		//
+		//				while(rs.next()) {
+		//					BoardDTO dto = new BoardDTO();
+		//					dto.setB_seq(rs.getInt("b_seq"));
+		//					dto.setB_category(rs.getString("b_category"));
+		//					dto.setB_writer(rs.getString("b_writer"));
+		//					dto.setB_write_date(rs.getTimestamp("b_write_date)"));
+		//					dto.setB_title(rs.getString("b_title"));
+		//					dto.setB_content(rs.getString("b_content"));
+		//					dto.setB_view_count(rs.getInt("b_view_count"));
+		//					list.add(dto);
+		//				}
+		//				return list;
+		//			}
+		//		}
+		//	}
+
+		if(boardSearchOption.equals("b_title")) {
+			String sql="select * from board where b_title like ?";
+			//			try(Connection con = getConnection();
+			//					PreparedStatement pstat= con.prepareStatement(sql);){
+			//
+			//				pstat.setString(1,"%"+boardSearchWord+"%");
+			//
+			//				try(ResultSet rs = pstat.executeQuery();){
+			//
+			//
+			//					while(rs.next()) {
+			//						BoardDTO dto = new BoardDTO();
+			//						dto.setB_seq(rs.getInt("b_seq"));
+			//						dto.setB_category(rs.getString("b_category"));
+			//						dto.setB_writer(rs.getString("b_writer"));
+			//						dto.setB_write_date(rs.getTimestamp("b_write_date"));
+			//						dto.setB_title(rs.getString("b_title"));
+			//						dto.setB_content(rs.getString("b_content"));
+			//						dto.setB_view_count(rs.getInt("b_view_count"));
+			//						list.add(dto);
+			//					}
+			//				}
+			//			}
+			List<BoardDTO>board=setData(sql,boardSearchWord);
+		}else if(boardSearchOption.equals("b_writer")) {
+			String sql="select * from board where b_writer like ?";
+			//			try(Connection con = getConnection();
+			//					PreparedStatement pstat= con.prepareStatement(sql);){
+			//
+			//				pstat.setString(1,"%"+boardSearchWord+"%");
+			//
+			//				try(ResultSet rs = pstat.executeQuery();){
+			//
+			//
+			//					while(rs.next()) {
+			//						BoardDTO dto = new BoardDTO();
+			//						dto.setB_seq(rs.getInt("b_seq"));
+			//						dto.setB_category(rs.getString("b_category"));
+			//						dto.setB_writer(rs.getString("b_writer"));
+			//						dto.setB_write_date(rs.getTimestamp("b_write_date)"));
+			//						dto.setB_title(rs.getString("b_title"));
+			//						dto.setB_content(rs.getString("b_content"));
+			//						dto.setB_view_count(rs.getInt("b_view_count"));
+			//						list.add(dto);
+			//					}
+			//				}
+			//			}
+			setData(sql, boardSearchWord);
+		}else if(boardSearchOption.equals("b_content")) {
+			String sql="select * from board where b_content like ?";
+			//			try(Connection con = getConnection();
+			//					PreparedStatement pstat= con.prepareStatement(sql);){
+			//
+			//				pstat.setString(1,"%"+boardSearchWord+"%");
+			//
+			//				try(ResultSet rs = pstat.executeQuery();){
+			//
+			//
+			//					while(rs.next()) {
+			//						BoardDTO dto = new BoardDTO();
+			//						dto.setB_seq(rs.getInt("b_seq"));
+			//						dto.setB_category(rs.getString("b_category"));
+			//						dto.setB_writer(rs.getString("b_writer"));
+			//						dto.setB_write_date(rs.getTimestamp("b_write_date)"));
+			//						dto.setB_title(rs.getString("b_title"));
+			//						dto.setB_content(rs.getString("b_content"));
+			//						dto.setB_view_count(rs.getInt("b_view_count"));
+			//						list.add(dto);
+			//					}
+			//				}
+			//			}
+			//
+			//
+			//		}
+			setData(sql, boardSearchWord);
+		}
+		return board;
+	}
 }
 
 

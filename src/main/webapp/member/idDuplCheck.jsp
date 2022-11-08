@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style>
 table {
 	width: 100%;
@@ -21,6 +22,7 @@ table>* {
 	height: 70%
 }
 </style>
+
 </head>
 <body>
 	<table border=1>
@@ -33,12 +35,13 @@ table>* {
 					<td class="result">이미 사용 중인 ID 입니다.
 				</tr>
 				<tr>
-					<td><button id="close">닫기</button> <script>
-                  document.getElementById("close").onclick = function() {
-                     opener.document.getElementById("id").value = "";
-                     window.close();
-                  }
-               </script>
+					<td><button id="close">닫기</button>
+					<script>
+						$("#close").on("click", function() {
+							opener.$("#id").val("");
+							window.close();
+						})
+					</script>
 				</tr>
 			</c:when>
 			<c:otherwise>
@@ -47,21 +50,22 @@ table>* {
 				</tr>
 				<tr>
 					<td><button id="use">사용</button>
-						<button id="cancel">취소</button> <script>
-                     document.getElementById("use").onclick = function() {
-                        opener.idCheck = true;
-//                         parent창에서 idcheck라는 변수를 만들어 opener = window : parent window
-//                         signup에서 let idcheck하면 지역변수 된다 
-//                         idcheck->window.idcheck(public같은 것)
-                        window.close();
-//                         popup창 window
-                     }
-                     document.getElementById("cancel").onclick = function() {
-                        //                   팝업창에서 상위 브라우저 주소를 가지고 있다.
-                        opener.document.getElementById("id").value = "";
-                        window.close();
-                     }
-                  </script>
+						<button id="cancle">취소</button> <script>
+							// 	//parent창에서 idcheck라는 변수를 만들어 opener = window : parent window
+							// 	//signup에서 let idcheck하면 지역변수 된다 
+							// 	//idcheck->window.idcheck(public같은 것)
+							// 	//popup창 window
+
+							$("#use").on("click", function() {
+								opener.idCheck = true;
+								window.close();
+							})
+							
+							$("#cancle").on("click", function() {
+								opener.$("#id").val("");
+								window.close();
+							})
+						</script>
 				</tr>
 			</c:otherwise>
 		</c:choose>

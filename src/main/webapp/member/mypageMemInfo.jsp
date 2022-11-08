@@ -61,7 +61,7 @@ input {
 		$("#modify").on("click", function() {
 			$("input").removeAttr("readonly");
 
-			$("#toHome,#modify").css("display", "none");
+			$("#modify").css("display", "none");
 			let btnModify = $("<button>");
 			btnModify.text("수정완료");
 			btnModify.addClass("btn")
@@ -92,19 +92,19 @@ input {
 						<div class="subject">아이디</div>
 						<div>
 							<input type="text" name="id" id="id" value="${dto.id }" disabled>
-							<!--                      readonly 더 강력한 것은 disabled submit도 안된다. -->
-							<!--                      input value "" 꼭 더블쿼테이션 주소같은 경우 띄워쓰기 하면 끊길 수 있다 -->
+							<!-- readonly 더 강력한 것은 disabled submit도 안된다. -->
+							<!-- input value "" 꼭 더블쿼테이션 주소같은 경우 띄워쓰기 하면 끊길 수 있다 -->
 						</div>
 					</div>
 					<div>*5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능</div>
 					<div class="nickName">
 						<div class="subject">닉네임</div>
 						<div>
-							<input type="text" name="nickName" id="nickName"
+							<input type="text" name="nickname" id="nickname"
 								readonly="readonly"><input type="button"
 								id="duplCheckNickName" value="중복확인" style="width: 70px;">
 						</div>
-						<div id="duplCheckNickName"></div>
+						<div id="duplResult"></div>
 						<div>*2~8자 한글,영어 대 소문자,특수문자(~!^*&)가능</div>
 					</div>
 
@@ -143,7 +143,13 @@ input {
 						<div class="subject">이메일</div>
 						<div>
 							<input type="text" name="email" id="email" value="${dto.email }"
-								readonly>
+								readonly> @ <select id="emailAddress"
+								name="emailAddress">
+								<option value="gmail.com">gmail.com</option>
+								<option value="naver.com">naver.com</option>
+								<option value="hanmail.net">hanmail.net</option>
+								<option value="nate.com">nate.com</option>
+							</select>
 						</div>
 						<div>*숫자,영어 대 소문자 가능</div>
 					</div>
@@ -180,12 +186,13 @@ input {
 				</div>
 			</div>
 	</form>
+
 	<script>
 		$("#duplCheckNickName").on("click", function() {
-			let nickName = $("#nickName").val();
-			if (nickName == "") {
+			let nickname = $("#nickname").val();
+			if (nickname == "") {
 				alert("닉네임을 먼저 입력하세요.");
-				$("#nickName").focus();
+				$("#nickname").focus();
 				return;
 			}
 			$.ajax({
@@ -233,22 +240,22 @@ input {
 				return false;
 			}
 
-			let idRegex = /^[a-z\d\_\-]{5,20}$/; // 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능
-			let pwRegex = /^[a-zA-Z\d\~\!\^\*\&]{8,16}$/; //8~16자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용
-			let nameRegex = /^[가-힣]{2,5}$/; // 2~5자
-			let phoneRegex = /^010[\d]{4}[\d]{4}&/; //010으로 시작하고 숫자만 입력
-			let emailRegex = /^[\da-zA-Z]$/; //숫자,영어 대 소문자 가능
-			let nickNameRegex = /^[가-힣]{2,8}/; //2~10자 한글만 가능
+			let idRegex = /^[a-z0-9_]{8,14}$/; //8~14자의 영문 소문자, 숫자와 특수기호(_)만 사용 가능
+			let nicknameRegex = /^[가-힣]{2,8}$/; //2~8자 한글만 가능
+			let pwRegex = /^[A-Za-z0-9~!@#$%]{8,20}$/; //8~20자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용
+			let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
+			let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
+			let emailRegex = /^[a-zA-Z0-9]{1,20}$/; //숫자,영어 대 소문자 가능
 
-			if ($("#pw").val() != "") {
-				if (!pwRegex.test($("#pw").val())) {
-					alert("패스워드 형식을 확인해주세요.");
+			if ($("#nickname").val() != "") {
+				if (!nicknameRegex.test($("#nickname").val())) {
+					alert("닉네임 형식을 확인해주세요.");
 					return false;
 				}
 			}
-			if ($("#phone").val() != "") {
-				if (!phoneRegex.test($("#phone").val())) {
-					alert("전화번호 형식을 확인해주세요.");
+			if ($("#pw").val() != "") {
+				if (!pwRegex.test($("#pw").val())) {
+					alert("패스워드 형식을 확인해주세요.");
 					return false;
 				}
 			}
@@ -258,6 +265,13 @@ input {
 					return false;
 				}
 			}
+			if ($("#phone").val() != "") {
+				if (!phoneRegex.test($("#phone").val())) {
+					alert("전화번호 형식을 확인해주세요.");
+					return false;
+				}
+			}
+
 			if ($("#email").val() != "") {
 				if (!emailRegex.test($("#email").val())) {
 					alert("이메일 형식을 확인해주세요.");

@@ -36,30 +36,27 @@ public class BoardController extends HttpServlet {
 			//게시판 리스트 출력 (R)
 			if(uri.equals("/boardList.board")) {
 
-				String bpage = request.getParameter("cpage");
-				int cpage = Integer.parseInt(bpage);
-				request.getSession().setAttribute("boardPage", bpage);
+//				String bpage = request.getParameter("cpage");
+//				int cpage = Integer.parseInt(bpage);
+//				request.getSession().setAttribute("boardPage", bpage);
+//				List<BoardDTO> board = BoardDAO.getInstance().selectBoardByRange(cpage*10-9, cpage*10);
+//				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
+//				request.setAttribute("navi", navi);
 
-
-				List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*10-9, cpage*10);
-
-				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
-
-				request.setAttribute("list", list);
-				request.setAttribute("navi", navi);
-
-				request.getRequestDispatcher("/board/boardLis.jsp").forward(request, response);
+				List<BoardDTO>board=BoardDAO.getInstance().select();
+				request.setAttribute("board", board);
+				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 
 
 			// 게시판 검색 리스트 출력 (R)
 			}else if(uri.equals("/boardListSearch.board")) {
 				String boardSearchOption=request.getParameter("boardSearchOption");
 				String boardSearchWord = request.getParameter("boardSearchWord");
-				System.out.println(boardSearchOption + boardSearchWord);
-				List<BoardDTO>list = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord);
-				request.setAttribute("list", list);
+				System.out.println(boardSearchOption + " : " + boardSearchWord);
+				List<BoardDTO>board = BoardDAO.getInstance().setData(boardSearchOption,boardSearchWord);
+				System.out.println(board.size());
+				request.setAttribute("board", board);
 				request.getRequestDispatcher("/boardList.board").forward(request, response);
-
 
 
 			// 게시글 입력 (C)
@@ -109,6 +106,7 @@ public class BoardController extends HttpServlet {
 			}else if(uri.equals("/selectBoardContents.board")){
 
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+				System.out.println(b_seq);
 
 				BoardDAO.getInstance().addBoardViewCount(b_seq); 
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);

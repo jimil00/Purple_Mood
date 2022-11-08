@@ -51,14 +51,14 @@ public class BoardCommentDAO {
 	
 	// 게시글 댓글 출력 (R)
 	public List<BoardCommentDTO> selectBoardComment(int b_seq) throws Exception{
-		String sql = "select * from board_comment where b_seq=? order by seq";
+		List<BoardCommentDTO> list= new ArrayList<>();
+		String sql = "select * from board_comment where b_seq=? order by bcm_seq";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, b_seq);
 
 			try(ResultSet rs = pstat.executeQuery();){
 				BoardCommentDTO dto = new BoardCommentDTO();
-				List<BoardCommentDTO> list= new ArrayList<>();
 				while(rs.next()) {
 					dto.setBcm_seq(rs.getInt("bcm_seq"));
 					dto.setBcm_writer(rs.getString("bcm_writer"));

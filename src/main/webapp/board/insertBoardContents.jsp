@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SummernoteTest</title>
+<title>글 작성 페이지</title>
 
 <!-- include libraries(jQuery, bootstrap) -->
 <link
@@ -89,9 +89,14 @@
 	font-style: normal;
 }
 
-#insertBoardContents {
-	margin: auto;
-}
+.container {overflow: hidden;margin: auto;display: flex;}
+.category {width: 10%;float: left;margin-top: 23px;margin-bottom: 20px;}
+.title {width: 90%;float: left;margin-top: 20px;margin-bottom: 20px;}
+#b_title {width: 45%;}
+.file {height: 150px;}
+.btns {overflow: hidden;}
+.btns * {float: right;}
+
 </style>
 <script>
         $(document).ready(function () {
@@ -122,36 +127,37 @@
 </head>
 
 <body>
-
-	<form action="/insertBoardContents.board" id="insertBoardContents"
-		method="post" enctype="multipart/form-data">
-		<table id="insertBoardContents">
-			<tr>
-				<td><select id="b_category" name="b_category">
-						<option selected value="movie">영화</option>
-						<option value="drama">드라마</option>
-						<option value="onAir">실시간</option>
-						<option value="review">후기</option>
-
-				</select></td>
-				<td>제목</td>
-				<td><input type="text" id="b_title" name="b_title"
-					placeholder="제목을 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>파일</td>
-				<td><button id="fileAdd" type=button>파일 첨부</button></td>
-			</tr>
-			<tr>
-				<td colspan="2"><textarea id="summernote" name="editordata"
-						form="insertBoardContents"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right"><input type="submit" value="작성"><input
-					type="button" id="toBoardList" value="목록으로"></td>
-			</tr>
-		</table>
-	</form>
+	<div class="container">
+		<form action="/insertBoardContents.board" id="insertBoardContents"
+			method="post" enctype="multipart/form-data">
+			<!-- <div class="insertBoardContents"> -->
+			<div class="category">
+				<select id="b_category" name="b_category">
+					<option selected value="movie">영화</option>
+					<option value="drama">드라마</option>
+					<option value="onAir">실시간</option>
+					<option value="review">후기</option>
+				</select>
+			</div>
+			<div class="title">
+				제목<input type="text" id="b_title" name="b_title"
+					placeholder="제목을 입력하세요.">
+			</div>
+			<div class="file">
+				파일
+				<button id="fileAdd" type="button">파일 첨부</button>
+			</div>
+			<div class="editor">
+				<textarea id="summernote" name="editordata"
+					form="insertBoardContents"></textarea>
+			</div>
+			<div class="btns">
+				<input type="submit" value="작성">
+				<a href="/board/boardList.jsp"><input type="button" id="toBoardList" value="목록으로"></a>
+			</div>
+			<!-- </div> -->
+		</form>
+	</div>
 	<script>
 	
 	/*$("select[name=b_category]").change(function(){
