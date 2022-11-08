@@ -132,7 +132,7 @@
 						<tr>
 							<td><input type="text" class="bcm_content"
 								name="bcm_content" size="105" value="${comment.bcm_content }" readonly>
-								<td><a href="insertBCommentComplain.complain">신고</a></td>
+								<td><a href="/insertboardComplain.boardcomplain">신고</a></td>
 							<c:choose>
 								<c:when test="${loginNickname == comment.bcm_writer}">
 

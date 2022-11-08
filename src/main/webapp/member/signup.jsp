@@ -190,7 +190,7 @@ input {
 
       $("#id").on("input", function() {
          idCheck = false;
-      })S
+      })
 
       $("#duplCheckID").on(
             "click",
@@ -258,8 +258,8 @@ input {
                   return false;
                }
 
-               let idRegex = /^[a-z0-9_]{8,14}$/; //8~14자의 영문 소문자, 숫자와 특수기호(_)만 사용 가능
-               let nicknameRegex = /^[가-힣]{2,8}$/; //2~8자 한글만 가능
+               let idRegex = /^[a-z0-9_]{6,20}$/; //6~20자의 영문 소문자, 숫자와 특수기호(_)만 사용 가능
+               let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글만 가능
                let pwRegex = /^[A-Za-z0-9~!@#$%]{8,20}$/; //8~20자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용
                let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
                let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
