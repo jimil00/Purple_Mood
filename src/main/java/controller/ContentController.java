@@ -32,20 +32,20 @@ public class ContentController extends HttpServlet {
 			
 			System.out.println(uri);
 
-			String searchInput=request.getParameter("searchInput");
+			String searchtext=request.getParameter("searchtext");
 		
-			System.out.println(searchInput);
+			System.out.println(searchtext);
 			
 
 			try { 
 				//드라마 출력
-				List <DramaDTO> dr_list =DramaDAO.getInstance().searchBytitle(request.getParameter("searchInput"));
+				List <DramaDTO> dr_list =DramaDAO.getInstance().searchBytitle(request.getParameter("searchtext"));
 				request.setAttribute("dr_list", dr_list);
 				
 				System.out.println(dr_list);
 
 				//영화 출력
-				List <MovieDTO> mv_list = MovieDAO.getInstance().searchBytitle(request.getParameter("searchInput"));
+				List <MovieDTO> mv_list = MovieDAO.getInstance().searchBytitle(request.getParameter("searchtext"));
 				request.setAttribute("mv_list", mv_list);
 				
 				System.out.println(mv_list.get(0).getMv_img()+":"+mv_list.get(0).getMv_title());

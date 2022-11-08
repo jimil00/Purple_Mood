@@ -15,7 +15,8 @@
 <title>能刨明 惑技 其捞瘤</title>
 <style>
 *{color:white; border:1px solid black;}
-.container-fluid{background:linear-gradient(#03001e,50%,#ec38bc); }
+
+.container-fluid{ background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9); }
 #logo{height:230px;}
 #poster{max-height: 400px;}
 #poster>img{max-height: 400px;}
