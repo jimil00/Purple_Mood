@@ -244,7 +244,7 @@ button {
 					<button type="button" id="profileBtn">
 						<i class="fa-solid fa-pen"></i>
 					</button>
-					<div class="profiletext">${Nickname }</div>
+					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 						<button type="button" id="mypageBtn">마이페이지</button>
 					</div>
@@ -286,7 +286,7 @@ button {
 					<div class="profilebox" style="background: #BDBDBD;"></div>
 					<div class="profiletext">익명의 누군가</div>
 					<div class="profiletext">
-						<a href="/member/signin.jsp"><button>로그인</button></a>
+						<a href="/member/signin.jsp"><button>로그인 | 회원가입</button></a>
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>

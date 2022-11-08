@@ -86,12 +86,11 @@ public class MemberController extends HttpServlet {
          }else if(uri.equals("/signin.member")) {
              String id = request.getParameter("id");
              String pw = request.getParameter("pw");
-             String nickname = MemberDAO.getInstance().getNicknameById(id);
              boolean result= MemberDAO.getInstance().isloginExist(id, pw);
              MemberDTO dto=MemberDAO.getInstance().selectById(id);
 			if(result) {
 					request.getSession().setAttribute("loginID",id);
-					request.getSession().setAttribute("loginNickname", nickname);
+					request.getSession().setAttribute("loginNickname", dto.getNickname());
 				}
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			      
