@@ -34,15 +34,15 @@
          <th>조회수</th>
       </tr>
       <c:choose>
-         <c:when test="${not empty board}">
-            <c:forEach var="i" items="${board}">
+         <c:when test="${not empty list}">
+            <c:forEach var="board" items="${list}">
                <tr>
-                  <td>${i.b_seq}</td>
-                  <td><a href="/selectBoardContents.board?b_seq=${i.b_seq}">${i.b_title}</a></td>
-                  <td>${i.b_content}</td>
-                  <td>${i.b_writer}</td>
-                  <td>${i.b_write_date}</td>
-                  <td>${i.b_view_count}</td>
+                  <td>${board.b_seq}</td>
+                  <td><a href="/selectBoardContents.board?b_seq=${board.b_seq}">${board.b_title}</td>
+                  <td>${board.b_content}</td>
+                  <td>${board.b_writer}</td>
+                  <td>${board.b_write_date}</td>
+                  <td>${board.b_view_count}</td>
                </tr>
             </c:forEach>
          </c:when>
@@ -55,14 +55,18 @@
    </table>
    <hr>
    <div class="insertBoardContents">
-      <a href="/board/insertBoardContents.jsp">
-      <button type="button" id="insertBoardContentsBtn">글쓰기</button></a>
+      <a href="/board/insertBoardContents.jsp"><button type="button"
+            id="insertBoardContentsBtn">글쓰기</button></a>
    </div>
+      <hr>
+			<div colspan="5" align="center">
+				${navi }
+			</div>
    <hr>
-   <form action="/boardListSearch.board">
+   <form action="/boardListSearch.board" method="post">
       <div class="boardListSearch">
          <select id="boardSearchOption" name="boardSearchOption">
-            <option selected="selected" value="b_title">제목</option>
+            <option value="b_title">제목</option>
             <option value="b_writer">작성자</option>
             <option value="b_content">내용</option>
          </select> <input type="text" id="boardSearchWord" name="boardSearchWord">

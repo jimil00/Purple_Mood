@@ -15,10 +15,12 @@ import dto.MemberDTO;
 @WebServlet("*.member")
 public class MemberController extends HttpServlet {
 
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.setCharacterEncoding("utf8");
-      String uri = request.getRequestURI();
-      System.out.println("요청 URI : " + uri);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf8");
+
+		String uri = request.getRequestURI();
+		//      System.out.println("요청 URI : " + uri);
+
 
       try {
          // ID 중복체크
@@ -41,20 +43,20 @@ public class MemberController extends HttpServlet {
                
          // 회원가입
          }else if(uri.equals("/signup.member")) {
-            String id = request.getParameter("id");
-            String nickname = request.getParameter("nickname");
-            String pw = request.getParameter("pw");
-            String name = request.getParameter("name");
-            String phone = request.getParameter("phone");
-            String email = request.getParameter("email");
-            String emailAddress = request.getParameter("emailAddress");
-            String postcode = request.getParameter("postcode");
-            String address1 = request.getParameter("address1");
-            String address2 = request.getParameter("address2");
+				String id = request.getParameter("id");
+				String nickname = request.getParameter("nickname");
+				String pw = request.getParameter("pw");
+				String name = request.getParameter("name");
+				String phone = request.getParameter("phone");
+				String email = request.getParameter("email");
+				String emailAddress = request.getParameter("emailAddress");
+				String postcode = request.getParameter("postcode");
+				String address1 = request.getParameter("address1");
+				String address2 = request.getParameter("address2");
 
-            int result = MemberDAO.getInstance().insert(new MemberDTO (id,nickname,pw,name,phone,email+"@"+emailAddress,postcode,address1,address2,null));
-            request.setAttribute("result", result);
-            response.sendRedirect("/member/signin.jsp");
+				int result = MemberDAO.getInstance().insert(new MemberDTO (id,nickname,pw,name,phone,email+"@"+emailAddress,postcode,address1,address2,null));
+				request.setAttribute("result", result);
+				response.sendRedirect("/member/signin.jsp");
 
 
          // 마이페이지 회원정보 출력
@@ -87,19 +89,19 @@ public class MemberController extends HttpServlet {
              String nickname = MemberDAO.getInstance().getNicknameById(id);
              boolean result= MemberDAO.getInstance().isloginExist(id, pw);
              MemberDTO dto=MemberDAO.getInstance().selectById(id);
-         if(result) {
-               request.getSession().setAttribute("loginID",id);
-               request.getSession().setAttribute("loginNickname", nickname);
-            }
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-               
+			if(result) {
+					request.getSession().setAttribute("loginID",id);
+					request.getSession().setAttribute("loginNickname", nickname);
+				}
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+			      
          
          //로그아웃
          }else if(uri.equals("/logout.member")) {
-               //로그아웃 기능 
-               request.getSession().invalidate();
-               response.sendRedirect("/index.jsp");
-      }
+					//로그아웃 기능 
+					request.getSession().invalidate();
+					response.sendRedirect("/index.jsp");
+		}
          
       }catch(Exception e) {
          e.printStackTrace();
@@ -110,8 +112,8 @@ public class MemberController extends HttpServlet {
 
 
 
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      doGet(request, response);
-   }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }

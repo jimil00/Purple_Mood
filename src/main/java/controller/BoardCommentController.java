@@ -17,53 +17,51 @@ import dto.BoardCommentDTO;
 public class BoardCommentController extends HttpServlet {
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf8");
-		String uri=request.getRequestURI();
-		System.out.println("요청 URI : "+uri);
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			if(uri.equals("/insertBoardComment.boardcomment")) {
+      String uri=request.getRequestURI();
+      System.out.println("요청 URI : "+uri);
 
-				String nickname = (String)request.getSession().getAttribute("loginNickname");
-				String bcm_content=request.getParameter("bcm_content");
-				int b_seq=Integer.parseInt(request.getParameter("b_seq"));
-				BoardCommentDAO dao = BoardCommentDAO.getInstance();
-				dao.insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq));
-				response.sendRedirect("/");
+      try {
+         if(uri.equals("/insertBoardComment.boardcomment")) {
 
-				//         }else if(uri.equals("/selectBoardComment.boardcomment")) {
-				//
-				//            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
-				//            BoardCommentDAO dao = BoardCommentDAO.getInstance();
-				//            List<BoardCommentDTO>list=dao.selectBoardComment(b_seq);
-				//            request.setAttribute("list", list);
-				//            request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
-
-			}else if(uri.equals("/updateBoardComment.boardcomment")) {
-
-				String bcm_content=request.getParameter("bcm_content");
-				int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
-				BoardCommentDAO dao = BoardCommentDAO.getInstance();
-				dao.updateBoardComment(bcm_content,bcm_seq);
-				response.sendRedirect("/");
-
-			}else if(uri.equals("/deleteBoardComment.boardcomment")) {
-
-				int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
-				BoardCommentDAO dao=BoardCommentDAO.getInstance();
-				dao.deleteBoardComment(bcm_seq);
-				response.sendRedirect("/");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("/error.jsp");
-		}
-	}
+        	String nickname = (String)request.getSession().getAttribute("loginNickname");
+            String bcm_content=request.getParameter("bcm_content");
+            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
+            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq));
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+//         }else if(uri.equals("/selectBoardComment.boardcomment")) {
+//
+//            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
+//            BoardCommentDAO dao = BoardCommentDAO.getInstance();
+//            List<BoardCommentDTO>list=dao.selectBoardComment(b_seq);
+//            request.setAttribute("list", list);
+//            request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
+
+         }else if(uri.equals("/updateBoardComment.boardcomment")) {
+
+            String bcm_content=request.getParameter("bcm_content");
+            int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
+            int result = BoardCommentDAO.getInstance().updateBoardComment(bcm_content,bcm_seq);
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
+
+         }else if(uri.equals("/deleteBoardComment.boardcomment")) {
+
+            int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
+            int result = BoardCommentDAO.getInstance().deleteBoardComment(bcm_seq);
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
+         }
+      }catch(Exception e) {
+         e.printStackTrace();
+         response.sendRedirect("/error.jsp");
+      }
+   }
+
+
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      doGet(request, response);
+   }
 
 }

@@ -127,6 +127,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	<div class="container">
 		<form action="/insertBoardContents.board" id="insertBoardContents"
 			method="post" enctype="multipart/form-data">
@@ -214,6 +215,36 @@ $("#eachFile").on("change", function checkFile(el){
 })
 
 	</script>
+=======
+
+	<form action="/insertBoardContents.board" method="post">
+		<table id="insertBoardContents">
+		         <tr class="category">
+            <td><select id="b_category" name="b_category">
+               <option selected value="movie">영화</option>
+               <option value="drama">드라마</option>
+               <option value="onAir">실시간</option>
+               <option value="review">후기</option>
+            </select>
+         </tr>
+		
+			<tr>
+				<td>제목</td>
+				<td><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요."></td>
+			</tr>
+
+			<tr>
+				<td colspan="2"><textarea id="summernote" name="editordata"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><input type="submit" value="작성"><input type="button" id="toBoardList" value="목록으로">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+>>>>>>> 8bffd1212c92206bce849f0442c6d255d293eebe
 </body>
 
 </html>

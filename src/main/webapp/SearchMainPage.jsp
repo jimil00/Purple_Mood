@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>°Ë»ö ¸ÞÀÎ ÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>ê²€ìƒ‰ ë©”ì¸ íŽ˜ì´ì§€</title>
  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
@@ -19,7 +19,7 @@
 </style>
 <script>
   $("#searchbtn").on("click",function(){
-  //  jsp ¿¬°áÇØ¼­ µðºñ¿¡¼­ °ª Ãâ·ÂÇØ¾ßÇÔ.
+  //  jsp ì—°ê²°í•´ì„œ ë””ë¹„ì—ì„œ ê°’ ì¶œë ¥í•´ì•¼í•¨.
     let searchrword=$("#searchinput").value;
   
   })
@@ -28,59 +28,59 @@
 
 
 <div class="container text-center"> 
-  <!--formÀ¸·Î °Ë»ö°á°ú ³Ñ°ÜÁÖ±â-->
+  <!--formìœ¼ë¡œ ê²€ìƒ‰ê²°ê³¼ ë„˜ê²¨ì£¼ê¸°-->
   <form action="/search.content">
         <div class="row" id="header">
           <div class="col-sm-12">
-                <div id="logo">ÆÛÇÃ¹«µå(·Î°í ÀÌ¹ÌÁö Ãß°¡)</div>
+                <div id="logo">í¼í”Œë¬´ë“œ(ë¡œê³  ì´ë¯¸ì§€ ì¶”ê°€)</div>
           </div>
         </div>
 
         <div class="row" id="searchbar">
           <div class="col-2 col-md-2 col-lg-2">
-            <span>°Ë»ö ¾ÆÀÌÄÜ</span>
+            <span>ê²€ìƒ‰ ì•„ì´ì½˜</span>
           </div>
           <div class="col-8 col-md-8 col-lg-8">
-            <input type="text" id="searchinput" name="searchInput"  placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
+            <input type="text" id="searchinput" name="searchInput"  placeholder="ê²€ìƒ‰ì–´ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.">
           </div>
           <div class="col-2 col-md-2 col-lg-2">
-            <button class="col" id="searchbtn">°Ë»ö</button>
+            <button class="col" id="searchbtn">ê²€ìƒ‰</button>
           </div>
 
   </form>
 
-  <!--°Ë»ö Àü ¸ÞÀÎ ÆäÀÌÁö -->
+  <!--ê²€ìƒ‰ ì „ ë©”ì¸ íŽ˜ì´ì§€ -->
   <c:choose> 
     <c:when test="${not empty list}">
         <c:forEach var="Like" items="mv_list">
             <div class="row" id="movie_bar">
-               <div> ¿µÈ­ ¸®½ºÆ®</div>
+               <div> ì˜í™” ë¦¬ìŠ¤íŠ¸</div>
               <div class="row">
-              <div class="col-6 col-sm-4 col-md-2"><a href="/detail.content?seq=${i.seq }"></a><img src="${Like.mv_img}">ÁÁ¾Æ¿ä¼ø ¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
+              <div class="col-6 col-sm-4 col-md-2"><a href="/detail.content?seq=${i.seq }"></a><img src="${Like.mv_img}">ì¢‹ì•„ìš”ìˆœ ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+              <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
               </div>
             </div>
           </c:forEach>
           </c:when>
     </c:choose> 
 
-    <!--°Ë»ö °á°ú Ãâ·Â-->
+    <!--ê²€ìƒ‰ ê²°ê³¼ ì¶œë ¥-->
         <c:choose> 
           <c:when test="${not empty list}">
             <c:forEach var="Like" items="mv_list">
             <div class="row" id="drama_bar">
-               <div>µå¶ó¸¶ --js ÀÌ¿ëÇÏ¿© °ª Ãâ·Â)</div>
+               <div>ë“œë¼ë§ˆ --js ì´ìš©í•˜ì—¬ ê°’ ì¶œë ¥)</div>
                 <div class="row">
-                <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
                 </div>
               </div>
             <!-- </div> ? -->
@@ -92,20 +92,20 @@
           <c:when test="${not empty list}">
             <c:forEach var="search" items="searchResult">
                 <div class="row" id="movie_bar">
-                  <div> ¿µÈ­ ¸®½ºÆ®</div>
+                  <div> ì˜í™” ë¦¬ìŠ¤íŠ¸</div>
                  <div class="row">
-                 <div class="col-6 col-sm-4 col-md-2"><img src="${Like.mv_img}">ÁÁ¾Æ¿ä¼ø ¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">¿µÈ­ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="${Like.mv_img}">ì¢‹ì•„ìš”ìˆœ ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ì˜í™” í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
                  </div>
                </div>
             </c:forEach>
           </c:when>
           <c:otherwise>
-            <div>°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</div>
+            <div>ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
           </c:otherwise>
         </c:choose>
 
@@ -113,20 +113,20 @@
           <c:when test="${not empty list}">
             <c:forEach var="search" items="searchResult">
               <div class="row" id="drama_bar">
-                <div>µå¶ó¸¶ --js ÀÌ¿ëÇÏ¿© °ª Ãâ·Â)</div>
+                <div>ë“œë¼ë§ˆ --js ì´ìš©í•˜ì—¬ ê°’ ì¶œë ¥)</div>
                  <div class="row">
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="">ë“œë¼ë§ˆ í¬ìŠ¤í„° ì¶œë ¥ ì˜ˆì •</div>
                  </div>
                </div>
             </c:forEach>
           </c:when>
           <c:otherwise>
-            <div>°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</div>
+            <div>ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
           </c:otherwise>
         </c:choose>
 
