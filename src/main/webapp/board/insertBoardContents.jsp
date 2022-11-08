@@ -123,16 +123,22 @@
 
 <body>
 
-	<form action="insertBoardContents.board" method="post" enctype="multipart/form-data">
+	<form action="/insertBoardContents.board" method="post">
 		<table id="insertBoardContents">
+		         <tr class="category">
+            <td><select id="b_category" name="b_category">
+               <option selected value="movie">영화</option>
+               <option value="drama">드라마</option>
+               <option value="onAir">실시간</option>
+               <option value="review">후기</option>
+            </select>
+         </tr>
+		
 			<tr>
 				<td>제목</td>
-				<td><input type="text" id="title" name="title" placeholder="제목을 입력하세요."></td>
+				<td><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요."></td>
 			</tr>
-			<tr>
-				<td>파일</td>
-				<td><button id="fileAdd" type=button>파일 첨부</button></td>
-			</tr>
+
 			<tr>
 				<td colspan="2"><textarea id="summernote" name="editordata"></textarea>
 				</td>
@@ -143,33 +149,7 @@
 			</tr>
 		</table>
 	</form>
-	<script>
-	
-	let count = 0;
-	$("#fileAdd").on("click",function(){
-		if($("input[type=file]").length > 5){
-			alert("파일은 최대 5개까지만 업로드 가능합니다.");
-			return;
-		}
-		
-		let fileDiv = $("<div>");
-		
-		let inputFile = $("<input>");
-		inputFile.attr("type","file");
-		inputFile.attr("name","file" + count++);
-		
-		let delBtn = $("<a>");
-		delBtn.html("x");
-		delBtn.on("click",function(){
-			$(this).parent().remove();
-		});
-		
-		fileDiv.append(inputFile);
-		fileDiv.append(delBtn);
-		
-		$("#fileAdd").after(fileDiv);
-	})
-	</script>
+
 </body>
 
 </html>
