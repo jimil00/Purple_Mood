@@ -27,7 +27,8 @@
 <body>
 
 
-<div class="container text-center"> 
+<div class="container-fluid text-center"> 
+
   <!--form으로 검색결과 넘겨주기-->
   <form action="/search.content">
         <div class="row" id="header">
@@ -44,58 +45,21 @@
             <input type="text" id="searchinput" name="searchInput"  placeholder="검색어를 입력해주세요.">
           </div>
           <div class="col-2 col-md-2 col-lg-2">
-            <button class="col" id="searchbtn">검색</button>
+      		<button class="col" id="searchbtn">검색</button>
           </div>
 
   </form>
+<!--검색 전 메인 페이지 -->
 
-  <!--검색 전 메인 페이지 -->
-  <c:choose> 
-    <c:when test="${not empty list}">
-      <c:forEach var="Like" items="mv_list">
-        <c:forEach var="Like" items="mv_list">
-            <div class="row" id="movie_bar">
-               <div> 영화 리스트</div>
-              <div class="row">
-              <div class="col-6 col-sm-4 col-md-2"><a href="/detail.content?seq=${i.seq }"></a><img src="${Like.mv_img}">좋아요순 영화 포스터 출력 예정</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-              <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-              </div>
-            </div>
-          </c:forEach>
-          </c:when>
-    </c:choose> 
 
-    <!--검색 결과 출력-->
-        <c:choose> 
-          <c:when test="${not empty list}">
-            <c:forEach var="Like" items="mv_list">
-            <div class="row" id="drama_bar">
-               <div>드라마 --js 이용하여 값 출력)</div>
-                <div class="row">
-                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
-                <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
-                </div>
-              </div>
-            <!-- </div> ? -->
-          </c:forEach>
-        </c:when>
-        </c:choose>
-
+<!--검색 결과 출력--> 
         <c:choose>
-          <c:when test="${not empty list}">
-            <c:forEach var="search" items="searchResult">
+          <c:when test="${not empty list}"> 조건 어캐 하지?
+            <c:forEach var="m" items="mv_list">
                 <div class="row" id="movie_bar">
                   <div> 영화 리스트</div>
                  <div class="row">
-                 <div class="col-6 col-sm-4 col-md-2"><img src="${Like.mv_img}">좋아요순 영화 포스터 출력 예정</div>
+                 <div class="col-6 col-sm-4 col-md-2"><img src="${m[0].mv_img}">m.검색 결과 영화 포스터 출력 예정</div>
                  <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
                  <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
                  <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
@@ -111,10 +75,10 @@
         </c:choose>
 
         <c:choose>
-          <c:when test="${not empty list}">
-            <c:forEach var="search" items="searchResult">
+          <c:when test="${searchInput != null and not empty list}">
+            <c:forEach var="d" items="dr_list">
               <div class="row" id="drama_bar">
-                <div>드라마 --js 이용하여 값 출력)</div>
+                <div>드라마</div>
                  <div class="row">
                  <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
                  <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
@@ -130,8 +94,6 @@
             <div>검색 결과가 없습니다.</div>
           </c:otherwise>
         </c:choose>
-
-
 </div>
 </body>
 </html>
