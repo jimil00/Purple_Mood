@@ -29,6 +29,10 @@ public class BoardDAO {
 		return ds.getConnection();
 	}
 
+	//editor
+//	public String removeHTML(String str) throws Exception {
+//		String editedText=str.replace("/<br\/>/ig", "\n");
+//	}
 
 	// 게시글 작성 (C)
 	public int insertBoardContents(BoardDTO dto) throws Exception{

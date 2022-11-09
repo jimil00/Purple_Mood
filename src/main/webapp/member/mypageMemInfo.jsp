@@ -111,7 +111,7 @@ input {
 					<div class=pw>
 						<div class="subject">패스워드</div>
 						<div>
-							<input type="password" name="pw" id="pw" value="${dto.pw }"
+							<input type="password" name="pw" id="pw"
 								readonly>
 						</div>
 						<div>*8~16자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용</div>
@@ -119,7 +119,7 @@ input {
 					<div class="pwcheck">
 						<div class="subject">패스워드 확인</div>
 						<div>
-							<input type="password" id="checkpw" value="${dto.pw }" readonly>
+							<input type="password" id="checkpw" readonly>
 						</div>
 						<div id="result"></div>
 					</div>
@@ -142,7 +142,7 @@ input {
 					<div class="email">
 						<div class="subject">이메일</div>
 						<div>
-							<input type="text" name="email" id="email" value="${dto.email }"
+							<input type="text" name="email" id="email" value="${dto.email}"
 								readonly> @ <select id="emailAddress"
 								name="emailAddress">
 								<option value="gmail.com">gmail.com</option>

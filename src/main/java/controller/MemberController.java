@@ -70,16 +70,22 @@ public class MemberController extends HttpServlet {
 
          // 마이페이지 회원정보 수정
          }else if(uri.equals("/updateMemInfo.member")) {
+             String id = (String)request.getSession().getAttribute("loginID");
+
             String nickname = request.getParameter("nickname");
             String pw = request.getParameter("pw");
             String name = request.getParameter("name");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
+            String emailAddress=request.getParameter("emailAddress");
+            
+            System.out.println("수정 email "+email);
+            System.out.println("수정 emailAddress "+emailAddress);
             String postcode = request.getParameter("postcode");
             String address1 = request.getParameter("address1");
             String address2 = request.getParameter("address2");
             
-            int result = MemberDAO.getInstance().update(new MemberDTO(null, nickname, pw, name, phone, email, postcode, address1, address2, null));
+            int result = MemberDAO.getInstance().update(new MemberDTO(id, nickname, pw, name, phone, email+"@"+emailAddress, postcode, address1, address2, null));
             response.sendRedirect("/mypageMemInfo.member");
          
          //로그인
