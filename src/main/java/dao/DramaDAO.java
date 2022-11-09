@@ -107,12 +107,12 @@ public class DramaDAO {
 				dto.setDr_summary(rs.getString("dr_summary"));
 				dto.setDr_img(rs.getString("dr_img"));
 				dto.setDr_like(rs.getInt("dr_like"));
-				
-				dto.setDr_ottNF((rs.getString("dr_ottNF").charAt(0))); //이거 안되는데
-//				dto.setDr_ottWV(0);//char값 어캐 담지
-//				dto.setDr_ottDZ(0);
-//				dto.setDr_ottWC(0);
-//				dto.setDr_ottAT(0);
+				dto.setDr_ottNF((rs.getString("dr_ottNF").charAt(0))); 
+				dto.setDr_ottWV((rs.getString("dr_ottWV").charAt(0)));
+				dto.setDr_ottDZ((rs.getString("dr_ottDZ").charAt(0)));
+				dto.setDr_ottWC((rs.getString("dr_ottWC").charAt(0)));
+				dto.setDr_ottCP((rs.getString("dr_ottAT").charAt(0)));
+				dto.setDr_ottTV((rs.getString("dr_ottAT").charAt(0)));
 				
 				System.out.println(rs.getString("dr_ottNF").charAt(0));
 

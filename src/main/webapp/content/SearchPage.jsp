@@ -17,7 +17,7 @@
     #searchtext{width:100%};
     #searchbtn{width:100%};
     #logo{color: white;}
-    div>img{width:200px; height:280px;}
+    div>a>img{width:200px; height:280px;}
     span>img{width:45px; position:relative; bottom:60%; left:80%;}
 </style>
 <script>
@@ -26,6 +26,7 @@
     let searchrword=$("#searchinput").value;
   
   })
+  
 </script>
 <body>
 
@@ -56,12 +57,12 @@
                 <hr> <div class="list_title pt-2">영화 리스트</div><hr>
                      <c:forEach var="m" items="${mv_list}">
                  <div class="row">
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><input type="hidden" name="mv_seq" value=${mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
                  </div>
                </div>
            	</c:forEach>

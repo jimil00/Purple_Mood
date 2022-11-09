@@ -48,17 +48,20 @@ public class ContentController extends HttpServlet {
 				List <MovieDTO> mv_list = MovieDAO.getInstance().searchBytitle(request.getParameter("searchtext"));
 				request.setAttribute("mv_list", mv_list);
 
-				System.out.println(mv_list.get(0).getMv_img()+":"+mv_list.get(0).getMv_title());
+				
+				System.out.println(mv_list);
+//				System.out.println(mv_list.get(1).getMv_img()+":"+mv_list.get(1).getMv_title());
 
-				//				//주소값이 왜 나옴
-				//					List<String> list= new ArrayList();
-				//				for(int i = 0; i< mv_list.size(); i++) { 
-				//					list.add(mv_list.get(i).getMv_img()); 
-				//					list.add(mv_list.get(i).getMv_title());}
-				//			
-				//					request.setAttribute("list", list);
-				//					
-				//					System.out.println(list);
+								//주소값이 왜 나옴
+//									List<String> list= new ArrayList();
+//								for(int i = 0; i< mv_list.size(); i++) { 
+//									
+//									list.add(mv_list.get(i).getMv_img()); 
+//									list.add(mv_list.get(i).getMv_title());}
+//							
+//									request.setAttribute("list", list);
+//									
+//									System.out.println(list);
 
 				request.getRequestDispatcher("/content/SearchPage.jsp").forward(request, response); 
 

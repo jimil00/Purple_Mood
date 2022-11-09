@@ -112,6 +112,12 @@ public class MovieDAO {
 				dto.setMv_summary(rs.getString("mv_summary"));
 				dto.setMv_img(rs.getString("mv_img"));
 				dto.setMv_like(rs.getInt("mv_like"));
+				dto.setMv_ottNF((rs.getString("dr_ottNF").charAt(0))); 
+				dto.setMv_ottWV((rs.getString("dr_ottWV").charAt(0)));
+				dto.setMv_ottDZ((rs.getString("dr_ottDZ").charAt(0)));
+				dto.setMv_ottWC((rs.getString("dr_ottWC").charAt(0)));
+				dto.setMv_ottCP((rs.getString("dr_ottAT").charAt(0)));
+				dto.setMv_ottTV((rs.getString("dr_ottAT").charAt(0)));
 
 			}
 			return dto;
