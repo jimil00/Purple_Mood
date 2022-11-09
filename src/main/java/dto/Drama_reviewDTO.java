@@ -18,7 +18,6 @@ public class Drama_reviewDTO {
 
 	public Drama_reviewDTO(int drr_seq, String drr_writer, String drr_content, int drr_like, Timestamp drr_writer_date,
 			int dr_seq) {
-		super();
 		this.drr_seq = drr_seq;
 		this.drr_writer = drr_writer;
 		this.drr_content = drr_content;

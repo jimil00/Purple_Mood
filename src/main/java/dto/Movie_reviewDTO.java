@@ -18,7 +18,6 @@ public class Movie_reviewDTO {
 
 	public Movie_reviewDTO(int mvr_seq, String mvr_writer, String mvr_content, int mvr_like, Timestamp mvr_writer_date,
 			int mv_seq) {
-		super();
 		this.mvr_seq = mvr_seq;
 		this.mvr_writer = mvr_writer;
 		this.mvr_content = mvr_content;
