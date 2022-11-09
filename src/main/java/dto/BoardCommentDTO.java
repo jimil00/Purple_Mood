@@ -1,16 +1,17 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class BoardCommentDTO {
-	
+
 	private int bcm_seq;
 	private String bcm_writer;
 	private Timestamp bcm_write_date;
 	private String bcm_content;
 	private int b_seq;
-	
-	
+
+
 	public BoardCommentDTO() {
 		super();
 	}
@@ -21,8 +22,8 @@ public class BoardCommentDTO {
 		this.bcm_content = bcm_content;
 		this.b_seq = b_seq;
 	}
-	
-	
+
+
 	public int getBcm_seq() {
 		return bcm_seq;
 	}
@@ -35,9 +36,18 @@ public class BoardCommentDTO {
 	public void setBcm_writer(String bcm_writer) {
 		this.bcm_writer = bcm_writer;
 	}
-	public Timestamp getBcm_write_date() {
-		return bcm_write_date;
-	}
+	public String getBcm_write_date() {
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
+		String sdf1_b_write_date = sdf1.format(this.bcm_write_date);
+		String sdf1_currentTime = sdf1.format(System.currentTimeMillis());
+		if(sdf1_b_write_date.equals(sdf1_currentTime)) {
+			SimpleDateFormat sdf2 = new SimpleDateFormat("hh시 mm분");
+			return sdf2.format(this.bcm_write_date);
+		}else {
+			SimpleDateFormat sdf3 = new SimpleDateFormat("MM월 dd일");
+			return sdf3.format(this.bcm_write_date);
+		}		
+	}	
 	public void setBcm_write_date(Timestamp bcm_write_date) {
 		this.bcm_write_date = bcm_write_date;
 	}
@@ -53,5 +63,5 @@ public class BoardCommentDTO {
 	public void setB_seq(int b_seq) {
 		this.b_seq = b_seq;
 	}
-	
+
 }

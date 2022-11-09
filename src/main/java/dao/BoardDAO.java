@@ -3,7 +3,6 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -183,7 +182,7 @@ public class BoardDAO {
 //	}
 		public List<BoardDTO> selectBoardByRange() throws Exception{
 	
-			String sql = "select * from board";
+			String sql = "select * from board order by b_write_date desc";
 	
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);

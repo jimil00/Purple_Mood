@@ -80,7 +80,7 @@ public class BoardController extends HttpServlet {
 
 				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
-				String b_content = request.getParameter("editordata");
+				String b_content = request.getParameter("b_content");
 				System.out.println(b_category+b_title+b_content);
 
 //				int nextVal = BoardDAO.getInstance().getBoardNextVal();
@@ -131,16 +131,19 @@ public class BoardController extends HttpServlet {
 
 
 			// 게시글 삭제 (D)
-			}else if(uri.equals("/deleteContents.board")) {
+			}else if(uri.equals("/deleteBoardContents.board")) {
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 				int result = BoardDAO.getInstance().deleteBoardContents(b_seq);
-				String page = (String)request.getSession().getAttribute("boardPage");
-				response.sendRedirect("/boardList.board?cpage="+page);
+//				String page = (String)request.getSession().getAttribute("boardPage");
+				response.sendRedirect("/boardList.board");
+				
+
+//				response.sendRedirect("/boardList.board?cpage="+page);
 				// 그 페이지로
 
 
 			// 게시글 수정 (U)
-			}else if(uri.equals("/updateContents.board")) {
+			}else if(uri.equals("/updateBoardContents.board")) {
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");

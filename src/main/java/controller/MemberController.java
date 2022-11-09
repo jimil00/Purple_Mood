@@ -19,7 +19,7 @@ public class MemberController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 
 		String uri = request.getRequestURI();
-		//      System.out.println("요청 URI : " + uri);
+		      System.out.println("요청 URI : " + uri);
 
 
       try {
@@ -62,36 +62,36 @@ public class MemberController extends HttpServlet {
          // 마이페이지 회원정보 출력
          }else if(uri.equals("/mypageMemInfo.member")) {
             
-            MemberDAO dao = MemberDAO.getInstance();
             String id = (String)request.getSession().getAttribute("loginID");
-            MemberDTO dto = dao.selectById(id);
+            MemberDTO dto = MemberDAO.getInstance().selectById(id);
             request.setAttribute("dto", dto);
             request.getRequestDispatcher("/member/mypageMemInfo.jsp").forward(request, response);
 
          // 마이페이지 회원정보 수정
          }else if(uri.equals("/updateMemInfo.member")) {
+            String id = (String)request.getSession().getAttribute("loginID");
             String nickname = request.getParameter("nickname");
             String pw = request.getParameter("pw");
             String name = request.getParameter("name");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
+            String emailAddress=request.getParameter("emailAddress");
             String postcode = request.getParameter("postcode");
             String address1 = request.getParameter("address1");
             String address2 = request.getParameter("address2");
-            
-            int result = MemberDAO.getInstance().update(new MemberDTO(null, nickname, pw, name, phone, email, postcode, address1, address2, null));
+            System.out.println(id+nickname+name+phone+email);
+            int result = MemberDAO.getInstance().update(new MemberDTO(id, nickname, pw, name, phone, email+"@"+emailAddress, postcode, address1, address2, null));
             response.sendRedirect("/mypageMemInfo.member");
          
          //로그인
          }else if(uri.equals("/signin.member")) {
              String id = request.getParameter("id");
              String pw = request.getParameter("pw");
-             String nickname = MemberDAO.getInstance().getNicknameById(id);
              boolean result= MemberDAO.getInstance().isloginExist(id, pw);
              MemberDTO dto=MemberDAO.getInstance().selectById(id);
 			if(result) {
 					request.getSession().setAttribute("loginID",id);
-					request.getSession().setAttribute("loginNickname", nickname);
+					request.getSession().setAttribute("loginNickname", dto.getNickname());
 				}
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			      
