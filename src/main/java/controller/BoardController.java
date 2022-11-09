@@ -80,7 +80,7 @@ public class BoardController extends HttpServlet {
 
 				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
-				String b_content = request.getParameter("editordata");
+				String b_content = request.getParameter("content");
 				System.out.println("b_category : "+b_category);
 				System.out.println("b_title : "+b_title);
 				System.out.println("b_content : "+b_content);
