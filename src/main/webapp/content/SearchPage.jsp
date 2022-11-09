@@ -16,7 +16,9 @@
     .searchbar{background-color: grey;}
     #searchtext{width:100%};
     #searchbtn{width:100%};
-    #logo{color: white; }
+    #logo{color: white;}
+    div>img{width:200px; height:280px;}
+    span>img{width:45px; position:relative; bottom:60%; left:80%;}
 </style>
 <script>
   $("#searchbtn").on("click",function(){
@@ -49,32 +51,32 @@
   </form>
 <!--검색 결과 출력-->  
         <c:choose>
-          <c:when test="${not empty list}">
-            <c:forEach var="m" items="mv_list">
+          <c:when test="${not empty mv_list}">
                 <div class="row" id="movie_bar">
                 <hr> <div class="list_title pt-2">영화 리스트</div><hr>
+                     <c:forEach var="m" items="${mv_list}">
                  <div class="row">
-                 <div class="col-6 col-sm-4 col-md-2"><img src="${m.mv_img}">${m.mv_title} 검색 결과 영화 포스터 출력 예정</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">영화 포스터 출력 예정</div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><input type="hidden" name="mv_seq" value=${mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
+                 <div class="mv_search col-6 col-sm-4 col-md-2"><img src="${m.mv_img}"><p>${m.mv_title}</p></div>
                  </div>
                </div>
-            </c:forEach>
+           	</c:forEach>
           </c:when>
           <c:otherwise>
-           <hr> <div> 영화 리스트</div><hr>
+           <hr> <div class="list_title pt-2">영화 리스트</div><hr>
             <div>검색 결과가 없습니다.</div>
           </c:otherwise>
         </c:choose>
 
         <c:choose>
-          <c:when test="${not empty list}">
+          <c:when test="${not empty dr_list}">  
             <c:forEach var="d" items="dr_list">
               <div class="row" id="drama_bar">
-               <hr> <div class="list_title">드라마</div><hr>
+                  <hr> <div class="list_title">드라마</div><hr>
                  <div class="row">
                  <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
                  <div class="col-6 col-sm-4 col-md-2"><img src="">드라마 포스터 출력 예정</div>
@@ -87,7 +89,7 @@
             </c:forEach>
           </c:when>
           <c:otherwise>
-          	<hr><div>드라마</div><hr>
+          <hr> <div class="list_title">드라마</div><hr>
             <div>검색 결과가 없습니다.</div>
           </c:otherwise>
         </c:choose>
