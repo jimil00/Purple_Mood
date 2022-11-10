@@ -75,67 +75,73 @@ body {
 }
 
 /* ott버튼 */
-      .ottboxsec {
-        margin-top: 100px;
-        margin-bottom: 100px;
-        text-align: center;
-      }
+.ottboxsec {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	text-align: center;
+}
 
-      #watchabtn {
-        display: inline-block;
-        padding: 25px 30px;
-        margin: 40px 0;
-        transition: 0.5s;
-        margin-right: 50px;
-      }
-      #watchabtn:hover {
-        background: #ff0559;
-        color: #050801;
-        box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559,
-          0 0 200px #ff0559;
-        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-      }
+#watchabtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
 
-      #wavvebtn {
-        display: inline-block;
-        padding: 25px 30px;
-        margin: 40px 0;
-        transition: 0.5s;
-        margin-right: 50px;
-      }
-      #wavvebtn:hover {
-        background: #022ca4;
-        color: #050801;
-        box-shadow: 0 0 5px #022ca4, 0 0 25px #022ca4, 0 0 50px #022ca4,
-          0 0 200px #022ca4;
-        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-      }
-      #netbtn {
-        display: inline-block;
-        padding: 25px 30px;
-        margin: 40px 0;
-        transition: 0.5s;
-        margin-right: 50px;
-      }
-      #netbtn:hover {
-        background: #ed1c24;
-        box-shadow: 0 0 5px #ed1c24, 0 0 25px #ed1c24, 0 0 50px #ed1c24,
-          0 0 200px #ed1c24;
-        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-      }
-      #disneybtn {
-        display: inline-block;
-        padding: 25px 30px;
-        margin: 40px 0;
-        transition: 0.5s;
-        margin-right: 50px;
-      }
-      #disneybtn:hover {
-        background: #3bdce4;
-        box-shadow: 0 0 5px #3bdce4, 0 0 25px #3bdce4, 0 0 50px #3bdce4,
-          0 0 200px #3bdce4;
-        -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-      }
+#watchabtn:hover {
+	background: #ff0559;
+	color: #050801;
+	box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559, 0 0
+		200px #ff0559;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#wavvebtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
+
+#wavvebtn:hover {
+	background: #022ca4;
+	color: #050801;
+	box-shadow: 0 0 5px #022ca4, 0 0 25px #022ca4, 0 0 50px #022ca4, 0 0
+		200px #022ca4;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#netbtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
+
+#netbtn:hover {
+	background: #ed1c24;
+	box-shadow: 0 0 5px #ed1c24, 0 0 25px #ed1c24, 0 0 50px #ed1c24, 0 0
+		200px #ed1c24;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#disneybtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
+
+#disneybtn:hover {
+	background: #3bdce4;
+	box-shadow: 0 0 5px #3bdce4, 0 0 25px #3bdce4, 0 0 50px #3bdce4, 0 0
+		200px #3bdce4;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
 
 /* 영화 포스터 */
 .titlename {
@@ -149,6 +155,10 @@ body {
 .postimg {
 	width: 15%;
 	border-radius: 5px;
+}
+
+.postimg:hover {
+	transform: scale(1.01);
 }
 
 #carouselExampleControls, #carouselExampleControls2 {
@@ -191,6 +201,10 @@ body {
 	padding-top: 10px;
 	height: 50px;
 	line-height: 50px;
+}
+
+.fa-brands:hover {
+	cursor: pointer;
 }
 
 .snsIcon {
@@ -236,9 +250,13 @@ body {
 }
 
 .menulink {
-	font-size: xx-large;
+	font-size: x-large;
 	margin-bottom: 50px;
 	margin-top: 50px;
+}
+
+.menulink:hover, #searchbtn:hover {
+	color: #c4c4c4;
 }
 
 #colsebtn {
@@ -277,12 +295,12 @@ hr.hr {
 					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
-	
-			function enterkey() { //검색창에서 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
-				if (window.event.keyCode == 13) {
-			location.href="/search.content?searchtext="+$("#searchtext").val(); 
-	    			}
-			}
+				function enterkey() { //검색창에서 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+					if (window.event.keyCode == 13) {
+						location.href = "/search.content?searchtext="
+								+ $("#searchtext").val();
+					}
+				}
 			</script>
 
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
@@ -340,7 +358,7 @@ hr.hr {
 					</div>
 					<div class="col-6 col-lg-3">
 						<a href="#" id="wavvebtn"> <img src="/img/wavbf.png"
-							id="wavlogo" style="width: 150px; height: 50px">
+							id="wavve" style="width: 150px; height: 50px">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
@@ -354,35 +372,35 @@ hr.hr {
 						</a>
 					</div>
 					<script>
-              $("#watchabtn").on("mouseover", function () {
-                $("#watcha").attr("src", "/img/wataf.png");
-              });
-              $("#watchabtn").on("mouseout", function () {
-                $("#watcha").attr("src", "/img/watbf.png");
-              });
-              $("#wavvebtn").on("mouseover", function () {
-                $("#wavlogo").attr("src", "/img/wavat.png");
-              });
-              $("#wavvebtn").on("mouseout", function () {
-                $("#wavlogo").attr("src", "/img/wavbf.png");
-              });
-              $("#netbtn").on("mouseover", function () {
-                $("#netflix").attr("src", "/img/netat.png");
-              });
-              $("#netbtn").on("mouseout", function () {
-                $("#netflix").attr("src", "/img/netbf.png");
-              });
-              $("#disneybtn").on("mouseover", function () {
-                $("#disney").attr("src", "/img/disat.png");
-              });
-              $("#disneybtn").on("mouseout", function () {
-                $("#disney").attr("src", "/img/disbf.png");
-              });
-            </script>
+						$("#watchabtn").on("mouseover", function() {
+							$("#watcha").attr("src", "/img/wataf.png");
+						});
+						$("#watchabtn").on("mouseout", function() {
+							$("#watcha").attr("src", "/img/watbf.png");
+						});
+						$("#wavvebtn").on("mouseover", function() {
+							$("#wavve").attr("src", "/img/wavat.png");
+						});
+						$("#wavvebtn").on("mouseout", function() {
+							$("#wavve").attr("src", "/img/wavbf.png");
+						});
+						$("#netbtn").on("mouseover", function() {
+							$("#netflix").attr("src", "/img/netat.png");
+						});
+						$("#netbtn").on("mouseout", function() {
+							$("#netflix").attr("src", "/img/netbf.png");
+						});
+						$("#disneybtn").on("mouseover", function() {
+							$("#disney").attr("src", "/img/disat.png");
+						});
+						$("#disneybtn").on("mouseout", function() {
+							$("#disney").attr("src", "/img/disbf.png");
+						});
+					</script>
 				</div>
 			</div>
 			<div class="poster1">
-				<div class="col-12 fs-1 titlename">인기 영화</div>
+				<div class="col-12 fs-3 titlename">인기 영화</div>
 				<div>
 					<div id="carouselExampleControls" class="carousel slide"
 						data-bs-ride="carousel">
@@ -426,7 +444,7 @@ hr.hr {
 				</div>
 			</div>
 			<div class="poster2">
-				<div class="col-12 fs-1 titlename">최신영화</div>
+				<div class="col-12 fs-3 titlename">최신영화</div>
 				<div>
 					<div id="carouselExampleControls2" class="carousel slide"
 						data-bs-ride="carousel">
@@ -557,7 +575,7 @@ hr.hr {
 					<div class="profilebox" style="background: #BDBDBD;"></div>
 					<div class="profiletext">익명의 누군가</div>
 					<div class="profiletext">
-						<a href="/member/signin.jsp"><button>로그인 | 회원가입</button></a>
+						<a href="/member/signin.jsp"><button id="signinBtn">로그인</button></a>
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>
