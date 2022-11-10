@@ -24,6 +24,8 @@ public class ContentController extends HttpServlet {
 
 
 		request.setCharacterEncoding("utf8");
+		
+	    response.setContentType("test/html; charset=UTF-8");
 
 		String uri = request.getRequestURI();
 
@@ -41,27 +43,29 @@ public class ContentController extends HttpServlet {
 				//드라마 출력
 				List <DramaDTO> dr_list =DramaDAO.getInstance().searchBytitle(request.getParameter("searchtext"));
 				request.setAttribute("dr_list", dr_list);
+				
+				//System.out.println(dr_list);
 
-				System.out.println(dr_list);
+
 
 				//영화 출력
 				List <MovieDTO> mv_list = MovieDAO.getInstance().searchBytitle(request.getParameter("searchtext"));
 				request.setAttribute("mv_list", mv_list);
 
-				
-				System.out.println(mv_list);
-//				System.out.println(mv_list.get(1).getMv_img()+":"+mv_list.get(1).getMv_title());
 
-								//주소값이 왜 나옴
-//									List<String> list= new ArrayList();
-//								for(int i = 0; i< mv_list.size(); i++) { 
-//									
-//									list.add(mv_list.get(i).getMv_img()); 
-//									list.add(mv_list.get(i).getMv_title());}
-//							
-//									request.setAttribute("list", list);
-//									
-//									System.out.println(list);
+								//System.out.println(mv_list);
+				//				System.out.println(mv_list.get(1).getMv_img()+":"+mv_list.get(1).getMv_title());
+
+				//주소값이 왜 나옴
+				//									List<String> list= new ArrayList();
+				//								for(int i = 0; i< mv_list.size(); i++) { 
+				//									
+				//									list.add(mv_list.get(i).getMv_img()); 
+				//									list.add(mv_list.get(i).getMv_title());}
+				//							
+				//									request.setAttribute("list", list);
+				//									
+				//									System.out.println(list);
 
 				request.getRequestDispatcher("/content/SearchPage.jsp").forward(request, response); 
 
@@ -95,23 +99,74 @@ public class ContentController extends HttpServlet {
 			//
 			//		}
 
-			if(uri.equals("/detail.content")) {
-				//영화 드라마 출력 페이지 로직
-				int dr_seq= Integer.parseInt(request.getParameter("dr_seq"));
-				int mv_seq= Integer.parseInt(request.getParameter("mv_seq"));
 
-				try {
-					DramaDTO dr_detail = DramaDAO.getInstance().selectByseq(dr_seq);
-					MovieDTO mv_dateil = MovieDAO.getInstance().selectByseq(mv_seq);
+		}
+		
+		else if(uri.equals("/detailMv.content")) {
+			//영화 출력 페이지 로직
 
-					request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
+			System.out.println(uri);
 
-				}catch(Exception e)	{
-					e.printStackTrace();
-					response.sendRedirect("Error.jsp");
-				}
+		
+			int mv_id= Integer.parseInt(request.getParameter("mv_id"));
+
+
+			try {
+			
+				MovieDTO mv_detail = MovieDAO.getInstance().selectByseq(mv_id);
+
+				
+				request.setAttribute("mv_detail", mv_detail);
+			
+
+				request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
+
+			}catch(Exception e)	{
+				e.printStackTrace();
+				response.sendRedirect("Error.jsp");
 			}
 		}
+		
+		else if(uri.equals("/detailDr.content")) {
+			//드라마 출력 페이지 로직
+
+			System.out.println(uri);
+
+			int dr_id= Integer.parseInt(request.getParameter("dr_id"));
+
+
+			System.out.println(dr_id);
+			
+
+			try {
+				DramaDTO dr_detail = DramaDAO.getInstance().selectByseq(dr_id);
+			
+
+				request.setAttribute("dr_detail", dr_detail);
+				
+				System.out.println(dr_detail.getDr_poster_path()); 
+
+				request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
+
+			}catch(Exception e)	{
+				e.printStackTrace();
+				response.sendRedirect("Error.jsp");
+			}
+		}
+		
+		else if(uri.equals("/like.content")) {
+			
+			String r_writer = (String)request.getSession().getAttribute("loginNickname");
+			
+//			if(좋아요 누른게==0) {
+//				DramaDAO.getInstance().insertLike();
+//				MovieDAO.getInstance().insertLike();
+				
+//			}else{DramaDAO.getInstance().deleteLike();}
+			
+		}
+		
+		
 	}
 
 
