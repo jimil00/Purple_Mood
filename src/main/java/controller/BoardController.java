@@ -124,6 +124,7 @@ public class BoardController extends HttpServlet {
 //				request.setAttribute("filelist", filelist); 
 
 				List<BoardCommentDTO> list =BoardCommentDAO.getInstance().selectBoardComment(b_seq);
+				System.out.println();
 				request.setAttribute("list", list);
 				System.out.println("here");
 

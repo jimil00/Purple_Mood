@@ -41,19 +41,40 @@
 
 			let btnUpdateBComment = $("<button>");
 			btnUpdateBComment.text("수정완료");
-			btnUpdateBComment.addClass("btn")
-			btnUpdateBComment.css("margin-right", "5px")
+			btnUpdateBComment.addClass("btn");
+			
+
+			btnUpdateBComment.addClass("updcmbtn");
+			
+			
+			btnUpdateBComment.css("margin-right", "5px");
 
 			let btnCancelBCommentU = $("<button>");
 			btnCancelBCommentU.attr("type", "button");
 			btnCancelBCommentU.text("취소");
-			btnCancelBCommentU.addClass("btn")
+			btnCancelBCommentU.addClass("btn");
 			btnCancelBCommentU.on("click", function() {
 				location.reload();
 			});
 
 			$(".cbtns").append(btnUpdateBComment);
 			$(".cbtns").append(btnCancelBCommentU);
+
+		})
+		$(document).on("click",".updcmbtn",function(){
+			let bcm_seq = $(this).closest("tr").find(".bcm_content").attr("bcm_seq");
+			let bcm_content = $(this).closest("tr").find(".bcm_content").val();
+			console.log(bcm_seq + ":" + bcm_content);
+			$.ajax({
+				url:"/updateBoardComment.boardcomment",
+				datatype:"post",
+				data:{
+					"bcm_seq": bcm_seq,
+					"bcm_content":bcm_content
+				}
+			}).done(function(res){
+				location.reload();
+			})
 
 		})
 
@@ -111,11 +132,8 @@
 		</table>
 	</form>
 
-
-
-	<form action="/updateBoardComment.boardcomment" method="post">
 		<table border="1" width="950" align="center">
-			<input type=hidden id="b_seq" name="b_seq" value="${dto.b_seq }">
+			<input id="b_seq" name="b_seq" value="${dto.b_seq }">
 
 			<c:choose>
 				<c:when test="${empty list}">
@@ -126,15 +144,15 @@
 				<c:otherwise>
 					<c:forEach var="comment" items="${list}">
 						<tr>
-							<input type=hidden class="bcm_seq" name="bcm_seq"
+							<input  class="bcm_seq" name="bcm_seq"
 								value="${comment.bcm_seq }">
-							<td width="100" " class="bcm_writer">${comment.bcm_writer }
-							<td width="850" align="center" class="bcm_write_date">
+							<td width="100" class="bcm_writer">${comment.bcm_writer }
+							<td width="850" align="center" class="bcm_write_date" name="bcm_write_date">
 									${comment.bcm_write_date }
 					
 						</tr>
 						<tr>
-							<td><input type="text" class="bcm_content" name="bcm_content" size="105" value="${comment.bcm_content }" readonly></td>
+							<td><input type="text" class="bcm_content" name="bcm_content"  size="105" value="${comment.bcm_content }" bcm_seq="${comment.bcm_seq }" readonly></td>
 							<c:choose>
 								<c:when test="${loginNickname == comment.bcm_writer}">
 									<td class="cbtns" align="center"><input type="button" class="updateBoardComment" name="updateBoardComment" value="댓글수정"> &nbsp 
@@ -151,13 +169,13 @@
 			</c:otherwise>
 			</c:choose>
 		</table>
-	</form>
+		
 	<form action="/insertBoardComment.boardcomment" method="post">
 		<table border="1" width="950" align="center">
 			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
 			<tr>
 				<td id="bcm_writer" name="bcm_writer" width="100" align="center">${loginNickname }
-				<td><input type="text" id="bcm_content" name="bcm_content"
+				<td><input type="text" id="insertBcm_content" name="insertBcm_content"
 					placeholder="내용을 입력해주세요." size="105">
 				<td align="center"><button id="insertBoardComment">댓글
 						작성</button>

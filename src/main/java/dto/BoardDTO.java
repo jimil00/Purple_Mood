@@ -52,7 +52,7 @@ public class BoardDTO {
 		String sdf1_b_write_date = sdf1.format(this.b_write_date);
 		String sdf1_currentTime = sdf1.format(System.currentTimeMillis());
 		if(sdf1_b_write_date.equals(sdf1_currentTime)) {
-			SimpleDateFormat sdf2 = new SimpleDateFormat("hh시 mm분");
+			SimpleDateFormat sdf2 = new SimpleDateFormat("HH시 mm분");
 			return sdf2.format(this.b_write_date);
 		}else {
 			SimpleDateFormat sdf3 = new SimpleDateFormat("MM월 dd일");
