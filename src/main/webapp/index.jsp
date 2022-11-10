@@ -210,17 +210,28 @@ hr.hr {
 	width: 90%
 }
 </style>
+
 </head>
 <body>
+
 	<div class="containers">
 		<div class="row header fixed-top">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
 				<img src="" />
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
-				<input type="text" class="searchboxin" id="searchtext" /> <a
-					href="#"><i class="fa-solid fa-magnifying-glass searchboxin fa-lg"></i></a>
+				<input type="text" class="searchboxin" id="searchtext" onkeyup="enterkey()" name="searchtext"/> 
+				<a href="/search.content?searchtext="+searchtext><i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
+			<script>
+	
+			function enterkey() { //검색창에서 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+				if (window.event.keyCode == 13) {
+			location.href="/search.content?searchtext="+$("#searchtext").val(); 
+	    			}
+			}
+			</script>
+
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
 				<i class="fas fa-bars fa-2x" id="menuicon"
 					data-bs-toggle="offcanvas"
@@ -405,7 +416,9 @@ hr.hr {
 					</button>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
-						<button type="button" id="mypageBtn">마이페이지</button>
+
+						<a href="/mypageMemInfo.member"><button>마이페이지</button></a>
+
 					</div>
 					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>

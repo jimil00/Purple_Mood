@@ -15,13 +15,13 @@ public class DramaDTO {
 	private char dr_ottDZ;
 	private char dr_ottWC;
 	
+	
 	public DramaDTO() {
-		
+		super();
 	}
 
 	public DramaDTO(int dr_seq, String dr_title, String dr_genre, String dr_summary, String dr_img, int dr_like,
 			char dr_ottNF, char dr_ottWV, char dr_ottTV, char dr_ottCP, char dr_ottDZ, char dr_ottWC) {
-		super();
 		this.dr_seq = dr_seq;
 		this.dr_title = dr_title;
 		this.dr_genre = dr_genre;
@@ -35,7 +35,17 @@ public class DramaDTO {
 		this.dr_ottDZ = dr_ottDZ;
 		this.dr_ottWC = dr_ottWC;
 	}
+	
+	public DramaDTO(int dr_seq, String dr_title,String dr_img) {
+		
+		this.dr_seq = dr_seq;
+		this.dr_title = dr_title;
+		this.dr_img = dr_img;
+		
+	}
+	
 
+	
 	public int getDr_seq() {
 		return dr_seq;
 	}
