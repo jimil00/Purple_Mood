@@ -65,6 +65,13 @@ body {
 }
 
 /* content */
+.bannerslide{
+position:relatvie;
+left:30%;
+}
+.bannerimg{
+width:95%;
+}
 .ottboxsec {
 	margin-top: 50px;
 	margin-bottom: 50px;
@@ -101,6 +108,8 @@ padding-left: 3%;
 
 .postLRbtn {
 	width: 50px;
+	height:90%
+
 }
 
 /* footer */
@@ -210,7 +219,7 @@ hr.hr {
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext" /> <a
-					href="#"><i class="fa-solid fa-magnifying-glass searchboxin"></i></a>
+					href="#"><i class="fa-solid fa-magnifying-glass searchboxin fa-lg"></i></a>
 			</div>
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
 				<i class="fas fa-bars fa-2x" id="menuicon"
@@ -223,54 +232,32 @@ hr.hr {
 
 		<div class="row content">
 			<div class="bannersec">
-				<div id="carouselExampleIndicators"
-					class="carousel slide m-0 border-0 " data-bs-ride="true">
-					<div class="carousel-indicators">
-						<button type="button" data-bs-target="#carouselExampleIndicators"
-							data-bs-slide-to="0" class="active" aria-current="true"
-							aria-label="Slide 1"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators"
-							data-bs-slide-to="1" aria-label="Slide 2"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators"
-							data-bs-slide-to="2" aria-label="Slide 3"></button>
-					</div>
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="500" src="banner2.png"
-								style="background-color: black" role="img"
-								aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
-						</div>
-						<div class="carousel-item">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="500" src="banner2.png"
-								style="background-color: black" role="img"
-								aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
-						</div>
-						<div class="carousel-item">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="500" src="banner2.png"
-								style="background-color: black" role="img"
-								aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
-						</div>
-					</div>
-					<button class="carousel-control-prev" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-				</div>
+				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators col-12 d-none d-md-block bannerslide">
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/img/banner (4).png" class="d-block m-auto bannerimg">
+              </div>
+              <div class="carousel-item">
+                <img src="/img/banner (5).png" class="d-block m-auto bannerimg">
+              </div>
+              <div class="carousel-item">
+                <img src="/img/banner (6).png" class="d-block m-auto bannerimg">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
 			</div>
 			<div class="ottboxsec">
 				<div class="row row-cols-2 row-cols-md-4">
