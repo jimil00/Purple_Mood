@@ -42,10 +42,11 @@ public class BoardCommentController extends HttpServlet {
 
          }else if(uri.equals("/updateBoardComment.boardcomment")) {
 
-            String bcm_content=request.getParameter("bcm_content");
-            int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
+            String bcm_content = request.getParameter("bcm_content");
+            int bcm_seq = Integer.parseInt(request.getParameter("bcm_seq"));
+            System.out.println(bcm_content +":"+ bcm_seq);
             int result = BoardCommentDAO.getInstance().updateBoardComment(bcm_content,bcm_seq);
-			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
+//			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 
          }else if(uri.equals("/deleteBoardComment.boardcomment")) {
 

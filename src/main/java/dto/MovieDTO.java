@@ -15,9 +15,9 @@ public class MovieDTO {
 	private char mv_ottDZ;
 	private char mv_ottWC;
 	
+
 	public MovieDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public MovieDTO(int mv_seq, String mv_title, String mv_genre, String mv_summary, String mv_img, int mv_like,
@@ -36,13 +36,7 @@ public class MovieDTO {
 		this.mv_ottWC = mv_ottWC;
 	}
 	
-	public MovieDTO(int mv_seq, String mv_title,String mv_img) {
-		
-		this.mv_seq = mv_seq;
-		this.mv_title = mv_title;
-		this.mv_img = mv_img;
-		
-	}
+
 	
 	public int getMv_seq() {
 		return mv_seq;

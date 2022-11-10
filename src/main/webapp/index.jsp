@@ -429,7 +429,9 @@ hr.hr {
 					</button>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
-						<button type="button" id="mypageBtn">마이페이지</button>
+
+						<a href="/mypageMemInfo.member"><button>마이페이지</button></a>
+
 					</div>
 					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>

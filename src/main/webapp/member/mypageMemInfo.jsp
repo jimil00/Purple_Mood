@@ -97,21 +97,21 @@ input {
 						</div>
 					</div>
 					<div>*5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능</div>
-					<div class="nickName">
+					<div class="nickname">
 						<div class="subject">닉네임</div>
 						<div>
-							<input type="text" name="nickName" id="nickName"
+							<input type="text" name="nickname" id="nickname" value="${dto.nickname }"
 								readonly="readonly"><input type="button"
-								id="duplCheckNickName" value="중복확인" style="width: 70px;">
+								id="duplCheckNickname" value="중복확인" style="width: 70px;">
 						</div>
-						<div id="duplCheckNickName"></div>
+						<div id="duplResult"></div>
 						<div>*2~8자 한글,영어 대 소문자,특수문자(~!^*&)가능</div>
 					</div>
 
 					<div class=pw>
 						<div class="subject">패스워드</div>
 						<div>
-							<input type="password" name="pw" id="pw" value="${dto.pw }"
+							<input type="password" name="pw" id="pw" 
 								readonly>
 						</div>
 						<div>*8~16자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용</div>
@@ -119,7 +119,7 @@ input {
 					<div class="pwcheck">
 						<div class="subject">패스워드 확인</div>
 						<div>
-							<input type="password" id="checkpw" value="${dto.pw }" readonly>
+							<input type="password" id="checkpw"  readonly>
 						</div>
 						<div id="result"></div>
 					</div>
@@ -143,7 +143,14 @@ input {
 						<div class="subject">이메일</div>
 						<div>
 							<input type="text" name="email" id="email" value="${dto.email }"
-								readonly>
+								readonly> @ <select id="emailAddress"
+                        name="emailAddress">
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="nate.com">nate.com</option>
+                     </select>
+								
 						</div>
 						<div>*숫자,영어 대 소문자 가능</div>
 					</div>
@@ -181,11 +188,14 @@ input {
 			</div>
 	</form>
 	<script>
-		$("#duplCheckNickName").on("click", function() {
-			let nickName = $("#nickName").val();
-			if (nickName == "") {
+    $("#nickname").on("input", function() {
+        nicknameCheck = false;
+     })
+		$("#duplCheckNickname").on("click", function() {
+			let nickname = $("#nickname").val();
+			if (nickname == "") {
 				alert("닉네임을 먼저 입력하세요.");
-				$("#nickName").focus();
+				$("#nickname").focus();
 				return;
 			}
 			$.ajax({
@@ -195,9 +205,11 @@ input {
 				}
 			}).done(function(resp) {
 				if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
-					$("#duplResult").html("이미 사용중인 ID 입니다.");
+					$("#duplResult").html("이미 사용중인 닉네임 입니다.");
 				} else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
-					$("#duplResult").html("사용 가능한 ID 입니다.");
+					$("#duplResult").html("사용 가능한 닉네임 입니다.");
+		               nicknameCheck = true;
+
 				}
 			})
 
@@ -227,34 +239,44 @@ input {
 		}
 
 		$("form").submit(function() {
+            if (!nicknameCheck) {
+                alert("닉네임 중복체크를 먼저 수행해주세요.");
+                return false;
+             }
 
 			if (!pwCheck) {
 				alert("두 패스워드가 일치하지 않습니다.");
 				return false;
 			}
 
-			let idRegex = /^[a-z\d\_\-]{5,20}$/; // 5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능
-			let pwRegex = /^[a-zA-Z\d\~\!\^\*\&]{8,16}$/; //8~16자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용
-			let nameRegex = /^[가-힣]{2,5}$/; // 2~5자
-			let phoneRegex = /^010[\d]{4}[\d]{4}&/; //010으로 시작하고 숫자만 입력
-			let emailRegex = /^[\da-zA-Z]$/; //숫자,영어 대 소문자 가능
-			let nickNameRegex = /^[가-힣]{2,8}/; //2~10자 한글만 가능
+			
+            let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글만 가능
+            let pwRegex = /^[A-Za-z0-9~!@#$%]{8,20}$/; //8~20자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용
+            let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
+            let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
+            let emailRegex = /^[a-zA-Z0-9]{1,20}$/; //숫자,영어 대 소문자 가능
 
+            if ($("#nickname").val() != "") {
+                if (!nicknameRegex.test($("#nickname").val())) {
+                   alert("닉네임 형식을 확인해주세요.");
+                   return false;
+                }
+             }
 			if ($("#pw").val() != "") {
 				if (!pwRegex.test($("#pw").val())) {
 					alert("패스워드 형식을 확인해주세요.");
 					return false;
 				}
 			}
-			if ($("#phone").val() != "") {
-				if (!phoneRegex.test($("#phone").val())) {
-					alert("전화번호 형식을 확인해주세요.");
-					return false;
-				}
-			}
 			if ($("#name").val() != "") {
 				if (!nameRegex.test($("#name").val())) {
 					alert("이름 형식을 확인해주세요.");
+					return false;
+				}
+			}
+			if ($("#phone").val() != "") {
+				if (!phoneRegex.test($("#phone").val())) {
+					alert("전화번호 형식을 확인해주세요.");
 					return false;
 				}
 			}

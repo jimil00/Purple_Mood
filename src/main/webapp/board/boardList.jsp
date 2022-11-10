@@ -26,9 +26,7 @@
    <div style="background-color: darkgray; height: 50px">영화/드라마 게시판</div>
    <table border="1">
       <tr>
-         <th>글번호</th>
          <th>제목</th>
-         <th>내용</th>
          <th>작성자</th>
          <th>작성 시간</th>
          <th>조회수</th>
@@ -37,9 +35,7 @@
          <c:when test="${not empty list}">
             <c:forEach var="board" items="${list}">
                <tr>
-                  <td>${board.b_seq}</td>
                   <td><a href="/selectBoardContents.board?b_seq=${board.b_seq}">${board.b_title}</td>
-                  <td>${board.b_content}</td>
                   <td>${board.b_writer}</td>
                   <td>${board.b_write_date}</td>
                   <td>${board.b_view_count}</td>

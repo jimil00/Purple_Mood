@@ -11,9 +11,9 @@ public class Movie_reviewDTO {
 	private Timestamp mvr_writer_date;
 	private int mv_seq;
 	
+	
 	public Movie_reviewDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Movie_reviewDTO(int mvr_seq, String mvr_writer, String mvr_content, int mvr_like, Timestamp mvr_writer_date,
@@ -26,6 +26,7 @@ public class Movie_reviewDTO {
 		this.mv_seq = mv_seq;
 	}
 
+	
 	public int getMvr_seq() {
 		return mvr_seq;
 	}

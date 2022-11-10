@@ -15,6 +15,7 @@ public class DramaDTO {
 	private char dr_ottDZ;
 	private char dr_ottWC;
 	
+	
 	public DramaDTO() {
 		super();
 	}
@@ -44,6 +45,7 @@ public class DramaDTO {
 	}
 	
 
+	
 	public int getDr_seq() {
 		return dr_seq;
 	}
