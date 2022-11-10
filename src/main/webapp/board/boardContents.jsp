@@ -72,30 +72,6 @@
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 
 <script>
-	$(function() {
-		$("#modifyBoardContent").on("click", function() {
-			$("#b_title,#b_content").removeAttr("readonly");
-
-			$("#toList,#updateBoardContent,#deleteBoardContent").css("display", "none");
-			// 		$("#title,#contents").attr("contenteditable","true");
-
-			let btnUpdateBContent = $("<button>");
-			btnUpdateBContent.text("수정완료");
-			btnUpdateBContent.addClass("btn")
-			btnUpdateBContent.css("margin-right", "5px")
-
-			let btnCancelBContentU = $("<button>");
-			btnCancelBContentU.attr("type", "button");
-			btnCancelBContentU.text("취소");
-			btnCancelBContentU.addClass("btn")
-			btnCancelBContentU.on("click", function() {
-				location.reload();
-			});
-
-			$(".btns").append(btnUpdateBContent);
-			$(".btns").append(btnCancelBContentU);
-
-		})
 		$(".modifyBoardComment").on("click", function() {
 			$(".bcm_content").removeAttr("readonly");
 
@@ -104,13 +80,13 @@
 
 			let btnModifyBComment = $("<button>");
 			btnModifyBComment.text("수정완료");
-			btnModifyBComment.addClass("btn")
-			btnModifyBComment.css("margin-right", "5px")
+			btnModifyBComment.addClass("btn");
+			btnModifyBComment.css("margin-right", "5px");
 
 			let btnCancelBCommentM = $("<button>");
 			btnCancelBCommentM.attr("type", "button");
 			btnCancelBCommentM.text("취소");
-			btnCancelBCommentM.addClass("btn")
+			btnCancelBCommentM.addClass("btn");
 			btnCancelBCommentM.on("click", function() {
 				location.reload();
 			});
@@ -138,12 +114,12 @@
 				<td width="30%" align="center"><fmt:formatDate
 						value="${dto.b_write_date}" pattern="yyyy-MM-dd HH:mm:ss" />
 				<td width="20%" align="center">${dto.b_view_count }
-				<tr>
-					<td colspan="3">
-						<div id="b_content" name="b_content" cols="131" rows="15" readonly >${dto.b_content }
-						</div>
-					</td>
-				</tr>
+			<tr>
+				<td colspan="3">
+					<div id="b_content" name="b_content" cols="131" rows="15" readonly>${dto.b_content }
+					</div>
+				</td>
+			</tr>
 			<c:choose>
 				<c:when test="${loginNickname == dto.b_writer}">
 

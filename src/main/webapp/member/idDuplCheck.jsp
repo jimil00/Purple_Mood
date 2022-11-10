@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style>
-table {
+boardbpx.
+.duplCheckContainer{
 	width: 100%;
 	height: 90vh;
 	/*    브라우저의 90퍼센트 */
@@ -21,35 +22,38 @@ table>* {
 .result {
 	height: 70%
 }
+
+.duplCheckContainer{overflow: hidden;}
+.result{float: left}
 </style>
 
 </head>
 <body>
-	<table border=1>
-		<tr>
-			<th>조회 결과
-		</tr>
+	<div class="duplCheckContainer">
+		<div>
+			조회 결과
+		</div>
 		<c:choose>
 			<c:when test="${result}">
-				<tr>
-					<td class="result">이미 사용 중인 ID 입니다.
-				</tr>
-				<tr>
-					<td><button id="close">닫기</button>
+				<div class="result">
+					이미 사용 중인 ID 입니다.
+				</div>
+				<div>
+					<button id="close">닫기</button>
 					<script>
 						$("#close").on("click", function() {
 							opener.$("#id").val("");
 							window.close();
 						})
 					</script>
-				</tr>
+				</div>
 			</c:when>
 			<c:otherwise>
+				<div class="result">
+					${id}"<br>사용할 수 있는 ID 입니다.
+				</div>
 				<tr>
-					<td class="result">"${id}"<br>사용할 수 있는 ID 입니다.
-				</tr>
-				<tr>
-					<td><button id="use">사용</button>
+					<div><button id="use">사용</button>
 						<button id="cancle">취소</button> <script>
 							// 	//parent창에서 idcheck라는 변수를 만들어 opener = window : parent window
 							// 	//signup에서 let idcheck하면 지역변수 된다 
@@ -66,9 +70,9 @@ table>* {
 								window.close();
 							})
 						</script>
-				</tr>
+				</div>
 			</c:otherwise>
 		</c:choose>
-	</table>
+	</div>
 </body>
 </html>

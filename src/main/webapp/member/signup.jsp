@@ -7,16 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
-* {
-	box-sizing: border-box;
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
-
+* {
+	box-sizing: border-box;
+	font-family: 'DungGeunMo';
+}
 
 .signupForm {
 	width: 550px;
@@ -25,10 +36,11 @@
 
 .joinForm {
 	float: left;
-	width: 420px;
+	width: 430px;
 	margin: auto;
 	display: inline-block;
 	margin: auto;
+	margin-right: 15px;
 }
 
 .body {
@@ -36,16 +48,14 @@
 	display: flex;
 	overflow: hidden;
 }
-
 /* .body>div {
 	overflow: hidden;
 } */
-.body>div>.subject {
+/* .body>div>.subject {
 	text-align: right;
 	width: 20%;
 	margin-right: 10px
-}
-
+} */
 input {
 	width: 300px;
 	height: 30px;
@@ -60,11 +70,6 @@ input {
 	height: 80px;
 }
 
-.footer {
-	margin-top: 10px;
-	text-align: center;
-}
-
 #duplResult {
 	margin-left: 10px;
 }
@@ -76,72 +81,105 @@ input {
 .selectOption {
 	height: 30px;
 }
-*{color: black;}
-.requiredField{color: red;}
 
+* {
+	color: black;
+}
+
+.requiredField {
+	color: red;
+}
 
 #result, #duplResult {
-	margin: 0
+	margin: 0;
 }
-.id,.nickname,.pw,.pwcheck,.name,.phone,.email,.postcode,.address1,.address2{margin:7px 0}
-.margin_top,#result{margin-top: 5px;}
+
+.id, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
+	.address1, .address2, .margin_top, #result, #duplResult {
+	margin: 5px 0;
+}
+
+.footer {
+	margin-top: 10px;
+	text-align: center;
+}
+
+#duplCheckID, #duplCheckNickname {
+	width: 100px;
+}
+
+.btns button {
+	height: 30px;
+	width: 92px;
+}
+
+.footer {
+	position: relative;
+	left: -20px;
+}
+
+.btns {
+	width: 100%;
+	margin-top: 15px;
+	text-align: center;
+}
+
+/* div {
+	border: 1px solid black;
+} */
 </style>
 </head>
 
 <body>
 	<form action="/signup.member" method="post" id="frm">
-		<div class="signupForm">
-			<div class="header">logo</div>
-			<div class="body">
-				<div class="joinForm">
-					<div class="id">
+		<div class="signupForm col-12" style="min-width: 350px;">
+			<div class="header col-12">logo</div>
+			<div class="body col-12 ">
+				<div class="joinForm col-12">
+					<div class="id col-12">
 						<span>아이디<span class="requiredField">*<span></span>
-								<div class="margin_top">
-									<input type="text" name="id" id="id"
-										placeholder="6~20자 영문 소문자, 숫자, 특수기호(_)">&nbsp&nbsp<input
-										type="button" id="duplCheckID" value="중복확인"
-										style="width: 70px;">
+								<div class="margin_top col-12">
+									<input type="text" name="id" id="id">
+									<div id="duplResultID"></div>
 								</div>
 					</div>
-					<div class="nickname">
+					<div class="nickname col-12">
 						<span>닉네임<span class="requiredField">*<span></span>
-								<div class="margin_top"> 
+								<div class="margin_top col-12">
 									<input type="text" name="nickname" id="nickname"
-										placeholder="2~8자 영문 대 소문자, 한글">&nbsp&nbsp<input
-										type="button" id="duplCheckNickname" value="중복확인"
-										style="width: 70px;">
-									<div id="duplResult"></div>
+										placeholder="2~8자 영문 대 소문자,한글">
+									<div id="duplResultNickName"></div>
 								</div>
 					</div>
-					<div class=pw>
+					<div class="pw col-12">
 						<span>패스워드<span class="requiredField">*<span></span>
-								<div class="margin_top">
+								<div class="margin_top col-12">
 									<input type="password" name="pw" id="pw"
-										placeholder="8~20자 영문 대 소문자, 숫자, 특수문자(~!@#$%)">
+										placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)">
 								</div>
 					</div>
-					<div class="pwcheck">
+					<div class="pwcheck col-12">
 						<span>패스워드 확인</span>
-						<div class="margin_top">
+						<div class="margin_top col-12">
 							<input type="password" id="checkpw">
-							<div id="result">비번체크</div>
+							<div id="result"></div>
 						</div>
 					</div>
-					<div class="name">
+					<div class="name col-12">
 						<span>이름<span class="requiredField">*<span></span>
-								<div class="margin_top">
+								<div class="margin_top col-12">
 									<input type="text" name="name" id="name" placeholder="2~5자 한글">
 								</div>
 					</div>
-					<div class="phone">
+					<div class="phone col-12">
 						<span>전화번호<span class="requiredField">*<span></span>
-								<div class="margin_top">
+								<div class="margin_top col-12">
 									<input type="text" name="phone" id="phone" placeholder="숫자만 입력">
 								</div>
 					</div>
-					<div class="email">
+					<div class="email col-12">
 						<span>이메일<span class="requiredField">*<span></span>
-								<div class="margin_top">
+								<div class="margin_top col-12">
 									<input type="text" name="email" id="email"
 										placeholder="영어 대 소문자, 숫자"> @ <select
 										id="emailAddress" name="emailAddress" class="selectOption">
@@ -152,24 +190,24 @@ input {
 									</select>
 								</div>
 					</div>
-					<div class="postcode">
+					<div class="postcode col-12">
 						<span>우편번호</span>
-						<div class="margin_top">
+						<div class="margin_top col-12">
 							<input type="text" name="postcode" id="postcode"
 								placeholder="우편번호">&nbsp&nbsp<input type="button"
 								onclick="postcode()" value="우편번호 찾기" id="btnsearch"
 								style="width: 100px;">
 						</div>
 					</div>
-					<div class="address1">
+					<div class="address1 col-12">
 						<span>주소</span>
-						<div class="margin_top">
+						<div class="margin_top col-12">
 							<input type="text" name="address1" id="address1" placeholder="주소">
 						</div>
 					</div>
-					<div class="address2">
+					<div class="address2 col-12">
 						<span>상세주소</span>
-						<div class="margin_top">
+						<div class="margin_top col-12">
 							<input type="text" name="address2" id="address2"
 								placeholder="상세주소">
 						</div>
@@ -177,10 +215,10 @@ input {
 				</div>
 			</div>
 		</div>
-		<div class="footer">
-			<div>
-				<a href=/index.jsp><button id=signup>회원가입</button></a>&nbsp&nbsp&nbsp<a
-					href=/index.jsp><button type="button">뒤로 가기</button></a>&nbsp&nbsp
+		<div class="footer col-12">
+			<div class="btns">
+				<a href=/index.jsp><button id=signup>회원가입</button></a>&nbsp&nbsp<a
+					href=/index.jsp><button type="button">뒤로 가기</button></a>&nbsp
 				<button type="reset">다시 입력</button>
 			</div>
 		</div>
@@ -212,33 +250,41 @@ input {
 				pwCheck = false;
 			} else {
 				$("#result").text("패스워드가 일치합니다.");
-				$("#result").css("color", "black");
+				$("#result").css("color", "blue");
 				pwCheck = true;
 			}
 		})
 
-		$("#id").on("input", function() {
+		$("#id").on("input", function() { // 한 글자 쓸 때마다 ajax가 나간다(쏴라)
 			idCheck = false;
+			let id = $("#id").val();
+			if (id == "") {
+				alert("아이디를 먼저 입력하세요.");
+				$("#id").focus();
+				return;
+			}
+			$.ajax({
+				url : "/idDuplCheck.member",
+				data : {
+					"id" : id
+				}
+			}).done(function(resp) {
+				if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
+					$("#duplResultID").html("이미 사용중인 ID 입니다.");
+					$("#duplResultID").css("color", "red");
+				} else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
+					$("#duplResultID").html("사용 가능한 ID 입니다.");
+					$("#duplResultID").css("color", "red");
+					idCheck = true;
+				}
+			})
 		})
 
-		$("#duplCheckID").on(
-				"click",
-				function() {
-					let id = $("#id").val();
-					if (id == "") {
-						alert("아이디를 먼저 입력하세요.");
-						$("#id").focus();
-						return;
-					}
-					window.open("/idDuplCheck.member?id=" + id, "",
-							"width=300,height=200");
-
-				})
 		$("#nickname").on("input", function() {
 			nicknameCheck = false;
 		})
 
-		$("#duplCheckNickname").on("click", function() {
+		$("#nickname").on("input", function() {
 			let nickname = $("#nickname").val();
 			if (nickname == "") {
 				alert("닉네임을 먼저 입력하세요.");
@@ -253,11 +299,12 @@ input {
 				}
 			}).done(function(resp) {
 				if (resp == "true") { // 닉네임이 이미 존재하므로 사용할 수 없는 경우
-					$("#duplResult").html("이미 사용중인 닉네임입니다.");
+					$("#duplResultNickName").html("이미 사용중인 닉네임입니다.");
+					$("#duplResultNickName").css("color", "red");
 				} else { // 닉네임이 존재하지 않으므로 사용할 수 있는 경우
-					$("#duplResult").html("사용 가능한 닉네임입니다.");
+					$("#duplResultNickName").html("사용 가능한 닉네임입니다.");
+					$("#duplResultNickName").css("color", "blue");
 					nicknameCheck = true;
-
 				}
 
 			})
