@@ -15,10 +15,11 @@ public class MovieDTO {
 	private char mv_ottDZ;
 	private char mv_ottWC;
 	
-	
+
 	public MovieDTO() {
 		super();
 	}
+	
 	public MovieDTO(int mv_seq, String mv_title, String mv_genre, String mv_summary, String mv_img, int mv_like,
 			char mv_ottNF, char mv_ottWV, char mv_ottTV, char mv_ottCP, char mv_ottDZ, char mv_ottWC) {
 		this.mv_seq = mv_seq;
@@ -35,6 +36,7 @@ public class MovieDTO {
 		this.mv_ottWC = mv_ottWC;
 	}
 	
+
 	
 	public int getMv_seq() {
 		return mv_seq;

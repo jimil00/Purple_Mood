@@ -170,9 +170,6 @@ public class MemberDAO {
 	}
 
 
-
-
-
 	//로그인
 	public boolean isloginExist(String id, String pw) throws Exception{
 		String sql="select * from member where id=? and pw=?";

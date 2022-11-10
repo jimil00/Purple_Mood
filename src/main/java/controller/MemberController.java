@@ -22,27 +22,27 @@ public class MemberController extends HttpServlet {
 		      System.out.println("요청 URI : " + uri);
 
 
-      try {
-         // ID 중복체크
-         if(uri.equals("/idDuplCheck.member")) {
-            String id = request.getParameter("id");
-            boolean result = MemberDAO.getInstance().isIdExist(id);
-            request.setAttribute("result", result);
-            System.out.println(result);
-            request.setAttribute("id", id);
-            request.getRequestDispatcher("/member/idDuplCheck.jsp").forward(request, response);
-      
-            
-         // NICKNAME 중복체크
-         }else if(uri.equals("/nicknameDuplCheck.member")) {
-               String nickname = request.getParameter("nickname");
-               boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
-               response.getWriter().append(String.valueOf(result));
+		try {
+			// ID 중복체크
+			if(uri.equals("/idDuplCheck.member")) {
+				String id = request.getParameter("id");
+				boolean result = MemberDAO.getInstance().isIdExist(id);
+				request.setAttribute("result", result);
+				System.out.println(result);
+				request.setAttribute("id", id);
+				request.getRequestDispatcher("/member/idDuplCheck.jsp").forward(request, response);
 
-     
-               
-         // 회원가입
-         }else if(uri.equals("/signup.member")) {
+
+				// NICKNAME 중복체크
+			}else if(uri.equals("/nicknameDuplCheck.member")) {
+				String nickname = request.getParameter("nickname");
+				boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
+				response.getWriter().append(String.valueOf(result));
+
+
+
+				// 회원가입
+			}else if(uri.equals("/signup.member")) {
 				String id = request.getParameter("id");
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
@@ -92,22 +92,28 @@ public class MemberController extends HttpServlet {
 			if(result) {
 					request.getSession().setAttribute("loginID",id);
 					request.getSession().setAttribute("loginNickname", dto.getNickname());
+
 				}
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			      
-         
-         //로그아웃
-         }else if(uri.equals("/logout.member")) {
-					//로그아웃 기능 
-					request.getSession().invalidate();
-					response.sendRedirect("/index.jsp");
+				else {
+					request.setAttribute("result", result);
+					request.setAttribute("id", id);
+					request.getRequestDispatcher("/member/signin.jsp").forward(request, response);
+				}
+
+
+
+				//로그아웃
+			}else if(uri.equals("/logout.member")) {
+				//로그아웃 기능 
+				request.getSession().invalidate();
+				response.sendRedirect("/index.jsp");
+			}
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
-         
-      }catch(Exception e) {
-         e.printStackTrace();
-         response.sendRedirect("error.html");
-      }
-   }
+	}
 
 
 
