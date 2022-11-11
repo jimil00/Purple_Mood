@@ -16,6 +16,7 @@ public class MovieDTO {
 	private String mv_poster_path;
 	private String mv_overview;
 	
+
 	public MovieDTO() {
 		super();
 	}
@@ -39,7 +40,6 @@ public class MovieDTO {
 		this.mv_poster_path = mv_poster_path;
 		this.mv_overview = mv_overview;
 	}
-
 
 	public MovieDTO(int mv_id, String mv_title,String mv_poster_path) {
 		

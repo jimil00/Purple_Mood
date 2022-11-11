@@ -15,6 +15,7 @@ public class DramaDTO {
 	private String dr_poster_path;
 	private String dr_overview;
 	
+	
 	public DramaDTO() {
 		super();
 	}
@@ -59,10 +60,9 @@ public class DramaDTO {
 	}
 	
 
-
 	public int getDr_id() {
 		return dr_id;
-	}
+		}
 
 
 	public void setDr_id(int dr_id) {

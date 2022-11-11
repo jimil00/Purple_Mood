@@ -65,26 +65,89 @@ body {
 }
 
 /* content */
+.bannerslide {
+	position: relatvie;
+	left: 30%;
+}
+
+.bannerimg {
+	width: 95%;
+}
+
+/* ott버튼 */
 .ottboxsec {
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 100px;
+	margin-bottom: 100px;
 	text-align: center;
 }
 
-.ottbtn {
-	height: 70px;
+#watchabtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
 }
 
-@media ( max-width : 800px) {
-	.ottbtn {
-		height: 50px;
-	}
+#watchabtn:hover {
+	background: #ff0559;
+	color: #050801;
+	box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559, 0 0
+		200px #ff0559;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#wavvebtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
+
+#wavvebtn:hover {
+	background: #022ca4;
+	color: #050801;
+	box-shadow: 0 0 5px #022ca4, 0 0 25px #022ca4, 0 0 50px #022ca4, 0 0
+		200px #022ca4;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#netbtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
+
+#netbtn:hover {
+	background: #ed1c24;
+	box-shadow: 0 0 5px #ed1c24, 0 0 25px #ed1c24, 0 0 50px #ed1c24, 0 0
+		200px #ed1c24;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#disneybtn {
+	display: inline-block;
+	padding: 25px 30px;
+	margin: 40px 0;
+	transition: 0.5s;
+	margin-right: 50px;
+}
+
+#disneybtn:hover {
+	background: #3bdce4;
+	box-shadow: 0 0 5px #3bdce4, 0 0 25px #3bdce4, 0 0 50px #3bdce4, 0 0
+		200px #3bdce4;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
 /* 영화 포스터 */
-.titlename{
-padding-left: 3%;
+.titlename {
+	padding-left: 3%;
 }
+
 .imgbox {
 	text-align: center;
 }
@@ -94,6 +157,10 @@ padding-left: 3%;
 	border-radius: 5px;
 }
 
+.postimg:hover {
+	transform: scale(1.01);
+}
+
 #carouselExampleControls, #carouselExampleControls2 {
 	padding-top: 20px;
 	padding-bottom: 50px;
@@ -101,11 +168,13 @@ padding-left: 3%;
 
 .postLRbtn {
 	width: 50px;
+	height: 90%
 }
 
 /* footer */
 .footer {
-	padding-top: 50px; padding-bottom : 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 	position: relative;
 	left: 5%;
 	padding-bottom: 50px;
@@ -132,6 +201,10 @@ padding-left: 3%;
 	padding-top: 10px;
 	height: 50px;
 	line-height: 50px;
+}
+
+.fa-brands:hover {
+	cursor: pointer;
 }
 
 .snsIcon {
@@ -177,14 +250,19 @@ padding-left: 3%;
 }
 
 .menulink {
-	font-size: xx-large;
+	font-size: x-large;
 	margin-bottom: 50px;
 	margin-top: 50px;
 }
-#colsebtn{
-    border: none;
-    color: white;
-    background-color: #03001e;
+
+.menulink:hover, #searchbtn:hover {
+	color: #c4c4c4;
+}
+
+#colsebtn {
+	border: none;
+	color: white;
+	background-color: #03001e;
 }
 
 a {
@@ -211,16 +289,20 @@ hr.hr {
 				<img src="" />
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
-				<input type="text" class="searchboxin" id="searchtext" onkeyup="enterkey()" name="searchtext"/> 
-				<a href="/search.content?searchtext="+searchtext><i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
+				<input type="text" class="searchboxin" id="searchtext"
+					onkeyup="enterkey()" name="searchtext" /> <a
+					href="/search.content?searchtext=" +searchtext><i
+					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
+
 	
 			function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
 				if (window.event.keyCode == 13) {
 			location.href="/search.content?searchtext="+$("#searchtext").val(); 
 	    			}
 			}
+
 			</script>
 
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
@@ -234,73 +316,93 @@ hr.hr {
 
 		<div class="row content">
 			<div class="bannersec">
-				<div id="carouselExampleIndicators"
-					class="carousel slide m-0 border-0 " data-bs-ride="true">
-					<div class="carousel-indicators">
-						<button type="button" data-bs-target="#carouselExampleIndicators"
+				<div id="carouselExampleFade" class="carousel slide carousel-fade"
+					data-bs-ride="carousel">
+					<div
+						class="carousel-indicators col-12 d-none d-md-block bannerslide">
+						<button type="button" data-bs-target="#carouselExampleFade"
 							data-bs-slide-to="0" class="active" aria-current="true"
 							aria-label="Slide 1"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators"
+						<button type="button" data-bs-target="#carouselExampleFade"
 							data-bs-slide-to="1" aria-label="Slide 2"></button>
-						<button type="button" data-bs-target="#carouselExampleIndicators"
+						<button type="button" data-bs-target="#carouselExampleFade"
 							data-bs-slide-to="2" aria-label="Slide 3"></button>
 					</div>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="500" src="banner2.png"
-								style="background-color: black" role="img"
-								aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
+							<img src="/img/banner (4).png" class="d-block m-auto bannerimg">
 						</div>
 						<div class="carousel-item">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="500" src="banner2.png"
-								style="background-color: black" role="img"
-								aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
+							<img src="/img/banner (5).png" class="d-block m-auto bannerimg">
 						</div>
 						<div class="carousel-item">
-							<svg
-								class="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-								width="800" height="500" src="banner2.png"
-								style="background-color: black" role="img"
-								aria-label="Placeholder: Third slide"
-								preserveAspectRatio="xMidYMid slice" focusable="false"></svg>
+							<img src="/img/banner (6).png" class="d-block m-auto bannerimg">
 						</div>
 					</div>
 					<button class="carousel-control-prev" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						data-bs-target="#carouselExampleFade" data-bs-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Previous</span>
 					</button>
 					<button class="carousel-control-next" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						data-bs-target="#carouselExampleFade" data-bs-slide="next">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>
 				</div>
 			</div>
 			<div class="ottboxsec">
-				<div class="row row-cols-2 row-cols-md-4">
-					<div class="col">
-						<a href="#"><button class="ottbtn w-50">net</button></a>
+				<div class="row ">
+					<div class="col-6 col-lg-3">
+						<a href="#" id="disneybtn"> <img src="/img/disbf.png"
+							id="disney" style="width: 150px; height: 50px">
+						</a>
 					</div>
-					<div class="col">
-						<a href="#"><button class="ottbtn w-50">wat</button></a>
+					<div class="col-6 col-lg-3">
+						<a href="#" id="wavvebtn"> <img src="/img/wavbf.png"
+							id="wavve" style="width: 150px; height: 50px">
+						</a>
 					</div>
-					<div class="col">
-						<a href="#"><button class="ottbtn w-50">dis</button></a>
+					<div class="col-6 col-lg-3">
+						<a href="#" id="netbtn"> <img src="/img/netbf.png"
+							id="netflix" style="width: 150px; height: 50px">
+						</a>
 					</div>
-					<div class="col">
-						<a href="#"><button class="ottbtn w-50">cik</button></a>
+					<div class="col-6 col-lg-3">
+						<a href="#" id="watchabtn"> <img src="/img/watbf.png"
+							id="watcha" style="width: 150px; height: 50px">
+						</a>
 					</div>
+					<script>
+						$("#watchabtn").on("mouseover", function() {
+							$("#watcha").attr("src", "/img/wataf.png");
+						});
+						$("#watchabtn").on("mouseout", function() {
+							$("#watcha").attr("src", "/img/watbf.png");
+						});
+						$("#wavvebtn").on("mouseover", function() {
+							$("#wavve").attr("src", "/img/wavat.png");
+						});
+						$("#wavvebtn").on("mouseout", function() {
+							$("#wavve").attr("src", "/img/wavbf.png");
+						});
+						$("#netbtn").on("mouseover", function() {
+							$("#netflix").attr("src", "/img/netat.png");
+						});
+						$("#netbtn").on("mouseout", function() {
+							$("#netflix").attr("src", "/img/netbf.png");
+						});
+						$("#disneybtn").on("mouseover", function() {
+							$("#disney").attr("src", "/img/disat.png");
+						});
+						$("#disneybtn").on("mouseout", function() {
+							$("#disney").attr("src", "/img/disbf.png");
+						});
+					</script>
 				</div>
 			</div>
 			<div class="poster1">
-				<div class="col-12 fs-1 titlename">인기 영화</div>
+				<div class="col-12 fs-3 titlename">인기 영화</div>
 				<div>
 					<div id="carouselExampleControls" class="carousel slide"
 						data-bs-ride="carousel">
@@ -344,7 +446,7 @@ hr.hr {
 				</div>
 			</div>
 			<div class="poster2">
-				<div class="col-12 fs-1 titlename">최신영화</div>
+				<div class="col-12 fs-3 titlename">최신영화</div>
 				<div>
 					<div id="carouselExampleControls2" class="carousel slide"
 						data-bs-ride="carousel">
@@ -419,8 +521,10 @@ hr.hr {
 				tabindex="-1" id="offcanvasWithBothOptions"
 				aria-labelledby="offcanvasWithBothOptionsLabel">
 				<div class="offcanvas-header">
-					<button  type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-                    aria-label="Close"><i class="fa-solid fa-xmark fa-xl"></i></button>
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
 				</div>
 				<div class="offcanvas-body">
 					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
@@ -429,7 +533,9 @@ hr.hr {
 					</button>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
-						<button type="button" id="mypageBtn">마이페이지</button>
+
+						<a href="/mypageMemInfo.member"><button>마이페이지</button></a>
+
 					</div>
 					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>
@@ -462,14 +568,16 @@ hr.hr {
 				tabindex="-1" id="offcanvasWithBothOptions"
 				aria-labelledby="offcanvasWithBothOptionsLabel">
 				<div class="offcanvas-header">
-					<button  type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-                    aria-label="Close"><i class="fa-solid fa-xmark fa-xl"></i></button>
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
 				</div>
 				<div class="offcanvas-body">
 					<div class="profilebox" style="background: #BDBDBD;"></div>
 					<div class="profiletext">익명의 누군가</div>
 					<div class="profiletext">
-						<a href="/member/signin.jsp"><button>로그인 | 회원가입</button></a>
+						<a href="/member/signin.jsp"><button id="signinBtn">로그인</button></a>
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>

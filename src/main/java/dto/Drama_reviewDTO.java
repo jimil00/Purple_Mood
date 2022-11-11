@@ -11,9 +11,9 @@ public class Drama_reviewDTO {
 	private Timestamp drr_writer_date;
 	private int dr_seq;
 	
+	
 	public Drama_reviewDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Drama_reviewDTO(int drr_seq, String drr_writer, String drr_content, int drr_like, Timestamp drr_writer_date,
@@ -26,6 +26,7 @@ public class Drama_reviewDTO {
 		this.dr_seq = dr_seq;
 	}
 
+	
 	public int getDrr_seq() {
 		return drr_seq;
 	}

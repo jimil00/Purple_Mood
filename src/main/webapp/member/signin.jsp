@@ -23,9 +23,10 @@
 * {
 	box-sizing: border-box;
 }
-/* body{
-            background-color: #39065A;
-        } */
+
+/* body {
+	background-color: #03001e;
+}  */
 
 /* div {
             border: 1px solid black;
@@ -59,8 +60,12 @@
 
 .idtextbox, .pwtextbox {
 	height: 50px;
-	border: 1px solid black;
+	border: 1px solid #c4c4c4;
 	border-radius: 5px;
+}
+
+.icon {
+	color: #c4c4c4;
 }
 
 .logintext {
@@ -88,6 +93,7 @@
 #loginbtn {
 	width: 250px;
 	height: 30px;
+	/* 	background-color: #7303c0; */
 }
 
 .signupbox, .loginbtnbox, .loginbox {
@@ -126,7 +132,8 @@ button {
 							</div>
 							<div class="col-12 pwtextbox">
 								<i class="fa-solid fa-unlock-keyhole icon"></i> <input
-									type="text" name="pw" class="logintext" id="loginpwtext" placeholder="비밀번호">
+									type="text" name="pw" class="logintext" id="loginpwtext"
+									placeholder="비밀번호">
 							</div>
 						</div>
 					</div>
@@ -146,9 +153,9 @@ button {
 			</div>
 			</div>
 			<script>
-			$(function(){
-			    $("#loginpwtext").focus();
-			});
+				$(function() {
+					$("#loginpwtext").focus();
+				});
 			</script>
 		</c:when>
 		<c:otherwise>
@@ -172,8 +179,7 @@ button {
 					</div>
 					<div class="row loginbtnbox">
 						<div class="loginbtn col-12">
-							<div class="loginboxtext">
-							</div>
+							<div class="loginboxtext"></div>
 							<button id="loginbtn">로그인</button>
 						</div>
 					</div>
@@ -186,10 +192,5 @@ button {
 			</div>
 		</c:otherwise>
 	</c:choose>
-	<!--    <script>
-    $("#loginbtn").on("click",function(){
-    	
-    })
-    </script> -->
 </body>
 </html>

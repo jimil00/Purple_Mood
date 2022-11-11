@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import dao.BoardFileDAO;
+import dto.BoardFileDTO;
+
 @WebServlet("*.boardfile")
 public class BoardFileController extends HttpServlet {
 
@@ -22,6 +29,45 @@ public class BoardFileController extends HttpServlet {
 		System.out.println(uri);
 
 		String filePath = request.getServletContext().getRealPath("files");
+		try {
+			if(uri.equals("/imageupload.boardfile")) {
+				int maxSize = 1024*1024*10;
+				String savePath = request.getServletContext().getRealPath("/files");
+				File fileSavePath = new File(savePath);
+				if(!fileSavePath.exists()) {
+					fileSavePath.mkdir();
+				}
+				Gson g = new Gson();
+			
+				response.getWriter().append(g.toJson(savePath));
+				
+				MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
+//				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+
+				String oriName = multi.getOriginalFileName("image");
+				String sysName = multi.getFilesystemName("image");
+				System.out.println(oriName);
+				File target = new File(filePath + "/" + sysName);
+				byte[] fileContents = new byte[(int)target.length()];
+				oriName = new String(oriName.getBytes("utf8"), "ISO-8859-1");
+				response.setHeader("Content-Disposition", "attachment;filename=\""+oriName+"\"");
+//						try(ServletOutputStream sos = response.getOutputStream();
+//								//					리스판스로 데이터를 내보내는 스트림을 만든 다음에 이걸 변수로 담아두고
+//								FileInputStream fis = new FileInputStream(target);
+//								DataInputStream dis = new DataInputStream(fis);){
+//
+//							dis.readFully(fileContents);
+//							sos.write(fileContents);
+//							//			파일 내보내기
+//							sos.flush();
+//				int result = BoardFileDAO.getInstance().insertBoardFile(new BoardFileDTO(0, oriName, sysName, null, b_seq));
+				
+			}
+			
+				
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		if(uri.equals("/download.file")) {
 			// 여기에 권한 check 같은 것도 넣을 수 있다 검사 검증 다운로드 거절 가능해서 서블릿만들어서 쓰는 게 장점이 있다
 			// 서블릿을 거쳤을 때 그 페이지를 가는 것을 허락/ 기록 등 제어할 수 있다

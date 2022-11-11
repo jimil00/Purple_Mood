@@ -20,7 +20,7 @@
     #logo{color: white;}
     .list_title{text-align:left;}
   
-    ul{overflow:hidden; list-style:none; background-color:#03001e;}
+    ul{overflow:hidden; background-color:#03001e;list-style:none;}
     ul>li{background-color:#03001e; width:233px; height:338px;}
      li>a>img{width:200px; height:280px; transition: all 0.2s linear;}
      li>a:hover{color:#7303c0}
@@ -28,7 +28,6 @@
     
     li:hover{ transform: scale(1.2); color:#7303c0}
     li:hover img {transform: scale(1.2);}
-     
     span>img{width:45px; position:relative; bottom:60%; left:80%;}
 </style>
 <body>
@@ -57,45 +56,11 @@
                 <div class="row" id="movie_bar">
                 <hr> <div class="list_title pt-2">영화 검색 결과 <span> ${mv_list.size()}개</span> </div><hr>
                  <div class="row"> 
-
-
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-
-
-
-
-
-
-
-
-
-
       			<ul class="list-group list-group-horizontal">  
 					<c:forEach var="m" items="${mv_list}">  
       			  <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}"><p>${m.mv_title}</p></a></li>
-                 </ul>
- 			</c:forEach>
+ 			</c:forEach> 
+ 			</ul>
                  </div>
                </div>
          
