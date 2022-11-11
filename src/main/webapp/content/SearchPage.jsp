@@ -11,21 +11,27 @@
   </head>
 <style>
 	.container-fluid{color:grey; background-color:#03001e;}
+	<!--background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9); */-->
     #header{height:100px;}
     .list_title{padding:10px;}
     .searchbar{background-color: grey;}
     #searchtext{width:100%};
     #searchbtn{width:100%};
     #logo{color: white;}
-    ul{background-color:#03001e;}
+    .list_title{text-align:left;}
+  
+    ul{overflow:hidden; list-style:none; background-color:#03001e;}
     ul>li{background-color:#03001e; width:233px; height:338px;}
-     li>a>img{width:200px; height:280px;}
+     li>a>img{width:200px; height:280px; transition: all 0.2s linear;}
+     li>a:hover{color:#7303c0}
      a{text-decoration: none; color:grey}
+    
+    li:hover{ transform: scale(1.2); color:#7303c0}
+    li:hover img {transform: scale(1.2);}
+     
     span>img{width:45px; position:relative; bottom:60%; left:80%;}
 </style>
 <body>
-
-
 <div class="container-fluid text-center"> 
 
   <!--form으로 검색결과 넘겨주기-->
@@ -49,14 +55,47 @@
         <c:choose>
           <c:when test="${not empty mv_list}">
                 <div class="row" id="movie_bar">
-                <hr> <div class="list_title pt-2">영화</div><hr>
-                    
+                <hr> <div class="list_title pt-2">영화 검색 결과 <span> ${mv_list.size()}개</span> </div><hr>
                  <div class="row"> 
-                 <ul class="list-group list-group-horizontal">
-                 <c:forEach var="m" items="${mv_list}">
-                    <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}"><p>${m.mv_title}</p></a></li>
-                   </c:forEach>
+
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+      			<ul class="list-group list-group-horizontal">  
+					<c:forEach var="m" items="${mv_list}">  
+      			  <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}"><p>${m.mv_title}</p></a></li>
                  </ul>
+ 			</c:forEach>
                  </div>
                </div>
          
@@ -70,11 +109,11 @@
         <c:choose>
           <c:when test="${not empty dr_list}">  
               <div class="row" id="drama_bar">
-                  <hr> <div class="list_title">드라마</div><hr>
+                  <hr> <div class="list_title">드라마 검색 결과<span> ${dr_list.size()}개</span></div><hr>
                  <div class="row">
                   <ul class="list-group list-group-horizontal">
                   <c:forEach var="d" items="${dr_list}">
-                    <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailDr.content?dr_id=${d.dr_id}"><img src="${d.dr_poster_path}"><p>${d.dr_title}</p></a></li>
+                <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailDr.content?dr_id=${d.dr_id}"><img src="${d.dr_poster_path}"><p>${d.dr_title}</p></a></li>
        				</c:forEach>
                   </ul>
                  </div>
@@ -86,13 +125,14 @@
             <div>검색 결과가 없습니다.</div>
           </c:otherwise>
         </c:choose>
+
 </div>
 <script>
- // $(".mv_search").on("click",function(){
-    //location.href="/detail.content?mv_seq=${m.mv_seq}";
+ $(function(){
+	 
+console.log($(".mv_search").length);
 
-  //})
-  
+	 });
 </script>
 </body>
 </html>

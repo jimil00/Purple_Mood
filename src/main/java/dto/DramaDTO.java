@@ -48,6 +48,16 @@ public class DramaDTO {
 		this.dr_poster_path = dr_poster_path;
 		
 	}
+	
+	public DramaDTO(char dr_ottNF, char dr_ottWV,char dr_ottDZ,char dr_ottWC) {
+		
+		this.dr_ottNF = dr_ottNF;
+		this.dr_ottWV = dr_ottWV;
+		this.dr_ottDZ = dr_ottDZ;
+		this.dr_ottWC = dr_ottWC;
+		
+	}
+	
 
 
 	public int getDr_id() {
@@ -168,6 +178,23 @@ public class DramaDTO {
 	public void setDr_overview(String dr_overview) {
 		this.dr_overview = dr_overview;
 	}
+	
+//	public String from_Ott(char dr_ottNF, char dr_ottWV,char dr_ottDZ,char dr_ottWC) {
+//		
+//		char dr_ottNF;
+//		char dr_ottWV;
+//		char dr_ottDZ;
+//		char dr_ottWC;
+//		
+//		String result=
+//				if(dr_ott) {
+//					
+//				}
+//		
+//		return result
+//		
+//		
+//	}
 	
 
 	

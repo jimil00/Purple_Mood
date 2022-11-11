@@ -50,7 +50,7 @@
                 <p class="fs-3">${mv_detail.getMv_title()}</p>
               </div>
               <div class="ott_icon col-12 col-sm-5">
-              <img src="넷플릭스 전체 로고_투명바탕.png" class="img-fluid" alt="...">
+              <img src="$" class="img-fluid" alt="...">
               </div>
 
               <div class="info col-12">
@@ -85,7 +85,7 @@
                     <p class="fs-3">${dr_detail.getDr_title()}</p>
                   </div>
                   <div class="ott_icon col-12 col-sm-5">
-                  <img src="넷플릭스 전체 로고_투명바탕.png" class="img-fluid" alt="...">
+                  <img src="C:\Users\SOX\Desktop\넷플릭스 전체 로고_투명바탕.png" class="otticon img-fluid" alt="...">
                   </div>
     
                   <div class="info col-12">
@@ -130,6 +130,11 @@
             $("#review_text").append(div); 
 
         })
+        
+      //ott 아이콘 출력 이벤트
+      
+        
+        
 	//좋아요 버튼 이벤트(우선 순위 중하)
         $("#bi").click(function() {
         	

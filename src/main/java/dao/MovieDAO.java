@@ -33,7 +33,7 @@ public class MovieDAO {
 
 	//검색 전 좋아요 순으로 콘텐츠의 이미지와 타이틀을 6개 가져오는 메서드
 	public List<MovieDTO> selectByLike() throws Exception{
-		
+
 		//테스트용
 		String sql="select mv_id, mv_title, mv_poster_path from movie_test where rownum <=6 order by mv_like";
 
@@ -42,7 +42,7 @@ public class MovieDAO {
 
 			try(ResultSet rs = pstat.executeQuery();){
 				List <MovieDTO> list = new ArrayList<>();
-				
+
 
 				while(rs.next()) {
 
@@ -71,10 +71,10 @@ public class MovieDAO {
 		{pstat.setString(1, "%"+mv_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 어캐하져
 
 		try(ResultSet rs = pstat.executeQuery();){
-			
-			
+
+
 			List <MovieDTO> list = new ArrayList<>();
-			
+
 
 			while(rs.next()) {
 
@@ -86,15 +86,13 @@ public class MovieDAO {
 				list.add(dto);
 			}
 			return list;
-			
 		}
-
 
 		}
 
 	}
-	
-	
+
+
 	//상세 페이지 
 	public  MovieDTO selectByseq(int mv_seq) throws Exception { 
 
@@ -106,9 +104,9 @@ public class MovieDAO {
 		{pstat.setInt(1, mv_seq); 
 
 		try(ResultSet rs = pstat.executeQuery();){
-			
+
 			MovieDTO dto = new MovieDTO();
-			
+
 			while(rs.next()) {
 				dto.setMv_id(rs.getInt("mv_id"));
 				dto.setMv_title(rs.getString("mv_title"));
