@@ -1,99 +1,103 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>°Ë»ö ¸ŞÀÎ ÆäÀÌÁö</title>
+<title>ê²€ìƒ‰ ë©”ì¸ í˜ì´ì§€</title>
  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </head>
 <style>
-    .container{border:1px solid black; margin:auto;}
+	.container-fluid{color:grey; background-color:#03001e;}
+	<!--background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9); */-->
     #header{height:100px;}
     .list_title{padding:10px;}
     .searchbar{background-color: grey;}
     #searchtext{width:100%};
     #searchbtn{width:100%};
     #logo{color: white;}
-    div>a>img{width:200px; height:280px;}
+    .list_title{text-align:left;}
+  
+    ul{overflow:hidden; background-color:#03001e;list-style:none;}
+    ul>li{background-color:#03001e; width:233px; height:338px;}
+     li>a>img{width:200px; height:280px; transition: all 0.2s linear;}
+     li>a:hover{color:#7303c0}
+     a{text-decoration: none; color:grey}
+    
+    li:hover{ transform: scale(1.2); color:#7303c0}
+    li:hover img {transform: scale(1.2);}
     span>img{width:45px; position:relative; bottom:60%; left:80%;}
 </style>
-<script>
-  $("#searchbtn").on("click",function(){
-  //  jsp ¿¬°áÇØ¼­ µğºñ¿¡¼­ °ª Ãâ·ÂÇØ¾ßÇÔ.
-    let searchrword=$("#searchinput").value;
-  
-  })
-  
-</script>
 <body>
-
-
 <div class="container-fluid text-center"> 
 
-  <!--formÀ¸·Î °Ë»ö°á°ú ³Ñ°ÜÁÖ±â-->
+  <!--formìœ¼ë¡œ ê²€ìƒ‰ê²°ê³¼ ë„˜ê²¨ì£¼ê¸°-->
   <form action="/search.content">
         <div class="row" id="header">
           <div class="col-sm-12">
-                <div id="logo">ÆÛÇÃ¹«µå(·Î°í ÀÌ¹ÌÁö Ãß°¡)</div>
+                <div id="logo">í¼í”Œë¬´ë“œ(ë¡œê³  ì´ë¯¸ì§€ ì¶”ê°€)</div>
           </div>
         </div>
 
         <div class="row" id="searchbar">
           <div class="col-10 col-md-10 col-lg-11">
-            <input type="text" id="searchtext" name="searchtext"  placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
+            <input type="text" id="searchtext" name="searchtext"  placeholder="ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.">
           </div>
           <div class="col-2 col-md-2 col-lg-1">
-      		<button class="col" id="searchbtn">°Ë»ö</button>
+      		<button class="col" id="searchbtn">ê²€ìƒ‰</button>
           </div>
 
   </form>
-<!--°Ë»ö °á°ú Ãâ·Â-->  
+<!--ê²€ìƒ‰ ê²°ê³¼ ì¶œë ¥-->  
         <c:choose>
           <c:when test="${not empty mv_list}">
                 <div class="row" id="movie_bar">
-                <hr> <div class="list_title pt-2">¿µÈ­ ¸®½ºÆ®</div><hr>
-                     <c:forEach var="m" items="${mv_list}">
-                 <div class="row">
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
+                <hr> <div class="list_title pt-2">ì˜í™” ê²€ìƒ‰ ê²°ê³¼ <span> ${mv_list.size()}ê°œ</span> </div><hr>
+                 <div class="row"> 
+      			<ul class="list-group list-group-horizontal">  
+					<c:forEach var="m" items="${mv_list}">  
+      			  <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}"><p>${m.mv_title}</p></a></li>
+ 			</c:forEach> 
+ 			</ul>
                  </div>
                </div>
-           	</c:forEach>
+         
           </c:when>
           <c:otherwise>
-           <hr> <div class="list_title pt-2">¿µÈ­ ¸®½ºÆ®</div><hr>
-            <div>°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</div>
+           <hr> <div class="list_title pt-2">ì˜í™”</div><hr>
+            <div>ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
           </c:otherwise>
         </c:choose>
 
         <c:choose>
           <c:when test="${not empty dr_list}">  
-            <c:forEach var="d" items="dr_list">
               <div class="row" id="drama_bar">
-                  <hr> <div class="list_title">µå¶ó¸¶</div><hr>
+                  <hr> <div class="list_title">ë“œë¼ë§ˆ ê²€ìƒ‰ ê²°ê³¼<span> ${dr_list.size()}ê°œ</span></div><hr>
                  <div class="row">
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
+                  <ul class="list-group list-group-horizontal">
+                  <c:forEach var="d" items="${dr_list}">
+                <li class="mv_search list-group-item-#03001e col-6 col-sm-4 col-md-2"><a href="/detailDr.content?dr_id=${d.dr_id}"><img src="${d.dr_poster_path}"><p>${d.dr_title}</p></a></li>
+       				</c:forEach>
+                  </ul>
                  </div>
                </div>
-            </c:forEach>
+          
           </c:when>
           <c:otherwise>
-          <hr> <div class="list_title">µå¶ó¸¶</div><hr>
-            <div>°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</div>
+          <hr> <div class="list_title">ë“œë¼ë§ˆ</div><hr>
+            <div>ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
           </c:otherwise>
         </c:choose>
+
 </div>
+<script>
+ $(function(){
+	 
+console.log($(".mv_search").length);
+
+	 });
+</script>
 </body>
 </html>
