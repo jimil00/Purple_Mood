@@ -102,16 +102,19 @@ public class ContentController extends HttpServlet {
 		//			}
 
 		
-		else if(uri.equals("/detailMv.content")) {
+		else if(uri.equals("/detail.content")) {
 			//영화 출력 페이지 로직
 
 			System.out.println(uri);
 
 		
 			int mv_id= Integer.parseInt(request.getParameter("mv_id"));
+			int dr_id= Integer.parseInt(request.getParameter("dr_id"));
 
 
-			try {
+			if(mv_id !=0){
+				try {
+			
 			
 				MovieDTO mv_detail = MovieDAO.getInstance().selectByseq(mv_id);
 
@@ -130,44 +133,24 @@ public class ContentController extends HttpServlet {
 				e.printStackTrace();
 				response.sendRedirect("Error.jsp");
 			}
-		}
-		
-		else if(uri.equals("/detailDr.content")) {
-			//드라마 출력 페이지 로직
-
-			System.out.println(uri);
-
-			int dr_id= Integer.parseInt(request.getParameter("dr_id"));
-			
-			try {
-				DramaDTO dr_detail = DramaDAO.getInstance().selectByseq(dr_id);
-			
-
-				request.setAttribute("dr_detail", dr_detail);
 				
-				// ott 아이콘 출력을 위한 구문(일단 스킵)-> 일단 dao에 기능 만들어서 콜하는게 깔끔할 듯
-//				DramaDTO dr_fromOtt=DramaDAO.getInstance().selectOtt_icon(dr_id);
-
-//				if(dr_fromOtt.getDr_ottDZ()==('Y')) {
-//					System.out.println("a"); 
-//					
-//				}else if() {
-//					
-//				}else if() {
-//					
-//				}else {
-//					
-//				}
+			}else if(dr_id !=0) {
+				
+			}
+				try {
+					DramaDTO dr_detail = DramaDAO.getInstance().selectByseq(dr_id);
 				
 
-				request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
-
+					request.setAttribute("dr_detail", dr_detail);
+					
+					request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
 			}catch(Exception e)	{
 				e.printStackTrace();
 				response.sendRedirect("Error.jsp");
 			}
 		}
-		
+			
+
 		else if(uri.equals("/like.content")) {
 			
 			String r_writer = (String)request.getSession().getAttribute("loginNickname");

@@ -104,9 +104,15 @@
             <!-- </div>
             </div> -->
        
+       
+ 
           <div class="col-12 review_box">
-            <div id="rv_outputbox">
+          
+           <div id="rv_outputbox">
          <div id="review_textbox">
+               
+   <!--     <c:choose>
+       <c:when test="${not empty ?}">
           <div>감상평 출력될 부분</div>
           <div id="review_text"></div>
           <div id="review_date">2022년 9월 25일</div> 
@@ -114,16 +120,28 @@
          
          </div>
          <div id="rv_inputbox">여기가 감상평 입력될 부분 ↓
-         <input type="text" class="rv_input" name="rv_input" placeholder="감상평을 입력하세요">
+         <input type="hidden" val="${mv_list}"/>
+         <input type="text" class="rv_input" name="rv_content" placeholder="감상평을 입력하세요">
          <button id="rv_inputbtn">입력</button>  
         </div>
          </div>
         </div>
       </div>   
     </div>
+    
+    </c:when>
+    
+    <c:otherwise>
+    <div>
+    	<p>아직 감상평이 없습니다.</p>
+    	<p>감상평을 달아주세요!</p>
+    </div>
+    </c:otherwise>
+     </c:choose>--> 
+     
       <script>
         //댓글 입력시 출력
-        $("#rv_inputbtn").on("click", function(){
+          $("#rv_inputbtn").on("click", function(){
           let input=$(".rv_input").val();
             let div=$("<div>");
                 div.append(input);

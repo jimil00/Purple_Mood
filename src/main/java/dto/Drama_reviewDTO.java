@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Drama_reviewDTO {
 	
@@ -74,6 +75,20 @@ public class Drama_reviewDTO {
 	public void setDr_seq(int dr_seq) {
 		this.dr_seq = dr_seq;
 	}
+	
+	public String getDrr_write_date() {
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
+		String sdf1_drr_writer_date = sdf1.format(this.drr_writer_date);
+		String sdf1_currentTime = sdf1.format(System.currentTimeMillis());
+		if(sdf1_drr_writer_date.equals(sdf1_currentTime)) {
+			SimpleDateFormat sdf2 = new SimpleDateFormat("HH시 mm분");
+			return sdf2.format(this.drr_writer_date);
+		}else {
+			SimpleDateFormat sdf3 = new SimpleDateFormat("MM월 dd일");
+			return sdf3.format(this.drr_writer_date);
+		}		
+	}
+	
 	
 	
 

@@ -30,13 +30,32 @@ public class Drama_reviewDAO {
 
 	}
 	
-	public List <Drama_reviewDTO> selectMv_ReviewByMvSeq (int mv_seq) throws Exception{
+public int insertDramaReview(String drr_writer, String drr_content, int dr_id) throws Exception {
+		
+		String sql="insert into drama_review values(movie_review_seq, ?, ?,default,sysdate, ?)";
+		
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{pstat.setString(1, drr_writer);
+		pstat.setString(2, drr_content);
+		pstat.setInt(3, dr_id);
+		
+		int result=pstat.executeUpdate();
+		con.commit();
+		return result;
+		
+		}
+	}
+	
+	
+	
+	public List <Drama_reviewDTO> selectMv_ReviewByMvSeq (int mv_id) throws Exception{
 
 	      String sql="select * from drama_review where dr_seq=?";
 
 	      try(Connection con = this.getConnection();
 	            PreparedStatement pstat = con.prepareStatement(sql);){
-	         pstat.setInt(1, mv_seq);
+	         pstat.setInt(1, mv_id);
 
 	         try(ResultSet rs = pstat.executeQuery();){
 	            List<Drama_reviewDTO>  list =new ArrayList<>();
@@ -75,7 +94,7 @@ public class Drama_reviewDAO {
 
 	   }
 
-	   public int updateDr_review( String drr_content, int dr_seq, String drr_writer) throws Exception{
+	   public int updateDr_review( String drr_content, int dr_id, String drr_writer) throws Exception{
 
 	      String sql="update drama_review set drr_contents=? where dr_seq=? and drr_writer=?";
 
@@ -83,7 +102,7 @@ public class Drama_reviewDAO {
 	            PreparedStatement pstat=con.prepareStatement(sql);){
 
 	         pstat.setString(1,drr_content);
-	         pstat.setInt(2, dr_seq);
+	         pstat.setInt(2, dr_id);
 	         pstat.setString(3,drr_writer);
 
 	         int result=pstat.executeUpdate();
@@ -91,5 +110,6 @@ public class Drama_reviewDAO {
 	         return result;
 	      }
 	   }
+
 
 }
