@@ -34,7 +34,7 @@ public class MemberController extends HttpServlet {
 				response.getWriter().append(String.valueOf(result));
 
 				// NICKNAME 중복체크
-			}else if(uri.equals("/nicknameDuplCheck.member")) {
+			}else if(uri.equals("/nicknameDuplCheck.member")) { 
 				String nickname = request.getParameter("nickname");
 				boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
 				response.getWriter().append(String.valueOf(result));

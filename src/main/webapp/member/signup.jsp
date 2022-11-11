@@ -23,116 +23,34 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
-* {
-	box-sizing: border-box;
-	font-family: 'DungGeunMo';
-}
-
-.signupForm {
-	width: 550px;
-	margin: auto;
-}
-
-.joinForm {
-	float: left;
-	width: 430px;
-	margin: auto;
-	display: inline-block;
-	margin: auto;
-	margin-right: 15px;
-}
-
-.body {
-	margin: auto;
-	display: flex;
-	overflow: hidden;
-}
-/* .body>div {
-	overflow: hidden;
-} */
-/* .body>div>.subject {
-	text-align: right;
-	width: 20%;
-	margin-right: 10px
-} */
-input {
-	width: 300px;
-	height: 30px;
-}
-
-#email {
-	width: 179px;
-}
-
-.header {
-	text-align: center;
-	height: 80px;
-}
-
-#duplResult {
-	margin-left: 10px;
-}
-
-#result {
-	margin-left: 10px;
-}
-
-.selectOption {
-	height: 30px;
-}
-
-* {
-	color: black;
-}
-
-.requiredField {
-	color: red;
-}
-
-#result, #duplResult {
-	margin: 0;
-}
-
-.id, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
-	.address1, .address2, .margin_top, #result, #duplResult {
-	margin: 5px 0;
-}
-
-.footer {
-	margin-top: 10px;
-	text-align: center;
-}
-
-#duplCheckID, #duplCheckNickname {
-	width: 100px;
-}
-
-.btns button {
-	height: 30px;
-	width: 92px;
-}
-
-.footer {
-	position: relative;
-	left: -20px;
-}
-
-.btns {
-	width: 100%;
-	margin-top: 15px;
-	text-align: center;
-}
-
-/* div {
-	border: 1px solid black;
-} */
+* {box-sizing: border-box;font-family: 'DungGeunMo';margin: auto;}
+.signupForm {/* width: 550px; */margin: auto;}
+.joinForm {float: left;/* width: 430px; */margin: auto;display: inline-block;/* margin-right: 15px; */}
+.body {margin: auto;display: flex;overflow: hidden;}
+/* .body>div {overflow: hidden;} */
+/* .body>div>.subject {text-align: right;width: 20%;margin-right: 10px} */
+input {width: 300px;height: 30px;}
+#email {width: 179px;}
+.header {text-align: center;height: 80px;}
+/* #duplResult {margin-left: 10px;}
+#result {margin-left: 10px;} */
+.selectOption {	height: 30px;}
+* {color: black;}
+.requiredField {color: red;}
+#result, #duplResult {margin: 0;}
+.id, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,.address1, .address2, .margin_top, #result, #duplResultID,#duplResultNickname {margin: 15px 0;}
+.footer {margin-top: 10px;text-align: center;}
+#duplCheckID, #duplCheckNickname {width: 100px;}
+.btns button {height: 30px;width: 92px;}
+.footer {/* position: relative;left: -20px; */margin: auto;}
+.btns {width: 100%;margin-top: 10px;	text-align: center;}
+/* div {border: 1px solid black;} */
 </style>
 </head>
 
 <body>
 	<form action="/signup.member" method="post" id="frm">
-		<div class="signupForm col-12" style="min-width: 350px;">
+		<div class="container signupForm col-12" style="min-width: 350px;">
 			<div class="header col-12">logo</div>
 			<div class="body col-12 ">
 				<div class="joinForm col-12">
@@ -148,7 +66,7 @@ input {
 								<div class="margin_top col-12">
 									<input type="text" name="nickname" id="nickname"
 										placeholder="2~8자 영문 대 소문자,한글">
-									<div id="duplResultNickName"></div>
+									<div id="duplResultNickname"></div>
 								</div>
 					</div>
 					<div class="pw col-12">
@@ -191,12 +109,14 @@ input {
 								</div>
 					</div>
 					<div class="postcode col-12">
-						<span>우편번호</span>
-						<div class="margin_top col-12">
-							<input type="text" name="postcode" id="postcode"
-								placeholder="우편번호">&nbsp&nbsp<input type="button"
+						<div class="col-12">
+							<span>우편번호</span>&nbsp&nbsp<input type="button"
 								onclick="postcode()" value="우편번호 찾기" id="btnsearch"
 								style="width: 100px;">
+						</div>
+						<div class="margin_top col-12">
+							<input type="text" name="postcode" id="postcode"
+								placeholder="우편번호">
 						</div>
 					</div>
 					<div class="address1 col-12">
@@ -258,11 +178,6 @@ input {
 		$("#id").on("input", function() { // 한 글자 쓸 때마다 ajax가 나간다(쏴라)
 			idCheck = false;
 			let id = $("#id").val();
-			if (id == "") {
-				alert("아이디를 먼저 입력하세요.");
-				$("#id").focus();
-				return;
-			}
 			$.ajax({
 				url : "/idDuplCheck.member",
 				data : {
@@ -270,11 +185,11 @@ input {
 				}
 			}).done(function(resp) {
 				if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
-					$("#duplResultID").html("이미 사용중인 ID 입니다.");
+					$("#duplResultID").html("중복된 ID 입니다.");
 					$("#duplResultID").css("color", "red");
 				} else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
-					$("#duplResultID").html("사용 가능한 ID 입니다.");
-					$("#duplResultID").css("color", "red");
+					$("#duplResultID").html("중복되지 않은 ID 입니다.");
+					$("#duplResultID").css("color", "blue");
 					idCheck = true;
 				}
 			})
@@ -282,15 +197,7 @@ input {
 
 		$("#nickname").on("input", function() {
 			nicknameCheck = false;
-		})
-
-		$("#nickname").on("input", function() {
 			let nickname = $("#nickname").val();
-			if (nickname == "") {
-				alert("닉네임을 먼저 입력하세요.");
-				$("#nickname").focus();
-				return;
-			}
 
 			$.ajax({
 				url : "/nicknameDuplCheck.member",
@@ -299,11 +206,11 @@ input {
 				}
 			}).done(function(resp) {
 				if (resp == "true") { // 닉네임이 이미 존재하므로 사용할 수 없는 경우
-					$("#duplResultNickName").html("이미 사용중인 닉네임입니다.");
-					$("#duplResultNickName").css("color", "red");
+					$("#duplResultNickname").html("중복된 닉네임입니다.");
+					$("#duplResultNickname").css("color", "red");
 				} else { // 닉네임이 존재하지 않으므로 사용할 수 있는 경우
-					$("#duplResultNickName").html("사용 가능한 닉네임입니다.");
-					$("#duplResultNickName").css("color", "blue");
+					$("#duplResultNickname").html("중복되지 않은 닉네임입니다.");
+					$("#duplResultNickname").css("color", "blue");
 					nicknameCheck = true;
 				}
 
