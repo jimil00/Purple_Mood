@@ -23,19 +23,19 @@
 	font-weight: normal;
 	font-style: normal;
 }
-* {box-sizing: border-box;font-family: 'DungGeunMo';margin: auto;}
+* {box-sizing: border-box;font-family: 'DungGeunMo';margin: auto; background-color: black; color: white;}
 .signupForm {/* width: 550px; */margin: auto;}
 .joinForm {float: left;/* width: 430px; */margin: auto;display: inline-block;/* margin-right: 15px; */}
 .body {margin: auto;display: flex;overflow: hidden;}
 /* .body>div {overflow: hidden;} */
 /* .body>div>.subject {text-align: right;width: 20%;margin-right: 10px} */
-input {width: 300px;height: 30px;}
-#email {width: 179px;}
+input {width: 400px;height: 30px;}
+#email {width: 281px;}
 .header {text-align: center;height: 80px;}
 /* #duplResult {margin-left: 10px;}
 #result {margin-left: 10px;} */
 .selectOption {	height: 30px;}
-* {color: black;}
+* {color: white;}
 .requiredField {color: red;}
 #result, #duplResult {margin: 0;}
 .id, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,.address1, .address2, .margin_top, #result, #duplResultID,#duplResultNickname {margin: 15px 0;}
@@ -45,6 +45,113 @@ input {width: 300px;height: 30px;}
 .footer {/* position: relative;left: -20px; */margin: auto;}
 .btns {width: 100%;margin-top: 10px;	text-align: center;}
 /* div {border: 1px solid black;} */
+
+
+a{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+   /*  margin: 40px 0; */
+    margin:auto;
+    color: #03e9f4;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+   /*  margin-right: 10px; */
+    height: 30px;width: 150px;
+    width: 140px;
+   
+}
+a:hover{
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+a:nth-child(1){
+    filter: hue-rotate(270deg);
+}
+a:nth-child(2){
+    filter: hue-rotate(110deg);
+}
+a span{
+    position: absolute;
+    display: block;
+}
+a span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#03e9f4);
+    animation: animate1 1s linear infinite;
+}
+@keyframes animate1{
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+a span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+@keyframes animate2{
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+a span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg,transparent,#03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+@keyframes animate3{
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+
+a span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+@keyframes animate4{
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+}
 </style>
 </head>
 
@@ -110,9 +217,17 @@ input {width: 300px;height: 30px;}
 					</div>
 					<div class="postcode col-12">
 						<div class="col-12">
-							<span>우편번호</span>&nbsp&nbsp<input type="button"
+							<span>우편번호</span>&nbsp&nbsp
+							<!-- <input type="button"
 								onclick="postcode()" value="우편번호 찾기" id="btnsearch"
-								style="width: 100px;">
+								style="width: 100px;"> -->
+								<a href="#" id="btnsearch">
+							        <span></span>
+							        <span></span>
+							        <span></span>
+							        <span></span>
+							        우편번호 찾기
+							    </a>
 						</div>
 						<div class="margin_top col-12">
 							<input type="text" name="postcode" id="postcode"
@@ -137,9 +252,30 @@ input {width: 300px;height: 30px;}
 		</div>
 		<div class="footer col-12">
 			<div class="btns">
-				<a href=/index.jsp><button id=signup>회원가입</button></a>&nbsp&nbsp<a
+				<!-- <a href=/index.jsp><button id=signup>회원가입</button></a>&nbsp&nbsp<a
 					href=/index.jsp><button type="button">뒤로 가기</button></a>&nbsp
-				<button type="reset">다시 입력</button>
+				<button type="reset">다시 입력</button> -->
+				<a href="/index.jsp">
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        회원가입
+			    </a>
+			    <a href="/index.jsp">
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        뒤로가기
+			    </a>
+			    <a href="#">
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        <span></span>
+			        다시입력
+			    </a>
 			</div>
 		</div>
 
