@@ -48,7 +48,7 @@ public class Movie_reviewDAO {
 	
 	public List <Movie_reviewDTO> selectMv_ReviewByMvSeq (int mv_id) throws Exception{
 
-	      String sql="select * from movie_review where mv_seq=?";
+	      String sql="select * from movie_review where mv_id=?";
 
 	      try(Connection con = this.getConnection();
 	            PreparedStatement pstat = con.prepareStatement(sql);){
@@ -64,7 +64,7 @@ public class Movie_reviewDAO {
 	            	dto.setMvr_content(rs.getString("mvr_content"));
 	            	dto.setMvr_like(rs.getInt(rs.getInt("mvr_like")));
 	            	dto.setMvr_writer_date(rs.getTimestamp("mvr_write_date"));
-	            	dto.setMv_seq(rs.getInt("mv_id"));
+	            	dto.setMv_id(rs.getInt("mv_id"));
 
 	               list.add(dto);
 	            }return list;}

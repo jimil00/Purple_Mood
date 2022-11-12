@@ -60,6 +60,8 @@ public class ReviewController extends HttpServlet {
 	
 		}
 		
+		if(uri.equals("/list.review")) { }
+		
 		
 		
 		

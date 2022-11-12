@@ -49,13 +49,13 @@ public int insertDramaReview(String drr_writer, String drr_content, int dr_id) t
 	
 	
 	
-	public List <Drama_reviewDTO> selectMv_ReviewByMvSeq (int mv_id) throws Exception{
+	public List<Drama_reviewDTO> selectDr_ReviewByDrSeq (int dr_id) throws Exception{
 
-	      String sql="select * from drama_review where dr_seq=?";
+	      String sql="select * from drama_review where dr_id=?";
 
 	      try(Connection con = this.getConnection();
 	            PreparedStatement pstat = con.prepareStatement(sql);){
-	         pstat.setInt(1, mv_id);
+	         pstat.setInt(1, dr_id);
 
 	         try(ResultSet rs = pstat.executeQuery();){
 	            List<Drama_reviewDTO>  list =new ArrayList<>();
@@ -67,7 +67,7 @@ public int insertDramaReview(String drr_writer, String drr_content, int dr_id) t
 	            	dto.setDrr_content(rs.getString("drr_content"));
 	            	dto.setDrr_like(rs.getInt(rs.getInt("drr_like")));
 	            	dto.setDrr_writer_date(rs.getTimestamp("drr_write_date"));
-	            	dto.setDr_seq(rs.getInt("dr_seq"));
+	            	dto.setDr_id(rs.getInt("dr_id"));
 
 	               list.add(dto);
 	            }return list;}

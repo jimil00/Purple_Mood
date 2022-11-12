@@ -10,7 +10,7 @@ public class Movie_reviewDTO {
 	private String mvr_content;
 	private int mvr_like;
 	private Timestamp mvr_writer_date;
-	private int mv_seq;
+	private int mv_id;
 	
 	
 	public Movie_reviewDTO() {
@@ -18,13 +18,13 @@ public class Movie_reviewDTO {
 	}
 
 	public Movie_reviewDTO(int mvr_seq, String mvr_writer, String mvr_content, int mvr_like, Timestamp mvr_writer_date,
-			int mv_seq) {
+			int mv_id) {
 		this.mvr_seq = mvr_seq;
 		this.mvr_writer = mvr_writer;
 		this.mvr_content = mvr_content;
 		this.mvr_like = mvr_like;
 		this.mvr_writer_date = mvr_writer_date;
-		this.mv_seq = mv_seq;
+		this.mv_id = mv_id;
 	}
 
 	
@@ -68,12 +68,12 @@ public class Movie_reviewDTO {
 		this.mvr_writer_date = mvr_writer_date;
 	}
 
-	public int getMv_seq() {
-		return mv_seq;
+	public int getMv_id() {
+		return mv_id;
 	}
 
-	public void setMv_seq(int mv_seq) {
-		this.mv_seq = mv_seq;
+	public void setMv_id(int mv_id) {
+		this.mv_id = mv_id;
 	}
 	
 	public String getMvr_write_date() {
