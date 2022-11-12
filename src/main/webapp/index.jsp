@@ -76,8 +76,8 @@ body {
 
 /* ott버튼 */
 .ottboxsec {
-	margin-top: 100px;
-	margin-bottom: 100px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	text-align: center;
 }
 
@@ -143,6 +143,17 @@ body {
 	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
+.ottimg {
+	width: 200px;
+	height: 60px;
+}
+
+@media ( max-width : 600px) {
+	.ottimg {
+		width: 150px;
+		height: 50px;
+	}
+}
 /* 영화 포스터 */
 .titlename {
 	padding-left: 3%;
@@ -354,22 +365,22 @@ hr.hr {
 				<div class="row ">
 					<div class="col-6 col-lg-3">
 						<a href="#" id="disneybtn"> <img src="/img/disbf.png"
-							id="disney" style="width: 150px; height: 50px">
+							id="disney" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
 						<a href="#" id="wavvebtn"> <img src="/img/wavbf.png"
-							id="wavve" style="width: 150px; height: 50px">
+							id="wavve" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
 						<a href="#" id="netbtn"> <img src="/img/netbf.png"
-							id="netflix" style="width: 150px; height: 50px">
+							id="netflix" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
 						<a href="#" id="watchabtn"> <img src="/img/watbf.png"
-							id="watcha" style="width: 150px; height: 50px">
+							id="watcha" class="ottimg">
 						</a>
 					</div>
 					<script>

@@ -32,7 +32,7 @@
             border: 1px solid black;
         } */
 .container {
-	border: 1px solid black;
+	border: 1px solid #c4c4c4;
 	border-radius: 5px;
 	position: absolute;
 	top: 50%;
@@ -64,11 +64,11 @@
 	border-radius: 5px;
 }
 
-.icon {
+.idicon,.pwicon {
 	color: #c4c4c4;
 }
 
-.logintext {
+.idtext,.pwtext {
 	width: 93%;
 	height: 100%;
 	border: none;
@@ -92,8 +92,9 @@
 
 #loginbtn {
 	width: 250px;
-	height: 30px;
-	/* 	background-color: #7303c0; */
+	height: 40px;
+	background-color: #03001e;
+	color: white;
 }
 
 .signupbox, .loginbtnbox, .loginbox {
@@ -102,6 +103,10 @@
 
 .signup {
 	line-height: 50px;
+}
+
+.signup:hover,.findInfo:hover{
+color:black;
 }
 
 a {
@@ -113,6 +118,8 @@ button {
 	border: none;
 	border-radius: 5px;
 }
+
+input:focus {outline: none;}
 </style>
 </head>
 <body>
@@ -127,12 +134,12 @@ button {
 					<div class="loginbox row">
 						<div class="logintextbox col-12">
 							<div class="col-12 idtextbox">
-								<i class="fa-solid fa-user icon"></i> <input type="text"
-									name="id" class="logintext" placeholder="아이디" value="${id }">
+								<i class="fa-solid fa-user idicon"></i> <input type="text"
+									name="id" class="idtext" placeholder="아이디" value="${id }">
 							</div>
 							<div class="col-12 pwtextbox">
-								<i class="fa-solid fa-unlock-keyhole icon"></i> <input
-									type="text" name="pw" class="logintext" id="loginpwtext"
+								<i class="fa-solid fa-unlock-keyhole pwicon"></i> <input
+									type="text" name="pw" class="pwtext" id="loginpwtext"
 									placeholder="비밀번호">
 							</div>
 						</div>
@@ -148,7 +155,7 @@ button {
 			</form>
 			<div class="signupbox row">
 				<div class="col-12">
-					<a href="/member/signup.jsp" class="signup">회원가입</a> | <a href="#">아이디&비밀번호찾기</a>
+					<a href="/member/signup.jsp" class="signup">회원가입</a> | <a href="#" class="findInfo">아이디&비밀번호찾기</a>
 				</div>
 			</div>
 			</div>
@@ -168,12 +175,12 @@ button {
 					<div class="loginbox row">
 						<div class="logintextbox col-12">
 							<div class="col-12 idtextbox">
-								<i class="fa-solid fa-user icon"></i> <input type="text"
-									name="id" class="logintext" placeholder="아이디">
+								<i class="fa-solid fa-user idicon"></i> <input type="text"
+									name="id" class="idtext" placeholder="아이디">
 							</div>
 							<div class="col-12 pwtextbox">
-								<span><i class="fa-solid fa-unlock-keyhole icon"></i></span> <input
-									type="text" name="pw" class="logintext" placeholder="비밀번호">
+								<span><i class="fa-solid fa-unlock-keyhole pwicon"></i></span> <input
+									type="text" name="pw" class="pwtext" placeholder="비밀번호">
 							</div>
 						</div>
 					</div>
@@ -186,11 +193,29 @@ button {
 			</form>
 			<div class="signupbox row">
 				<div class="col-12">
-					<a href="/member/signup.jsp" class="signup">회원가입</a> | <a href="#">아이디&비밀번호찾기</a>
+					<a href="/member/signup.jsp" class="signup">회원가입</a> | <a href="#" class="findInfo">아이디&비밀번호찾기</a>
 				</div>
 			</div>
 			</div>
 		</c:otherwise>
 	</c:choose>
+	<script>
+		$(".idtext").on("focus",function(){
+			$(".idtextbox").css("border","2px solid black");
+			$(".idicon").css("color","black");
+		})
+		$(".idtext").on("focusout",function(){
+			$(".idtextbox").css("border","1px solid #c4c4c4");
+			$(".idicon").css("color","#c4c4c4");
+		})
+		$(".pwtext").on("focus",function(){
+			$(".pwtextbox").css("border","2px solid black");
+			$(".pwicon").css("color","black");
+		})
+		$(".pwtext").on("focusout",function(){
+			$(".pwtextbox").css("border","1px solid #c4c4c4");
+			$(".pwicon").css("color","#c4c4c4");
+		})
+	</script>
 </body>
 </html>
