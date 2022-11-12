@@ -102,21 +102,18 @@ public class ContentController extends HttpServlet {
 		//			}
 
 		
-		else if(uri.equals("/detail.content")) {
+		else if(uri.equals("/detailMv.content")) {
 			//영화 출력 페이지 로직
 
 			System.out.println(uri);
 
 		
 			int mv_id= Integer.parseInt(request.getParameter("mv_id"));
-			int dr_id= Integer.parseInt(request.getParameter("dr_id"));
 
 
-			if(mv_id !=0){
-				try {
+			try {
 			
-			
-				MovieDTO mv_detail = MovieDAO.getInstance().selectByseq(mv_id);
+				MovieDTO mv_detail = MovieDAO.getInstance().selectByMv_seq(mv_id);
 
 				
 				request.setAttribute("mv_detail", mv_detail);
@@ -133,17 +130,38 @@ public class ContentController extends HttpServlet {
 				e.printStackTrace();
 				response.sendRedirect("Error.jsp");
 			}
+		}
+		
+		else if(uri.equals("/detailDr.content")) {
+			//드라마 출력 페이지 로직
+
+			System.out.println(uri);
+
+			int dr_id= Integer.parseInt(request.getParameter("dr_id"));
+			
+			try {
+				DramaDTO dr_detail = DramaDAO.getInstance().selectByDr_id(dr_id);
+			
+
+				request.setAttribute("dr_detail", dr_detail);
 				
-			}else if(dr_id !=0) {
-				
-			}
-				try {
-					DramaDTO dr_detail = DramaDAO.getInstance().selectByseq(dr_id);
+				// ott 아이콘 출력을 위한 구문(일단 스킵)-> 일단 dao에 기능 만들어서 콜하는게 깔끔할 듯
+//				DramaDTO dr_fromOtt=DramaDAO.getInstance().selectOtt_icon(dr_id);
+
+//				if(dr_fromOtt.getDr_ottDZ()==('Y')) {
+//					System.out.println("a"); 
+//					
+//				}else if() {
+//					
+//				}else if() {
+//					
+//				}else {
+//					
+//				}
 				
 
-					request.setAttribute("dr_detail", dr_detail);
-					
-					request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
+				request.getRequestDispatcher("/content/ContentView.jsp").forward(request, response);
+
 			}catch(Exception e)	{
 				e.printStackTrace();
 				response.sendRedirect("Error.jsp");
@@ -153,7 +171,7 @@ public class ContentController extends HttpServlet {
 
 		else if(uri.equals("/like.content")) {
 			
-			String r_writer = (String)request.getSession().getAttribute("loginNickname");
+			String rv_writer = (String)request.getSession().getAttribute("loginNickname");
 			
 //			if(좋아요 누른게==0) {
 //				DramaDAO.getInstance().insertLike();

@@ -177,7 +177,7 @@ span>img {
 							</c:if>
 							<div class="col-6 col-sm-4 col-md-2">
 							<li class="mv_search list-group-item-#03001e">
-								<a href="/detail.content?mv_id=${m.mv_id}">
+								<a href="/detailMv.content?mv_id=${m.mv_id}">
 									<div class="poster"><span></span><img src="${m.mv_poster_path}"></div>
 									<p>${m.mv_title}</p>
 								</a>
@@ -217,7 +217,7 @@ span>img {
 					<ul class="list-group list-group-horizontal">
 							</c:if>
 							<li class="mv_search list-group-item-#03001e">
-						<a href="/detail.content?dr_id=${d.dr_id}">
+						<a href="/detailDr.content?dr_id=${d.dr_id}">
 							<div class="poster">
 							<img src="${d.dr_poster_path}">
 							</div>
