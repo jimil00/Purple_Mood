@@ -29,7 +29,7 @@ public class Movie_reviewDAO {
 
 	}
 	
-	public int insertMovieReview(String mvr_writer, String mvr_content, int mv_seq) throws Exception {
+	public int insertMovieReview(String mvr_writer, String mvr_content, int mv_id) throws Exception {
 		
 		String sql="insert into movie_review values(movie_review_seq, ?, ?,default,sysdate, ?)";
 		
@@ -37,7 +37,7 @@ public class Movie_reviewDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);)
 		{pstat.setString(1, mvr_writer);
 		pstat.setString(2, mvr_content);
-		pstat.setInt(3, mv_seq);
+		pstat.setInt(3, mv_id);
 		
 		int result=pstat.executeUpdate();
 		con.commit();
@@ -46,13 +46,13 @@ public class Movie_reviewDAO {
 		}
 	}
 	
-	public List <Movie_reviewDTO> selectMv_ReviewByMvSeq (int mv_seq) throws Exception{
+	public List <Movie_reviewDTO> selectMv_ReviewByMvSeq (int mv_id) throws Exception{
 
-	      String sql="select * from movie_review where mv_seq=?";
+	      String sql="select * from movie_review where mv_id=?";
 
 	      try(Connection con = this.getConnection();
 	            PreparedStatement pstat = con.prepareStatement(sql);){
-	         pstat.setInt(1, mv_seq);
+	         pstat.setInt(1, mv_id);
 
 	         try(ResultSet rs = pstat.executeQuery();){
 	            List<Movie_reviewDTO>  list =new ArrayList<>();
@@ -64,7 +64,7 @@ public class Movie_reviewDAO {
 	            	dto.setMvr_content(rs.getString("mvr_content"));
 	            	dto.setMvr_like(rs.getInt(rs.getInt("mvr_like")));
 	            	dto.setMvr_writer_date(rs.getTimestamp("mvr_write_date"));
-	            	dto.setMv_seq(rs.getInt("mv_seq"));
+	            	dto.setMv_id(rs.getInt("mv_id"));
 
 	               list.add(dto);
 	            }return list;}
@@ -91,15 +91,15 @@ public class Movie_reviewDAO {
 
 	   }
 
-	   public int updateMv_review( String mvr_content,  int mv_seq, String mvr_writer) throws Exception{
+	   public int updateMv_review( String mvr_content,  int mv_id, String mvr_writer) throws Exception{
 
-	      String sql="update movie_review set mvr_contents=? where mv_seq=? and mvr_writer=?";
+	      String sql="update movie_review set mvr_contents=? where mv_id=? and mvr_writer=?";
 
 	      try(Connection con=this.getConnection();
 	            PreparedStatement pstat=con.prepareStatement(sql);){
 
 	         pstat.setString(1,mvr_content);
-	         pstat.setInt(2, mv_seq);
+	         pstat.setInt(2, mv_id);
 	         pstat.setString(3,mvr_writer);
 
 	         int result=pstat.executeUpdate();
