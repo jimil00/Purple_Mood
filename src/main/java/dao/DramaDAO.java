@@ -172,7 +172,7 @@ public class DramaDAO {
 		{pstat.setInt(1, dr_id); //여기서 한 글자만 쳐도 나오게 하는 기능 구현해야 함.
 
 		try(ResultSet rs = pstat.executeQuery();){
-			
+
 			DramaDTO dto = new DramaDTO();
 			while(rs.next()) {
 				dto.setDr_ottNF((rs.getString("dr_ottNF").charAt(0))); 
@@ -186,4 +186,45 @@ public class DramaDAO {
 
 		}
 	}
+
+	//최신드라마 출력
+	public List <DramaDTO> searchByDate() throws Exception {
+
+		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_FIRST_AIR_DATE  desc)\"개봉일자\" from drama_test) WHERE \"개봉일자\" BETWEEN 1 AND 18";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			List <DramaDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				DramaDTO dto = new DramaDTO();
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+				list.add(dto);
+			}
+			return list;
+		}
+	}
+
+	
+	
+	//평점드라마 출력
+		public List <DramaDTO> searchByAvg() throws Exception {
+
+			String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average   desc)\"평점\" from drama_test) WHERE \"평점\" BETWEEN 1 AND 18";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					ResultSet rs = pstat.executeQuery();){
+				List <DramaDTO> list = new ArrayList<>();
+				while(rs.next()) {
+					DramaDTO dto = new DramaDTO();
+					dto.setDr_id(rs.getInt("dr_id"));
+					dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+					list.add(dto);
+				}
+				return list;
+			}
+		}
 }
+
