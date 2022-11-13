@@ -158,29 +158,48 @@
 
 		<!-- </div>
             </div> -->
-
-		<div class="col-12 review_box">
-			<div id="rv_outputbox">
-				<div id="review_textbox">
-					<div>감상평 출력될 부분</div>
-					<div id="review_text"></div>
-					<div id="review_date">2022년 9월 25일</div>
-				</div>
-
-			</div>
-			<div id="rv_inputbox">
-				여기가 감상평 입력될 부분 ↓
-				<input type="text" class="rv_input" name="rv_input"
-					placeholder="감상평을 입력하세요">
-				<button id="rv_inputbtn">입력</button>
-			</div>
-		</div>
-	</div>
-	</div>
-	</div>
-	<script>
+       
+       
+ 
+          <div class="col-12 review_box">
+          
+           <div id="rv_outputbox">
+         <div id="review_textbox">
+         
+         <c:choose>
+       <c:when test="${not empty rlist}">
+          <div>감상평 출력될 부분</div>
+          <div id="review_text"></div>
+          <div id="review_date">2022년 9월 25일</div> 
+         </div> 
+          </c:when>
+    <c:otherwise>
+    <div>
+    	<p>아직 감상평이 없습니다.</p>
+    	<p>감상평을 달아주세요!</p>
+    </div>
+    </c:otherwise>
+     </c:choose>
+         </div>
+         
+         <form action="/write.review">
+         <div id="rv_inputbox">여기가 감상평 입력될 부분 ↓
+         <input type="hidden" name="mv_id" value="${mv_list.mv_id}"/>
+         <input type="text" class="rv_input" name="rv_content" placeholder="감상평을 입력하세요">
+         <button id="rv_inputbtn">입력</button>  
+        </div>
+        </form>
+        
+         </div>
+        </div>
+      </div>   
+    </div>
+    
+  
+               
+      <script>
         //댓글 입력시 출력
-        $("#rv_inputbtn").on("click", function(){
+          $("#rv_inputbtn").on("click", function(){
           let input=$(".rv_input").val();
             let div=$("<div>");
                 div.append(input);
@@ -197,15 +216,15 @@
         	
         	//좋아요 예시
         		$.ajax({
-        	      url: '/board/like',
+        	      url: '/like.content',
         	      type: 'POST',
-        	      data: { 'b_number': b_number, 'm_id': m_id },
+        	      data: { 'nickname': nickname, 'dr_id': dr_id, 'mv_id':mv_id },
         	      success: function (data) {
         	          if (data == 1) {
-        	              $("#likeimg").attr("src", "/resources/img/좋아요후.png");
+        	              $("#bi").attr("src", "아이콘");
         	              location.reload();
         	          } else {
-        	              $("#likeimg").attr("src", "/resources/img/좋아요전.png");
+        	              $("#bi").attr("src", "아이콘");
         	              location.reload();
         	          }
         	      }, error: function () {

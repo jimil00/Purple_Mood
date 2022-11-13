@@ -88,7 +88,7 @@ public class DramaDAO {
 
 
 	//상세 페이지 출력
-	public  DramaDTO selectByseq(int dr_id) throws Exception { 
+	public  DramaDTO selectByDr_id(int dr_id) throws Exception { 
 
 		String sql="select * from drama_test where dr_id=?";
 
