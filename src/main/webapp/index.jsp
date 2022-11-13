@@ -624,7 +624,7 @@ hr.hr {
 						</a>
 
 					</div>
-					<a href="/boardList.board">
+					<a href="/boardList.board?cpage=1">
 						<div class="menulink">영화 드라마 게시판</div>
 					</a> <a href="#">
 						<div class="menulink">자유게시판</div>

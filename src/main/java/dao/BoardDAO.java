@@ -29,9 +29,9 @@ public class BoardDAO {
 	}
 
 	//editor
-//	public String removeHTML(String str) throws Exception {
-//		String editedText=str.replace("/<br\/>/ig", "\n");
-//	}
+	//	public String removeHTML(String str) throws Exception {
+	//		String editedText=str.replace("/<br\/>/ig", "\n");
+	//	}
 
 	// 게시글 작성 (C)
 	public int insertBoardContents(BoardDTO dto) throws Exception{
@@ -41,7 +41,7 @@ public class BoardDAO {
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-//			pstat.setInt(1, dto.getB_seq());
+			//			pstat.setInt(1, dto.getB_seq());
 			pstat.setString(1, dto.getB_category());
 			pstat.setString(2, dto.getB_writer());
 			pstat.setString(3, dto.getB_title());
@@ -154,51 +154,22 @@ public class BoardDAO {
 
 
 	// 게시판 리스트 출력 (R)
-//	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
-//
-//		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
-//
-//		try(Connection con = this.getConnection();
-//				PreparedStatement pstat = con.prepareStatement(sql);){
-//
-//			pstat.setInt(1, start);
-//			pstat.setInt(2, end);
-//
-//			try(ResultSet rs = pstat.executeQuery();){
-//
-//				List<BoardDTO> list = new ArrayList<>();
-//				while(rs.next()) {
-//					BoardDTO dto = new BoardDTO();
-//					dto.setB_seq(rs.getInt("B_seq"));
-//					dto.setB_category(rs.getString("b_category"));
-//					dto.setB_writer(rs.getString("b_writer"));
-//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-//					dto.setB_title(rs.getString("b_title"));
-//					dto.setB_content(rs.getString("b_content"));
-//					dto.setB_view_count(rs.getInt("b_view_count"));
-//					list.add(dto);
-//				}
-//				return list;
-//
-//			}
-//		}
-//
-//	}
-		public List<BoardDTO> selectBoardByRange() throws Exception{
-	
-			String sql = "select * from board order by b_write_date desc";
-	
-			try(Connection con = this.getConnection();
-					PreparedStatement pstat = con.prepareStatement(sql);
-					ResultSet rs = pstat.executeQuery();
-					){
-	
-	
-	
+	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
+
+		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+
+			pstat.setInt(1, start);
+			pstat.setInt(2, end);
+
+			try(ResultSet rs = pstat.executeQuery();){
+
 				List<BoardDTO> list = new ArrayList<>();
 				while(rs.next()) {
 					BoardDTO dto = new BoardDTO();
-					dto.setB_seq(rs.getInt("b_seq"));
+					dto.setB_seq(rs.getInt("B_seq"));
 					dto.setB_category(rs.getString("b_category"));
 					dto.setB_writer(rs.getString("b_writer"));
 					dto.setB_write_date(rs.getTimestamp("b_write_date"));
@@ -208,9 +179,37 @@ public class BoardDAO {
 					list.add(dto);
 				}
 				return list;
-	
+
 			}
 		}
+
+	}
+	//boardList그냥 출력하는 메서드
+	//		public List<BoardDTO> selectBoardByRange(int start,int end) throws Exception{
+	//	
+	//			String sql = "select * from board order by b_write_date desc";
+	//	
+	//			try(Connection con = this.getConnection();
+	//					PreparedStatement pstat = con.prepareStatement(sql);
+	//					ResultSet rs = pstat.executeQuery();
+	//					){
+	//	
+	//				List<BoardDTO> list = new ArrayList<>();
+	//				while(rs.next()) {
+	//					BoardDTO dto = new BoardDTO();
+	//					dto.setB_seq(rs.getInt("b_seq"));
+	//					dto.setB_category(rs.getString("b_category"));
+	//					dto.setB_writer(rs.getString("b_writer"));
+	//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+	//					dto.setB_title(rs.getString("b_title"));
+	//					dto.setB_content(rs.getString("b_content"));
+	//					dto.setB_view_count(rs.getInt("b_view_count"));
+	//					list.add(dto);
+	//				}
+	//				return list;
+	//	
+	//			}
+	//		}
 
 
 
@@ -224,8 +223,8 @@ public class BoardDAO {
 		}
 	}
 
-	public String getBoardPageNavi(int currentPage) throws Exception {
-
+	public List<String> getBoardPageNavi(int currentPage) throws Exception {
+		List<String>list=new ArrayList<>();
 		int recordTotalCount = this.getRecordCount(); 
 
 		int recordCountPerPage = 20; 
@@ -245,11 +244,12 @@ public class BoardDAO {
 		}
 
 		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
-		int endNavi = startNavi + naviCountPerPage - 1;
+		int endNavi=0;
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
+		}else {
+			endNavi=startNavi + naviCountPerPage - 1;
 		}
-
 
 		boolean needPrev = true;
 		boolean needNext = true;
@@ -260,7 +260,7 @@ public class BoardDAO {
 		StringBuilder sb = new StringBuilder();
 
 		if(needPrev) {
-			sb.append("<a href='/boardlist.board?cpage="+(startNavi-1)+"'><</a> ");
+			sb.append("<a href='/boardList.board?cpage="+(startNavi-1)+"'><</a> ");
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
@@ -270,7 +270,10 @@ public class BoardDAO {
 		if(needNext) {
 			sb.append("<a href='/boardList.board?cpage="+(endNavi+1)+"'>></a> ");
 		}
-		return sb.toString();
+		String navi=sb.toString();
+		list.add(String.valueOf(endNavi));
+		list.add(navi);
+		return list;
 	}
 
 

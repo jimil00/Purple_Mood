@@ -104,7 +104,7 @@ body {
 	heigth: 50px;
 	text-align: center;
 	line-height: 45px;
-	font-size: 38px;
+	font-size: 40px;
 	font-weight: bold;
 	color: white;
 	text-decoration: underline;
@@ -112,8 +112,8 @@ body {
 	text-underline-position: under;
 }
 
-.boardTitle, .theader, #insertBoardContentsBtn, .boardListSearch,
-	.boardListSearch, .boardListSearch * {
+.boardTitle, .theader, .content, #insertBoardContentsBtn,
+	.boardListSearch, .boardListSearch, .navi *, .boardListSearch * {
 	font-family: 'DungGeunMo';
 }
 
@@ -132,14 +132,15 @@ body {
 }
 
 .board {
-	border-top: 5px solid #7303c0;
-	border-bottom: 5px solid #7303c0;
+	border-top: 3.5px solid #7303c0;
+	border-bottom: 3.5px solid #7303c0;
 }
 
 .theader {
 	float: left;
 	width: 100%;
 	height: 35px;
+	font-size: 19px;
 }
 
 .theader>div {
@@ -206,6 +207,11 @@ a {
 #boardSearchOption {
 	width: 100px;
 	height: 30px;
+}
+
+.navi * {
+	color: #03001e;
+	text-decoration: none;
 }
 </style>
 </head>
@@ -276,7 +282,11 @@ a {
 									type="button" id="insertBoardContentsBtn">글쓰기</button></a>
 						</div>
 						<hr>
-						<div colspan="5" align="center">${navi }페이징</div>
+						<div align="center" class="navi">
+							<a href="boardList.board?cpage=1"><button type="button">처음으로</button></a>
+							${navi} <a href="boardList.board?cpage=${endNavi}"><button
+									type="button">끝으로</button></a>
+						</div>
 						<hr>
 						<form action="/boardListSearch.board" method="post">
 							<div class="row">
