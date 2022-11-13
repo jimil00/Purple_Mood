@@ -22,14 +22,12 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 * {
 	box-sizing: border-box;
 	font-family: 'DungGeunMo';
 	color: black;
 	margin: auto;
 }
-
 .modifyForm {
 	float: left;
 	margin: auto;
@@ -39,78 +37,63 @@
 	background-color: white;
 	border-radius: 7px;
 }
-
 input {
 	width: 400px;
 	height: 30px;
 }
-
 #email {
 	width: 200px;
 }
-
 .header {
 	text-align: center;
 	height: 80px;
 	background-color: #03001e;
 }
-
 .selectOption {
 	height: 30px;
 	width: 175px;
 	text-align: center;
 }
-
 .requiredField {
 	color: red;
 }
-
 #result, #duplResult {
 	margin: 0;
 }
-
 .id, .logo, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
 	.address1, .address2, .margin_top, #result, #duplResultID,
 	#duplResultNickname {
 	margin: 15px 0;
 }
-
 .container {
 	margin: auto;
 	display: flex;
 	overflow: hidden;
 	background-color: #03001e;
 }
-
 .logo {
 	font-weight: bold;
 	margin: 40px 0;
 }
-
 .footer {
 	margin-top: 10px;
 	text-align: center;
 }
-
 #duplCheckID, #duplCheckNickname {
 	width: 100px;
 }
-
 .btns button {
 	height: 30px;
 	width: 92px;
 }
-
 .footer {
 	margin: auto;
 }
-
 .btns {
 	width: 100%;
 	margin-top: 10px;
 	text-align: center;
 }
-
 .btn {
 	width: 100px;
 }
@@ -123,30 +106,24 @@ input {
 		//    window.onload와 같다
 		$("#modify").on("click", function() {
 			$("input").removeAttr("readonly");
-
 			$("#modify").css("display", "none");
 			let btnModify = $("<button>");
 			btnModify.text("수정완료");
 			btnModify.addClass("btn")
-
 			btnModify.css("width", "90px");
 			/* btnModify.css("margin-right", "5px") */
-
 			let btnCancel = $("<button>");
 			btnCancel.attr("type", "button");
 			btnCancel.text("취소");
 			btnCancel.addClass("btn");
 			btnCancel.css("width", "90px");
-
 			btnCancel.on("click", function() {
 				location.reload();
 			});
 			$(".btns").append(btnModify);
 			$(".btns").append(" ");
 			$(".btns").append(btnCancel);
-
 		})
-
 	})
 </script>
 </head>
@@ -241,7 +218,7 @@ input {
 				<div class="footer col-12">
 					<div class="btns">
 						<input type="button" class="btn" id="modify" value="수정하기">
-						<a href="/index.jsp"><input type="button" class="btn"
+						<a href="/main"><input type="button" class="btn"
 							id="back" value="홈으로"></a>
 					</div>
 				</div>
@@ -263,7 +240,6 @@ input {
 				pwCheck = true;
 			}
 		})
-
 		// $("#id").on("input", function() { // 한 글자 쓸 때마다 ajax가 나간다(쏴라)
 		// 	idCheck = false;
 		// 	let id = $("#id").val();
@@ -283,11 +259,9 @@ input {
 		// 		}
 		// 	})
 		// })
-
 		$("#nickname").on("input", function() {
 			nicknameCheck = false;
 			let nickname = $("#nickname").val();
-
 			$.ajax({
 				url : "/nicknameDuplCheck.member",
 				data : {
@@ -302,15 +276,11 @@ input {
 					$("#duplResultNickname").css("color", "green");
 					nicknameCheck = true;
 				}
-
 			})
-
 		})
-
 		$("#frm").on(
 				"submit",
 				function() {
-
 					if (!nicknameCheck) {
 						alert("닉네임 중복체크를 먼저 수행해주세요.");
 						return false;
@@ -319,7 +289,6 @@ input {
 						alert("두 패스워드가 일치하지 않습니다.");
 						return false;
 					}
-
 					if ($("#id").val() == "" || $("#pw").val() == ""
 							|| $("#name").val() == ""
 							|| $("#nickname").val() == ""
@@ -328,13 +297,11 @@ input {
 						alert("아이디, 패스워드, 이름은 필수입력값입니다.");
 						return false;
 					}
-
 					let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글만 가능
 					let pwRegex = /^[A-Za-z0-9~!@#$%]{8,20}$/; //8~20자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용
 					let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
 					let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
 					let emailRegex = /^[a-zA-Z0-9]{1,20}$/; //숫자,영어 대 소문자 가능
-
 					if ($("#nickname").val() != "") {
 						if (!nicknameRegex.test($("#nickname").val())) {
 							alert("닉네임 형식을 확인해주세요.");
@@ -359,14 +326,12 @@ input {
 							return false;
 						}
 					}
-
 					if ($("#email").val() != "") {
 						if (!emailRegex.test($("#email").val())) {
 							alert("이메일 형식을 확인해주세요.");
 							return false;
 						}
 					}
-
 				})
 	</script>
 </body>

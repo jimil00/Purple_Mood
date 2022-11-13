@@ -112,8 +112,8 @@ body {
 	text-underline-position: under;
 }
 
-.boardTitle, .theader, #insertBoardContentsBtn,
-	.boardListSearch, .boardListSearch, .boardListSearch * {
+.boardTitle, .theader, #insertBoardContentsBtn, .boardListSearch,
+	.boardListSearch, .boardListSearch * {
 	font-family: 'DungGeunMo';
 }
 
@@ -122,11 +122,13 @@ body {
 	margin: 20px auto;
 	background-color: white;
 	text-decoration: none !important;
+	border-radius: 7px;
 }
 
 .board {
 	overflow: hidden;
 	text-decoration: none !important;
+	border-radius: 7px;
 }
 
 .board {
@@ -184,6 +186,26 @@ a {
 
 .content *, .theader>div {
 	color: #03001e;
+}
+
+#insertBoardContentsBtn {
+	width: 100px;
+	height: 30px;
+}
+
+.boardListSearch button {
+	width: 100px;
+	height: 30px;
+}
+
+#boardSearchWord {
+	width: 250px;
+	height: 23px;
+}
+
+#boardSearchOption {
+	width: 100px;
+	height: 30px;
 }
 </style>
 </head>
@@ -243,8 +265,10 @@ a {
 							</c:when>
 							<c:otherwise>
 								<div>
-									<div colspan="6">출력할 글이 없습니다.</div>
+									<div colspan="6" style="font-family: 'DungGeunMo';">출력할
+										글이 없습니다.</div>
 								</div>
+								<hr>
 							</c:otherwise>
 						</c:choose>
 						<div class="insertBoardContents">

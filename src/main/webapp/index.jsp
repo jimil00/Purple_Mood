@@ -32,7 +32,19 @@ body {
 	overflow: hidden;
 	color: white;
 }
-/* div {border: 1px solid black;} */
+
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* div {
+	border: 1px solid black;
+} */
+
 /* header */
 .header {
 	height: 100px;
@@ -151,6 +163,7 @@ body {
 /* 영화 포스터 */
 .titlename {
 	padding-left: 3%;
+	font-family: 'DungGeunMo';
 }
 
 .imgbox {
@@ -166,7 +179,8 @@ body {
 	transform: scale(1.01);
 }
 
-#carouselExampleControls, #carouselExampleControls2 {
+#carouselExampleControls, #carouselExampleControls2,
+	#carouselExampleControls3, #carouselExampleControls4 {
 	padding-top: 20px;
 	padding-bottom: 50px;
 }
@@ -191,6 +205,7 @@ body {
 }
 
 .footerAtag>a {
+	font-family: 'DungGeunMo';
 	font-size: large;
 }
 
@@ -248,6 +263,7 @@ body {
 	font-size: larger;
 	margin-bottom: 10px;
 	color: white;
+	font-family: 'DungGeunMo';
 }
 
 #logoutBtn {
@@ -258,6 +274,7 @@ body {
 	font-size: x-large;
 	margin-bottom: 50px;
 	margin-top: 50px;
+	font-family: 'DungGeunMo';
 }
 
 .menulink:hover, #searchbtn:hover {
@@ -296,16 +313,17 @@ hr.hr {
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
 					onkeyup="enterkey()" name="searchtext" /> <a
-					href="/search.content?searchtext=" +searchtext><i
+					href="/search.content?searchtext=" +searchtext> <i
 					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
-				function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
-					if (window.event.keyCode == 13) {
-						location.href = "/search.content?searchtext="
-								+ $("#searchtext").val();
-					}
-				}
+	
+			function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+				if (window.event.keyCode == 13) {
+			location.href="/search.content?searchtext="+$("#searchtext").val(); 
+	    			}
+			}
+
 			</script>
 
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
@@ -333,13 +351,13 @@ hr.hr {
 					</div>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="/img/banner (4).png" class="d-block m-auto bannerimg">
+							<img src="/img/banner1.png" class="d-block m-auto bannerimg">
 						</div>
 						<div class="carousel-item">
-							<img src="/img/banner (5).png" class="d-block m-auto bannerimg">
+							<img src="/img/banner2.png" class="d-block m-auto bannerimg">
 						</div>
 						<div class="carousel-item">
-							<img src="/img/banner (6).png" class="d-block m-auto bannerimg">
+							<img src="/img/banner3.png" class="d-block m-auto bannerimg">
 						</div>
 					</div>
 					<button class="carousel-control-prev" type="button"
@@ -378,7 +396,7 @@ hr.hr {
 					</div>
 					<script>
 						$("#watchabtn").on("mouseover", function() {
-							$("#watcha").attr("src", "/img/wataf.png");
+							$("#watcha").attr("src", "/img/watat.png");
 						});
 						$("#watchabtn").on("mouseout", function() {
 							$("#watcha").attr("src", "/img/watbf.png");
@@ -408,31 +426,25 @@ hr.hr {
 				<div class="col-12 fs-3 titlename">인기 영화</div>
 				<div>
 					<div id="carouselExampleControls" class="carousel slide"
-						data-bs-ride="carousel">
+						data-bs-ride="false">
 						<div class="carousel-inner">
 							<div class="carousel-item imgbox active">
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
+								<c:forEach var="i" items="${mv_list_a }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/2.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/3.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/4.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/5.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
+								<c:forEach var="i" items="${mv_list_a }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-								<a href="#"><img src="/img/5.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/4.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/3.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/2.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/5.jpg" class="postimg" alt="..."></a>
+								<c:forEach var="i" items="${mv_list_a}" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 						</div>
 						<button class="carousel-control-prev postLRbtn" type="button"
@@ -449,34 +461,28 @@ hr.hr {
 				</div>
 			</div>
 			<div class="poster2">
-				<div class="col-12 fs-3 titlename">최신영화</div>
+				<div class="col-12 fs-3 titlename">최신 영화</div>
 				<div>
 					<div id="carouselExampleControls2" class="carousel slide"
-						data-bs-ride="carousel">
+						data-bs-ride="false">
 						<div class="carousel-inner">
 							<div class="carousel-item imgbox active">
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
+								<c:forEach var="i" items="${mv_list_d }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/2.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/3.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/4.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/5.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
+								<c:forEach var="i" items="${mv_list_d }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-								<a href="#"><img src="/img/5.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/4.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/3.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/2.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/1.jpg" class="postimg" alt="..."></a>
-								<a href="#"><img src="/img/5.jpg" class="postimg" alt="..."></a>
+								<c:forEach var="i" items="${mv_list_d }" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 						</div>
 						<button class="carousel-control-prev postLRbtn" type="button"
@@ -486,6 +492,82 @@ hr.hr {
 						</button>
 						<button class="carousel-control-next postLRbtn" type="button"
 							data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden ">Next</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="poster3">
+				<div class="col-12 fs-3 titlename">인기 드라마</div>
+				<div>
+					<div id="carouselExampleControls3" class="carousel slide"
+						data-bs-ride="false">
+						<div class="carousel-inner">
+							<div class="carousel-item imgbox active">
+								<c:forEach var="i" items="${dr_list_a }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
+							</div>
+							<div class="carousel-item imgbox">
+								<c:forEach var="i" items="${dr_list_a }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
+							</div>
+							<div class="carousel-item imgbox">
+								<c:forEach var="i" items="${dr_list_a }" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
+							</div>
+						</div>
+						<button class="carousel-control-prev postLRbtn" type="button"
+							data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next postLRbtn" type="button"
+							data-bs-target="#carouselExampleControls3" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden ">Next</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="poster4">
+				<div class="col-12 fs-3 titlename">최신 드라마</div>
+				<div>
+					<div id="carouselExampleControls4" class="carousel slide"
+						data-bs-ride="false">
+						<div class="carousel-inner">
+							<div class="carousel-item imgbox active">
+								<c:forEach var="i" items="${dr_list_d }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
+							</div>
+							<div class="carousel-item imgbox">
+								<c:forEach var="i" items="${dr_list_d }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
+							</div>
+							<div class="carousel-item imgbox">
+								<c:forEach var="i" items="${dr_list_d }" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
+							</div>
+						</div>
+						<button class="carousel-control-prev postLRbtn" type="button"
+							data-bs-target="#carouselExampleControls4" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next postLRbtn" type="button"
+							data-bs-target="#carouselExampleControls4" data-bs-slide="next">
 							<span class="carousel-control-next-icon" aria-hidden="true"></span>
 							<span class="visually-hidden ">Next</span>
 						</button>
@@ -537,7 +619,9 @@ hr.hr {
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 
-						<a href="/mypageMemInfo.member"><button>마이페이지</button></a>
+						<a href="/mypageMemInfo.member">
+							<button>마이페이지</button>
+						</a>
 
 					</div>
 					<a href="/boardList.board">
@@ -580,7 +664,9 @@ hr.hr {
 					<div class="profilebox" style="background: #BDBDBD;"></div>
 					<div class="profiletext">익명의 누군가</div>
 					<div class="profiletext">
-						<a href="/member/signin.jsp"><button id="signinBtn">로그인</button></a>
+						<a href="/member/signin.jsp">
+							<button id="signinBtn">로그인</button>
+						</a>
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>

@@ -90,7 +90,7 @@ public class MemberController extends HttpServlet {
 					MemberDTO dto=MemberDAO.getInstance().selectById(id);
 					request.getSession().setAttribute("loginID",id);
 					request.getSession().setAttribute("loginNickname", dto.getNickname());
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
+					request.getRequestDispatcher("/main").forward(request, response);
 				}
 				else {
 					request.setAttribute("result", result);
@@ -102,7 +102,7 @@ public class MemberController extends HttpServlet {
 			}else if(uri.equals("/logout.member")) {
 				//로그아웃 기능 
 				request.getSession().invalidate();
-				response.sendRedirect("/index.jsp");
+				response.sendRedirect("/main");
 			}
 
 		}catch(Exception e) {

@@ -94,14 +94,14 @@ public class MovieDAO {
 
 
 	//상세 페이지 
-	public  MovieDTO selectByseq(int mv_seq) throws Exception { 
+	public  MovieDTO selectByMv_seq(int mv_id) throws Exception { 
 
 		//테스트용
 		String sql="select * from movie_test where mv_id=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{pstat.setInt(1, mv_seq); 
+		{pstat.setInt(1, mv_id); 
 
 		try(ResultSet rs = pstat.executeQuery();){
 
@@ -129,4 +129,44 @@ public class MovieDAO {
 		}
 
 	}
+
+
+	//최신영화 출력
+	public List <MovieDTO> searchByDate() throws Exception {
+
+		String sql="SELECT * from(select mv_id, mv_poster_path, rank() over(ORDER BY mv_release_date  desc)\"개봉일자\" from MOVIE_TEST) WHERE \"개봉일자\" BETWEEN 1 AND 18";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			List <MovieDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				MovieDTO dto = new MovieDTO();
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));
+				list.add(dto);
+			}
+			return list;
+		}
+	}
+
+	//평점영화 출력
+	public List <MovieDTO> searchByAvg() throws Exception {
+
+		String sql="SELECT * from(select mv_id, mv_poster_path, rank() over(ORDER BY mv_vote_average  desc)\"평점\" from MOVIE_TEST) WHERE \"평점\" BETWEEN 1 AND 18";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			List <MovieDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				MovieDTO dto = new MovieDTO();
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));
+				list.add(dto);
+			}
+			return list;
+		}
+	}
+
 }
