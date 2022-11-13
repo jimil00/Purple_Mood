@@ -351,13 +351,13 @@ hr.hr {
 					</div>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="#" class="d-block m-auto bannerimg">
+							<img src="/img/banner1.png" class="d-block m-auto bannerimg">
 						</div>
 						<div class="carousel-item">
-							<img src="#" class="d-block m-auto bannerimg">
+							<img src="/img/banner2.png" class="d-block m-auto bannerimg">
 						</div>
 						<div class="carousel-item">
-							<img src="#" class="d-block m-auto bannerimg">
+							<img src="/img/banner3.png" class="d-block m-auto bannerimg">
 						</div>
 					</div>
 					<button class="carousel-control-prev" type="button"
