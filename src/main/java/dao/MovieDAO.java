@@ -94,14 +94,14 @@ public class MovieDAO {
 
 
 	//상세 페이지 
-	public  MovieDTO selectByseq(int mv_seq) throws Exception { 
+	public  MovieDTO selectByMv_seq(int mv_id) throws Exception { 
 
 		//테스트용
 		String sql="select * from movie_test where mv_id=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{pstat.setInt(1, mv_seq); 
+		{pstat.setInt(1, mv_id); 
 
 		try(ResultSet rs = pstat.executeQuery();){
 

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DramaDAO;
+import dao.Drama_reviewDAO;
 import dao.MovieDAO;
-import dto.BoardDTO;
+import dao.Movie_reviewDAO;
 import dto.DramaDTO;
+import dto.Drama_reviewDTO;
 import dto.MovieDTO;
+import dto.Movie_reviewDTO;
 
 @WebServlet("*.content")
 public class ContentController extends HttpServlet {
@@ -113,8 +115,8 @@ public class ContentController extends HttpServlet {
 
 			try {
 			
-				MovieDTO mv_detail = MovieDAO.getInstance().selectByseq(mv_id);
-
+				MovieDTO mv_detail = MovieDAO.getInstance().selectByMv_seq(mv_id);
+				List<Movie_reviewDTO> mvr_list =Movie_reviewDAO.getInstance().selectMv_ReviewByMvSeq(mv_id);
 				
 				request.setAttribute("mv_detail", mv_detail);
 				
@@ -140,10 +142,11 @@ public class ContentController extends HttpServlet {
 			int dr_id= Integer.parseInt(request.getParameter("dr_id"));
 			
 			try {
-				DramaDTO dr_detail = DramaDAO.getInstance().selectByseq(dr_id);
-			
+				DramaDTO dr_detail = DramaDAO.getInstance().selectByDr_id(dr_id);
+				List<Drama_reviewDTO> drr_list =Drama_reviewDAO.getInstance().selectDr_ReviewByDrSeq(dr_id);
 
 				request.setAttribute("dr_detail", dr_detail);
+				request.setAttribute("drr_list", drr_list);
 				
 				// ott 아이콘 출력을 위한 구문(일단 스킵)-> 일단 dao에 기능 만들어서 콜하는게 깔끔할 듯
 //				DramaDTO dr_fromOtt=DramaDAO.getInstance().selectOtt_icon(dr_id);
@@ -167,10 +170,11 @@ public class ContentController extends HttpServlet {
 				response.sendRedirect("Error.jsp");
 			}
 		}
-		
+			
+
 		else if(uri.equals("/like.content")) {
 			
-			String r_writer = (String)request.getSession().getAttribute("loginNickname");
+			String nickname = (String)request.getSession().getAttribute("loginNickname");
 			
 //			if(좋아요 누른게==0) {
 //				DramaDAO.getInstance().insertLike();
