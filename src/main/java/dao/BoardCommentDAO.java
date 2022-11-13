@@ -57,6 +57,7 @@ public class BoardCommentDAO {
 			pstat.setInt(1, b_seq);
 
 			try(ResultSet rs = pstat.executeQuery();){
+
 				List<BoardCommentDTO> list= new ArrayList<>();
 				while(rs.next()) {
 					BoardCommentDTO dto = new BoardCommentDTO();

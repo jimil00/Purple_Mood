@@ -29,7 +29,6 @@ public class BoardComplainDAO {
 		return ds.getConnection();
 	}
 
-
 	// 게시글 신고 테이블에 입력(C)
 	public int insertBoardComplain(BoardComplainDTO dto) throws Exception{
 		String sql = "insert into board_complain values(board_complain_seq.nextval, ?, sysdate, ?, ?, ?, ?)";
@@ -43,13 +42,11 @@ public class BoardComplainDAO {
 			pstat.setString(5, dto.getB_content());
 
 			int result = pstat.executeUpdate();
-
 			con.commit();
 			return result;
+
 		}
 	}
-
-	
 	// 게시글 신고 테이블 출력(R)
 	public List<BoardComplainDTO> selectBoardComplain() throws Exception{
 		String sql = "select * from board_complain";
@@ -72,10 +69,10 @@ public class BoardComplainDAO {
 			return list;
 		}
 	}
-	
-	
-	// 게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제(D)
+}
+
+
+// 게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제(D)
 //	public int deleteBoardComplain(int bcp_seq) throws Exception{
 ////		String sql = "delete * from board_complain where " 조인을..
 //	}
-}

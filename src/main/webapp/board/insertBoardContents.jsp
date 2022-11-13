@@ -124,6 +124,28 @@
             }
          }
       });
+      /**
+       * 이미지 저장
+       */
+      function fn_submit() {
+
+          var form = new FormDa	ta();
+          form.append("image", $(this)[0].files[0]);
+
+          $.ajax({
+              url: "/imageupload.boardfile"
+              , type: "POST"
+              , processData: false
+              , contentType: false
+              , data: form
+              , success: function (response) {
+                  console.log("");
+              }
+              , error: function (jqXHR) {
+                  alert(jqXHR.responseText);
+              }
+          });
+      }
 
    });
 </script>
