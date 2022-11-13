@@ -375,23 +375,23 @@ hr.hr {
 			<div class="ottboxsec">
 				<div class="row ">
 					<div class="col-6 col-lg-3">
-						<a href="#" id="disneybtn"> <img src="/img/disbf.png"
-							id="disney" class="ottimg">
+						<a href="#" id="disneybtn">
+							<img src="/img/disbf.png" id="disney" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="wavvebtn"> <img src="/img/wavbf.png"
-							id="wavve" class="ottimg">
+						<a href="#" id="wavvebtn">
+							<img src="/img/wavbf.png" id="wavve" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="netbtn"> <img src="/img/netbf.png"
-							id="netflix" class="ottimg">
+						<a href="#" id="netbtn">
+							<img src="/img/netbf.png" id="netflix" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="watchabtn"> <img src="/img/watbf.png"
-							id="watcha" class="ottimg">
+						<a href="#" id="watchabtn">
+							<img src="/img/watbf.png" id="watcha" class="ottimg">
 						</a>
 					</div>
 					<script>
@@ -578,8 +578,13 @@ hr.hr {
 		<div class="row footer">
 			<hr class="hr">
 			<div class="col-12 footerAtag">
-				<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
-					href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
+				<a href="#">회사소개</a>
+				&nbsp&nbsp
+				<a href="#">고객센터</a>
+				&nbsp&nbsp
+				<a href="#">이용약관</a>
+				&nbsp&nbsp
+				<a href="#">개인정보 처리방침</a>
 			</div>
 			<div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
 			<div class="col-12 footerImpormation">이메일 주소 :
@@ -619,14 +624,18 @@ hr.hr {
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 
-						<a href="/mypageMemInfo.member"><button>마이페이지</button></a>
+						<a href="/mypageMemInfo.member">
+							<button>마이페이지</button>
+						</a>
 
 					</div>
 					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="#">
+					</a>
+					<a href="#">
 						<div class="menulink">자유게시판</div>
-					</a> <a href="#">
+					</a>
+					<a href="#">
 						<div class="menulink">공지사항</div>
 					</a>
 					<button type="button" id="logoutBtn">로그아웃</button>
@@ -662,13 +671,17 @@ hr.hr {
 					<div class="profilebox" style="background: #BDBDBD;"></div>
 					<div class="profiletext">익명의 누군가</div>
 					<div class="profiletext">
-						<a href="/member/signin.jsp"><button id="signinBtn">로그인</button></a>
+						<a href="/member/signin.jsp">
+							<button id="signinBtn">로그인</button>
+						</a>
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="#">
+					</a>
+					<a href="#">
 						<div class="menulink">자유게시판</div>
-					</a> <a href="#">
+					</a>
+					<a href="#">
 						<div class="menulink">공지사항</div>
 					</a>
 				</div>
