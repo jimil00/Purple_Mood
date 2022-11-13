@@ -123,6 +123,44 @@ public class DramaDAO {
 		}
 
 	}
+	
+	//ott별 콘텐츠 출력(4개로 나누어짐.)
+	public  DramaDTO selectByOtt_vote() throws Exception { 
+
+		//수정(두 테이블에서 값을 출력)
+		String sql="select * from drama_test where dr_ottNF='y' and mv_ottNF='y'order by mv_vote_average desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_title(rs.getString("dr_title"));
+				dto.setDr_genre(rs.getString("dr_genre"));	
+				dto.setDr_first_air_date(rs.getString("dr_first_air_date"));	
+				dto.setDr_vote_average(rs.getString("dr_vote_average"));	
+				dto.setDr_ottNF((rs.getString("dr_ottNF").charAt(0))); 
+				dto.setDr_ottWV((rs.getString("dr_ottWV").charAt(0)));
+				dto.setDr_ottDZ((rs.getString("dr_ottDZ").charAt(0)));
+				dto.setDr_ottWC((rs.getString("dr_ottWC").charAt(0)));
+				dto.setDr_like(rs.getInt("dr_like"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+				dto.setDr_overview(rs.getString("dr_overview"));	
+
+				System.out.println(rs.getString("dr_ottNF").charAt(0));
+
+			}
+			return dto;
+		}
+
+		}
+
+	}
 
 	//아이콘 출력용 메서드( 수정 중)
 	public DramaDTO selectOtt_icon(int dr_id) throws Exception{

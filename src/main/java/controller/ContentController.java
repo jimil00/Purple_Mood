@@ -58,19 +58,6 @@ public class ContentController extends HttpServlet {
 								System.out.println(mv_list.size());
 			
 
-				//				System.out.println(mv_list.get(1).getMv_img()+":"+mv_list.get(1).getMv_title());
-
-				//주소값이 왜 나옴
-				//									List<String> list= new ArrayList();
-				//								for(int i = 0; i< mv_list.size(); i++) { 
-				//									
-				//									list.add(mv_list.get(i).getMv_img()); 
-				//									list.add(mv_list.get(i).getMv_title());}
-				//							
-				//									request.setAttribute("list", list);
-				//									
-				//									System.out.println(list);
-
 				request.getRequestDispatcher("/content/SearchPage.jsp").forward(request, response); 
 
 
@@ -81,28 +68,7 @@ public class ContentController extends HttpServlet {
 
 		}
 		
-//		if(uri.equals("/list.content")) {
-		//				
-		//				//ott별 버튼을 눌러서 ott별 출력 페이지로 넘어올 때, 이 컨트롤러를 거쳐서 와야 함.
-		//				try {
-		//					List<DramaDTO> dr_like=DramaDAO.getInstance().selectByLike();
-		//					List <MovieDTO> mv_like=MovieDAO.getInstance().selectByLike();
-		//					
-		////					System.out.println(dr_like);
-		//					
-		//
-		//					request.setAttribute("dr_like", dr_like);
-		//					request.setAttribute("mv_like", mv_like);
-		//
-		//					request.getRequestDispatcher("/content/SearchPage.jsp").forward(request, response); 
-		//
-		//				}catch(Exception e) {
-		//					e.printStackTrace();
-		//					response.sendRedirect("Error.jsp");
-		//				}
-		//
-		//			}
-
+	
 		
 		else if(uri.equals("/detailMv.content")) {
 			//영화 출력 페이지 로직
@@ -171,6 +137,31 @@ public class ContentController extends HttpServlet {
 			}
 		}
 			
+		//ott별 버튼을 눌러서 ott별 출력 페이지로 넘어올 때, 이 컨트롤러를 거쳐서 와야 함.
+		if(uri.equals("/netflix.content")) {
+			
+			
+			try {
+				List<DramaDTO> dr_like=DramaDAO.getInstance().selectByLike();
+				List <MovieDTO> mv_like=MovieDAO.getInstance().selectByLike();
+				
+				System.out.println(dr_like);
+				
+
+				request.setAttribute("dr_like", dr_like);
+				request.setAttribute("mv_like", mv_like);
+
+				request.getRequestDispatcher("/content/SearchPage.jsp").forward(request, response); 
+
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("Error.jsp");
+			}
+
+		}else if(uri.equals("/wavve.content")) {
+			
+		}
+
 
 		else if(uri.equals("/like.content")) {
 			
