@@ -100,9 +100,10 @@ input {
 					<div class="nickname">
 						<div class="subject">닉네임</div>
 						<div>
-							<input type="text" name="nickname" id="nickname" value="${dto.nickname }"
-								readonly="readonly"><input type="button"
-								id="duplCheckNickname" value="중복확인" style="width: 70px;">
+							<input type="text" name="nickname" id="nickname"
+								value="${dto.nickname }" readonly="readonly">
+							<input type="button" id="duplCheckNickname" value="중복확인"
+								style="width: 70px;">
 						</div>
 						<div id="duplResult"></div>
 						<div>*2~8자 한글,영어 대 소문자,특수문자(~!^*&)가능</div>
@@ -111,15 +112,14 @@ input {
 					<div class=pw>
 						<div class="subject">패스워드</div>
 						<div>
-							<input type="password" name="pw" id="pw" 
-								readonly>
+							<input type="password" name="pw" id="pw" readonly>
 						</div>
 						<div>*8~16자 영문 대 소문자, 숫자, 특수문자(~!^*&)를 사용</div>
 					</div>
 					<div class="pwcheck">
 						<div class="subject">패스워드 확인</div>
 						<div>
-							<input type="password" id="checkpw"  readonly>
+							<input type="password" id="checkpw" readonly>
 						</div>
 						<div id="result"></div>
 					</div>
@@ -143,14 +143,15 @@ input {
 						<div class="subject">이메일</div>
 						<div>
 							<input type="text" name="email" id="email" value="${dto.email }"
-								readonly> @ <select id="emailAddress"
-                        name="emailAddress">
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="naver.com">naver.com</option>
-                        <option value="hanmail.net">hanmail.net</option>
-                        <option value="nate.com">nate.com</option>
-                     </select>
-								
+								readonly>
+							@
+							<select id="emailAddress" name="emailAddress">
+								<option value="gmail.com">gmail.com</option>
+								<option value="naver.com">naver.com</option>
+								<option value="hanmail.net">hanmail.net</option>
+								<option value="nate.com">nate.com</option>
+							</select>
+
 						</div>
 						<div>*숫자,영어 대 소문자 가능</div>
 					</div>
@@ -158,7 +159,8 @@ input {
 						<div class="subject">우편번호</div>
 						<div>
 							<input type="text" name="postcode" id="postcode"
-								placeholder="우편번호" value="${dto.postcode }" readonly>&nbsp
+								placeholder="우편번호" value="${dto.postcode }" readonly>
+							&nbsp
 							<input type="button" onclick="postcode()" value="우편번호 찾기"
 								id="btnsearch" style="width: 100px;">
 						</div>
@@ -181,8 +183,10 @@ input {
 				<div class="footer">
 					<div id="btns">
 						<input type="button" class="btn" id="modify" value="수정하기">
-						&nbsp <a href="/index.jsp"><input type="button" class="btn"
-							id="back" value="홈으로"></a>
+						&nbsp
+						<a href="/index.jsp">
+							<input type="button" class="btn" id="back" value="홈으로">
+						</a>
 					</div>
 				</div>
 			</div>
