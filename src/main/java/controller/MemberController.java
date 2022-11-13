@@ -16,31 +16,26 @@ import dto.MemberDTO;
 public class MemberController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf8");
 
 		String uri = request.getRequestURI();
 		System.out.println("요청 URI : " + uri);
 
-
 		try {
 			// ID 중복체크
 			if(uri.equals("/idDuplCheck.member")) {
 				String id = request.getParameter("id");
-				boolean result = MemberDAO.getInstance().isIdExist(id);
-				//            request.setAttribute("result", result);
-				//            System.out.println(result);
-				//            request.setAttribute("id", id);
-				//            request.getRequestDispatcher("/member/idDuplCheck.jsp").forward(request, response);
-				response.getWriter().append(String.valueOf(result));
+				boolean idResult = MemberDAO.getInstance().isIdExist(id);
+				response.getWriter().append(String.valueOf(idResult));
 
-				// NICKNAME 중복체크
-			}else if(uri.equals("/nicknameDuplCheck.member")) { 
+			// NICKNAME 중복체크
+			}else if(uri.equals("/nicknameDuplCheck.member")) {
 				String nickname = request.getParameter("nickname");
-				boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
-				response.getWriter().append(String.valueOf(result));
+				boolean nicknameResult = MemberDAO.getInstance().isNicknameExist(nickname);
+				response.getWriter().append(String.valueOf(nicknameResult));
 
-
-				// 회원가입
+			// 회원가입
 			}else if(uri.equals("/signup.member")) {
 				String id = request.getParameter("id");
 				String nickname = request.getParameter("nickname");
@@ -58,32 +53,30 @@ public class MemberController extends HttpServlet {
 				response.sendRedirect("/member/signin.jsp");
 
 
-				// 마이페이지 회원정보 출력
+			// 마이페이지 회원정보 출력
 			}else if(uri.equals("/mypageMemInfo.member")) {
 
 				MemberDAO dao = MemberDAO.getInstance();
 				String id = (String)request.getSession().getAttribute("loginID");
 				MemberDTO dto = dao.selectById(id);
+
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/member/mypageMemInfo.jsp").forward(request, response);
 
-				// 마이페이지 회원정보 수정
+			// 마이페이지 회원정보 수정
 			}else if(uri.equals("/updateMemInfo.member")) {
 				String id = (String)request.getSession().getAttribute("loginID");
-
 				String nickname = request.getParameter("nickname");
 				String pw = request.getParameter("pw");
 				String name = request.getParameter("name");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
 				String emailAddress=request.getParameter("emailAddress");
-
 				System.out.println("수정 email "+email);
 				System.out.println("수정 emailAddress "+emailAddress);
 				String postcode = request.getParameter("postcode");
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
-
 				int result = MemberDAO.getInstance().update(new MemberDTO(id, nickname, pw, name, phone, email+"@"+emailAddress, postcode, address1, address2, null));
 				response.sendRedirect("/mypageMemInfo.member");
 
@@ -91,15 +84,19 @@ public class MemberController extends HttpServlet {
 			}else if(uri.equals("/signin.member")) {
 				String id = request.getParameter("id");
 				String pw = request.getParameter("pw");
-				String nickname = MemberDAO.getInstance().getNicknameById(id);
 				boolean result= MemberDAO.getInstance().isloginExist(id, pw);
-				MemberDTO dto=MemberDAO.getInstance().selectById(id);
-				if(result) {
-					request.getSession().setAttribute("loginID",id);
-					request.getSession().setAttribute("loginNickname", nickname);
-				}
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
 
+				if(result) {
+					MemberDTO dto=MemberDAO.getInstance().selectById(id);
+					request.getSession().setAttribute("loginID",id);
+					request.getSession().setAttribute("loginNickname", dto.getNickname());
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
+				}
+				else {
+					request.setAttribute("result", result);
+					request.setAttribute("id", id);
+					request.getRequestDispatcher("/member/signin.jsp").forward(request, response);
+				}
 
 				//로그아웃
 			}else if(uri.equals("/logout.member")) {
@@ -110,7 +107,7 @@ public class MemberController extends HttpServlet {
 
 		}catch(Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.html");
+			response.sendRedirect("Error.jsp");
 		}
 	}
 

@@ -29,14 +29,14 @@ public class BoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		try {
-			
+
 			String uri = request.getRequestURI();
 			System.out.println("요청 URI : " + uri);
 
 			//게시판 리스트 출력 (R)
 			if(uri.equals("/boardList.board")) {
 
-				//				String bpage = request.getParameter("cpage");
+				//String bpage = request.getParameter("cpage");
 				//				int cpage = Integer.parseInt(bpage);
 				//				request.getSession().setAttribute("boardPage", bpage);
 
@@ -120,27 +120,30 @@ public class BoardController extends HttpServlet {
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
 
 				request.setAttribute("dto", dto);
-				
-				
+
+
 				//				List<BoardFileDTO> filelist = BoardFileDAO.getInstance().selectBoardFile(b_seq);
 				//				request.setAttribute("filelist", filelist); 
 				List<BoardCommentDTO> list =BoardCommentDAO.getInstance().selectBoardComment(b_seq);
+				System.out.println();
 				request.setAttribute("list", list);
 
 				request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
 
 
 				// 게시글 삭제 (D)
-			}else if(uri.equals("/deleteContents.board")) {
+			}else if(uri.equals("/deleteBoardContents.board")) {
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 				int result = BoardDAO.getInstance().deleteBoardContents(b_seq);
-				String page = (String)request.getSession().getAttribute("boardPage");
-				response.sendRedirect("/boardList.board?cpage="+page);
+				//				String page = (String)request.getSession().getAttribute("boardPage");
+				response.sendRedirect("/boardList.board");
+
+
+				//				response.sendRedirect("/boardList.board?cpage="+page);
 				// 그 페이지로
 
-
 				// 게시글 수정 (U)
-			}else if(uri.equals("/updateContents.board")) {
+			}else if(uri.equals("/updateBoardContents.board")) {
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");

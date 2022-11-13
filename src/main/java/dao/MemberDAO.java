@@ -171,20 +171,6 @@ public class MemberDAO {
 	}
 
 
-	// 로그인 하면서 닉네임 세션값 받아놓기
-	public String getNicknameById(String id) throws Exception{
-		String sql = "select nickname from member where id = ?";
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, id);
-			try(ResultSet rs = pstat.executeQuery();){
-				rs.next();
-				return rs.getString(1);
-			}
-		}
-	}
-
-
 	//로그인
 	public boolean isloginExist(String id, String pw) throws Exception{
 		String sql="select * from member where id=? and pw=?";

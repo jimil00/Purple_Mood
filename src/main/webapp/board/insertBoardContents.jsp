@@ -93,7 +93,6 @@
 }
 </style>
 <script>
-/*
    $(document).ready(function() {
       // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
       $('#summernote').summernote({
@@ -125,13 +124,12 @@
             }
          }
       });
-      */
       /**
        * 이미지 저장
        */
       function fn_submit() {
 
-          var form = new FormData();
+          var form = new FormDa	ta();
           form.append("image", $(this)[0].files[0]);
 
           $.ajax({

@@ -10,19 +10,21 @@ public class BoardComplainDTO {
 	private int b_seq;
 	private String b_writer;
 	private String b_title;
-
-
+	private String b_content;
+	
+	
 	public BoardComplainDTO() {
 		super();
 	}
 	public BoardComplainDTO(int bcp_seq, String bcp_complainer, Timestamp bcp_date, int b_seq, String b_writer,
-			String b_title) {
+			String b_title, String b_content) {
 		this.bcp_seq = bcp_seq;
 		this.bcp_complainer = bcp_complainer;
 		this.bcp_date = bcp_date;
 		this.b_seq = b_seq;
 		this.b_writer = b_writer;
 		this.b_title = b_title;
+		this.b_content = b_content;
 	}
 
 
@@ -62,5 +64,11 @@ public class BoardComplainDTO {
 	public void setB_title(String b_title) {
 		this.b_title = b_title;
 	}
-
+	public String getB_content() {
+		return b_content;
+	}
+	public void setB_content(String b_content) {
+		this.b_content = b_content;
+	}
+	
 }

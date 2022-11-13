@@ -17,6 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import common.FileControl;
+import dao.BoardFileDAO;
 import dto.BoardFileDTO;
 
 @WebServlet("*.boardfile")
@@ -31,6 +32,7 @@ public class BoardFileController extends HttpServlet {
 		String filePath = request.getServletContext().getRealPath("files");
 		try {
 			if(uri.equals("/imageupload.boardfile")) {
+/*<<<<<<< HEAD
 
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 
@@ -45,6 +47,41 @@ public class BoardFileController extends HttpServlet {
 			}
 
 
+=======*/
+				int maxSize = 1024*1024*10;
+				String savePath = request.getServletContext().getRealPath("/files");
+				File fileSavePath = new File(savePath);
+				if(!fileSavePath.exists()) {
+					fileSavePath.mkdir();
+				}
+				Gson g = new Gson();
+			
+				response.getWriter().append(g.toJson(savePath));
+				
+				MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
+//				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+
+				String oriName = multi.getOriginalFileName("image");
+				String sysName = multi.getFilesystemName("image");
+				System.out.println(oriName);
+				File target = new File(filePath + "/" + sysName);
+				byte[] fileContents = new byte[(int)target.length()];
+				oriName = new String(oriName.getBytes("utf8"), "ISO-8859-1");
+				response.setHeader("Content-Disposition", "attachment;filename=\""+oriName+"\"");
+//						try(ServletOutputStream sos = response.getOutputStream();
+//								//					리스판스로 데이터를 내보내는 스트림을 만든 다음에 이걸 변수로 담아두고
+//								FileInputStream fis = new FileInputStream(target);
+//								DataInputStream dis = new DataInputStream(fis);){
+//
+//							dis.readFully(fileContents);
+//							sos.write(fileContents);
+//							//			파일 내보내기
+//							sos.flush();
+//				int result = BoardFileDAO.getInstance().insertBoardFile(new BoardFileDTO(0, oriName, sysName, null, b_seq));
+				
+			}
+			
+				
 		}catch(Exception e){
 			e.printStackTrace();
 		}
