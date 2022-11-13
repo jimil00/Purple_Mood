@@ -18,10 +18,12 @@
 </head>
 <style>
 @font-face {
-     font-family: 'DungGeunMo';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 .container-fluid {
@@ -53,9 +55,10 @@ background:linear-gradient(#03001e, 50 %, #7303c0, #ec38bc, #fdeff9) ; *
 #searchbtn {
 	width: 100%
 }
+
 input [type="submit"] {
-font-family: FontAwesome;
-style:none;
+	font-family: FontAwesome;
+	style: none;
 }
 
 ;
@@ -85,12 +88,15 @@ li>a>div>img {
 	transition: all 0.2s linear;
 }
 
-img{
+img {
 	width: 200px;
 	height: 280px;
-	transition: all 0.2s linear;}
-	
-.poster{overflow: hidden;}
+	transition: all 0.2s linear;
+}
+
+.poster {
+	overflow: hidden;
+}
 
 li>a:hover {
 	color: #7303c0
@@ -102,7 +108,6 @@ a {
 }
 
 li:hover {
-
 	color: #7303c0
 }
 
@@ -110,32 +115,36 @@ li:hover img {
 	transform: scale(1.2);
 }
 
-#searchbtn:hover{
-	cursor:pointer;
+#searchbtn:hover {
+	cursor: pointer;
 }
 
 span>img {
 	width: 45px;
 	position: relative;
 	bottom: 60%;
-	left: 80%;
-	
-	.mv_reaech>img{	width: 200px;
-	height: 280px;}
+	left: 80%; . mv_reaech >img{ width : 200px;
+	height: 280px;
 }
-.card{width:200px;
+
+}
+.card {
+	width: 200px;
 	height: 300px;
 	background-color: #03001e;
-	}
+}
 
-.poster>img{
+.poster>img {
 	width: 200px;
 	height: 280px;
-	transition: all 0.2s linear;}
-.poster>img:hover{transform: scale(1.2);}
+	transition: all 0.2s linear;
+}
+
+.poster>img:hover {
+	transform: scale(1.2);
+}
 
 li:hover {
-
 	color: #7303c0
 }
 
@@ -143,12 +152,13 @@ li:hover img {
 	transform: scale(1.2);
 }
 
-
 li>a:hover {
 	color: #7303c0
 }
 
-.card-text:hover{color: #7303c0}
+.card-text:hover {
+	color: #7303c0
+}
 </style>
 <body>
 	<div class="container-fluid text-center">
@@ -167,7 +177,7 @@ li>a:hover {
 						placeholder="검색어를 입력해주세요.">
 				</div>
 				<div class="col-2 col-md-2 col-lg-1">
-				<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
 				</div>
 		</form>
 		<script>
@@ -185,50 +195,50 @@ li>a:hover {
 		
 		</script>
 		<!--검색 결과 출력-->
- 	 <c:choose>
+		<c:choose>
 			<c:when test="${not empty mv_list}">
-			<div class="row" id="movie_bar">
-				<hr>
-				<div class="list_title pt-2">
-					영화 검색 결과 <span> ${mv_list.size()}개</span>
+				<div class="row" id="movie_bar">
+					<hr>
+					<div class="list_title pt-2">
+						영화 검색 결과 <span> ${mv_list.size()}개</span>
+					</div>
+					<hr>
+
+					<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+						<c:set var="i" value="0" />
+						<c:set var="j" value="1" />
+						<c:forEach var="m" items="${mv_list}">
+							<c:if test="${i%j == 0 }">
+								<div class="col">
+							</c:if>
+
+							<div class="card">
+								<a href="/detailMv.content?mv_id=${m.mv_id}">
+
+									<div class="poster">
+										<img src="${m.mv_poster_path}" class="card-img-top" alt="...">
+									</div>
+									<p class="card-text">${m.mv_title}</p>
+								</a>
+							</div>
+							<c:if test="${i%j == j-1 }">
+					</div>
+					</c:if>
+					<c:set var="i" value="${i+1 }" />
+					</c:forEach>
 				</div>
-				<hr>
-
-    <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-      <c:set var="i" value="0" />
-      <c:set var="j" value="1" />
-      <c:forEach var="m" items="${mv_list}">  			
-				<c:if test="${i%j == 0 }">
-        <div class="col">
-        </c:if>
-
-          <div class="card">
-           <a href="/detailMv.content?mv_id=${m.mv_id}">
-            
-			<div class="poster">  
-              <img src="${m.mv_poster_path}" class="card-img-top" alt="...">
-			</div>
-                <p class="card-text">${m.mv_title}</p>
-			</a>
-          </div>
-          <c:if test="${i%j == j-1 }">
-        </div>
-        </c:if>
-        <c:set var="i" value="${i+1 }" />
-      </c:forEach>
-        </div>
-      </div>
-    </c:when>
+	</div>
+	</c:when>
 	<c:otherwise>
-			<hr>
-			<div class="list_title pt-2">영화</div>
-			<hr>
-			<div>검색 결과가 없습니다.</div>
-		</c:otherwise>
+		<hr>
+		<div class="list_title pt-2">영화</div>
+		<hr>
+		<div>검색 결과가 없습니다.</div>
+	</c:otherwise>
 	</c:choose>
 	</div>
 
-	  <c:choose>
+	<c:choose>
 		<c:when test="${not empty dr_list}">
 			<div class="row" id="drama_bar">
 				<hr>
@@ -237,31 +247,31 @@ li>a:hover {
 				</div>
 				<hr>
 
-    <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-      <c:set var="i" value="0" />
-      <c:set var="j" value="1" />
-      <c:forEach var="d" items="${dr_list}">			
-				<c:if test="${i%j == 0 }">
-        <div class="col">
-        </c:if>
+				<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+					<c:set var="i" value="0" />
+					<c:set var="j" value="1" />
+					<c:forEach var="d" items="${dr_list}">
+						<c:if test="${i%j == 0 }">
+							<div class="col">
+						</c:if>
 
-          <div class="card">
-            <a href="/detailDr.content?dr_id=${d.dr_id}">
-            
-			<div class="poster">  
-              <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+						<div class="card">
+							<a href="/detailDr.content?dr_id=${d.dr_id}">
+
+								<div class="poster">
+									<img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+								</div>
+								<p class="card-text">${d.dr_title}</p>
+							</a>
+						</div>
+						<c:if test="${i%j == j-1 }">
+				</div>
+				</c:if>
+				<c:set var="i" value="${i+1 }" />
+				</c:forEach>
 			</div>
-                <p class="card-text">${d.dr_title}</p>
-			</a>
-          </div>
-          <c:if test="${i%j == j-1 }">
-        </div>
-        </c:if>
-        <c:set var="i" value="${i+1 }" />
-      </c:forEach>
-        </div>
-      </div>
-    </c:when>
+			</div>
+		</c:when>
 		<c:otherwise>
 			<hr>
 			<div class="list_title">드라마</div>
