@@ -40,6 +40,8 @@ pageEncoding="UTF-8"%>
 </style>
 <body>
     <div class="container-fluid text-center">
+    
+    <!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
      <form action="/ott_search.content">
         <div class="header row">
           <div class="logo col-8">퍼플무드 이미지</div>
@@ -48,24 +50,45 @@ pageEncoding="UTF-8"%>
             <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
           </div>
         </div>
-        </form>
+        </form>-->
+        
+        
 	
 	<!-- ott별로 출력하는 페이지 -->
+
 	<c:choose>
-		<c:when test="${not empty dr_date_n}">
+		<c:when test="${not empty dr_date_n and not empty mv_date_n}">
 		
+	<form action="/n_search.content">
+        <div class="header row">
+          <div class="logo col-8">퍼플무드 이미지</div>
+          <div class="col-4">
+            <input type="text" name="n_searchtext" placeholder="넷플릭스 내 검색">
+            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+          </div>
+        </div>
+        </form>
+        
         <div class="ott_logo col-12">
             <img src="/img/netbf.png">
         </div>
         <hr>
+        </c:when>
+        </c:choose>
+
+	
+	<c:choose>
+		<c:when test="${not empty dr_date_n}">
+
 		<div class="list_title">
 					드라마 검색 결과<span> ${dr_date_n.size()}개</span>
 				</div>
 		<hr>
 		    <!-- 드라마 캐러셀 --> 
 		<div class="poster1">
+		<div class="col-12 fs-3 titlename">최신작</div>
           <div>
-            <div id="carouselExampleControls" class="carousel slide"
+            <div id="carouselExampleControls2" class="carousel slide"
               data-bs-ride="false">
               <div class="carousel-inner">
                 <div class="carousel-item imgbox active">
@@ -88,54 +111,24 @@ pageEncoding="UTF-8"%>
                 </div>
               </div>
               <button class="carousel-control-prev postLRbtn" type="button"
-                data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
               <button class="carousel-control-next postLRbtn" type="button"
-                data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                data-bs-target="#carouselExampleControls2" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden ">Next</span>
               </button>
             </div>
           </div>
         </div>
-		
-		
-		
-		
-       <!--  <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="d" items="${dr_date_n}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                  <a href="/detailDr.content?dr_id=${d.dr_id}">
-                  
-                  <div class="poster">  
-                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
-                </div>
-                <c:if test="${i%j == j-1 }">
-              </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-             </div>
-            
-                </c:when>
-          </c:choose>--> 
-          
-    
-          
-          
-         
+        </c:when>
+        </c:choose>
+		      
        <c:choose>
 		<c:when test="${not empty mv_date_n}">
+		
              	<hr>
 					<div class="list_title pt-2">
 						영화 검색 결과 <span> ${mv_date_n.size()}개</span>
@@ -144,14 +137,15 @@ pageEncoding="UTF-8"%>
 				
 <!-- 영화 캐러셀 --> 
  <div class="poster1">
+ <div class="col-12 fs-3 titlename">최신작</div>
           <div>
-            <div id="carouselExampleControls" class="carousel slide"
+            <div id="carouselExampleControls1" class="carousel slide"
               data-bs-ride="false">
               <div class="carousel-inner">
                 <div class="carousel-item imgbox active">
                  <c:forEach var="m" items="${mv_date_n}" begin="0" end="5"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}"class="postimg"></a>
+                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
@@ -163,59 +157,53 @@ pageEncoding="UTF-8"%>
                 <div class="carousel-item imgbox">
                   <c:forEach var="m" items="${mv_date_n}"  begin="12" end="17"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}"class="postimg"></a>
+                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
               </div>
           	<button class="carousel-control-prev postLRbtn" type="button"
-				data-bs-target="#carouselExampleControls4" data-bs-slide="prev">
+				data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Previous</span>
 			</button>
 				<button class="carousel-control-next postLRbtn" type="button"
-					data-bs-target="#carouselExampleControls4" data-bs-slide="next">
+					data-bs-target="#carouselExampleControls1" data-bs-slide="next">
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="visually-hidden ">Next</span>
 				</button>
             </div>
           </div>
-        </div>         
-				
-				
-         <!-- <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="m" items="${mv_date_n}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                  <a href="/detailMv.content?mv_id=${m.mv_id}">
-                  
-                  <div class="poster">  
-                    <img src="${m.mv_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
-                </div>
-                <c:if test="${i%j == j-1 }">
-              </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-            </div>
-            </div>
-          </c:when>
-          </c:choose> --> 
+        </div>       
+      </c:when>
+        </c:choose>
+
 
 <!-- 디즈니 플러스 -->
-	<c:choose>
-		<c:when test="${not empty dr_date_d}">
+		<c:choose>
+		<c:when test="${not empty dr_date_d and not empty mv_date_d}">
 		
-        <div class="ott_logo col-12">
+		<form action="/d_search.content">
+        	<div class="header row">
+         	 <div class="logo col-8">퍼플무드 이미지</div>
+          	<div class="col-4">
+            	<input type="text" name="d_searchtext" placeholder="디즈니플러스 내 검색">
+            	<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+          	</div>
+        </div>
+        </form>
+        
+           <div class="ott_logo col-12">
             <img src="/img/disbf.png">
         </div>
         <hr>
+        
+        </c:when>
+        </c:choose>
+
+
+	<c:choose>	
+		<c:when test="${not empty dr_date_d}">
+		
 		<div class="list_title">
 					드라마 검색 결과<span> ${dr_date_d.size()}개</span>
 				</div>
@@ -224,7 +212,7 @@ pageEncoding="UTF-8"%>
             <c:set var="i" value="0" />
             <c:set var="j" value="1" />
             <c:forEach var="d" items="${dr_date_d}">			
-                      <c:if test="${i%j == 0 }">
+                      <c:if test="${i%j == 0}">
               <div class="col">
               </c:if>
       
@@ -278,15 +266,77 @@ pageEncoding="UTF-8"%>
             </div>
           </c:when>
           </c:choose>
+          
+      <!-- 디플 드라마 검색 결과 출력 -->
+             <c:choose>
+		<c:when test="${not empty d_dr_list}">
+		
+		<form action="/d_search.content">
+        	<div class="header row">
+         	 <div class="logo col-8">퍼플무드 이미지</div>
+          	<div class="col-4">
+            	<input type="text" name="d_searchtext" placeholder="디즈니플러스 내 검색">
+            	<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+          	</div>
+        </div>
+        </form>
+        
+		   <div class="ott_logo col-12">
+            <img src="/img/disbf.png">
+        </div>
+        <hr>
+
+		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+            <c:set var="i" value="0" />
+            <c:set var="j" value="1" />
+            <c:forEach var="n" items="${d_dr_list}">			
+                      <c:if test="${i%j == 0 }">
+              <div class="col">
+              </c:if>
+      
+                <div class="card">
+         			<a href="/detailDr.content?mv_id=${d.dr_id}">
+                  
+                  <div class="poster">  
+                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+                  </div>
+                  <p class="card-text">${d.dr_title}</p>
+                  </a>
+                </div>
+                <c:if test="${i%j == j-1 }">
+              </div>
+              </c:if>
+              <c:set var="i" value="${i+1 }" />
+            </c:forEach>
+            </div>
+            </div>
+		</c:when>
+		</c:choose>
 
 <!-- 웨이브 -->
-         <c:choose>
-		<c:when test="${not empty dr_date_wv}">
+
+	<c:choose>
+		<c:when test="${not empty dr_date_wv and not empty mv_date_wv}">
 		
-        <div class="ott_logo col-12">
+		<form action="/wv_search.content">
+        	<div class="header row">
+         	 <div class="logo col-8">퍼플무드 이미지</div>
+          	<div class="col-4">
+            	<input type="text" name="wv_searchtext" placeholder="웨이브 내 검색">
+            	<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+          	</div>
+        </div>
+        </form>
+           <div class="ott_logo col-12">
             <img src="/img/wavbf.png">
         </div>
         <hr>
+        </c:when>
+        </c:choose>
+	
+         <c:choose>
+		<c:when test="${not empty dr_date_wv}">
+
 		<div class="list_title">
 					드라마 검색 결과<span> ${dr_date_wv.size()}개</span>
 				</div>
@@ -294,16 +344,16 @@ pageEncoding="UTF-8"%>
         <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
             <c:set var="i" value="0" />
             <c:set var="j" value="1" />
-            <c:forEach var="d" items="${dr_date_wv}">			
+            <c:forEach var="wv" items="${dr_date_wv}">			
                       <c:if test="${i%j == 0 }">
               <div class="col">
               </c:if>
       
                 <div class="card">
-                  <a href="/detailDr.content?dr_id=${d.dr_id}">
+                  <a href="/detailDr.content?dr_id=${wv.dr_id}">
                   
                   <div class="poster">  
-                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+                    <img src="${wv.dr_poster_path}" class="card-img-top" alt="...">
                   </div>
                   </a>
                 </div>
@@ -313,7 +363,6 @@ pageEncoding="UTF-8"%>
               <c:set var="i" value="${i+1 }" />
             </c:forEach>
              </div>
-            
                 </c:when>
           </c:choose>
           
@@ -327,16 +376,16 @@ pageEncoding="UTF-8"%>
              <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
             <c:set var="i" value="0" />
             <c:set var="j" value="1" />
-            <c:forEach var="m" items="${mv_date_wv}">			
+            <c:forEach var="wv" items="${mv_date_wv}">			
                       <c:if test="${i%j == 0 }">
               <div class="col">
               </c:if>
       
                 <div class="card">
-                    <a href="/detailMv.content?mv_id=${m.mv_id}">
+                    <a href="/detailMv.content?mv_id=${wv.mv_id}">
                   
                   <div class="poster">  
-                    <img src="${m.mv_poster_path}" class="card-img-top" alt="...">
+                    <img src="${wv.mv_poster_path}" class="card-img-top" alt="...">
                   </div>
                   </a>
                 </div>
@@ -350,14 +399,32 @@ pageEncoding="UTF-8"%>
           </c:when>
           </c:choose>
           
+           
 <!-- 왓챠 -->
- 	<c:choose>
-		<c:when test="${not empty dr_date_wc}">
+		<c:choose>
+		<c:when test="${not empty dr_date_wc and not empty mv_date_wc}">
 		
+	<form action="/wc_search.content">
+        <div class="header row">
+          <div class="logo col-8">퍼플무드 이미지</div>
+          <div class="col-4">
+            <input type="text" name="wc_searchtext" placeholder="왓챠 내 검색">
+            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+          </div>
+        </div>
+        </form>    
+        
         <div class="ott_logo col-12">
             <img src="/img/watbf.png">
         </div>
         <hr>
+        </c:when>
+        </c:choose>
+	
+
+ 	<c:choose>
+		<c:when test="${not empty dr_date_wc}">
+    
 		<div class="list_title">
 					드라마 검색 결과<span> ${dr_date_wc.size()}개</span>
 				</div>
@@ -420,8 +487,54 @@ pageEncoding="UTF-8"%>
             </div>
           </c:when>
           </c:choose>
+          
+          
+            <!-- 왓챠 드라마 검색 결과 출력 -->
+         <c:choose>
+		<c:when test="${not empty wc_dr_list}">
+		
+		<form action="/wc_search.content">
+        <div class="header row">
+          <div class="logo col-8">퍼플무드 이미지</div>
+          <div class="col-4">
+            <input type="text" name="wc_searchtext" placeholder="왓챠 내 검색">
+            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+          </div>
+        </div>
+        </form>
+        
+		<div class="ott_logo col-12">
+            <img src="/img/watbf.png">
+        </div>
+        <hr>
 
-
+		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+            <c:set var="i" value="0" />
+            <c:set var="j" value="1" />
+            <c:forEach var="n" items="${d_dr_list}">			
+                      <c:if test="${i%j == 0 }">
+              <div class="col">
+              </c:if>
+      
+                <div class="card">
+         			<a href="/detailDr.content?mv_id=${d.dr_id}">
+                  
+                  <div class="poster">  
+                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+                  </div>
+                  <p class="card-text">${d.dr_title}</p>
+                  </a>
+                </div>
+                <c:if test="${i%j == j-1 }">
+              </div>
+              </c:if>
+              <c:set var="i" value="${i+1 }" />
+            </c:forEach>
+            </div>
+            </div>
+		</c:when>
+		</c:choose>
+          </div>
       </div>
 </body>
 </html>

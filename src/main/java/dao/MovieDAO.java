@@ -92,8 +92,8 @@ public class MovieDAO {
 
 	}
 	
-	//ott별 검색(하나의 메서드로 끝내고 싶은데 할 수 있을까 여러 개 만드면 코드 너무 지저분 ㅠ)
-	public List <MovieDTO> searchByOtt_title(String mv_title) throws Exception {
+	//ott별 검색 1) 넷플릭스
+	public List <MovieDTO> searchByNF_title(String mv_title) throws Exception {
 
 		String sql="select mv_id, mv_poster_path from movie_test where mv_ottNF='Y' and mv_title like ?";
 
@@ -118,6 +118,90 @@ public class MovieDAO {
 		}
 
 	}
+	
+	//ott별 검색 2) 디즈니 플러스
+		public List <MovieDTO> searchByDZ_title(String mv_title) throws Exception {
+
+			String sql="select mv_id, mv_poster_path from movie_test where mv_ottDZ='Y' and mv_title like ?";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{pstat.setString(1, "%"+mv_title+"%");
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <MovieDTO> list = new ArrayList<>();
+
+				while(rs.next()) {
+
+					MovieDTO dto = new MovieDTO();
+					dto.setMv_id(rs.getInt("mv_id"));
+					dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+					list.add(dto);
+				}
+				return list;
+			}
+
+			}
+
+		}
+		
+		
+		//ott별 검색 3) 웨이브
+				public List <MovieDTO> searchByWV_title(String mv_title) throws Exception {
+
+					String sql="select mv_id, mv_poster_path from movie_test where mv_ottWV='Y' and mv_title like ?";
+
+					try(Connection con = this.getConnection();
+							PreparedStatement pstat = con.prepareStatement(sql);)
+					{pstat.setString(1, "%"+mv_title+"%");
+
+					try(ResultSet rs = pstat.executeQuery();){
+						List <MovieDTO> list = new ArrayList<>();
+
+						while(rs.next()) {
+
+							MovieDTO dto = new MovieDTO();
+							dto.setMv_id(rs.getInt("mv_id"));
+							dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+							list.add(dto);
+						}
+						return list;
+					}
+
+					}
+
+				}
+				
+
+			
+			//ott별 검색 4) 왓챠
+			public List <MovieDTO> searchByWC_title(String mv_title) throws Exception {
+
+					String sql="select mv_id, mv_poster_path from movie_test where mv_ottWC='Y' and mv_title like ?";
+
+					try(Connection con = this.getConnection();
+							PreparedStatement pstat = con.prepareStatement(sql);)
+					{pstat.setString(1, "%"+mv_title+"%");
+
+					try(ResultSet rs = pstat.executeQuery();){
+						List <MovieDTO> list = new ArrayList<>();
+
+						while(rs.next()) {
+
+							MovieDTO dto = new MovieDTO();
+							dto.setMv_id(rs.getInt("mv_id"));
+							dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+							list.add(dto);
+						}
+						return list;
+					}
+
+					}
+
+				}
 
 
 	//상세 페이지 
@@ -156,7 +240,6 @@ public class MovieDAO {
 		}
 
 	}
-<<<<<<< HEAD
 
 	//ott별 콘텐츠 출력 1) 넷플릭스 최신순 
 	public  List <MovieDTO> selectByNF_date() throws Exception { 
