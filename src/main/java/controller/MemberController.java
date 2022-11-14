@@ -27,16 +27,20 @@ public class MemberController extends HttpServlet {
 			if(uri.equals("/idDuplCheck.member")) {
 				String id = request.getParameter("id");
 				boolean result = MemberDAO.getInstance().isIdExist(id);
-				request.setAttribute("result", result);
+//				request.setAttribute("result", result);
 				System.out.println(result);
-				request.setAttribute("id", id);
-				request.getRequestDispatcher("/member/idDuplCheck.jsp").forward(request, response);
+				response.getWriter().append(String.valueOf(result));
+
+//				request.setAttribute("id", id);
+//				request.getRequestDispatcher("/member/idDuplCheck.jsp").forward(request, response);
 
 
 				// NICKNAME 중복체크
 			}else if(uri.equals("/nicknameDuplCheck.member")) {
 				String nickname = request.getParameter("nickname");
 				boolean result = MemberDAO.getInstance().isNicknameExist(nickname);
+				System.out.println(result);
+
 				response.getWriter().append(String.valueOf(result));
 
 
@@ -92,6 +96,7 @@ public class MemberController extends HttpServlet {
 			if(result) {
 					request.getSession().setAttribute("loginID",id);
 					request.getSession().setAttribute("loginNickname", dto.getNickname());
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 				}
 				else {

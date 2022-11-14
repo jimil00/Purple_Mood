@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summernoteinsert</title>
+<meta charset="UTF-8">
+   <title>SummernoteUpdate</title>
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -73,7 +70,6 @@
             font-weight: normal;
             font-style: normal;
         }
-
         * {
             box-sizing: border-box;
         }
@@ -81,7 +77,6 @@
         body {
             background-color: #03001e;
         }
-
         .container {
             margin: auto;
         }
@@ -93,6 +88,11 @@
         .headerTitle{
             color: #fdeff9;
         }
+        
+        #b_title{
+        	background-color: white;
+        }
+
     </style>
 
     <script>
@@ -127,70 +127,80 @@
                 }
             });
 
-            $('#insertBoardContents').on('click', function () {
+
+            function saveContent() {
 
                 //값 가져오기
                 var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
                 console.log("summernoteContent : " + summernoteContent);
-                var b_category = $("#b_category").val();
-                var b_title = $("#b_title").val();
+                var b_seq = $("#b_seq").html();
+                var b_category = $("#b_category").html();
+                var b_title = $("#b_title").html();
 
                 $.ajax({
-                    url: "/insertBoardContents.board",
+                    url: "/updateBoardContents.board",
                     type: "post",
-                    async:false,
                     data: {
+                        "b_seq": b_seq,
                         "b_category": b_category,
                         "b_title": b_title,
                         "b_content": summernoteContent
-                    },success: function (data) {
-//                         var b_seq = data;
-//                         location.href="/selectBoardContents.board?b_seq="+b_seq;
-						location.href="/boardList.board";
                     }
                 });
+            };
+            $('#updateBoardContents').on('click', function () {
+                saveContent();
+                location.href = "/selectBoardContents.board?b_seq=${dto.b_seq}";
+
+
             });
-
-
-
         });
+//     	$(function() {
+
+// 		for(i=0;i<$("option").length;i++){
+// 			if($("option")[i].val()==$("select").val()){
+//                $("option")[i].selected=true;
+//             }
+// 		};
+//     	}); 카테고리 수정 전 값으로 selected 하고 싶은대
     </script>
 </head>
-
 <body>
     <div class="container">
-        <div class="insertBoardContents">
+        <div class="updateBoardContents">
+        			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
+        
             <div class="row header">
                 <div class="category">
                     <div class="headerTitle">카테고리</div>
                     <div>
                         <select id="b_category" name="b_category">
-                            <option selected value="movie">영화</option>
+                            <option value="movie">영화</option>
                             <option value="drama">드라마</option>
                             <option value="onAir">실시간</option>
                             <option value="review">후기</option>
                         </select>
                     </div>
+
                 </div>
                 <div class="title">
                     <div class="headerTitle">제목</div>
-                    <div><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none;">
-                    </div>
+                <div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title" contenteditable="true"> ${dto.b_title }</div>
+
                 </div>
             </div>
             <div class="row body">
-                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">
+                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">${dto.b_content }
                 </div>
             </div>
             <div class="row footer">
                 <div class="btns col-lg-12 col-md-12 col-sm-12">
-                    <button type="button" class="btn" id="insertBoardContents"
-                        name="insertBoardContents">작성하기</button>&nbsp
+                    <button type="button" class="btn" id="updateBoardContents"
+                        name="updateBoardContents">수정하기</button>&nbsp
                     <a href="/boardList.board"><button type="button" id="toList" name="toList">목록으로</button></a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>

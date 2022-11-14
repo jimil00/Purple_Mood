@@ -94,16 +94,17 @@ public class BoardDAO {
 
 
 	// 게시글 수정 (U)
-	public int updateBoardContents(String b_title, String b_content, int b_seq) throws Exception{
+	public int updateBoardContents(String b_category, String b_title, String b_content, int b_seq) throws Exception{
 
-		String sql = "update board set b_write_date=sysdate, b_title=?, b_content=? where b_seq=?";
+		String sql = "update board set b_write_date=sysdate, b_category=?, b_title=?, b_content=? where b_seq=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-
-			pstat.setString(1, b_title);
-			pstat.setString(2, b_content);
-			pstat.setInt(3, b_seq);
+			
+			pstat.setString(1, b_category);
+			pstat.setString(2, b_title);
+			pstat.setString(3, b_content);
+			pstat.setInt(4, b_seq);
 
 			int result = pstat.executeUpdate();
 			con.commit();

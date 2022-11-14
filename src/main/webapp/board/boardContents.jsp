@@ -6,42 +6,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>summernoteselect</title>
+<!-- include libraries(jQuery, bootstrap) -->
+<link
+   href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+   rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+   src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link
+   href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css"
+   rel="stylesheet">
+<script
+   src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script>
+	$(document).ready(function() {
+	  $('#summernote').summernote();
+	});
+	var markupStr = $('#summernote').summernote('code');
+
 	$(function() {
-		$("#modifyBoardContent").on("click", function() {
-			$("#b_title,#b_content").removeAttr("readonly");
 
-			$("#toList,#updateBoardContent,#deleteBoardContent").css("display", "none");
-			// 		$("#title,#contents").attr("contenteditable","true");
-
-			let btnUpdateBContent = $("<button>");
-			btnUpdateBContent.text("수정완료");
-			btnUpdateBContent.addClass("btn")
-			btnUpdateBContent.css("margin-right", "5px")
-
-			let btnCancelBContentU = $("<button>");
-			btnCancelBContentU.attr("type", "button");
-			btnCancelBContentU.text("취소");
-			btnCancelBContentU.addClass("btn")
-			btnCancelBContentU.on("click", function() {
-				location.reload();
-			});
-
-			$(".btns").append(btnUpdateBContent);
-			$(".btns").append(btnCancelBContentU);
-
-		})
 		$(".updateBoardComment").on("click", function() {
-			$(".bcm_content").removeAttr("readonly");
+			$(this).closest("tr").find(".bcm_content").removeAttr("readonly");
 
-			$(".updateBoardComment,.deleteBoardComment").css("display", "none");
+			$(this).closest("tr").find(".updateBoardComment,.deleteBoardComment").css("display", "none");
 			// 		$("#title,#contents").attr("contenteditable","true");
 
 			let btnUpdateBComment = $("<button>");
 			btnUpdateBComment.text("수정완료");
 			btnUpdateBComment.addClass("btn");
+			btnUpdateBComment.attr("type","button");
 			
 
 			btnUpdateBComment.addClass("updcmbtn");
@@ -57,8 +59,8 @@
 				location.reload();
 			});
 
-			$(".cbtns").append(btnUpdateBComment);
-			$(".cbtns").append(btnCancelBCommentU);
+			$(this).closest("tr").find(".cbtns").append(btnUpdateBComment);
+			$(this).closest("tr").find(".cbtns").append(btnCancelBCommentU);
 
 		})
 		$(document).on("click",".updcmbtn",function(){
@@ -78,13 +80,13 @@
 
 		})
 
+
 	})
 </script>
 
 
 </head>
 <body>
-	<form action="/updateContent.board?b_seq=${dto.b_seq}" method="post">
 		<table border="1" width="500" align="center">
 			<tr>
 				<td width="30%">${dto.b_category}
@@ -97,16 +99,18 @@
 				<td width="20%" align="center">${dto.b_view_count }
 			<tr>
 
-				<td colspan="3"><div id="b_content" name="b_content"
+				<td colspan="3"><div id="summernote" name="b_content"
 						cols="131" rows="15" readonly>${dto.b_content }</div></td>
+					
 			</tr>
 			<c:choose>
 				<c:when test="${loginNickname == dto.b_writer}">
 
 					<tr>
-						<td class="btns" colspan="3" align="right"><input
+						<td class="btns" colspan="3" align="right"><div class="click2edit">
+						<a href="/beforeUpdateBoardContents.board?b_seq=${dto.b_seq }"><input
 							type="button" class="btn" id="updateBoardContents"
-							name="updateBoardContents" value="수정하기"> &nbsp <a
+							name="updateBoardContents" value="수정하기"></a> &nbsp <a
 							href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><input
 								type="button" class="btn" id="deleteBoardContents"
 								name="deleteBoardContents" value="삭제하기"></a> &nbsp <a
@@ -130,10 +134,9 @@
 
 
 		</table>
-	</form>
 
 		<table border="1" width="950" align="center">
-			<input id="b_seq" name="b_seq" value="${dto.b_seq }">
+			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
 
 			<c:choose>
 				<c:when test="${empty list}">
@@ -144,7 +147,7 @@
 				<c:otherwise>
 					<c:forEach var="comment" items="${list}">
 						<tr>
-							<input  class="bcm_seq" name="bcm_seq"
+							<input type="hidden" class="bcm_seq" name="bcm_seq"
 								value="${comment.bcm_seq }">
 							<td width="100" class="bcm_writer">${comment.bcm_writer }
 							<td width="850" align="center" class="bcm_write_date" name="bcm_write_date">
@@ -201,6 +204,7 @@
 
 
 							})
+
 						</script>
 </body>
 </html>
