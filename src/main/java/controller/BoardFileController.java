@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import common.FileControl;
 import dao.BoardFileDAO;
 import dto.BoardFileDTO;
 

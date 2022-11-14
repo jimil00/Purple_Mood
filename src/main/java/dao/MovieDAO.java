@@ -91,6 +91,117 @@ public class MovieDAO {
 		}
 
 	}
+	
+	//ott별 검색 1) 넷플릭스
+	public List <MovieDTO> searchByNF_title(String mv_title) throws Exception {
+
+		String sql="select mv_id, mv_poster_path from movie_test where mv_ottNF='Y' and mv_title like ?";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{pstat.setString(1, "%"+mv_title+"%");
+
+		try(ResultSet rs = pstat.executeQuery();){
+			List <MovieDTO> list = new ArrayList<>();
+
+			while(rs.next()) {
+
+				MovieDTO dto = new MovieDTO();
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+				list.add(dto);
+			}
+			return list;
+		}
+
+		}
+
+	}
+	
+	//ott별 검색 2) 디즈니 플러스
+		public List <MovieDTO> searchByDZ_title(String mv_title) throws Exception {
+
+			String sql="select mv_id, mv_poster_path from movie_test where mv_ottDZ='Y' and mv_title like ?";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{pstat.setString(1, "%"+mv_title+"%");
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <MovieDTO> list = new ArrayList<>();
+
+				while(rs.next()) {
+
+					MovieDTO dto = new MovieDTO();
+					dto.setMv_id(rs.getInt("mv_id"));
+					dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+					list.add(dto);
+				}
+				return list;
+			}
+
+			}
+
+		}
+		
+		
+		//ott별 검색 3) 웨이브
+				public List <MovieDTO> searchByWV_title(String mv_title) throws Exception {
+
+					String sql="select mv_id, mv_poster_path from movie_test where mv_ottWV='Y' and mv_title like ?";
+
+					try(Connection con = this.getConnection();
+							PreparedStatement pstat = con.prepareStatement(sql);)
+					{pstat.setString(1, "%"+mv_title+"%");
+
+					try(ResultSet rs = pstat.executeQuery();){
+						List <MovieDTO> list = new ArrayList<>();
+
+						while(rs.next()) {
+
+							MovieDTO dto = new MovieDTO();
+							dto.setMv_id(rs.getInt("mv_id"));
+							dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+							list.add(dto);
+						}
+						return list;
+					}
+
+					}
+
+				}
+				
+
+			
+			//ott별 검색 4) 왓챠
+			public List <MovieDTO> searchByWC_title(String mv_title) throws Exception {
+
+					String sql="select mv_id, mv_poster_path from movie_test where mv_ottWC='Y' and mv_title like ?";
+
+					try(Connection con = this.getConnection();
+							PreparedStatement pstat = con.prepareStatement(sql);)
+					{pstat.setString(1, "%"+mv_title+"%");
+
+					try(ResultSet rs = pstat.executeQuery();){
+						List <MovieDTO> list = new ArrayList<>();
+
+						while(rs.next()) {
+
+							MovieDTO dto = new MovieDTO();
+							dto.setMv_id(rs.getInt("mv_id"));
+							dto.setMv_poster_path(rs.getString("mv_poster_path"));
+
+							list.add(dto);
+						}
+						return list;
+					}
+
+					}
+
+				}
 
 
 	//상세 페이지 
@@ -130,7 +241,122 @@ public class MovieDAO {
 
 	}
 
+	//ott별 콘텐츠 출력 1) 넷플릭스 최신순 
+	public  List <MovieDTO> selectByNF_date() throws Exception { 
 
+
+		String sql="select * from movie_test where mv_ottNF='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{ List <MovieDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			MovieDTO dto = new MovieDTO();
+
+			while(rs.next()) {
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	//ott별 콘텐츠 출력 2) 디즈니 플러스 최신순 
+	public  List <MovieDTO> selectByDZ_date() throws Exception { 
+
+
+		String sql="select * from movie_test where mv_ottDZ='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <MovieDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			MovieDTO dto = new MovieDTO();
+
+			while(rs.next()) {
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	
+	
+	//ott별 콘텐츠 출력 3) 웨이브 최신순 
+		public  List <MovieDTO> selectByWV_date() throws Exception { 
+
+
+			String sql="select * from movie_test where mv_ottWV='Y' order by 4 desc";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{  List <MovieDTO> list = new ArrayList<>();
+
+			try(ResultSet rs = pstat.executeQuery();){
+
+				MovieDTO dto = new MovieDTO();
+
+				while(rs.next()) {
+					dto.setMv_id(rs.getInt("mv_id"));
+					dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+					list.add(dto);
+				}
+				return list;
+
+			}
+
+			}
+
+		}
+	
+	
+	//ott별 콘텐츠 출력 4) 왓챠 최신순 
+	public  List <MovieDTO> selectByWC_date() throws Exception { 
+
+
+		String sql="select * from movie_test where mv_ottWC='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <MovieDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			MovieDTO dto = new MovieDTO();
+
+			while(rs.next()) {
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	
 	//최신영화 출력
 	public List <MovieDTO> searchByDate() throws Exception {
 
@@ -168,5 +394,6 @@ public class MovieDAO {
 			return list;
 		}
 	}
+
 
 }

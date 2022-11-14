@@ -29,9 +29,9 @@ public class BoardDAO {
 	}
 
 	//editor
-//	public String removeHTML(String str) throws Exception {
-//		String editedText=str.replace("/<br\/>/ig", "\n");
-//	}
+	//	public String removeHTML(String str) throws Exception {
+	//		String editedText=str.replace("/<br\/>/ig", "\n");
+	//	}
 
 	// 게시글 작성 (C)
 	public int insertBoardContents(BoardDTO dto) throws Exception{
@@ -46,6 +46,7 @@ public class BoardDAO {
 			pstat.setString(3, dto.getB_writer());
 			pstat.setString(4, dto.getB_title());
 			pstat.setString(5, dto.getB_content());
+
 
 			int result = pstat.executeUpdate();
 
@@ -155,63 +156,63 @@ public class BoardDAO {
 
 
 	// 게시판 리스트 출력 (R)
-//	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
-//
-//		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
-//
-//		try(Connection con = this.getConnection();
-//				PreparedStatement pstat = con.prepareStatement(sql);){
-//
-//			pstat.setInt(1, start);
-//			pstat.setInt(2, end);
-//
-//			try(ResultSet rs = pstat.executeQuery();){
-//
-//				List<BoardDTO> list = new ArrayList<>();
-//				while(rs.next()) {
-//					BoardDTO dto = new BoardDTO();
-//					dto.setB_seq(rs.getInt("B_seq"));
-//					dto.setB_category(rs.getString("b_category"));
-//					dto.setB_writer(rs.getString("b_writer"));
-//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-//					dto.setB_title(rs.getString("b_title"));
-//					dto.setB_content(rs.getString("b_content"));
-//					dto.setB_view_count(rs.getInt("b_view_count"));
-//					list.add(dto);
-//				}
-//				return list;
-//
-//			}
-//		}
-//
-//	}
-		public List<BoardDTO> selectBoardByRange() throws Exception{
-	
-			String sql = "select * from board order by b_write_date desc";
-	
-			try(Connection con = this.getConnection();
-					PreparedStatement pstat = con.prepareStatement(sql);
-					ResultSet rs = pstat.executeQuery();
-					){
-	
-	
-	
-				List<BoardDTO> list = new ArrayList<>();
-				while(rs.next()) {
-					BoardDTO dto = new BoardDTO();
-					dto.setB_seq(rs.getInt("b_seq"));
-					dto.setB_category(rs.getString("b_category"));
-					dto.setB_writer(rs.getString("b_writer"));
-					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-					dto.setB_title(rs.getString("b_title"));
-					dto.setB_content(rs.getString("b_content"));
-					dto.setB_view_count(rs.getInt("b_view_count"));
-					list.add(dto);
-				}
-				return list;
-	
+	//	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
+	//
+	//		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
+	//
+	//		try(Connection con = this.getConnection();
+	//				PreparedStatement pstat = con.prepareStatement(sql);){
+	//
+	//			pstat.setInt(1, start);
+	//			pstat.setInt(2, end);
+	//
+	//			try(ResultSet rs = pstat.executeQuery();){
+	//
+	//				List<BoardDTO> list = new ArrayList<>();
+	//				while(rs.next()) {
+	//					BoardDTO dto = new BoardDTO();
+	//					dto.setB_seq(rs.getInt("B_seq"));
+	//					dto.setB_category(rs.getString("b_category"));
+	//					dto.setB_writer(rs.getString("b_writer"));
+	//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+	//					dto.setB_title(rs.getString("b_title"));
+	//					dto.setB_content(rs.getString("b_content"));
+	//					dto.setB_view_count(rs.getInt("b_view_count"));
+	//					list.add(dto);
+	//				}
+	//				return list;
+	//
+	//			}
+	//		}
+	//
+	//	}
+	public List<BoardDTO> selectBoardByRange() throws Exception{
+
+		String sql = "select * from board order by b_write_date desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
+				){
+
+
+
+			List<BoardDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setB_seq(rs.getInt("b_seq"));
+				dto.setB_category(rs.getString("b_category"));
+				dto.setB_writer(rs.getString("b_writer"));
+				dto.setB_write_date(rs.getTimestamp("b_write_date"));
+				dto.setB_title(rs.getString("b_title"));
+				dto.setB_content(rs.getString("b_content"));
+				dto.setB_view_count(rs.getInt("b_view_count"));
+				list.add(dto);
 			}
+			return list;
+
 		}
+	}
 
 
 
@@ -354,6 +355,33 @@ public class BoardDAO {
 		}
 		return list;
 
+	}
+
+
+
+	//마이페이지 작성글 출력
+	public List <BoardDTO> searchByNickname(String nickname) throws Exception{
+		String sql="select * from board where b_writer=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);     
+				){
+			pstat.setString(1, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				List<BoardDTO> list=new ArrayList<>();
+				while(rs.next()) {
+					BoardDTO dto=new BoardDTO();
+					dto.setB_seq(rs.getInt("b_seq"));
+					dto.setB_category(rs.getString("b_category"));
+					dto.setB_writer(rs.getString("b_writer"));
+					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+					dto.setB_title(rs.getString("b_title"));
+					dto.setB_content(rs.getString("b_content"));
+					dto.setB_view_count(rs.getInt("b_view_count"));
+					list.add(dto);    
+				}
+				return list;
+			}
+		}
 	}
 
 
