@@ -21,6 +21,75 @@ pageEncoding="UTF-8"%>
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
     rel="stylesheet" />
 </head>
+<style>
+    .container-fluid {
+	font-family: 'DungGeunMo';
+	color: grey;
+	background-color: #03001e;
+}
+    .header{height:150px;}
+
+    .logo{height:100px;}
+    
+    .ott_logo>img{width:250px;}
+    
+    .postimg {width:200px;}
+    
+    .list_title{text-align:left;}
+    
+    .card {
+	width: 200px;
+	height: 300px;
+	background-color: #03001e;
+}
+    
+    
+.poster {
+	overflow: hidden;
+}
+
+
+
+a {
+	text-decoration: none;
+	color: grey
+}
+
+.card-text{height:fit-content;}
+
+.card-text:hover {
+	color: #7303c0
+}
+
+#searchbtn:hover {
+	cursor: pointer;
+}
+
+span>img {
+	width: 45px;
+	position: relative;
+	bottom: 60%;
+	left: 80%; . mv_reaech >img{ width : 200px;
+	height: 280px;
+}
+
+}
+.card {
+	width: 200px;
+	height: 300px;
+	background-color: #03001e;
+}
+
+.poster>img {
+	width: 200px;
+	height: 280px;
+	transition: all 0.2s linear;
+}
+
+.poster>img:hover {
+	transform: scale(1.2);
+}
+</style>
 <body>
     <div class="container-fluid text-center">
     
@@ -54,53 +123,10 @@ pageEncoding="UTF-8"%>
         </div>
         <hr>
     
-          	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
-          <c:choose>
-		<c:when test="${not empty d_dr_list}">
-		
-		<div class="list_title">
-					드라마 검색 결과<span> ${d_dr_list.size()}개</span>
-				</div>
-		<hr>
-		
-		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="n" items="${d_dr_list}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-         			<a href="/detailDr.content?dr_id=${d.dr_id}">
-                  
-                  <div class="poster">  
-                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  <p class="card-text">${d.dr_title}</p>
-                  </a>
-                </div>
-                <c:if test="${i%j == j-1 }">
-              </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-            </div>
-          
-		</c:when>
-		<c:otherwise>
-			<hr>
-		<div class="list_title pt-2">드라마</div>
-		<hr>
-		<div>검색 결과가 없습니다.</div>
-		</c:otherwise>
-		</c:choose>
-		
-		
-		  	<!-- 넷플릭스 영화 검색 결과 출력 -->
+    		  	<!-- 디즈니 영화 검색 결과 출력 -->
           <c:choose>
 		<c:when test="${not empty d_mv_list}">
-
+		<hr>
 		<div class="list_title">
 					영화 검색 결과<span> ${d_mv_list.size()}개</span>
 				</div>
@@ -109,7 +135,7 @@ pageEncoding="UTF-8"%>
 		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
             <c:set var="i" value="0" />
             <c:set var="j" value="1" />
-            <c:forEach var="n" items="${d_mv_list}">			
+            <c:forEach var="d" items="${d_mv_list}">			
                       <c:if test="${i%j == 0 }">
               <div class="col">
               </c:if>
@@ -129,15 +155,61 @@ pageEncoding="UTF-8"%>
               <c:set var="i" value="${i+1 }" />
             </c:forEach>
             </div>
-            </div>
+           
 		</c:when>
 		<c:otherwise>
 			<hr>
-		<div class="list_title pt-2">영화</div>
+		<div class="list_title pt-2">영화 검색 결과</div>
 		<hr>
 		<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
 		</c:choose>
+    
+    
+          	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
+          <c:choose>
+		<c:when test="${not empty d_dr_list}">
+		
+		<div class="list_title">
+		<hr>
+					드라마 검색 결과<span> ${d_dr_list.size()}개</span>
+				</div>
+		<hr>
+		
+		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+            <c:set var="i" value="0" />
+            <c:set var="j" value="1" />
+            <c:forEach var="d" items="${d_dr_list}">			
+                      <c:if test="${i%j == 0 }">
+              <div class="col">
+              </c:if>
+      
+                <div class="card">
+         			<a href="/detailDr.content?dr_id=${d.dr_id}">
+                  
+                  <div class="poster">  
+                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+                  </div>
+                  <p class="card-text">${d.dr_title}</p>
+                  </a>
+                </div>
+                <c:if test="${i%j == j-1 }">
+              </div>
+              </c:if>
+              <c:set var="i" value="${i+1 }" />
+            </c:forEach>
+            </div>
+           </div>
+		</c:when>
+		<c:otherwise>
+			<hr>
+		<div class="list_title pt-2">드라마 검색 결과</div>
+		<hr>
+		<div>검색 결과가 없습니다.</div>
+		</c:otherwise>
+		</c:choose>
+		
+	
           	</div>
           	</div>
 		</div>
