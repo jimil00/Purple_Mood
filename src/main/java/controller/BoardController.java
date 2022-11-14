@@ -1,8 +1,6 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,15 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.google.gson.Gson;
 
 import dao.BoardCommentDAO;
 import dao.BoardDAO;
-import dao.BoardFileDAO;
+import dao.DramaDAO;
 import dto.BoardCommentDTO;
 import dto.BoardDTO;
-import dto.BoardFileDTO;
+import dto.DramaDTO;
 
 
 @WebServlet("*.board")
@@ -147,7 +144,22 @@ public class BoardController extends HttpServlet {
 				String b_content = request.getParameter("b_content");
 				int result = BoardDAO.getInstance().updateBoardContents(b_title,b_content,b_seq);
 				response.sendRedirect("/boardContents.board?seq="+b_seq);
-			}
+			
+				
+				
+				//마이페이지 작성 게시글 출력
+	         }else if(uri.equals("/selectMypageBoard.board")) {
+	            
+	            /*
+	             * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
+	             */
+	            Gson gsonStr   = new Gson();
+	            
+	            List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate();
+	            String strJsonList = gsonStr.toJson(dr_list_d);
+	            System.out.println("************strJsonList******* \n"+strJsonList);
+	            response.getWriter().append(strJsonList);
+	         }
 
 		}catch (Exception e) {
 			// TODO Auto-generated catch block

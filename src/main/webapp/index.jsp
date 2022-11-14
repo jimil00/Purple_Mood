@@ -619,7 +619,7 @@ hr.hr {
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 
-						<a href="/mypageMemInfo.member">
+						<a href="/member/mypage.jsp">
 							<button>마이페이지</button>
 						</a>
 
