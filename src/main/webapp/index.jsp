@@ -373,23 +373,25 @@ hr.hr {
 			<div class="ottboxsec">
 				<div class="row ">
 					<div class="col-6 col-lg-3">
-						<a href="#" id="disneybtn"> <img src="/img/disbf.png"
+
+						<a href="/disney.content" id="disneybtn"> <img src="/img/disbf.png"
 							id="disney" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="wavvebtn"> <img src="/img/wavbf.png"
+						<a href="/wavve.content" id="wavvebtn"> <img src="/img/wavbf.png"
 							id="wavve" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="netbtn"> <img src="/img/netbf.png"
+						<a href="/netflix.content" id="netbtn"> <img src="/img/netbf.png"
 							id="netflix" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="watchabtn"> <img src="/img/watbf.png"
+						<a href="/watcha.content" id="watchabtn"> <img src="/img/watbf.png"
 							id="watcha" class="ottimg">
+
 						</a>
 					</div>
 					<script>
@@ -598,7 +600,7 @@ hr.hr {
 	</div>
 
 	<c:choose>
-		<c:when test="${loginID!=null}">
+		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
 				tabindex="-1" id="offcanvasWithBothOptions"
@@ -613,11 +615,9 @@ hr.hr {
 					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
-
 						<a href="/member/mypage.jsp">
 							<button>마이페이지</button>
 						</a>
-
 					</div>
 					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>
@@ -629,17 +629,43 @@ hr.hr {
 					<button type="button" id="logoutBtn">로그아웃</button>
 				</div>
 				<script>
-					$("#profileBtn").on(
-							"click",
-							function() {
-								window.open("/profile.jsp", "",
-										"width=400,height=300");
-							})
 					$("#logoutBtn").on("click", function() {
 						location.href = "/logout.member";
 					})
-					$("#mypageBtn").on("click", function() {
-						location.href = "/member/mypageMemInfo.jsp";
+				</script>
+			</div>
+		</c:when>
+		<c:when test="${loginID!=null && loginID == 'admin123'}">
+			<!-- 관리자 -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="#">
+							<button>관리자페이지</button>
+						</a>
+					</div>
+					<a href="/boardList.board">
+						<div class="menulink">영화 드라마 게시판</div>
+					</a> <a href="#">
+						<div class="menulink">자유게시판</div>
+					</a> <a href="#">
+						<div class="menulink">공지사항</div>
+					</a>
+					<button type="button" id="logoutBtn">로그아웃</button>
+				</div>
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
 					})
 				</script>
 			</div>

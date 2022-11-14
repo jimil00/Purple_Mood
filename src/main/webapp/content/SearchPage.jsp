@@ -25,7 +25,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+*{box-sizing: border-box;}
 .container-fluid {
 	font-family: 'DungGeunMo';
 	color: grey;
@@ -98,21 +98,17 @@ img {
 	overflow: hidden;
 }
 
-li>a:hover {
-	color: #7303c0
-}
+
 
 a {
 	text-decoration: none;
 	color: grey
 }
 
-li:hover {
-	color: #7303c0
-}
+.card-text{height:fit-content;}
 
-li:hover img {
-	transform: scale(1.2);
+.card-text:hover {
+	color: #7303c0
 }
 
 #searchbtn:hover {
@@ -144,21 +140,7 @@ span>img {
 	transform: scale(1.2);
 }
 
-li:hover {
-	color: #7303c0
-}
 
-li:hover img {
-	transform: scale(1.2);
-}
-
-li>a:hover {
-	color: #7303c0
-}
-
-.card-text:hover {
-	color: #7303c0
-}
 </style>
 <body>
 	<div class="container-fluid text-center">
@@ -167,7 +149,7 @@ li>a:hover {
 		<form action="/search.content">
 			<div class="row" id="header">
 				<div class="col-sm-12">
-					<div id="logo">퍼플무드(로고 이미지 추가)</div>
+					<div id="logo"><a href="/main">퍼플무드(로고 이미지 추가)</a></div>
 				</div>
 			</div>
 
@@ -281,6 +263,7 @@ li>a:hover {
 	</c:choose>
 
 	</div>
+
 	<script>
  $(function(){
 	 

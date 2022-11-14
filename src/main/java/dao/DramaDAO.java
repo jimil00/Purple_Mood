@@ -65,7 +65,7 @@ public class DramaDAO {
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{pstat.setString(1, "%"+dr_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 구현해야 함.
+		{pstat.setString(1, "%"+dr_title+"%");
 
 		try(ResultSet rs = pstat.executeQuery();){
 			List <DramaDTO> list = new ArrayList<>();
@@ -85,8 +85,143 @@ public class DramaDAO {
 		}
 
 	}
+	
+	//ott별 검색 1) 넷플릭스
+	public List <DramaDTO> searchByNF_title(String dr_title) throws Exception {
+
+		String sql="select dr_id, dr_title, dr_poster_path from drama_test where dr_ottNF='Y' and dr_title like ?";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{pstat.setString(1, "%"+dr_title+"%");
+
+		try(ResultSet rs = pstat.executeQuery();){
+			List <DramaDTO> list = new ArrayList<>();
+
+			while(rs.next()) {
+
+				DramaDTO dto = new DramaDTO();
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_title(rs.getString("dr_title"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+		}
+
+		}
+
+	}
+	
+	//ott별 검색 2) 디즈니 플러스
+		public List <DramaDTO> searchByDZ_title(String dr_title) throws Exception {
+
+			String sql="select dr_id, dr_poster_path, dr_title from drama_test where dr_ottDZ='Y' and dr_title like ?";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{pstat.setString(1, "%"+dr_title+"%");
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <DramaDTO> list = new ArrayList<>();
+
+				while(rs.next()) {
+
+					DramaDTO dto = new DramaDTO();
+					dto.setDr_id(rs.getInt("dr_id"));
+					dto.setDr_title(rs.getString("dr_title"));
+					dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+					list.add(dto);
+				}
+				return list;
+			}
+
+			}
+
+		}
+		
+		//ott별 검색 3) 웨이브
+		public List <DramaDTO> searchByWV_title(String dr_title) throws Exception {
+
+			String sql="select dr_id,dr_title,dr_poster_path from drama_test where dr_ottWV='Y' and dr_title like ?";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{pstat.setString(1, "%"+dr_title+"%");
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <DramaDTO> list = new ArrayList<>();
+
+				while(rs.next()) {
+
+					DramaDTO dto = new DramaDTO();
+					dto.setDr_id(rs.getInt("dr_id"));
+					dto.setDr_title(rs.getString("dr_title"));
+					dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+					list.add(dto);
+				}
+				return list;
+			}
+
+			}
+
+		}
+		
+		//ott별 검색 4) 왓챠
+		public List <DramaDTO> searchByWC_title(String dr_title) throws Exception {
+
+			String sql="select dr_id, dr_title,dr_poster_path from drama_test where dr_ottWC='Y' and dr_title like ?";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{pstat.setString(1, "%"+dr_title+"%");
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <DramaDTO> list = new ArrayList<>();
+
+				while(rs.next()) {
+
+					DramaDTO dto = new DramaDTO();
+					dto.setDr_id(rs.getInt("dr_id"));
+					dto.setDr_title(rs.getString("dr_title"));
+					dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+					list.add(dto);
+				}
+				return list;
+			}
+
+			}
+
+		}
 
 
+
+	
+	
+	
+	
+	//ott 이동
+//	DramaDTO dr_fromOtt=DramaDAO.getInstance().selectOtt_icon(dr_id);
+//
+//	if(dr_fromOtt.getDr_ottDZ()==('Y')) {
+//		
+//		"/img/disbf.png"
+//		
+//		System.out.println("a"); 
+//		
+//	}else if(dr_fromOtt.getDr_ottDZ()==('Y')) {
+//	
+//	}else if() {
+//		
+//	}else {
+//	
+//	}
+	
+	
 	//상세 페이지 출력
 	public  DramaDTO selectByDr_id(int dr_id) throws Exception { 
 
@@ -124,6 +259,120 @@ public class DramaDAO {
 
 	}
 
+	//ott별 콘텐츠 출력 1) 넷플릭스 최신순 
+	public  List <DramaDTO> selectByNF_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottNF='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{ List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	//ott별 콘텐츠 출력 2) 디즈니 플러스 최신순 
+	public  List <DramaDTO> selectByDZ_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottDZ='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	//ott별 콘텐츠 출력 3) 웨이브 최신순 
+	public  List <DramaDTO> selectByWV_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottWV='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	//ott별 콘텐츠 출력 4) 왓챠 최신순 
+	public  List <DramaDTO> selectByWC_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottWC='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	
+	
+
 	//아이콘 출력용 메서드( 수정 중)
 	public DramaDTO selectOtt_icon(int dr_id) throws Exception{
 
@@ -144,7 +393,6 @@ public class DramaDAO {
 
 			}return dto;
 		}
-
 
 		}
 	}
@@ -168,25 +416,25 @@ public class DramaDAO {
 		}
 	}
 
-	
-	
+
+
 	//평점드라마 출력
-		public List <DramaDTO> searchByAvg() throws Exception {
+	public List <DramaDTO> searchByAvg() throws Exception {
 
-			String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average   desc)\"평점\" from drama_test) WHERE \"평점\" BETWEEN 1 AND 18";
+		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average  desc)\"평점\" from drama_test) WHERE \"평점\" BETWEEN 1 AND 18";
 
-			try(Connection con = this.getConnection();
-					PreparedStatement pstat = con.prepareStatement(sql);
-					ResultSet rs = pstat.executeQuery();){
-				List <DramaDTO> list = new ArrayList<>();
-				while(rs.next()) {
-					DramaDTO dto = new DramaDTO();
-					dto.setDr_id(rs.getInt("dr_id"));
-					dto.setDr_poster_path(rs.getString("dr_poster_path"));	
-					list.add(dto);
-				}
-				return list;
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			List <DramaDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				DramaDTO dto = new DramaDTO();
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+				list.add(dto);
 			}
+			return list;
 		}
+	}
 }
 
