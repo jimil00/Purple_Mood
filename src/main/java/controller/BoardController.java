@@ -80,9 +80,9 @@ public class BoardController extends HttpServlet {
 				System.out.println("b_title : "+b_title);
 				System.out.println("b_content : "+b_content);
 
-				//				int nextVal = BoardDAO.getInstance().getBoardNextVal();
+								int nextVal = BoardDAO.getInstance().getBoardNextVal();
 
-				BoardDAO.getInstance().insertBoardContents(new BoardDTO(0 ,b_category, b_writer, null, b_title, b_content, 0));
+				BoardDAO.getInstance().insertBoardContents(new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0));
 
 				//				Enumeration<String> e = multi.getFileNames();
 				//

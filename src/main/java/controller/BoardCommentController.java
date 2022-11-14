@@ -28,7 +28,8 @@ public class BoardCommentController extends HttpServlet {
         	String nickname = (String)request.getSession().getAttribute("loginNickname");
             String bcm_content=request.getParameter("bcm_content");
             int b_seq=Integer.parseInt(request.getParameter("b_seq"));
-            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq));
+            String b_title=request.getParameter("b_title");
+            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq,b_title));
 			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 
 

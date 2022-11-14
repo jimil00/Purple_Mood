@@ -22,21 +22,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 * {
 	box-sizing: border-box;
 	font-family: 'DungGeunMo';
 	margin: auto;
 	color: black;
 }
-
 .container {
 	margin: auto;
 	display: flex;
 	overflow: hidden;
 	background-color: #03001e;
 }
-
 .joinForm {
 	background-color: white;
 	float: left;
@@ -47,61 +44,49 @@
 	text-align: center;
 	border-radius: 7px;
 }
-
 input {
 	width: 400px;
 	height: 30px;
 }
-
 #email {
 	width: 200px;
 }
-
 .selectOption {
 	height: 30px;
 	width: 175px;
 	text-align: center;
 }
-
 .requiredField {
 	color: red;
 }
-
 #result, #duplResult {
 	margin: 0;
 }
-
 .id, .logo, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
 	.address1, .address2, .margin_top, #result, #duplResultID,
 	#duplResultNickname {
 	margin: 15px 0;
 }
-
 .logo {
 	font-weight: bold;
 	margin: 40px 0;
 }
-
 .footer {
 	margin-top: 10px;
 	text-align: center;
 }
-
 #duplCheckID, #duplCheckNickname {
 	width: 100px;
 }
-
 .btns {
 	width: 100%;
 	margin-top: 10px;
 	text-align: center;
 }
-
 .btns button {
 	height: 30px;
 	width: 92px;
 }
-
 .footer {
 	margin: auto;
 }

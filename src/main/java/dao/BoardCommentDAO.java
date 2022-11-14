@@ -23,23 +23,24 @@ public class BoardCommentDAO {
 	}
 
 	private BoardCommentDAO() {}
-	
+
 	private Connection getConnection() throws Exception{
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
-	
-	
+
+
 	// 게시글 댓글 입력 (C)
 	public int insertBoardComment(BoardCommentDTO dto) throws Exception {
-		String sql = "insert into board_comment values(board_comment_seq.nextval, ?, sysdate, ?, ?)";
+		String sql = "insert into board_comment values(board_comment_seq.nextval, ?, sysdate, ?, ?,?)";
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
 			pstat.setString(1, dto.getBcm_writer());
 			pstat.setString(2, dto.getBcm_content());
 			pstat.setInt(3, dto.getB_seq());
+			pstat.setString(4, dto.getB_title());
 
 			int result = pstat.executeUpdate();
 
@@ -48,7 +49,7 @@ public class BoardCommentDAO {
 		}
 	}
 
-	
+
 	// 게시글 댓글 출력 (R)
 	public List<BoardCommentDTO> selectBoardComment(int b_seq) throws Exception{
 		String sql = "select * from board_comment where b_seq=? order by bcm_seq";
@@ -75,8 +76,8 @@ public class BoardCommentDAO {
 		}
 
 	}
-	
-	
+
+
 	// 게시글 댓글 수정 (U)
 	public int updateBoardComment(String bcm_content, int bcm_seq) throws Exception{
 		String sql = "update board_comment set bcm_write_date=sysdate, bcm_content=? where bcm_seq=?";
@@ -91,8 +92,8 @@ public class BoardCommentDAO {
 			return result;
 		}
 	}
-	
-	
+
+
 	// 게시글 댓글 삭제 (D)
 	public int deleteBoardComment(int bcm_seq) throws Exception{
 		String sql = "delete from board_comment where bcm_seq = ?";
@@ -104,7 +105,7 @@ public class BoardCommentDAO {
 
 			con.commit();
 			return result;
-			}
+		}
 	}
-	
+
 }

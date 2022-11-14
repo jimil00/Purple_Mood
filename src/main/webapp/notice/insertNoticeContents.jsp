@@ -158,19 +158,19 @@ body {
             //값 가져오기
             var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
             console.log("summernoteContent : " + summernoteContent);
-            var b_category = $("#b_category").val();
-            var b_title = $("#b_title").val();
+            var n_category = $("#n_category").val();
+            var n_title = $("#n_title").val();
 
             $.ajax({
-                url: "/insertBoardContents.board",
+                url: "/insertNoticeContents.notice",
                 type: "post",
                 data: {
-                    "b_category": b_category,
-                    "b_title": b_title,
-                    "b_content": summernoteContent
+                    "n_category": n_category,
+                    "n_title": n_title,
+                    "n_content": summernoteContent
                 },success: function (data) {
-                 var b_seq = data;
-                 location.href="/selectBoardContents.board?b_seq="+b_seq;
+                 var n_seq = data;
+                 location.href="/selectNoticeContents.notice?n_seq="+n_seq;
              }
             });
         };
@@ -180,16 +180,15 @@ body {
 
 <body>
 	<div class="container">
-		<div class="insertBoardContents">
+		<div class="insertNoticeContents">
 			<div class="row header">
 				<div class="category">
 					<div class="headerTitle">카테고리</div>
 					<div>
-						<select id="b_category" name="b_category">
-							<option value="movie">영화</option>
-							<option value="drama">드라마</option>
-							<option value="onAir">실시간</option>
-							<option value="review">후기</option>
+						<select id="n_category" name="n_category">
+							<option value="post">공지</option>
+							<option value="event">이벤트</option>
+							<option value="FAQ">FAQ</option>
 						</select>
 					</div>
 				</div>
