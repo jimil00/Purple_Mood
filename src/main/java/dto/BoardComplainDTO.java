@@ -3,7 +3,7 @@ package dto;
 import java.sql.Timestamp;
 
 public class BoardComplainDTO {
-	
+
 	private int bcp_seq;
 	private String bcp_complainer;
 	private Timestamp bcp_date;
@@ -26,8 +26,8 @@ public class BoardComplainDTO {
 		this.b_title = b_title;
 		this.b_content = b_content;
 	}
-	
-	
+
+
 	public int getBcp_seq() {
 		return bcp_seq;
 	}

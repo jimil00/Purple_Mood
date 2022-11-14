@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import dao.BoardComplainDAO;
 import dto.BoardComplainDTO;
 
-
 @WebServlet("*.boardcomplain")
 public class BoardComplainController extends HttpServlet {
 

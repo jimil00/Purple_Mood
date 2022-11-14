@@ -28,20 +28,24 @@ public class BoardDAO {
 		return ds.getConnection();
 	}
 
+	//editor
+//	public String removeHTML(String str) throws Exception {
+//		String editedText=str.replace("/<br\/>/ig", "\n");
+//	}
 
 	// 게시글 작성 (C)
 	public int insertBoardContents(BoardDTO dto) throws Exception{
 
-		String sql = "insert into board values(board_seq.nextval, ?, ?, sysdate, ?, ?, 0)";
+		String sql = "insert into board values(?, ?, ?, sysdate, ?, ?, 0)";
 		//							파일 기능 추가시 ?
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-//			pstat.setInt(1, dto.getB_seq());
-			pstat.setString(1, dto.getB_category());
-			pstat.setString(2, dto.getB_writer());
-			pstat.setString(3, dto.getB_title());
-			pstat.setString(4, dto.getB_content());
+			pstat.setInt(1, dto.getB_seq());
+			pstat.setString(2, dto.getB_category());
+			pstat.setString(3, dto.getB_writer());
+			pstat.setString(4, dto.getB_title());
+			pstat.setString(5, dto.getB_content());
 
 			int result = pstat.executeUpdate();
 

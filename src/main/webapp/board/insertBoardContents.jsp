@@ -88,6 +88,7 @@
 
         .header {
             font-family: '둥근모꼴체';
+            color: #03001e;
         }
 
         .headerTitle{
@@ -96,64 +97,70 @@
     </style>
 
     <script>
-        $(document).ready(function () {
-            // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
-            $('#summernote').summernote({
-                callbacks: {
-                    onImageUpload: function (image) {
-                        console.log("works")
-                        data = new FormData();
-                        data.append("image", image[0]);
+    $(document).ready(function () {
+        // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
+        $('#summernote').summernote({
+            lang: 'ko-KR',
+            height: 400,
+            placeholder: "내용을 입력해주세요.",
+            fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+            // addDefaultFonts: false,
+            fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+            callbacks: {
+                onImageUpload: function (image) {
+                    console.log("works")
+                    data = new FormData();
+                    data.append("image", image[0]);
 
-                        $.ajax({
-                            data: data,
-                            type: "post",
-                            url: "/imageupload.boardfile",
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            success: function (url) {
-                                console.log(url)
-                                var image = $('<img>').attr('src', url);
-                                $("#summernote").summernote("insertNode", image[0]);
-                            },
-                            error: function (a, b, c) {
-                                console.log(a);
-                                console.log(b);
-                                console.log(c);
-                            }
-                        });
-                    }
+                    $.ajax({
+                        data: data,
+                        type: "post",
+                        url: "/imageupload.boardfile",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (url) {
+                            console.log(url)
+                            var image = $('<img>').attr('src', url);
+                            $("#summernote").summernote("insertNode", image[0]);
+                        },
+                        error: function (a, b, c) {
+                            console.log(a);
+                            console.log(b);
+                            console.log(c);
+                        }
+                    });
                 }
-            });
+            }
+        });
 
-            $('#insertBoardContents').on('click', function () {
-
-                //값 가져오기
-                var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
-                console.log("summernoteContent : " + summernoteContent);
-                var b_category = $("#b_category").val();
-                var b_title = $("#b_title").val();
-
-                $.ajax({
-                    url: "/insertBoardContents.board",
-                    type: "post",
-                    async:false,
-                    data: {
-                        "b_category": b_category,
-                        "b_title": b_title,
-                        "b_content": summernoteContent
-                    },success: function (data) {
-//                         var b_seq = data;
-//                         location.href="/selectBoardContents.board?b_seq="+b_seq;
-						location.href="/boardList.board";
-                    }
-                });
-            });
-
+        $('#insertBoardContents').on('click', function () {
+            saveContent();
 
 
         });
+        function saveContent() {
+
+            //값 가져오기
+            var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
+            console.log("summernoteContent : " + summernoteContent);
+            var b_category = $("#b_category").val();
+            var b_title = $("#b_title").val();
+
+            $.ajax({
+                url: "/insertBoardContents.board",
+                type: "post",
+                data: {
+                    "b_category": b_category,
+                    "b_title": b_title,
+                    "b_content": summernoteContent
+                },success: function (data) {
+                 var b_seq = data;
+                 location.href="/selectBoardContents.board?b_seq="+b_seq;
+             }
+            });
+        };
+    });
     </script>
 </head>
 
@@ -165,7 +172,7 @@
                     <div class="headerTitle">카테고리</div>
                     <div>
                         <select id="b_category" name="b_category">
-                            <option selected value="movie">영화</option>
+                            <option value="movie">영화</option>
                             <option value="drama">드라마</option>
                             <option value="onAir">실시간</option>
                             <option value="review">후기</option>
@@ -174,7 +181,7 @@
                 </div>
                 <div class="title">
                     <div class="headerTitle">제목</div>
-                    <div><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none;">
+                    <div><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none; width:100%;">
                     </div>
                 </div>
             </div>

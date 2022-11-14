@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import common.FileControl;
 import dao.BoardFileDAO;
 import dto.BoardFileDTO;
 
@@ -33,6 +34,7 @@ public class BoardFileController extends HttpServlet {
 		System.out.println(filePath);
 		try {
 			if(uri.equals("/imageupload.boardfile")) {
+
 				int maxSize = 1024*1024*10;
 				String savePath = request.getServletContext().getRealPath("/files");
 				File fileSavePath = new File(savePath);
@@ -119,6 +121,7 @@ public class BoardFileController extends HttpServlet {
 		}catch(Exception e){
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
+
 			}
 		}
 

@@ -97,6 +97,9 @@
 
     <script>
         $(document).ready(function () {
+        	
+        	$("option[value=${dto.b_category}]").attr("selected",true);
+        	
             // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
             $('#summernote').summernote({
                 callbacks: {
@@ -133,8 +136,8 @@
                 //값 가져오기
                 var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
                 console.log("summernoteContent : " + summernoteContent);
-                var b_seq = $("#b_seq").html();
-                var b_category = $("#b_category").html();
+                var b_seq = $("#b_seq").val();
+                var b_category = $("#b_category").val();
                 var b_title = $("#b_title").html();
 
                 $.ajax({
@@ -155,14 +158,6 @@
 
             });
         });
-//     	$(function() {
-
-// 		for(i=0;i<$("option").length;i++){
-// 			if($("option")[i].val()==$("select").val()){
-//                $("option")[i].selected=true;
-//             }
-// 		};
-//     	}); 카테고리 수정 전 값으로 selected 하고 싶은대
     </script>
 </head>
 <body>
@@ -174,7 +169,7 @@
                 <div class="category">
                     <div class="headerTitle">카테고리</div>
                     <div>
-                        <select id="b_category" name="b_category">
+                        <select id="b_category" name="b_category" value="${dto.b_category }">
                             <option value="movie">영화</option>
                             <option value="drama">드라마</option>
                             <option value="onAir">실시간</option>

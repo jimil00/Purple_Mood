@@ -1,126 +1,239 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÄÜÅÙÃ÷ »ó¼¼ ÆäÀÌÁö</title>
-    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ì½˜í…ì¸  ìƒì„¸ í˜ì´ì§€</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <style>
-*{ box-sizing:border-box; color:grey;}
-.container-fluid{background-color:#03001e;}
+* {
+	box-sizing: border-box;
+	color: grey;
+}
+
+.container-fluid {
+	background-color: #03001e;
+}
 /* background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9);  border:1px solid grey;*/
-#logo{background-color: #7303c0,; height:150px;}
-.poster{height:fit-content;}
-.poster>img{max-height: 350px;}
-.ott_icon{max-height: 50px;}
-.ott_icon>img{max-height: 50px;}
-#review_textbox{height:200px;}
-.rv_input{width:90%;}
-#rv_inputbox{width:100%;}
+#logo {
+	background-color: #7303c0,;
+	height: 150px;
+}
+
+.poster {
+	height: fit-content;
+}
+
+.poster>img {
+	max-height: 350px;
+}
+
+.ott_icon {
+	max-height: 50px;
+}
+
+.ott_icon>img {
+	max-height: 50px;
+}
+
+#review_textbox {
+	height: 200px;
+}
+
+.rv_input {
+	width: 90%;
+}
+
+#rv_inputbox {
+	width: 100%;
+}
 </style>
 <body>
-  
-    <div class="container-fluid text-center">
-      <div class="row"> 
-        <div class="col-12" id="logo">
-            <img src="">ÆÛÇÃ¹«µå ·Î°í ÀÌ¹ÌÁö</div>
-        </div>
-           <div class="row">
-            <div class="poster col-sm-3 p-2">
-              <img src="¾ÆÄÉÀÎ_Æ÷½ºÅÍ.jpeg" class="img-fluid" alt="...">
-              <div id="like_icon ">
-              <i class="bi bi-hand-thumbs-up">12,425(js)</i>
-              <!-- <i class="bi bi-hand-thumbs-up-fill">Å¬¸¯ÀÌº¥Æ®</i> -->
-            </div>
-            </div>
-    
-          <div class="col-sm-9">
-        <c:choose>
-          <c:when test="${dr_seq == null and mv_seq != null}"> 
-            <div class="row">
-              <div class="title col-12 col-sm-7">
-                <p class="fs-3">${mv_title}¾ÆÄÉÀÎ(ARCANE)</p>
-              </div>
-              <div class="ott_icon col-12 col-sm-5">
-              <img src="³İÇÃ¸¯½º ÀüÃ¼ ·Î°í_Åõ¸í¹ÙÅÁ.png" class="img-fluid" alt="...">
-              </div>
 
-              <div class="info col-12">
-                <div><span>Àå¸£:</span> <span>${mv_genre} ÆÇÅ¸Áö, ¾×¼Ç, ¾îµåº¥ÃÄ</span></div>
-                <div><span>Ãâ½Ã³âµµ:</span> <span>${mv_date} 2021</span></div> 
-                <div><span>ÆòÁ¡(imdb ±âÁØ):</span> <span>${mv_score} 9.4</span></div>
-              </div>
-              <div class="summary col-12">
-                <br>
-                <p>ÁÙ°Å¸®</p> 
-                 <p>${mv_summary} Áö»ó µµ½Ã ÇÊÆ®¿À¹ö¿Í ±× ¾Æ·¡ÀÇ ÁöÇÏ µµ½Ã ÀÚ¿î. <br>
-                  ±Ø½ÉÇÏ°Ô ¹İ¸ñÇÏ´Â µÎ ½ÖµÕÀÌ µµ½Ã¿¡¼­, µÎ ÀÚ¸Å°¡ ¼­·Î ¹İ´ëÆí¿¡ ¼­¼­ ½Î¿ì±â¿¡ ÀÌ¸¥´Ù. 
-                  <br> ¸¶¹ı ±â¼ú°ú ½Å³äÀÇ Ãæµ¹ ¼Ó¿¡¼­ ÀüÀïÀÌ ½ÃÀÛµÈ´Ù.</p> </div>
-              </div>
-           </c:when>
-           <c:otherwise>
-            <div class="row">
+	<div class="container-fluid text-center">
+		<div class="row">
+			<div class="col-12" id="logo">
+				<img src="">í¼í”Œë¬´ë“œ ë¡œê³  ì´ë¯¸ì§€
+			</div>
+		</div>
 
-              <div class="title col-12 col-sm-7">
-                <p class="fs-3">${dr_title}¾ÆÄÉÀÎ(ARCANE)</p>
-              </div>
-              <div class="ott_icon col-12 col-sm-5">
-              <img src="³İÇÃ¸¯½º ÀüÃ¼ ·Î°í_Åõ¸í¹ÙÅÁ.png" class="img-fluid" alt="...">
-              </div>
+		<c:choose>
+			<c:when test="${not empty mv_detail}">
+				<div class="row">
+					<div class="poster col-sm-3 p-2">
+						<img src="${mv_detail.getMv_poster_path()}" class="img-fluid"
+							alt="...">
+						<div id="like_icon ">
+							<i class="bi bi-hand-thumbs-up">${mv_detail.getMv_like()}</i>
+							<!-- <i class="bi bi-hand-thumbs-up-fill">í´ë¦­ì´ë²¤íŠ¸</i> -->
+						</div>
+					</div>
 
-              <div class="info col-12">
-                <div><span>Àå¸£:</span> <span>${dr_genre} ÆÇÅ¸Áö, ¾×¼Ç, ¾îµåº¥ÃÄ</span></div>
-                <div><span>Ãâ½Ã³âµµ:</span> <span>${dr_date} 2021</span></div> 
-                <div><span>ÆòÁ¡(imdb ±âÁØ):</span> <span>${dr_score} 9.4</span></div>
-              </div>
-              <div class="summary col-12">
-                <br>
-                <p>ÁÙ°Å¸®</p> 
-                 <p>${dr_summary}Áö»ó µµ½Ã ÇÊÆ®¿À¹ö¿Í ±× ¾Æ·¡ÀÇ ÁöÇÏ µµ½Ã ÀÚ¿î. <br>
-                  ±Ø½ÉÇÏ°Ô ¹İ¸ñÇÏ´Â µÎ ½ÖµÕÀÌ µµ½Ã¿¡¼­, µÎ ÀÚ¸Å°¡ ¼­·Î ¹İ´ëÆí¿¡ ¼­¼­ ½Î¿ì±â¿¡ ÀÌ¸¥´Ù. 
-                  <br> ¸¶¹ı ±â¼ú°ú ½Å³äÀÇ Ãæµ¹ ¼Ó¿¡¼­ ÀüÀïÀÌ ½ÃÀÛµÈ´Ù.</p> </div>
-              </div>
-            </div>
-           </c:otherwise>
-            </c:choose>
-            </div>
+					<div class="col-sm-9">
+						<div class="row">
+							<div class="title col-12 col-sm-7">
+								<p class="fs-3">${mv_detail.getMv_title()}</p>
+							</div>
+							<div class="ott_icon col-12 col-sm-5">
+								<img src="$" class="img-fluid" alt="...">
+							</div>
+
+							<div class="info col-12">
+								<div>
+									<span>ì¥ë¥´:</span> <span>${mv_detail.getMv_genre()}</span>
+								</div>
+								<div>
+									<span>ì¶œì‹œë…„ë„:</span> <span>${mv_detail.getMv_release_date()}</span>
+								</div>
+								<div>
+									<span>ìƒì˜ì‹œê°„:</span> <span>${mv_detail.getMv_runtime()}</span>
+								</div>
+								<div>
+									<span>í‰ì :</span> <span>${mv_detail.getMv_vote_average()}</span>
+								</div>
+							</div>
+							<div class="overview col-12">
+								<br>
+								<p>ì¤„ê±°ë¦¬</p>
+								<p>${mv_detail.getMv_overview()}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</c:when>
+			<c:otherwise>
+				<!-- ë“œë¼ë§ˆ ì •ë³´ ì¶œë ¥ -->
+				<div class="row">
+					<div class="poster col-sm-3 p-2">
+						<img src="${dr_detail.getDr_poster_path()}" class="img-fluid"
+							alt="...">
+						<div id="like_icon ">
+							<i class="bi bi-hand-thumbs-up">${mv_detail.getMv_like()}</i>
+							<!-- <i class="bi bi-hand-thumbs-up-fill">í´ë¦­ì´ë²¤íŠ¸</i> -->
+						</div>
+					</div>
+
+					<div class="col-sm-9">
+						<div class="row">
+							<div class="title col-12 col-sm-7">
+								<p class="fs-3">${dr_detail.getDr_title()}</p>
+							</div>
+							<div class="ott_icon col-12 col-sm-5">
+								<img src="C:\Users\SOX\Desktop\ë„·í”Œë¦­ìŠ¤ ì „ì²´ ë¡œê³ _íˆ¬ëª…ë°”íƒ•.png"
+									class="otticon img-fluid" alt="...">
+							</div>
+
+							<div class="info col-12">
+								<div>
+									<span>ì¥ë¥´:</span> <span>${dr_detail.getDr_genre()}</span>
+								</div>
+								<div>
+									<span>ë°©ì˜ë‚ ì§œ:</span> <span>${dr_detail.getDr_first_air_date()}</span>
+								</div>
+								<div>
+									<span>í‰ì :</span> <span>${dr_detail.getDr_vote_average()}</span>
+								</div>
+							</div>
+							<div class="overview col-12">
+								<br>
+								<p>ì¤„ê±°ë¦¬</p>
+								<p>${dr_detail.getDr_overview()}</p>
+							</div>
+						</div>
+			</c:otherwise>
+		</c:choose>
+
+		<!-- </div>
+            </div> -->
        
+       
+ 
           <div class="col-12 review_box">
-            <div id="rv_outputbox">
+          
+           <div id="rv_outputbox">
          <div id="review_textbox">
-          <div>°¨»óÆò Ãâ·ÂµÉ ºÎºĞ</div>
-          <div id="review_text"></div>
-          <div id="review_date">2022³â 9¿ù 25ÀÏ</div> 
-         </div> 
          
+         <c:choose>
+       <c:when test="${not empty rlist}">
+          <div>ê°ìƒí‰ ì¶œë ¥ë  ë¶€ë¶„</div>
+          <div id="review_text"></div>
+          <div id="review_date">2022ë…„ 9ì›” 25ì¼</div> 
+         </div> 
+          </c:when>
+    <c:otherwise>
+    <div>
+    	<p>ì•„ì§ ê°ìƒí‰ì´ ì—†ìŠµë‹ˆë‹¤.</p>
+    	<p>ê°ìƒí‰ì„ ë‹¬ì•„ì£¼ì„¸ìš”!</p>
+    </div>
+    </c:otherwise>
+     </c:choose>
          </div>
-         <div id="rv_inputbox">¿©±â°¡ °¨»óÆò ÀÔ·ÂµÉ ºÎºĞ ¡é
-         <input type="text" class="rv_input" name="rv_input" placeholder="°¨»óÆòÀ» ÀÔ·ÂÇÏ¼¼¿ä">
-         <button id="rv_inputbtn">ÀÔ·Â</button>  
+         
+         <form action="/write.review">
+         <div id="rv_inputbox">ì—¬ê¸°ê°€ ê°ìƒí‰ ì…ë ¥ë  ë¶€ë¶„ â†“
+         <input type="hidden" name="mv_id" value="${mv_list.mv_id}"/>
+         <input type="text" class="rv_input" name="rv_content" placeholder="ê°ìƒí‰ì„ ì…ë ¥í•˜ì„¸ìš”">
+         <button id="rv_inputbtn">ì…ë ¥</button>  
         </div>
+        </form>
+        
          </div>
         </div>
       </div>   
     </div>
+    
+  
+               
       <script>
-        //´ñ±Û ÀÔ·Â½Ã Ãâ·Â
-        $("#rv_inputbtn").on("click", function(){
+        //ëŒ“ê¸€ ì…ë ¥ì‹œ ì¶œë ¥
+          $("#rv_inputbtn").on("click", function(){
           let input=$(".rv_input").val();
             let div=$("<div>");
                 div.append(input);
             $("#review_text").append(div); 
 
         })
-
+        
+      //ott ì•„ì´ì½˜ ì¶œë ¥ ì´ë²¤íŠ¸
+      
+        
+        
+	//ì¢‹ì•„ìš” ë²„íŠ¼ ì´ë²¤íŠ¸(ìš°ì„  ìˆœìœ„ ì¤‘í•˜)
         $("#bi").click(function() {
-          $("#bi").attr
-        })//¼öÁ¤ Áß
+        	
+        	//ì¢‹ì•„ìš” ì˜ˆì‹œ
+        		$.ajax({
+        	      url: '/like.content',
+        	      type: 'POST',
+        	      data: { 'nickname': nickname, 'dr_id': dr_id, 'mv_id':mv_id },
+        	      success: function (data) {
+        	          if (data == 1) {
+        	              $("#bi").attr("src", "ì•„ì´ì½˜");
+        	              location.reload();
+        	          } else {
+        	              $("#bi").attr("src", "ì•„ì´ì½˜");
+        	              location.reload();
+        	          }
+        	      }, error: function () {
+        	          $("#likeimg").attr("src", "/resources/img/ì¢‹ì•„ìš”í›„.png");
+        	          console.log('ì˜¤íƒ€ ì°¾ìœ¼ì„¸ìš”')
+        	      }
+
+        	  });
+       //ìˆ˜ì • ì¤‘
       </script>
 </body>
 </html>

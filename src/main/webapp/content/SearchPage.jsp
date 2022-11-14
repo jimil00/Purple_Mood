@@ -1,99 +1,292 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>°Ë»ö ¸ŞÀÎ ÆäÀÌÁö</title>
- <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  </head>
+<title>ê²€ìƒ‰ ë©”ì¸ í˜ì´ì§€</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
+	rel="stylesheet" />
+</head>
 <style>
-    .container{border:1px solid black; margin:auto;}
-    #header{height:100px;}
-    .list_title{padding:10px;}
-    .searchbar{background-color: grey;}
-    #searchtext{width:100%};
-    #searchbtn{width:100%};
-    #logo{color: white;}
-    div>a>img{width:200px; height:280px;}
-    span>img{width:45px; position:relative; bottom:60%; left:80%;}
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.container-fluid {
+	font-family: 'DungGeunMo';
+	color: grey;
+	background-color: #03001e;
+}
+
+<!--
+background:linear-gradient(#03001e, 50 %, #7303c0, #ec38bc, #fdeff9) ; *
+	/-->
+    #header {
+	height: 100px;
+}
+
+.list_title {
+	padding: 10px;
+}
+
+.searchbar {
+	background-color: grey;
+}
+
+#searchtext {
+	width: 100%
+}
+
+;
+#searchbtn {
+	width: 100%
+}
+
+input [type="submit"] {
+	font-family: FontAwesome;
+	style: none;
+}
+
+;
+#logo {
+	color: white;
+}
+
+.list_title {
+	text-align: left;
+}
+
+ul {
+	overflow: hidden;
+	background-color: #03001e;
+	list-style: none;
+}
+
+ul>li {
+	background-color: #03001e;
+	width: 233px;
+	height: 338px;
+}
+
+li>a>div>img {
+	width: 200px;
+	height: 280px;
+	transition: all 0.2s linear;
+}
+
+img {
+	width: 200px;
+	height: 280px;
+	transition: all 0.2s linear;
+}
+
+.poster {
+	overflow: hidden;
+}
+
+li>a:hover {
+	color: #7303c0
+}
+
+a {
+	text-decoration: none;
+	color: grey
+}
+
+li:hover {
+	color: #7303c0
+}
+
+li:hover img {
+	transform: scale(1.2);
+}
+
+#searchbtn:hover {
+	cursor: pointer;
+}
+
+span>img {
+	width: 45px;
+	position: relative;
+	bottom: 60%;
+	left: 80%; . mv_reaech >img{ width : 200px;
+	height: 280px;
+}
+
+}
+.card {
+	width: 200px;
+	height: 300px;
+	background-color: #03001e;
+}
+
+.poster>img {
+	width: 200px;
+	height: 280px;
+	transition: all 0.2s linear;
+}
+
+.poster>img:hover {
+	transform: scale(1.2);
+}
+
+li:hover {
+	color: #7303c0
+}
+
+li:hover img {
+	transform: scale(1.2);
+}
+
+li>a:hover {
+	color: #7303c0
+}
+
+.card-text:hover {
+	color: #7303c0
+}
 </style>
-<script>
-  $("#searchbtn").on("click",function(){
-  //  jsp ¿¬°áÇØ¼­ µğºñ¿¡¼­ °ª Ãâ·ÂÇØ¾ßÇÔ.
-    let searchrword=$("#searchinput").value;
-  
-  })
-  
-</script>
 <body>
+	<div class="container-fluid text-center">
 
+		<!--formìœ¼ë¡œ ê²€ìƒ‰ê²°ê³¼ ë„˜ê²¨ì£¼ê¸°-->
+		<form action="/search.content">
+			<div class="row" id="header">
+				<div class="col-sm-12">
+					<div id="logo">í¼í”Œë¬´ë“œ(ë¡œê³  ì´ë¯¸ì§€ ì¶”ê°€)</div>
+				</div>
+			</div>
 
-<div class="container-fluid text-center"> 
+			<div class="row" id="searchbar">
+				<div class="col-10 col-md-10 col-lg-11">
+					<input type="text" id="searchtext" name="searchtext"
+						placeholder="ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.">
+				</div>
+				<div class="col-2 col-md-2 col-lg-1">
+					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+				</div>
+		</form>
+		<script>
+		
+		function enterkey() { //ê²€ìƒ‰ì°½ì— ë§ˆìš°ìŠ¤ ì˜¬ë¦° í›„ ì—”í„° ëˆ„ë¥´ë©´ ë°”ë¡œ ë„˜ì–´ê°€ê²Œ ë§Œë“œëŠ” í•¨ìˆ˜
+			if (window.event.keyCode == 13) {
+		location.href="/search.content?searchtext="+$("#searchtext").val(); 
+    			}
+		};
+		
+		$("#searchbtn").on("click", function(){
+			location.href="/search.content?searchtext="+$("#searchtext").val();
+			
+		});
+		
+		</script>
+		<!--ê²€ìƒ‰ ê²°ê³¼ ì¶œë ¥-->
+		<c:choose>
+			<c:when test="${not empty mv_list}">
+				<div class="row" id="movie_bar">
+					<hr>
+					<div class="list_title pt-2">
+						ì˜í™” ê²€ìƒ‰ ê²°ê³¼ <span> ${mv_list.size()}ê°œ</span>
+					</div>
+					<hr>
 
-  <!--formÀ¸·Î °Ë»ö°á°ú ³Ñ°ÜÁÖ±â-->
-  <form action="/search.content">
-        <div class="row" id="header">
-          <div class="col-sm-12">
-                <div id="logo">ÆÛÇÃ¹«µå(·Î°í ÀÌ¹ÌÁö Ãß°¡)</div>
-          </div>
-        </div>
+					<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+						<c:set var="i" value="0" />
+						<c:set var="j" value="1" />
+						<c:forEach var="m" items="${mv_list}">
+							<c:if test="${i%j == 0 }">
+								<div class="col">
+							</c:if>
 
-        <div class="row" id="searchbar">
-          <div class="col-10 col-md-10 col-lg-11">
-            <input type="text" id="searchtext" name="searchtext"  placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
-          </div>
-          <div class="col-2 col-md-2 col-lg-1">
-      		<button class="col" id="searchbtn">°Ë»ö</button>
-          </div>
+							<div class="card">
+								<a href="/detailMv.content?mv_id=${m.mv_id}">
 
-  </form>
-<!--°Ë»ö °á°ú Ãâ·Â-->  
-        <c:choose>
-          <c:when test="${not empty mv_list}">
-                <div class="row" id="movie_bar">
-                <hr> <div class="list_title pt-2">¿µÈ­ ¸®½ºÆ®</div><hr>
-                     <c:forEach var="m" items="${mv_list}">
-                 <div class="row">
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 <div class="mv_search col-6 col-sm-4 col-md-2"><a href="/detail.content?mv_seq="+${m.mv_seq}><img src="${m.mv_img}"><p>${m.mv_title}</p></a></div>
-                 </div>
-               </div>
-           	</c:forEach>
-          </c:when>
-          <c:otherwise>
-           <hr> <div class="list_title pt-2">¿µÈ­ ¸®½ºÆ®</div><hr>
-            <div>°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</div>
-          </c:otherwise>
-        </c:choose>
+									<div class="poster">
+										<img src="${m.mv_poster_path}" class="card-img-top" alt="...">
+									</div>
+									<p class="card-text">${m.mv_title}</p>
+								</a>
+							</div>
+							<c:if test="${i%j == j-1 }">
+					</div>
+					</c:if>
+					<c:set var="i" value="${i+1 }" />
+					</c:forEach>
+				</div>
+	</div>
+	</c:when>
+	<c:otherwise>
+		<hr>
+		<div class="list_title pt-2">ì˜í™”</div>
+		<hr>
+		<div>ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
+	</c:otherwise>
+	</c:choose>
+	</div>
 
-        <c:choose>
-          <c:when test="${not empty dr_list}">  
-            <c:forEach var="d" items="dr_list">
-              <div class="row" id="drama_bar">
-                  <hr> <div class="list_title">µå¶ó¸¶</div><hr>
-                 <div class="row">
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 <div class="col-6 col-sm-4 col-md-2"><img src="">µå¶ó¸¶ Æ÷½ºÅÍ Ãâ·Â ¿¹Á¤</div>
-                 </div>
-               </div>
-            </c:forEach>
-          </c:when>
-          <c:otherwise>
-          <hr> <div class="list_title">µå¶ó¸¶</div><hr>
-            <div>°Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.</div>
-          </c:otherwise>
-        </c:choose>
-</div>
+	<c:choose>
+		<c:when test="${not empty dr_list}">
+			<div class="row" id="drama_bar">
+				<hr>
+				<div class="list_title">
+					ë“œë¼ë§ˆ ê²€ìƒ‰ ê²°ê³¼<span> ${dr_list.size()}ê°œ</span>
+				</div>
+				<hr>
+
+				<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+					<c:set var="i" value="0" />
+					<c:set var="j" value="1" />
+					<c:forEach var="d" items="${dr_list}">
+						<c:if test="${i%j == 0 }">
+							<div class="col">
+						</c:if>
+
+						<div class="card">
+							<a href="/detailDr.content?dr_id=${d.dr_id}">
+
+								<div class="poster">
+									<img src="${d.dr_poster_path}" class="card-img-top" alt="...">
+								</div>
+								<p class="card-text">${d.dr_title}</p>
+							</a>
+						</div>
+						<c:if test="${i%j == j-1 }">
+				</div>
+				</c:if>
+				<c:set var="i" value="${i+1 }" />
+				</c:forEach>
+			</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<hr>
+			<div class="list_title">ë“œë¼ë§ˆ</div>
+			<hr>
+			<div>ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</div>
+		</c:otherwise>
+	</c:choose>
+
+	</div>
+	<script>
+ $(function(){
+	 
+console.log($(".mv_search").length);
+
+	 });
+</script>
 </body>
 </html>
