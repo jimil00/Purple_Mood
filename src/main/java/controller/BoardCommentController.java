@@ -29,9 +29,27 @@ public class BoardCommentController extends HttpServlet {
          if(uri.equals("/insertBoardComment.boardcomment")) {
 
         	String nickname = (String)request.getSession().getAttribute("loginNickname");
-            String bcm_content = request.getParameter("insertBcm_content");
-            int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq));
+            String bcm_content=request.getParameter("bcm_content");
+            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
+            String b_title=request.getParameter("b_title");
+            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq,b_title));
+			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
+
+
+//         }else if(uri.equals("/selectBoardComment.boardcomment")) {
+//
+//            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
+//            BoardCommentDAO dao = BoardCommentDAO.getInstance();
+//            List<BoardCommentDTO>list=dao.selectBoardComment(b_seq);
+//            request.setAttribute("list", list);
+//            request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
+
+         }else if(uri.equals("/updateBoardComment.boardcomment")) {
+
+            String bcm_content = request.getParameter("bcm_content");
+            int bcm_seq = Integer.parseInt(request.getParameter("bcm_seq"));
+            System.out.println(bcm_content +":"+ bcm_seq);
+            int result = BoardCommentDAO.getInstance().updateBoardComment(bcm_content,bcm_seq);
 //			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 
 
