@@ -156,6 +156,7 @@ public class MovieDAO {
 		}
 
 	}
+<<<<<<< HEAD
 
 	//ott별 콘텐츠 출력 1) 넷플릭스 최신순 
 	public  List <MovieDTO> selectByNF_date() throws Exception { 
@@ -310,5 +311,6 @@ public class MovieDAO {
 			return list;
 		}
 	}
+
 
 }
