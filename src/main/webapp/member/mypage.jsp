@@ -228,9 +228,10 @@ button {
 	color: black;
 }
 
-.commentTitle {
-	margin-left: 20px;
+.commentTitle,.commentDate {
 	font-size: smaller;
+	color:gray;
+	margin-left:5px;
 }
 
 /* 작성게시글 */
@@ -313,6 +314,7 @@ button {
 						<a id="mycomment">작성댓글</a>
 					</div>
 					<script>
+					//게시글 출력
                    $("#myboard").on("click",function(){
                        $("#boardbox").empty(); 
                       $.ajax({
@@ -338,7 +340,7 @@ button {
                          }
                       });
                    })
-                   
+                   //댓글출력
                    $("#mycomment").on("click",function(){
                        $("#boardbox").empty(); 
                        $.ajax({
@@ -354,8 +356,8 @@ button {
                               r+="<div class='col-10 fs-5 titleBoard'>작성댓글</div>"
                               for(i=0; i < data.length; i++){
                                  r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row commentBycomment'>";
-                                  r += "<div class='col-12 col-md-10 comment'>"+data[i].bcm_content +"</div>";
-                                  r += "<div class='col-12 col-md-2 commentDate'>"+data[i].bcm_write_date+"</div>";
+                                  r += "<div class='col-12 comment'>"+data[i].bcm_content +"</div>";
+                                  r += "<div class='col-12 commentDate'>"+data[i].bcm_write_date+"</div>";
                                   r += "<div class='col-12 commentTitle'>"+data[i].b_title+"</div>";
                                   r+="</div></a>";
                                 }
