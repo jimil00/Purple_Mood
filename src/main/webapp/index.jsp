@@ -373,23 +373,25 @@ hr.hr {
 			<div class="ottboxsec">
 				<div class="row ">
 					<div class="col-6 col-lg-3">
-						<a href="#" id="disneybtn"> <img src="/img/disbf.png"
+
+						<a href="/disney.content" id="disneybtn"> <img src="/img/disbf.png"
 							id="disney" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="wavvebtn"> <img src="/img/wavbf.png"
+						<a href="/wavve.content" id="wavvebtn"> <img src="/img/wavbf.png"
 							id="wavve" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="netbtn"> <img src="/img/netbf.png"
+						<a href="/netflix.content" id="netbtn"> <img src="/img/netbf.png"
 							id="netflix" class="ottimg">
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="#" id="watchabtn"> <img src="/img/watbf.png"
+						<a href="/watcha.content" id="watchabtn"> <img src="/img/watbf.png"
 							id="watcha" class="ottimg">
+
 						</a>
 					</div>
 					<script>
