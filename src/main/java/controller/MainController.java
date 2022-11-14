@@ -33,7 +33,7 @@ public class MainController extends HttpServlet {
 			request.setAttribute("mv_list_d", mv_list_d);
 			List <MovieDTO> mv_list_a = MovieDAO.getInstance().searchByAvg();
 			request.setAttribute("mv_list_a", mv_list_a);
-			
+
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}catch (Exception e) {
 			e.printStackTrace();

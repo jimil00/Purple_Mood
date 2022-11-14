@@ -69,7 +69,7 @@
 }
 
 .idtext,.pwtext {
-	width: 92.8%;
+	width: 92%;
 	height: 100%;
 	border: none;
 }

@@ -32,11 +32,14 @@ body {
 	overflow: hidden;
 	color: white;
 }
+
 @font-face {
-     font-family: 'DungGeunMo';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 /* div {
 	border: 1px solid black;
@@ -68,7 +71,6 @@ body {
 #menuicon:hover {
 	cursor: pointer;
 }
-
 /* content */
 .bannerslide {
 	position: relatvie;
@@ -78,7 +80,6 @@ body {
 .bannerimg {
 	width: 95%;
 }
-
 /* ott버튼 */
 .ottboxsec {
 	margin-top: 50px;
@@ -97,8 +98,8 @@ body {
 #watchabtn:hover {
 	background: #ff0559;
 	color: #050801;
-	box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559, 0 0
-		200px #ff0559;
+	box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559, 0
+		0200px #ff0559;
 	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
@@ -178,7 +179,8 @@ body {
 	transform: scale(1.01);
 }
 
-#carouselExampleControls, #carouselExampleControls2, #carouselExampleControls3, #carouselExampleControls4 {
+#carouselExampleControls, #carouselExampleControls2,
+	#carouselExampleControls3, #carouselExampleControls4 {
 	padding-top: 20px;
 	padding-bottom: 50px;
 }
@@ -311,18 +313,16 @@ hr.hr {
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
 					onkeyup="enterkey()" name="searchtext" /> <a
-					href="/search.content?searchtext=" +searchtext>
-					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
+					href="/search.content?searchtext=" +searchtext> <i
+					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
-
 	
 			function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
 				if (window.event.keyCode == 13) {
 			location.href="/search.content?searchtext="+$("#searchtext").val(); 
 	    			}
 			}
-
 
 			</script>
 
@@ -376,23 +376,29 @@ hr.hr {
 				<div class="row ">
 					<div class="col-6 col-lg-3">
 
-						<a href="/disney.content" id="disneybtn"> <img src="/img/disbf.png"
-							id="disney" class="ottimg">
+						<a href="/disney.content" id="disneybtn"> 
+						<img src="/img/disbf.png">	
+						</a>
+
+					</div>
+					<div class="col-6 col-lg-3">
+
+						<a href="/wavve.content" id="wavvebtn"> 
+						<img src="/img/wavbf.png">
+
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="/wavve.content" id="wavvebtn"> <img src="/img/wavbf.png"
-							id="wavve" class="ottimg">
+
+						<a href="/netflix.content" id="netbtn"> 
+						<img src="/img/netbf.png">
+
 						</a>
 					</div>
 					<div class="col-6 col-lg-3">
-						<a href="/netflix.content" id="netbtn"> <img src="/img/netbf.png"
-							id="netflix" class="ottimg">
-						</a>
-					</div>
-					<div class="col-6 col-lg-3">
-						<a href="/watcha.content" id="watchabtn"> <img src="/img/watbf.png"
-							id="watcha" class="ottimg">
+
+						<a href="/watcha.content" id="watchabtn"> 
+						<img src="/img/watbf.png">
 						</a>
 					</div>
 					<script>
@@ -430,22 +436,22 @@ hr.hr {
 						data-bs-ride="false">
 						<div class="carousel-inner">
 							<div class="carousel-item imgbox active">
-										<c:forEach var="i" items="${mv_list_a }" begin="0" end="5"
-											step="1">
-											<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${mv_list_a }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${mv_list_a }" begin="6" end="11"
-											step="1">
-											<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${mv_list_a }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${mv_list_a}" begin="12" end="17"
-											step="1">
-											<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${mv_list_a}" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 						</div>
 						<button class="carousel-control-prev postLRbtn" type="button"
@@ -468,22 +474,22 @@ hr.hr {
 						data-bs-ride="false">
 						<div class="carousel-inner">
 							<div class="carousel-item imgbox active">
-										<c:forEach var="i" items="${mv_list_d }" begin="0" end="5"
-											step="1">
-											<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${mv_list_d }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${mv_list_d }" begin="6" end="11"
-											step="1">
-											<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${mv_list_d }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${mv_list_d }" begin="12" end="17"
-											step="1">
-											<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${mv_list_d }" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 						</div>
 						<button class="carousel-control-prev postLRbtn" type="button"
@@ -506,22 +512,22 @@ hr.hr {
 						data-bs-ride="false">
 						<div class="carousel-inner">
 							<div class="carousel-item imgbox active">
-										<c:forEach var="i" items="${dr_list_a }" begin="0" end="5"
-											step="1">
-											<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${dr_list_a }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${dr_list_a }" begin="6" end="11"
-											step="1">
-											<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${dr_list_a }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${dr_list_a }" begin="12" end="17"
-											step="1">
-											<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${dr_list_a }" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 						</div>
 						<button class="carousel-control-prev postLRbtn" type="button"
@@ -544,22 +550,22 @@ hr.hr {
 						data-bs-ride="false">
 						<div class="carousel-inner">
 							<div class="carousel-item imgbox active">
-										<c:forEach var="i" items="${dr_list_d }" begin="0" end="5"
-											step="1">
-											<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${dr_list_d }" begin="0" end="5"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${dr_list_d }" begin="6" end="11"
-											step="1">
-											<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${dr_list_d }" begin="6" end="11"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
-										<c:forEach var="i" items="${dr_list_d }" begin="12" end="17"
-											step="1">
-											<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
-										</c:forEach>
+								<c:forEach var="i" items="${dr_list_d }" begin="12" end="17"
+									step="1">
+									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+								</c:forEach>
 							</div>
 						</div>
 						<button class="carousel-control-prev postLRbtn" type="button"
@@ -579,13 +585,8 @@ hr.hr {
 		<div class="row footer">
 			<hr class="hr">
 			<div class="col-12 footerAtag">
-				<a href="#">회사소개</a>
-				&nbsp&nbsp
-				<a href="#">고객센터</a>
-				&nbsp&nbsp
-				<a href="#">이용약관</a>
-				&nbsp&nbsp
-				<a href="#">개인정보 처리방침</a>
+				<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
+					href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
 			</div>
 			<div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
 			<div class="col-12 footerImpormation">이메일 주소 :
@@ -625,18 +626,16 @@ hr.hr {
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 
-						<a href="/mypageMemInfo.member">
+						<a href="/member/mypage.jsp">
 							<button>마이페이지</button>
 						</a>
 
 					</div>
 					<a href="/boardList.board">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a>
-					<a href="#">
+					</a> <a href="#">
 						<div class="menulink">자유게시판</div>
-					</a>
-					<a href="#">
+					</a> <a href="#">
 						<div class="menulink">공지사항</div>
 					</a>
 					<button type="button" id="logoutBtn">로그아웃</button>
@@ -678,11 +677,9 @@ hr.hr {
 					</div>
 					<a href="#">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a>
-					<a href="#">
+					</a> <a href="#">
 						<div class="menulink">자유게시판</div>
-					</a>
-					<a href="#">
+					</a> <a href="#">
 						<div class="menulink">공지사항</div>
 					</a>
 				</div>

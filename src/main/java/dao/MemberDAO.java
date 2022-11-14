@@ -118,10 +118,11 @@ public class MemberDAO {
 				dto.setPw(rs.getString("pw"));
 				dto.setName(rs.getString("name"));
 				dto.setPhone(rs.getString("phone"));
-	            String totalEmail=rs.getString("email");
-	            int indexOfEmail=totalEmail.indexOf("@");
-	            String email=totalEmail.substring(0,indexOfEmail);
-	            dto.setEmail(email);
+				String totalEmail=rs.getString("email");
+				int indexOfEmail=totalEmail.indexOf("@");
+				String email=totalEmail.substring(0,indexOfEmail);
+				System.out.println(email);
+				dto.setEmail(email);
 				dto.setPostcode(rs.getString("postcode"));
 				dto.setAddress1(rs.getString("address1"));
 				dto.setAddress2(rs.getString("address2"));
