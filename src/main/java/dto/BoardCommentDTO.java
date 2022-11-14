@@ -10,19 +10,21 @@ public class BoardCommentDTO {
 	private Timestamp bcm_write_date;
 	private String bcm_content;
 	private int b_seq;
+	private String b_title;
 
 
 	public BoardCommentDTO() {
 		super();
 	}
-	public BoardCommentDTO(int bcm_seq, String bcm_writer, Timestamp bcm_write_date, String bcm_content, int b_seq) {
+
+	public BoardCommentDTO(int bcm_seq, String bcm_writer, Timestamp bcm_write_date, String bcm_content, int b_seq, String b_title) {
 		this.bcm_seq = bcm_seq;
 		this.bcm_writer = bcm_writer;
 		this.bcm_write_date = bcm_write_date;
 		this.bcm_content = bcm_content;
 		this.b_seq = b_seq;
+		this.b_title=b_title;
 	}
-
 
 	public int getBcm_seq() {
 		return bcm_seq;
@@ -36,6 +38,13 @@ public class BoardCommentDTO {
 	public void setBcm_writer(String bcm_writer) {
 		this.bcm_writer = bcm_writer;
 	}
+	public String getB_title() {
+		return b_title;
+	}
+	public void setB_title(String b_title) {
+		this.b_title = b_title;
+	}
+
 	public String getBcm_write_date() {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
 		String sdf1_b_write_date = sdf1.format(this.bcm_write_date);

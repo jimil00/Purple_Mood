@@ -167,7 +167,7 @@
                                     <a href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><button type="button"
                                             class="btn" id="deleteBoardContents"
                                             name="deleteBoardContents">삭제하기</button></a> &nbsp
-                                    <a href="/boardList.board"><button type="button" id="toList"
+                                    <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList"
                                             name="toList">목록으로</button></a>
                                 </div>
                             </c:when>
@@ -268,12 +268,14 @@
                     $("#insertBoardComment").on("click", function(){
                     	var bcm_content = $("#insertBcm_content").val();
                         var b_seq = $("#b_seq").val();
+                        var b_title = $("#b_title").html();
                         $.ajax({
                             url: "/insertBoardComment.boardcomment",
                             type: "post",
                             data: {
                                 "bcm_content": bcm_content,
-                                "b_seq" : b_seq
+                                "b_seq" : b_seq,
+                                "b_title": b_title
                             }
                          })
                         location.href="/selectBoardContents.board?b_seq="+b_seq;

@@ -13,7 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class DramaWavve {
+public class DramaWatcha_4 {
 	public static void main(String[] args) {
 
 		// 파싱한 데이터를 저장할 변수 (첫번째 파싱)
@@ -23,7 +23,7 @@ public class DramaWavve {
 
 			for(int pageCount=1; pageCount<=3; pageCount++) {
 
-				URL firstURL = new URL("https://api.themoviedb.org/3/discover/tv?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&sort_by=popularity.desc&page="+pageCount+"&include_null_first_air_dates=false&with_watch_providers=356&watch_region=KR&with_watch_monetization_types=flatrate");
+				URL firstURL = new URL("https://api.themoviedb.org/3/discover/tv?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&sort_by=popularity.desc&page="+pageCount+"&include_null_first_air_dates=false&with_watch_providers=97&watch_region=KR&with_watch_monetization_types=flatrate");
 				BufferedReader bf1;
 				bf1 = new BufferedReader(new InputStreamReader(firstURL.openStream(), "UTF-8"));
 				firstParsing = bf1.readLine();
@@ -63,8 +63,8 @@ public class DramaWavve {
 				// 파싱한 데이터를 저장할 변수 (두번째 파싱)
 				String secondParsing = "";
 				
-				Thread.sleep(5000); // 시간 느리게
-
+				Thread.sleep(3000); // 시간 느리게
+				
 				// 추출한 데이터를 저장할 배열 생성
 				List <String> genre= new ArrayList<>(); 
 
@@ -92,7 +92,7 @@ public class DramaWavve {
 				String dbPW = "pm_test";
 				Connection con = DriverManager.getConnection(dbURL, dbID, dbPW);
 
-				String sql = "MERGE INTO drama_test USING DUAL ON (dr_id = ?) WHEN MATCHED THEN UPDATE SET dr_ottWV = 'Y' WHEN NOT MATCHED THEN INSERT (dr_id,dr_title,dr_genre,dr_first_air_date,dr_vote_average,dr_ottNF,dr_ottWV,dr_ottDZ,dr_ottWC,dr_like,dr_poster_path,dr_overview) VALUES (?,?,?,?,?,DEFAULT,'Y',DEFAULT,DEFAULT,DEFAULT,?,?)";
+				String sql = "MERGE INTO drama_test USING DUAL ON (dr_id = ?) WHEN MATCHED THEN UPDATE SET dr_ottWC = 'Y' WHEN NOT MATCHED THEN INSERT (dr_id,dr_title,dr_genre,dr_first_air_date,dr_vote_average,dr_ottNF,dr_ottWV,dr_ottDZ,dr_ottWC,dr_like,dr_poster_path,dr_overview) VALUES (?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,'Y',DEFAULT,?,?)";
 
 				for (int k=0 ; k<resultsList.size(); k++) {
 					PreparedStatement pstat = con.prepareStatement(sql);
@@ -121,5 +121,4 @@ public class DramaWavve {
 			e.printStackTrace();
 		}
 	}
-
 }

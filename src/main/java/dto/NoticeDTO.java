@@ -1,9 +1,10 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class NoticeDTO {
-	
+
 	private int n_seq;
 	private String n_category;
 	private String n_writer;
@@ -11,8 +12,8 @@ public class NoticeDTO {
 	private String n_title;
 	private String n_content;
 	private int n_view_count;
-	
-	
+
+
 	public NoticeDTO() {
 		super();
 	}
@@ -26,8 +27,7 @@ public class NoticeDTO {
 		this.n_content = n_content;
 		this.n_view_count = n_view_count;
 	}
-	
-	
+
 	public int getN_seq() {
 		return n_seq;
 	}
@@ -46,8 +46,17 @@ public class NoticeDTO {
 	public void setN_writer(String n_writer) {
 		this.n_writer = n_writer;
 	}
-	public Timestamp getN_write_date() {
-		return n_write_date;
+	public String  getN_write_date()  {
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
+		String sdf1_b_write_date = sdf1.format(this.n_write_date);
+		String sdf1_currentTime = sdf1.format(System.currentTimeMillis());
+		if(sdf1_b_write_date.equals(sdf1_currentTime)) {
+			SimpleDateFormat sdf2 = new SimpleDateFormat("HH시 mm분");
+			return sdf2.format(this.n_write_date);
+		}else {
+			SimpleDateFormat sdf3 = new SimpleDateFormat("MM월 dd일");
+			return sdf3.format(this.n_write_date);
+		}		
 	}
 	public void setN_write_date(Timestamp n_write_date) {
 		this.n_write_date = n_write_date;
@@ -70,5 +79,5 @@ public class NoticeDTO {
 	public void setN_view_count(int n_view_count) {
 		this.n_view_count = n_view_count;
 	}
-	
+
 }

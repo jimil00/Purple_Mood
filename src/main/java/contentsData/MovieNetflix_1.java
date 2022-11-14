@@ -13,7 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class DramaWatcha {
+public class MovieNetflix_1 {
 	public static void main(String[] args) {
 
 		// 파싱한 데이터를 저장할 변수 (첫번째 파싱)
@@ -23,7 +23,7 @@ public class DramaWatcha {
 
 			for(int pageCount=1; pageCount<=3; pageCount++) {
 
-				URL firstURL = new URL("https://api.themoviedb.org/3/discover/tv?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&sort_by=popularity.desc&page="+pageCount+"&include_null_first_air_dates=false&with_watch_providers=97&watch_region=KR&with_watch_monetization_types=flatrate");
+				URL firstURL = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&region=KR&sort_by=popularity.desc&include_adult=ture&include_video=false&page="+pageCount+"&with_watch_providers=8&watch_region=KR&with_watch_monetization_types=flatrate");
 				BufferedReader bf1;
 				bf1 = new BufferedReader(new InputStreamReader(firstURL.openStream(), "UTF-8"));
 				firstParsing = bf1.readLine();
@@ -33,12 +33,12 @@ public class DramaWatcha {
 				System.out.println(firstAllData); // 첫번째 파싱 전체 데이터 출력
 
 				JSONArray resultsList = (JSONArray) firstAllData.get("results"); // 첫번째 파싱 전체 데이터의 results 배열 추출
-				System.out.println(resultsList.size()); // 첫번째 파싱 전체 데이터의 results 배열의 size 출력
+				System.out.println(resultsList.size()); // results 배열의 size 출력
 
 				// 추출한 데이터를 저장할 배열 생성
 				ArrayList <String> id = new ArrayList<>(); 
 				ArrayList <String> title = new ArrayList<>(); 
-				ArrayList <String> first_air_date = new ArrayList<>(); 
+				ArrayList <String> release_date = new ArrayList<>(); 
 				ArrayList <String> vote_average = new ArrayList<>(); 
 				ArrayList <String> poster_path = new ArrayList<>(); 
 				ArrayList <String> overview = new ArrayList<>(); 
@@ -49,28 +49,26 @@ public class DramaWatcha {
 					JSONObject contents = (JSONObject) resultsList.get(i);
 
 					id.add(contents.get("id").toString());
-					title.add(contents.get("name").toString());
-					first_air_date.add(contents.get("first_air_date").toString());
+					title.add(contents.get("title").toString());
+					release_date.add(contents.get("release_date").toString());
 					vote_average.add(contents.get("vote_average").toString());
 					poster_path.add("https://www.themoviedb.org/t/p/original" + contents.get("poster_path").toString());
 					overview.add(contents.get("overview").toString());
 
 				}
 				System.out.println(id);
-
 				/* 장르, 런타임 추출 */
 
 				// 파싱한 데이터를 저장할 변수 (두번째 파싱)
 				String secondParsing = "";
-				
-				Thread.sleep(3000); // 시간 느리게
-				
+
 				// 추출한 데이터를 저장할 배열 생성
 				List <String> genre= new ArrayList<>(); 
+				List <Object> runtime= new ArrayList<>(); 
 
 				for(int j=0; j<resultsList.size(); j++) {
 
-					URL secondURL = new URL("https://api.themoviedb.org/3/tv/"+id.get(j)+"?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko");
+					URL secondURL = new URL("https://api.themoviedb.org/3/movie/"+id.get(j)+"?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko");
 					BufferedReader bf2;
 					bf2 = new BufferedReader(new InputStreamReader(secondURL.openStream(), "UTF-8"));
 					secondParsing = bf2.readLine();
@@ -82,7 +80,12 @@ public class DramaWatcha {
 					JSONObject genres = (JSONObject) genresList.get(0); // genres 배열 중 제일 첫번째 값만 담기
 					genre.add(genres.get("name").toString()); // 제일 첫번째 값의 name값만 담기
 
+					Object runtimeObject = secondAllData.get("runtime"); // 두번째 파싱 전체 데이터의 runtime 객체 추출
+					runtime.add(runtimeObject); // 추출한 runtime 데이터 배열에 담기
 				}
+
+				//			System.out.println(runtime);
+				//			System.out.println(runtime.get(0));
 
 				Class.forName("oracle.jdbc.driver.OracleDriver"); // 등록 공식
 
@@ -92,16 +95,16 @@ public class DramaWatcha {
 				String dbPW = "pm_test";
 				Connection con = DriverManager.getConnection(dbURL, dbID, dbPW);
 
-				String sql = "MERGE INTO drama_test USING DUAL ON (dr_id = ?) WHEN MATCHED THEN UPDATE SET dr_ottWC = 'Y' WHEN NOT MATCHED THEN INSERT (dr_id,dr_title,dr_genre,dr_first_air_date,dr_vote_average,dr_ottNF,dr_ottWV,dr_ottDZ,dr_ottWC,dr_like,dr_poster_path,dr_overview) VALUES (?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,'Y',DEFAULT,?,?)";
+				String sql = "insert into movie_test values(?,?,?,?,?,?,'Y',DEFAULT,DEFAULT,DEFAULT,DEFAULT,?,?)";
 
 				for (int k=0 ; k<resultsList.size(); k++) {
 					PreparedStatement pstat = con.prepareStatement(sql);
 					pstat.setString(1, id.get(k));
-					pstat.setString(2, id.get(k));
-					pstat.setString(3, title.get(k));
-					pstat.setString(4, genre.get(k));
-					pstat.setString(5, first_air_date.get(k));
-					pstat.setString(6, vote_average.get(k));
+					pstat.setString(2, title.get(k));
+					pstat.setString(3, genre.get(k));
+					pstat.setString(4, release_date.get(k));
+					pstat.setString(5, vote_average.get(k));
+					pstat.setObject(6, runtime.get(k) + "분");
 					pstat.setString(7, poster_path.get(k));
 					pstat.setString(8, overview.get(k));
 
@@ -116,7 +119,9 @@ public class DramaWatcha {
 				}
 				con.commit();
 				con.close();
+
 			}
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
