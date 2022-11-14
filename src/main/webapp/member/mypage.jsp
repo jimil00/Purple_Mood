@@ -27,9 +27,9 @@
 	box-sizing: border-box;
 }
 
-div {
+/*  div {
 	border: 1px solid black;
-}
+} */
 
 body {
 	overflow: hidden;
@@ -217,37 +217,20 @@ button {
 }
 
 /* 작성댓들 */
-.titleComment {
-	margin-bottom: 30px;
-	padding-left: 10px;
-	font-family: 'DungGeunMo';
-}
-
-.commentbox {
-	position: relative;
-	left: 3%;
-}
 
 .commentBycomment {
-	margin-bottom: 10px;
+	padding-top: 8px;
+	margin-left: 20px;
+	border-bottom: 1px solid gray;
+	padding-bottom: 15px;
 }
-
-.comment {
-	padding-top: 2px;
-	color: black;
-}
-
-.commentDate {
+.commentBycomment>div {
 	color: black;
 }
 
 .commentTitle {
 	margin-left: 20px;
-	padding-top: 8px;
-	padding-bottom: 15px;
 	font-size: smaller;
-	color: gray;
-	border-bottom: 1px solid gray;
 }
 
 /* 작성게시글 */
@@ -255,6 +238,7 @@ button {
 	margin-bottom: 30px;
 	padding-left: 10px;
 	font-family: 'DungGeunMo';
+	color:black;
 }
 
 .boardByboard {
@@ -333,7 +317,6 @@ button {
                        $("#boardbox").empty(); 
                       $.ajax({
                          url : "/selectMypageBoard.board",
-                         data : {id:"비밀정보"},
                        dataType: "json"
                       }).done(function(data){
                          console.log("receive값은:"  + data);
@@ -342,12 +325,13 @@ button {
                          if(data!=null){
                             <!--리스트불러오기-->
                             let r = '';   
+                            r+="<div class='col-10 fs-5 titleBoard'>작성게시글</div>"
                             for(i=0; i < data.length; i++){
-                               r += "<a href='#'><div class='row boardByboard'>";
-                                r += "<div class='col-8 col-md-2 boardseq'>"+data[i].b_seq +"</div>";
-                                r += "<div class='col-4 col-md-6 boardOnTitle'>"+data[i].b_title+"</div>";
-                                r += "<div class='col-11 col-md-2  boardDate'>"+data[i].b_write_date+"</div>";
-                                r += "<div class='col-11 col-md-2  boardView'>"+data[i].b_view_count+"</div>";
+                               r += "<a href='selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row boardByboard'>";
+                                r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>"+data[i].b_seq +"</div>";
+                                r += "<div class='col-12 col-md-6 boardOnTitle'>"+data[i].b_title+"</div>";
+                                r += "<div class='col-8 col-md-3  boardDate'>"+data[i].b_write_date+"</div>";
+                                r += "<div class='col-4 col-md-1  boardView'>"+data[i].b_view_count+"</div>";
                                 r+="</div></a>";
                             }
                             $("#boardbox").append(r);
@@ -359,7 +343,6 @@ button {
                        $("#boardbox").empty(); 
                        $.ajax({
                            url : "/selectMypageComment.boardcomment",
-                           data : {id:"비밀정보"},
                          dataType: "json"
                         }).done(function(data){
                            console.log("receive값은:"  + data);
@@ -368,13 +351,14 @@ button {
                            if(data!=null){
                               <!--리스트불러오기-->
                               let r = '';   
+                              r+="<div class='col-10 fs-5 titleBoard'>작성댓글</div>"
                               for(i=0; i < data.length; i++){
-                                 r += "<a href='#'><div class='row commentBycomment'>";
-                                  r += "<div class='col-8 col-md-10 comment'>"+data[i].bcm_content +"</div>";
-                                  r += "<div class='col-4 col-md-2 commentDate'>"+data[i].bcm_write_date+"</div>";
-                                  r += "<div class='col-11 commentTitle'>"+data[i].b_title+"</div>";
+                                 r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row commentBycomment'>";
+                                  r += "<div class='col-12 col-md-10 comment'>"+data[i].bcm_content +"</div>";
+                                  r += "<div class='col-12 col-md-2 commentDate'>"+data[i].bcm_write_date+"</div>";
+                                  r += "<div class='col-12 commentTitle'>"+data[i].b_title+"</div>";
                                   r+="</div></a>";
-                              }
+                                }
                               $("#boardbox").append(r);
                            }
                         });
@@ -383,89 +367,11 @@ button {
 				</div>
 			</div>
 			<div class="col-12 col-md-8 col-lg-9 col-xl-10">
-				<!-- 작성댓글 -->
-				<!-- <div class="row">
-                    <div class="col-10 fs-5 titleComment">작성댓글</div>
-                    <div class="col-10 commentbox">
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                        <a href="#"><div class="row commentBycomment">
-                            <div class="col-8 col-md-10 comment">나두</div>
-                            <div class="col-4 col-md-2 commentDate">2022-11-11</div>
-                            <div class="col-11 commentTitle" >집...가고싶다</div>
-                        </div></a>
-                    </div>
-                </div> -->
-
-
 				<!-- 작성 게시글 -->
 				<div class="row">
-					<div class="col-10 fs-5 titleBoard">작성게시글</div>
+					<!-- <div class="col-10 fs-5 titleBoard">작성게시글</div> -->
 					<div class="col-10 boardbox" id="boardbox">
-						<!-- <a href="#"><div class="row boardByboard">
-                            <div class="col-8 col-md-2 boardseq">글번호</div>
-                            <div class="col-4 col-md-6 boardOnTitle">제목</div>
-                            <div class="col-11 col-md-2  boardDate" >2022-11-11</div>
-                            <div class="col-11 col-md-2  boardView" >조회수</div>
-                        </div></a>
-                        <a href="#"><div class="row boardByboard">
-                            <div class="col-8 col-md-2 boardseq">글번호</div>
-                            <div class="col-4 col-md-6 boardOnTitle">제목</div>
-                            <div class="col-11 col-md-2  boardDate" >2022-11-11</div>
-                            <div class="col-11 col-md-2  boardView" >조회수</div>
-                        </div></a>
-                        <a href="#"><div class="row boardByboard">
-                            <div class="col-8 col-md-2 boardseq">글번호</div>
-                            <div class="col-4 col-md-6 boardOnTitle">제목</div>
-                            <div class="col-11 col-md-2  boardDate" >2022-11-11</div>
-                            <div class="col-11 col-md-2  boardView" >조회수</div>
-                        </div></a>
-                        <a href="#"><div class="row boardByboard">
-                            <div class="col-8 col-md-2 boardseq">글번호</div>
-                            <div class="col-4 col-md-6 boardOnTitle">제목</div>
-                            <div class="col-11 col-md-2  boardDate" >2022-11-11</div>
-                            <div class="col-11 col-md-2  boardView" >조회수</div>
-                        </div></a>
-                        <a href="#"><div class="row boardByboard">
-                            <div class="col-8 col-md-2 boardseq">3361</div>
-                            <div class="col-4 col-md-6 boardOnTitle">제목</div>
-                            <div class="col-11 col-md-2  boardDate" >2022-11-11</div>
-                            <div class="col-11 col-md-2  boardView" >조회수</div>
-                        </div></a>
-                        <a href="#"><div class="row boardByboard">
-                            <div class="col-8 col-md-2 boardseq">글번호</div>
-                            <div class="col-4 col-md-6 boardOnTitle">제목</div>
-                            <div class="col-11 col-md-2  boardDate" >2022-11-11</div>
-                            <div class="col-11 col-md-2  boardView" >조회수</div>
-                        </div></a> -->
+					
 
 					</div>
 				</div>

@@ -611,9 +611,6 @@ hr.hr {
 				</div>
 				<div class="offcanvas-body">
 					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
-					<button type="button" id="profileBtn">
-						<i class="fa-solid fa-pen"></i>
-					</button>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 

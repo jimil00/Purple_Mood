@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dao.BoardCommentDAO;
-import dao.BoardDAO;
 import dto.BoardCommentDTO;
+
 
 
 @WebServlet("*.boardcomment")
@@ -64,7 +64,6 @@ public class BoardCommentController extends HttpServlet {
 				Gson gsonStr   = new Gson();
 				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
 				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(nickname);
-				List<String> b_seq= BoardDAO.getInstance().selectBoardContents(bcm_list.get);
 				String strJsonList = gsonStr.toJson(bcm_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
