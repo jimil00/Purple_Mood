@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.BoardCommentDTO;
+import dto.BoardDTO;
 
 public class BoardCommentDAO {
 	private static BoardCommentDAO instance;
@@ -105,6 +106,29 @@ public class BoardCommentDAO {
 
 			con.commit();
 			return result;
+		}
+	}
+
+	//마이페이지 작성 출력
+	public List <BoardCommentDTO> searchByNickname(String nickname) throws Exception{
+		String sql="select * from board_comment where bcm_writer=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);     
+				){
+			pstat.setString(1, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				List<BoardCommentDTO> list=new ArrayList<>();
+				while(rs.next()) {
+					BoardCommentDTO dto=new BoardCommentDTO();
+					dto.setBcm_seq(rs.getInt("bcm_seq"));
+					dto.setBcm_writer(rs.getString("bcm_writer"));
+					dto.setBcm_write_date(rs.getTimestamp("bcm_write_date"));
+					dto.setBcm_content(rs.getString("bcm_content"));
+					dto.setB_seq(rs.getInt("b_seq"));
+					list.add(dto);    
+				}
+				return list;
+			}
 		}
 	}
 

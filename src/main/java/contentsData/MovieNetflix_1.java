@@ -13,8 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-
-public class MovieWavve {
+public class MovieNetflix_1 {
 	public static void main(String[] args) {
 
 		// 파싱한 데이터를 저장할 변수 (첫번째 파싱)
@@ -24,7 +23,7 @@ public class MovieWavve {
 
 			for(int pageCount=1; pageCount<=3; pageCount++) {
 
-				URL firstURL = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&region=KR&sort_by=popularity.desc&include_adult=ture&include_video=false&page="+pageCount+"&with_watch_providers=356&watch_region=KR&with_watch_monetization_types=flatrate");
+				URL firstURL = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&region=KR&sort_by=popularity.desc&include_adult=ture&include_video=false&page="+pageCount+"&with_watch_providers=8&watch_region=KR&with_watch_monetization_types=flatrate");
 				BufferedReader bf1;
 				bf1 = new BufferedReader(new InputStreamReader(firstURL.openStream(), "UTF-8"));
 				firstParsing = bf1.readLine();
@@ -34,7 +33,7 @@ public class MovieWavve {
 				System.out.println(firstAllData); // 첫번째 파싱 전체 데이터 출력
 
 				JSONArray resultsList = (JSONArray) firstAllData.get("results"); // 첫번째 파싱 전체 데이터의 results 배열 추출
-				System.out.println(resultsList.size()); // 첫번째 파싱 전체 데이터의 results 배열의 size 확인
+				System.out.println(resultsList.size()); // results 배열의 size 출력
 
 				// 추출한 데이터를 저장할 배열 생성
 				ArrayList <String> id = new ArrayList<>(); 
@@ -58,7 +57,6 @@ public class MovieWavve {
 
 				}
 				System.out.println(id);
-
 				/* 장르, 런타임 추출 */
 
 				// 파싱한 데이터를 저장할 변수 (두번째 파싱)
@@ -97,19 +95,18 @@ public class MovieWavve {
 				String dbPW = "pm_test";
 				Connection con = DriverManager.getConnection(dbURL, dbID, dbPW);
 
-				String sql = "MERGE INTO movie_test USING DUAL ON (mv_id = ?) WHEN MATCHED THEN UPDATE SET mv_ottWV = 'Y' WHEN NOT MATCHED THEN INSERT (mv_id,mv_title,mv_genre,mv_release_date,mv_vote_average,mv_runtime,mv_ottNF,mv_ottWV,mv_ottDZ,mv_ottWC,mv_like,mv_poster_path,mv_overview) VALUES (?,?,?,?,?,?,DEFAULT,'Y',DEFAULT,DEFAULT,DEFAULT,?,?)";
+				String sql = "insert into movie_test values(?,?,?,?,?,?,'Y',DEFAULT,DEFAULT,DEFAULT,DEFAULT,?,?)";
 
 				for (int k=0 ; k<resultsList.size(); k++) {
 					PreparedStatement pstat = con.prepareStatement(sql);
 					pstat.setString(1, id.get(k));
-					pstat.setString(2, id.get(k));
-					pstat.setString(3, title.get(k));
-					pstat.setString(4, genre.get(k));
-					pstat.setString(5, release_date.get(k));
-					pstat.setString(6, vote_average.get(k));
-					pstat.setObject(7, runtime.get(k) + "분");
-					pstat.setString(8, poster_path.get(k));
-					pstat.setString(9, overview.get(k));
+					pstat.setString(2, title.get(k));
+					pstat.setString(3, genre.get(k));
+					pstat.setString(4, release_date.get(k));
+					pstat.setString(5, vote_average.get(k));
+					pstat.setObject(6, runtime.get(k) + "분");
+					pstat.setString(7, poster_path.get(k));
+					pstat.setString(8, overview.get(k));
 
 					int result = pstat.executeUpdate();
 

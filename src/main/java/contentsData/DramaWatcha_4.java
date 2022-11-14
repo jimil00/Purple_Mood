@@ -13,7 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class DramaWatcha {
+public class DramaWatcha_4 {
 	public static void main(String[] args) {
 
 		// 파싱한 데이터를 저장할 변수 (첫번째 파싱)

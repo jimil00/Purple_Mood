@@ -8,6 +8,6 @@
 </head>
 <body>
 에러가 발생하였습니다.
-<a href="/index.jsp">index로</a>
+<a href="/main">index로</a>
 </body>
 </html>

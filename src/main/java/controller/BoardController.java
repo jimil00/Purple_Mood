@@ -25,6 +25,7 @@ public class BoardController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setCharacterEncoding("UTF-8");
 		try {
 
 			String uri = request.getRequestURI();
@@ -75,14 +76,19 @@ public class BoardController extends HttpServlet {
 
 				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
-				String b_content = request.getParameter("content");
+				String b_content = request.getParameter("b_content");
 				System.out.println("b_category : "+b_category);
 				System.out.println("b_title : "+b_title);
 				System.out.println("b_content : "+b_content);
 
 								int nextVal = BoardDAO.getInstance().getBoardNextVal();
 
-				BoardDAO.getInstance().insertBoardContents(new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0));
+				BoardDTO dto = new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0);
+				BoardDAO.getInstance().insertBoardContents(dto);
+				String b_seq = String.valueOf(dto.getB_seq());
+				response.getWriter().append(b_seq);
+//				response.sendRedirect("/selectBoardContents.board?seq="+dto.getB_seq());
+//				에이작스라서 안되지ㅠㅠ
 
 				//				Enumeration<String> e = multi.getFileNames();
 				//
@@ -102,7 +108,7 @@ public class BoardController extends HttpServlet {
 				//				}
 
 
-				response.sendRedirect("/boardList.board");
+//				response.sendRedirect("/boardList.board");
 
 
 				// 게시글 출력 (R)
@@ -137,29 +143,57 @@ public class BoardController extends HttpServlet {
 				//				response.sendRedirect("/boardList.board?cpage="+page);
 				// 그 페이지로
 
-				// 게시글 수정 (U)
+
+			//게시글 수정페이지 출력
+			}else if(uri.equals("/beforeUpdateBoardContents.board")) {
+				System.out.println("here");
+
+				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+				
+				System.out.println(b_seq);
+				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
+
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("/board/updateBoardContents.jsp").forward(request, response);
+
+				
+				
+			// 게시글 수정 (U)
 			}else if(uri.equals("/updateBoardContents.board")) {
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+				System.out.println(b_seq);
+				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");
-				int result = BoardDAO.getInstance().updateBoardContents(b_title,b_content,b_seq);
-				response.sendRedirect("/boardContents.board?seq="+b_seq);
+				System.out.println(b_seq+b_category+b_title+b_content);
+				int result = BoardDAO.getInstance().updateBoardContents(b_category, b_title,b_content,b_seq);
+//				response.sendRedirect("/boardContents.board?seq="+b_seq);
 			
+
+
+
 				
 				
+
 				//마이페이지 작성 게시글 출력
-	         }else if(uri.equals("/selectMypageBoard.board")) {
-	            
-	            /*
-	             * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
-	             */
-	            Gson gsonStr   = new Gson();
-	            
-	            List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate();
-	            String strJsonList = gsonStr.toJson(dr_list_d);
-	            System.out.println("************strJsonList******* \n"+strJsonList);
-	            response.getWriter().append(strJsonList);
-	         }
+			}else if(uri.equals("/selectMypageBoard.board")) {
+
+				/*
+				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
+				 */
+				Gson gsonStr   = new Gson();
+				/*
+				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
+				 * String strJsonList = gsonStr.toJson(dr_list_d);
+				 * System.out.println("************strJsonList******* \n"+strJsonList);
+				 * response.getWriter().append(strJsonList);
+				 */
+				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
+				String strJsonList = gsonStr.toJson(b_list);
+				System.out.println("************strJsonList******* \n"+strJsonList);
+				response.getWriter().append(strJsonList);
+			}
 
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
