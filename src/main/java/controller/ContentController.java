@@ -144,12 +144,12 @@ public class ContentController extends HttpServlet {
 				List<DramaDTO> dr_date_n=DramaDAO.getInstance().selectByNF_date();
 				List <MovieDTO> mv_date_n=MovieDAO.getInstance().selectByNF_date();
 				
-				System.out.println(dr_date_n);
-				
 
 				request.setAttribute("dr_date_n", dr_date_n);
 				
 				request.setAttribute("mv_date_n", mv_date_n);
+				
+				System.out.println(dr_date_n);
 
 				request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
 
@@ -180,6 +180,8 @@ public class ContentController extends HttpServlet {
 		}else if(uri.equals("/wavve.content")) {
 			
 			try {
+				
+				//최신순 출력
 			List<DramaDTO> dr_date_wv=DramaDAO.getInstance().selectByWV_date();
 			List <MovieDTO> mv_date_wv=MovieDAO.getInstance().selectByWV_date();
 			
@@ -199,6 +201,7 @@ public class ContentController extends HttpServlet {
 		}else if(uri.equals("/watcha.content")) {
 			
 			try {
+				//최신순 출력
 			List<DramaDTO> dr_date_wc=DramaDAO.getInstance().selectByWC_date();
 			List <MovieDTO> mv_date_wc=MovieDAO.getInstance().selectByWC_date();
 			
