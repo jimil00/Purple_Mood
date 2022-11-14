@@ -137,32 +137,122 @@ public class ContentController extends HttpServlet {
 			}
 		}
 			
-		//ott별 버튼을 눌러서 ott별 출력 페이지로 넘어올 때, 이 컨트롤러를 거쳐서 와야 함.
+		//ott별 버튼을 눌러서 ott별 출력 페이지로 넘어올 때, 이 컨트롤러들을 거쳐서 와야 함.
 		if(uri.equals("/netflix.content")) {
 			
 			
 			try {
-				List<DramaDTO> dr_like=DramaDAO.getInstance().selectByLike();
-				List <MovieDTO> mv_like=MovieDAO.getInstance().selectByLike();
+				List<DramaDTO> dr_date_n=DramaDAO.getInstance().selectByNF_date();
+				List <MovieDTO> mv_date_n=MovieDAO.getInstance().selectByNF_date();
 				
-				System.out.println(dr_like);
+				System.out.println(dr_date_n);
 				
 
-				request.setAttribute("dr_like", dr_like);
-				request.setAttribute("mv_like", mv_like);
+				request.setAttribute("dr_date_n", dr_date_n);
+				request.setAttribute("mv_date_n", mv_date_n);
 
-				request.getRequestDispatcher("/content/SearchPage.jsp").forward(request, response); 
+				request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
 
 			}catch(Exception e) {
 				e.printStackTrace();
 				response.sendRedirect("Error.jsp");
 			}
 
+		}else if(uri.equals("/disney.content")) {
+			
+			try {
+			List<DramaDTO> dr_date_d=DramaDAO.getInstance().selectByDZ_date();
+			List <MovieDTO> mv_date_d=MovieDAO.getInstance().selectByDZ_date();
+			
+			System.out.println(dr_date_d);
+			
+
+			request.setAttribute("dr_date_d", dr_date_d);
+			request.setAttribute("mv_date_d", mv_date_d);
+
+			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("Error.jsp");
+		}
+			
 		}else if(uri.equals("/wavve.content")) {
 			
+			try {
+			List<DramaDTO> dr_date_wv=DramaDAO.getInstance().selectByWV_date();
+			List <MovieDTO> mv_date_wv=MovieDAO.getInstance().selectByWV_date();
+			
+			System.out.println(dr_date_wv);
+			
+
+			request.setAttribute("dr_date_wv", dr_date_wv);
+			request.setAttribute("mv_date_wv", mv_date_wv);
+
+			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("Error.jsp");
 		}
+			
+		}else if(uri.equals("/watcha.content")) {
+			
+			try {
+			List<DramaDTO> dr_date_wc=DramaDAO.getInstance().selectByWC_date();
+			List <MovieDTO> mv_date_wc=MovieDAO.getInstance().selectByWC_date();
+			
+			System.out.println(dr_date_wc);
+			
+
+			request.setAttribute("dr_date_wc", dr_date_wc);
+			request.setAttribute("mv_date_wc", mv_date_wc);
+
+			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("Error.jsp");
+		}
+			
+		}
+		
+		//ott 버튼으로 이동 후 그 페이지에서 검색 시 해당 ott내에서만 검색 실행하게 하는 구문 (ott별 출력하는 페이지에 나오게 해야겠지)
+		//이거 잘 생각해봐야겠다 dao에서 ott별로 거를 수만 있다면 좋을텐데
+		//jsp에서 받아주는 로직 다시 만들어야 함.
+		if(uri.equals("/ott_search.content")) {
+			
+			System.out.println(uri);
+
+			String ott_searchtext=request.getParameter("ott_searchtext");
+
+			System.out.println(ott_searchtext);
 
 
+			try { 
+				//드라마 출력
+				List <DramaDTO> ott_dr_list =DramaDAO.getInstance().searchByOtt_title(request.getParameter("ott_searchtext"));
+				request.setAttribute("ott_dr_list", ott_dr_list);
+				
+				//System.out.println(dr_list);
+
+
+				//영화 출력
+				List <MovieDTO> ott_mv_list = MovieDAO.getInstance().searchByOtt_title(request.getParameter("ott_searchtext"));
+				request.setAttribute("ott_mv_list", ott_mv_list);
+				
+			
+			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("Error.jsp");
+		}
+			
+		}
+		
+
+		//콘텐츠 좋아요 눌렀을 때
 		else if(uri.equals("/like.content")) {
 			
 			String nickname = (String)request.getSession().getAttribute("loginNickname");

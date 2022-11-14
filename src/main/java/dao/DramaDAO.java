@@ -65,7 +65,7 @@ public class DramaDAO {
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{pstat.setString(1, "%"+dr_title+"%"); //여기서 한 글자만 쳐도 나오게 하는 기능 구현해야 함.
+		{pstat.setString(1, "%"+dr_title+"%");
 
 		try(ResultSet rs = pstat.executeQuery();){
 			List <DramaDTO> list = new ArrayList<>();
@@ -75,6 +75,33 @@ public class DramaDAO {
 				DramaDTO dto = new DramaDTO();
 				dto.setDr_id(rs.getInt("dr_id"));
 				dto.setDr_title(rs.getString("dr_title"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+		}
+
+		}
+
+	}
+	
+	//ott별 검색
+	public List <DramaDTO> searchByOtt_title(String dr_title) throws Exception {
+
+		String sql="select dr_id, dr_poster_path from drama_test where dr_ottNF='Y' and dr_title like ?";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{pstat.setString(1, "%"+dr_title+"%");
+
+		try(ResultSet rs = pstat.executeQuery();){
+			List <DramaDTO> list = new ArrayList<>();
+
+			while(rs.next()) {
+
+				DramaDTO dto = new DramaDTO();
+				dto.setDr_id(rs.getInt("dr_id"));
 				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
 
 				list.add(dto);
@@ -123,16 +150,16 @@ public class DramaDAO {
 		}
 
 	}
-	
-	//ott별 콘텐츠 출력(4개로 나누어짐.)
-	public  DramaDTO selectByOtt_vote() throws Exception { 
 
-		//수정(두 테이블에서 값을 출력)
-		String sql="select * from drama_test where dr_ottNF='y' and mv_ottNF='y'order by mv_vote_average desc";
+	//ott별 콘텐츠 출력 1) 넷플릭스 최신순 
+	public  List <DramaDTO> selectByNF_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottNF='Y' order by 4 desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{
+		{ List <DramaDTO> list = new ArrayList<>();
 
 		try(ResultSet rs = pstat.executeQuery();){
 
@@ -140,27 +167,103 @@ public class DramaDAO {
 
 			while(rs.next()) {
 				dto.setDr_id(rs.getInt("dr_id"));
-				dto.setDr_title(rs.getString("dr_title"));
-				dto.setDr_genre(rs.getString("dr_genre"));	
-				dto.setDr_first_air_date(rs.getString("dr_first_air_date"));	
-				dto.setDr_vote_average(rs.getString("dr_vote_average"));	
-				dto.setDr_ottNF((rs.getString("dr_ottNF").charAt(0))); 
-				dto.setDr_ottWV((rs.getString("dr_ottWV").charAt(0)));
-				dto.setDr_ottDZ((rs.getString("dr_ottDZ").charAt(0)));
-				dto.setDr_ottWC((rs.getString("dr_ottWC").charAt(0)));
-				dto.setDr_like(rs.getInt("dr_like"));
 				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
-				dto.setDr_overview(rs.getString("dr_overview"));	
-
-				System.out.println(rs.getString("dr_ottNF").charAt(0));
-
+				list.add(dto);
 			}
-			return dto;
+			return list;
+
 		}
 
 		}
 
 	}
+	
+	//ott별 콘텐츠 출력 2) 디즈니 플러스 최신순 
+	public  List <DramaDTO> selectByDZ_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottDZ='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	//ott별 콘텐츠 출력 3) 웨이브 최신순 
+	public  List <DramaDTO> selectByWV_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottWV='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	//ott별 콘텐츠 출력 4) 왓챠 최신순 
+	public  List <DramaDTO> selectByWC_date() throws Exception { 
+
+
+		String sql="select * from drama_test where dr_ottWC='Y' order by 4 desc";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);)
+		{  List <DramaDTO> list = new ArrayList<>();
+
+		try(ResultSet rs = pstat.executeQuery();){
+
+			DramaDTO dto = new DramaDTO();
+
+			while(rs.next()) {
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+
+				list.add(dto);
+			}
+			return list;
+
+		}
+
+		}
+
+	}
+	
+	
+	
 
 	//아이콘 출력용 메서드( 수정 중)
 	public DramaDTO selectOtt_icon(int dr_id) throws Exception{
@@ -182,7 +285,6 @@ public class DramaDAO {
 
 			}return dto;
 		}
-
 
 		}
 	}
@@ -206,25 +308,25 @@ public class DramaDAO {
 		}
 	}
 
-	
-	
+
+
 	//평점드라마 출력
-		public List <DramaDTO> searchByAvg() throws Exception {
+	public List <DramaDTO> searchByAvg() throws Exception {
 
-			String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average   desc)\"평점\" from drama_test) WHERE \"평점\" BETWEEN 1 AND 18";
+		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average  desc)\"평점\" from drama_test) WHERE \"평점\" BETWEEN 1 AND 18";
 
-			try(Connection con = this.getConnection();
-					PreparedStatement pstat = con.prepareStatement(sql);
-					ResultSet rs = pstat.executeQuery();){
-				List <DramaDTO> list = new ArrayList<>();
-				while(rs.next()) {
-					DramaDTO dto = new DramaDTO();
-					dto.setDr_id(rs.getInt("dr_id"));
-					dto.setDr_poster_path(rs.getString("dr_poster_path"));	
-					list.add(dto);
-				}
-				return list;
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			List <DramaDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				DramaDTO dto = new DramaDTO();
+				dto.setDr_id(rs.getInt("dr_id"));
+				dto.setDr_poster_path(rs.getString("dr_poster_path"));	
+				list.add(dto);
 			}
+			return list;
 		}
+	}
 }
 
