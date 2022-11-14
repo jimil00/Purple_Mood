@@ -13,7 +13,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class MovieDisney {
+
+public class MovieWavve_2 {
 	public static void main(String[] args) {
 
 		// 파싱한 데이터를 저장할 변수 (첫번째 파싱)
@@ -23,7 +24,7 @@ public class MovieDisney {
 
 			for(int pageCount=1; pageCount<=3; pageCount++) {
 
-				URL firstURL = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&region=KR&sort_by=popularity.desc&include_adult=ture&include_video=false&page="+pageCount+"&with_watch_providers=337&watch_region=KR&with_watch_monetization_types=flatrate");
+				URL firstURL = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&region=KR&sort_by=popularity.desc&include_adult=ture&include_video=false&page="+pageCount+"&with_watch_providers=356&watch_region=KR&with_watch_monetization_types=flatrate");
 				BufferedReader bf1;
 				bf1 = new BufferedReader(new InputStreamReader(firstURL.openStream(), "UTF-8"));
 				firstParsing = bf1.readLine();
@@ -96,7 +97,7 @@ public class MovieDisney {
 				String dbPW = "pm_test";
 				Connection con = DriverManager.getConnection(dbURL, dbID, dbPW);
 
-				String sql = "MERGE INTO movie_test USING DUAL ON (mv_id = ?) WHEN MATCHED THEN UPDATE SET mv_ottDZ = 'Y' WHEN NOT MATCHED THEN INSERT (mv_id,mv_title,mv_genre,mv_release_date,mv_vote_average,mv_runtime,mv_ottNF,mv_ottWV,mv_ottDZ,mv_ottWC,mv_like,mv_poster_path,mv_overview) VALUES (?,?,?,?,?,?,DEFAULT,DEFAULT,'Y',DEFAULT,DEFAULT,?,?)";
+				String sql = "MERGE INTO movie_test USING DUAL ON (mv_id = ?) WHEN MATCHED THEN UPDATE SET mv_ottWV = 'Y' WHEN NOT MATCHED THEN INSERT (mv_id,mv_title,mv_genre,mv_release_date,mv_vote_average,mv_runtime,mv_ottNF,mv_ottWV,mv_ottDZ,mv_ottWC,mv_like,mv_poster_path,mv_overview) VALUES (?,?,?,?,?,?,DEFAULT,'Y',DEFAULT,DEFAULT,DEFAULT,?,?)";
 
 				for (int k=0 ; k<resultsList.size(); k++) {
 					PreparedStatement pstat = con.prepareStatement(sql);
@@ -128,5 +129,4 @@ public class MovieDisney {
 			e.printStackTrace();
 		}
 	}
-
 }

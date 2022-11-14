@@ -169,4 +169,47 @@ public class MovieDAO {
 		}
 	}
 
+	// 관리자페이지_영화 전체 조회
+	public List<MovieDTO> selectAllMovie() throws Exception{
+		String sql = "select * from movie_test";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+
+			List<MovieDTO> list = new ArrayList<>();
+			while(rs.next()) {
+
+				MovieDTO dto = new MovieDTO();
+				dto.setMv_id(rs.getInt("mv_id"));
+				dto.setMv_title(rs.getString("mv_title"));
+				dto.setMv_genre(rs.getString("mv_genre"));
+				dto.setMv_release_date(rs.getString("mv_release_date"));	
+				dto.setMv_vote_average(rs.getString("mv_vote_average"));
+				dto.setMv_runtime(rs.getString("mv_runtime"));
+				dto.setMv_ottNF((rs.getString("mv_ottNF").charAt(0))); 
+				dto.setMv_ottWV((rs.getString("mv_ottWV").charAt(0)));
+				dto.setMv_ottDZ((rs.getString("mv_ottDZ").charAt(0)));
+				dto.setMv_ottWC((rs.getString("mv_ottWC").charAt(0)));
+				dto.setMv_like(rs.getInt("mv_like"));
+				dto.setMv_poster_path(rs.getString("mv_poster_path"));
+				dto.setMv_overview(rs.getString("mv_overview"));
+
+				list.add(dto);
+			}
+			return list;
+		}
+	}
+
+	// 관리자페이지_영화 삭제
+	public int delete(int mv_id) throws Exception{
+		String sql = "delete from movie_test where mv_id = ?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, mv_id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
 }
