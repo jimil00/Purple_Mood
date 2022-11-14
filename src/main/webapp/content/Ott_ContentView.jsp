@@ -22,6 +22,14 @@ pageEncoding="UTF-8"%>
     rel="stylesheet" />
 </head>
 <style>
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
     .container-fluid {
 	font-family: 'DungGeunMo';
 	color: grey;
@@ -31,7 +39,7 @@ pageEncoding="UTF-8"%>
 
     .logo{height:100px;}
     
-    .ott_logo>img{width:250px;}
+    .ott_logo>img{width:250px;margin:30px;}
     
     .postimg {width:200px;}
     
@@ -41,19 +49,6 @@ pageEncoding="UTF-8"%>
 <body>
     <div class="container-fluid text-center">
     
-    <!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
-     <form action="/ott_search.content">
-        <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
-          <div class="col-4">
-            <input type="text" name="ott_searchtext" placeholder="해당 Ott내 검색">
-            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-          </div>
-        </div>
-        </form>-->
-        
-        
-	
 	<!-- ott별로 출력하는 페이지 -->
 
 	<c:choose>
@@ -79,15 +74,16 @@ pageEncoding="UTF-8"%>
          <c:choose>
 		<c:when test="${not empty mv_date_n}">
 		
-             	<hr>
+
 					<div class="list_title pt-2">
-						영화 검색 결과 <span> ${mv_date_n.size()}개</span>
+						영화 검색 결과 <!-- <span> ${mv_date_n.size()}개</span>-->
 					</div>
 				<hr>
 				
 <!-- 영화 캐러셀 --> 
  <div class="poster1">
  <div class="col-12 fs-3 titlename">최신작</div>
+  <hr>
           <div>
             <div id="carouselExampleControls1" class="carousel slide"
               data-bs-ride="false">
@@ -95,19 +91,19 @@ pageEncoding="UTF-8"%>
                 <div class="carousel-item imgbox active">
                  <c:forEach var="m" items="${mv_date_n}" begin="0" end="5"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
                   <c:forEach var="m" items="${mv_date_n}"  begin="6" end="11"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
                   <c:forEach var="m" items="${mv_date_n}"  begin="12" end="17"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
               </div>
@@ -124,29 +120,31 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>       
-        
-         <div class="poster2">
+      
+         <div class="poster2">  
+         <hr>
  <div class="col-12 fs-3 titlename">인기순</div>
+   	<hr>
           <div>
             <div id="carouselExampleControls2" class="carousel slide"
               data-bs-ride="false">
               <div class="carousel-inner">
                 <div class="carousel-item imgbox active">
-                 <c:forEach var="m" items="${mv_date_n}" begin="0" end="5"
+                 <c:forEach var="m" items="${mv_avg_n}" begin="0" end="5"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
-                  <c:forEach var="m" items="${mv_date_n}"  begin="6" end="11"
+                  <c:forEach var="m" items="${mv_avg_n}"  begin="6" end="11"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
-                  <c:forEach var="m" items="${mv_date_n}"  begin="12" end="17"
+                  <c:forEach var="m" items="${mv_avg_n}"  begin="12" end="17"
                         step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
               </div>
@@ -163,46 +161,7 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>   
-        
-          <div class="poster3">
- <div class="col-12 fs-3 titlename">평점순</div>
-          <div>
-            <div id="carouselExampleControls3" class="carousel slide"
-              data-bs-ride="false">
-              <div class="carousel-inner">
-                <div class="carousel-item imgbox active">
-                 <c:forEach var="m" items="${mv_date_n}" begin="0" end="5"
-                        step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-                <div class="carousel-item imgbox">
-                  <c:forEach var="m" items="${mv_date_n}"  begin="6" end="11"
-                        step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-                <div class="carousel-item imgbox">
-                  <c:forEach var="m" items="${mv_date_n}"  begin="12" end="17"
-                        step="1">
-                        <a href="#"><img src="${m.mv_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-              </div>
-          	<button class="carousel-control-prev postLRbtn" type="button"
-				data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-			</button>
-				<button class="carousel-control-next postLRbtn" type="button"
-					data-bs-target="#carouselExampleControls3" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden ">Next</span>
-				</button>
-            </div>
-          </div>
-        </div>  
-        
+       
       </c:when>
         </c:choose>
 
@@ -210,34 +169,77 @@ pageEncoding="UTF-8"%>
 	<c:choose>
 		<c:when test="${not empty dr_date_n}">
 
+	<hr>
 		<div class="list_title">
-					드라마 검색 결과<span> ${dr_date_n.size()}개</span>
+					드라마 검색 결과<!-- <span> ${dr_date_n.size()}개</span>-->
 				</div>
 		<hr>
 		
 		    <!-- 드라마 캐러셀 --> 
-		<div class="poster4">
+		<div class="poster3">
 		<div class="col-12 fs-3 titlename">최신작</div>
+		  <hr>
           <div>
-            <div id="carouselExampleControls4" class="carousel slide"
+            <div id="carouselExampleControls3" class="carousel slide"
               data-bs-ride="false">
               <div class="carousel-inner">
                 <div class="carousel-item imgbox active">
                   <c:forEach var="d" items="${dr_date_n}" begin="0" end="5"
                         step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
                   <c:forEach var="d" items="${dr_date_n}"  begin="6" end="11"
                         step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
                 <div class="carousel-item imgbox">
                   <c:forEach var="d" items="${dr_date_n}"  begin="12" end="17"
                         step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+         <div class="poster54">
+           <hr>
+		<div class="col-12 fs-3 titlename">인기순</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls4" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_avg_n}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_n}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_n}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
                       </c:forEach>
                 </div>
               </div>
@@ -254,86 +256,7 @@ pageEncoding="UTF-8"%>
             </div>
           </div>
         </div>
-        
-         <div class="poster5">
-		<div class="col-12 fs-3 titlename">인기순</div>
-          <div>
-            <div id="carouselExampleControls5" class="carousel slide"
-              data-bs-ride="false">
-              <div class="carousel-inner">
-                <div class="carousel-item imgbox active">
-                  <c:forEach var="d" items="${dr_date_n}" begin="0" end="5"
-                        step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-                <div class="carousel-item imgbox">
-                  <c:forEach var="d" items="${dr_date_n}"  begin="6" end="11"
-                        step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-                <div class="carousel-item imgbox">
-                  <c:forEach var="d" items="${dr_date_n}"  begin="12" end="17"
-                        step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-              </div>
-              <button class="carousel-control-prev postLRbtn" type="button"
-                data-bs-target="#carouselExampleControls5" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next postLRbtn" type="button"
-                data-bs-target="#carouselExampleControls5" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden ">Next</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-         <div class="poster6">
-		<div class="col-12 fs-3 titlename">평점순</div>
-          <div>
-            <div id="carouselExampleControls3" class="carousel slide"
-              data-bs-ride="false">
-              <div class="carousel-inner">
-                <div class="carousel-item imgbox active">
-                  <c:forEach var="d" items="${dr_date_n}" begin="0" end="5"
-                        step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-                <div class="carousel-item imgbox">
-                  <c:forEach var="d" items="${dr_date_n}"  begin="6" end="11"
-                        step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-                <div class="carousel-item imgbox">
-                  <c:forEach var="d" items="${dr_date_n}"  begin="12" end="17"
-                        step="1">
-                        <a href="/DetailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
-                      </c:forEach>
-                </div>
-              </div>
-              <button class="carousel-control-prev postLRbtn" type="button"
-                data-bs-target="#carouselExampleControls6" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next postLRbtn" type="button"
-                data-bs-target="#carouselExampleControls6" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden ">Next</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        
-
+  
         </c:when>
         </c:choose>
         
@@ -363,70 +286,195 @@ pageEncoding="UTF-8"%>
         
   <c:choose>
 		<c:when test="${not empty mv_date_d}">
-             	<hr>
+
 					<div class="list_title pt-2">
-						영화 검색 결과 <span> ${mv_date_d.size()}개</span>
+						영화 검색 결과 <!--  <span> ${mv_date_d.size()}개</span>-->
 					</div>
 				<hr>
-             <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="m" items="${mv_date_d}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                  <a href="/detailMv.content?mv_id=${m.mv_id}">
-                  
-                  <div class="poster">  
-                    <img src="${m.mv_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
+				
+				 <div class="poster1">
+ <div class="col-12 fs-3 titlename">최신작</div>
+   <hr>
+          <div>
+            <div id="carouselExampleControls1" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                 <c:forEach var="m" items="${mv_date_d}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
                 </div>
-                <c:if test="${i%j == j-1 }">
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_date_d}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_date_d}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
               </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
             </div>
+          </div>
+        </div>  
+         </c:when>
+        </c:choose>     
+        
+        <c:choose>
+		<c:when test="${not empty mv_avg_d}">
+         <div class="poster2">
+           <hr>
+ <div class="col-12 fs-3 titlename">인기순</div>
+   			<hr>
+          <div>
+            <div id="carouselExampleControls2" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                 <c:forEach var="m" items="${mv_avg_d}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_avg_d}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_avg_d}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
             </div>
-          </c:when>
-          </c:choose>
-          
+          </div>
+        </div>   
+       
+      </c:when>
+        </c:choose>
 
+
+	
+       <!-- 드라마 리스트 -->	
 	<c:choose>	
 		<c:when test="${not empty dr_date_d}">
-		
+		<hr>
 		<div class="list_title">
-					드라마 검색 결과<span> ${dr_date_d.size()}개</span>
+					드라마 검색 결과<!--  <span> ${dr_date_d.size()}개</span>-->
 				</div>
 		<hr>
-        <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="d" items="${dr_date_d}">			
-                      <c:if test="${i%j == 0}">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                  <a href="/detailDr.content?dr_id=${d.dr_id}">
-                  
-                  <div class="poster">  
-                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
+		
+		    <!-- 드라마 캐러셀 --> 
+		<div class="poster3">
+		<div class="col-12 fs-3 titlename">최신작</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls3" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_date_d}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
                 </div>
-                <c:if test="${i%j == j-1 }">
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_date_d}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_date_d}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
               </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-             </div>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
             </div>
-                </c:when>
-          </c:choose>
+          </div>
+        </div>
+        
+         <div class="poster54">
+           <hr>
+		<div class="col-12 fs-3 titlename">인기순</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls4" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_avg_d}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_d}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_d}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls4" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls4" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        </c:when>
+        </c:choose>
           
 
 <!-- 웨이브 -->
@@ -452,68 +500,191 @@ pageEncoding="UTF-8"%>
         
            <c:choose>
 		<c:when test="${not empty mv_date_wv}">
-             	<hr>
+
 					<div class="list_title pt-2">
-						영화 검색 결과 <span> ${mv_date_wv.size()}개</span>
+						영화 검색 결과 <!--  <span> ${mv_date_wv.size()}개</span>-->
 					</div>
 				<hr>
-             <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="wv" items="${mv_date_wv}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                    <a href="/detailMv.content?mv_id=${wv.mv_id}">
-                  
-                  <div class="poster">  
-                    <img src="${wv.mv_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
+				
+            <div class="poster1">
+ <div class="col-12 fs-3 titlename">최신작</div>
+   	<hr>
+          <div>
+            <div id="carouselExampleControls1" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                 <c:forEach var="m" items="${mv_date_wv}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
                 </div>
-                <c:if test="${i%j == j-1 }">
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_date_wv}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_date_wv}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
               </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
             </div>
-          </c:when>
-          </c:choose>
+          </div>
+        </div>      
+        </c:when>
+        </c:choose>  
+        
+          <c:choose>
+		<c:when test="${not empty mv_avg_wv}">
+         <div class="poster2">
+           <hr>
+ <div class="col-12 fs-3 titlename">인기순</div>
+          <hr>
+          <div>
+            <div id="carouselExampleControls2" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                 <c:forEach var="m" items="${mv_avg_wv}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_avg_wv}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_avg_wv}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id}"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
+            </div>
+          </div>
+        </div>   
+       
+      </c:when>
+        </c:choose>
         
          <c:choose>
 		<c:when test="${not empty dr_date_wv}">
-
+		<hr>
 		<div class="list_title">
-					드라마 검색 결과<span> ${dr_date_wv.size()}개</span>
+					드라마 검색 결과<!--  <span> ${dr_date_wv.size()}개</span>-->
 				</div>
 		<hr>
-        <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="wv" items="${dr_date_wv}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                  <a href="/detailDr.content?dr_id=${wv.dr_id}">
-                  
-                  <div class="poster">  
-                    <img src="${wv.dr_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
+		
+       	<div class="poster3">
+		<div class="col-12 fs-3 titlename">최신작</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls3" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_date_wv}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
                 </div>
-                <c:if test="${i%j == j-1 }">
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_date_wv}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_date_wv}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
               </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-             </div>
-             </div>
-                </c:when>
-          </c:choose>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+         <div class="poster4">
+           <hr>
+		<div class="col-12 fs-3 titlename">인기순</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls4" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_avg_wv}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_wv}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_wv}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls4" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls4" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        </c:when>
+        </c:choose>
 
         
 <!-- 왓챠 -->
@@ -538,69 +709,188 @@ pageEncoding="UTF-8"%>
         </c:choose>
         
         <c:choose>
-		<c:when test="${not empty dr_date_wc}">
-    
-		<div class="list_title">
-					드라마 검색 결과<span> ${dr_date_wc.size()}개</span>
-				</div>
-		<hr>
-        <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="d" items="${dr_date_wc}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-                  <a href="/detailDr.content?dr_id=${d.dr_id}">
-                  
-                  <div class="poster">  
-                    <img src="${d.dr_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
-                </div>
-                <c:if test="${i%j == j-1 }">
-              </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-             </div>
-                </c:when>
-          </c:choose>
-	
-	 <c:choose>
 		<c:when test="${not empty mv_date_wc}">
-             	<hr>
+
 					<div class="list_title pt-2">
-						영화 검색 결과 <span> ${mv_date_wc.size()}개</span>
+						영화 검색 결과 <!-- <span> ${mv_date_wc.size()}개</span>-->
 					</div>
 				<hr>
-             <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="m" items="${mv_date_wc}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-         			<a href="/detailMv.content?mv_id=${m.mv_id}">
-                  
-                  <div class="poster">  
-                    <img src="${m.mv_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  </a>
+				
+             <div class="poster1">
+ <div class="col-12 fs-3 titlename">최신작</div>
+   <hr>
+          <div>
+            <div id="carouselExampleControls1" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                 <c:forEach var="m" items="${mv_date_wc}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
                 </div>
-                <c:if test="${i%j == j-1 }">
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_date_wc}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_date_wc}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
               </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
             </div>
-			</div>
-          </c:when>
-          </c:choose>
+          </div>
+        </div>       
+        
+         <div class="poster2">
+           <hr>
+ <div class="col-12 fs-3 titlename">인기순</div>
+   			<hr>
+          <div>
+            <div id="carouselExampleControls2" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                 <c:forEach var="m" items="${mv_avg_wc}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_avg_wc}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="m" items="${mv_avg_wc}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailMv.content?mv_id=${m.mv_id }"><img src="${m.mv_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
+            </div>
+          </div>
+        </div>   
+       
+      </c:when>
+        </c:choose>
+        
+        <c:choose>
+		<c:when test="${not empty dr_date_wc}">
+    <hr>
+		<div class="list_title">
+					드라마 검색 결과 <!-- <span> ${dr_date_wc.size()}개</span>-->
+				</div>
+		<hr>
+		
+      	<div class="poster3">
+		<div class="col-12 fs-3 titlename">최신작</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls3" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_date_wc}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_date_wc}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_date_wc}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls3" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+         <div class="poster4">
+           <hr>
+		<div class="col-12 fs-3 titlename">인기순</div>
+		  <hr>
+          <div>
+            <div id="carouselExampleControls4" class="carousel slide"
+              data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item imgbox active">
+                  <c:forEach var="d" items="${dr_avg_wc}" begin="0" end="5"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_wc}"  begin="6" end="11"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+                <div class="carousel-item imgbox">
+                  <c:forEach var="d" items="${dr_avg_wc}"  begin="12" end="17"
+                        step="1">
+                        <a href="/detailDr.content?dr_id=${d.dr_id }"><img src="${d.dr_poster_path}" class="postimg"></a>
+                      </c:forEach>
+                </div>
+              </div>
+              <button class="carousel-control-prev postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls4" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next postLRbtn" type="button"
+                data-bs-target="#carouselExampleControls4" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden ">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        </c:when>
+        </c:choose>
 
          </div>
       </div>
