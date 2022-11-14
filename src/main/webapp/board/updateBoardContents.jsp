@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summernoteinsert</title>
+<meta charset="UTF-8">
+   <title>SummernoteUpdate</title>
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -73,7 +70,6 @@
             font-weight: normal;
             font-style: normal;
         }
-
         * {
             box-sizing: border-box;
         }
@@ -81,123 +77,125 @@
         body {
             background-color: #03001e;
         }
-
         .container {
             margin: auto;
         }
 
         .header {
             font-family: '둥근모꼴체';
-            color: #03001e;
         }
 
         .headerTitle{
             color: #fdeff9;
         }
+        
+        #b_title{
+        	background-color: white;
+        }
+
     </style>
 
     <script>
-    $(document).ready(function () {
-        // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
-        $('#summernote').summernote({
-            lang: 'ko-KR',
-            height: 400,
-            placeholder: "내용을 입력해주세요.",
-            fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
-            // addDefaultFonts: false,
-            fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
-            callbacks: {
-                onImageUpload: function (image) {
-                    console.log("works")
-                    data = new FormData();
-                    data.append("image", image[0]);
+        $(document).ready(function () {
+        	
+        	$("option[value=${dto.b_category}]").attr("selected",true);
+        	
+            // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
+            $('#summernote').summernote({
+                callbacks: {
+                    onImageUpload: function (image) {
+                        console.log("works")
+                        data = new FormData();
+                        data.append("image", image[0]);
 
-                    $.ajax({
-                        data: data,
-                        type: "post",
-                        url: "/imageupload.boardfile",
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        success: function (url) {
-                            console.log(url)
-                            var image = $('<img>').attr('src', url);
-                            $("#summernote").summernote("insertNode", image[0]);
-                        },
-                        error: function (a, b, c) {
-                            console.log(a);
-                            console.log(b);
-                            console.log(c);
-                        }
-                    });
+                        $.ajax({
+                            data: data,
+                            type: "post",
+                            url: "/imageupload.boardfile",
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (url) {
+                                console.log(url)
+                                var image = $('<img>').attr('src', url);
+                                $("#summernote").summernote("insertNode", image[0]);
+                            },
+                            error: function (a, b, c) {
+                                console.log(a);
+                                console.log(b);
+                                console.log(c);
+                            }
+                        });
+                    }
                 }
-            }
-        });
-
-        $('#insertBoardContents').on('click', function () {
-            saveContent();
-
-
-        });
-        function saveContent() {
-
-            //값 가져오기
-            var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
-            console.log("summernoteContent : " + summernoteContent);
-            var b_category = $("#b_category").val();
-            var b_title = $("#b_title").val();
-
-            $.ajax({
-                url: "/insertBoardContents.board",
-                type: "post",
-                data: {
-                    "b_category": b_category,
-                    "b_title": b_title,
-                    "b_content": summernoteContent
-                },success: function (data) {
-                 var b_seq = data;
-                 location.href="/selectBoardContents.board?b_seq="+b_seq;
-             }
             });
-        };
-    });
+
+
+            function saveContent() {
+
+                //값 가져오기
+                var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
+                console.log("summernoteContent : " + summernoteContent);
+                var b_seq = $("#b_seq").val();
+                var b_category = $("#b_category").val();
+                var b_title = $("#b_title").html();
+
+                $.ajax({
+                    url: "/updateBoardContents.board",
+                    type: "post",
+                    data: {
+                        "b_seq": b_seq,
+                        "b_category": b_category,
+                        "b_title": b_title,
+                        "b_content": summernoteContent
+                    }
+                });
+            };
+            $('#updateBoardContents').on('click', function () {
+                saveContent();
+                location.href = "/selectBoardContents.board?b_seq=${dto.b_seq}";
+
+
+            });
+        });
     </script>
 </head>
-
 <body>
     <div class="container">
-        <div class="insertBoardContents">
+        <div class="updateBoardContents">
+        			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
+        
             <div class="row header">
                 <div class="category">
                     <div class="headerTitle">카테고리</div>
                     <div>
-                        <select id="b_category" name="b_category">
+                        <select id="b_category" name="b_category" value="${dto.b_category }">
                             <option value="movie">영화</option>
                             <option value="drama">드라마</option>
                             <option value="onAir">실시간</option>
                             <option value="review">후기</option>
                         </select>
                     </div>
+
                 </div>
                 <div class="title">
                     <div class="headerTitle">제목</div>
-                    <div><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none; width:100%;">
-                    </div>
+                <div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title" contenteditable="true"> ${dto.b_title }</div>
+
                 </div>
             </div>
             <div class="row body">
-                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">
+                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">${dto.b_content }
                 </div>
             </div>
             <div class="row footer">
                 <div class="btns col-lg-12 col-md-12 col-sm-12">
-                    <button type="button" class="btn" id="insertBoardContents"
-                        name="insertBoardContents">작성하기</button>&nbsp
+                    <button type="button" class="btn" id="updateBoardContents"
+                        name="updateBoardContents">수정하기</button>&nbsp
                     <a href="/boardList.board"><button type="button" id="toList" name="toList">목록으로</button></a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>
