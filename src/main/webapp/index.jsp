@@ -97,9 +97,8 @@ body {
 
 #watchabtn:hover {
 	background: #ff0559;
-	color: #050801;
-	box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559, 0
-		0200px #ff0559;
+	box-shadow: 0 0 5px #ff0559, 0 0 25px #ff0559, 0 0 50px #ff0559, 0 0
+		200px #ff0559;
 	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
@@ -113,7 +112,6 @@ body {
 
 #wavvebtn:hover {
 	background: #022ca4;
-	color: #050801;
 	box-shadow: 0 0 5px #022ca4, 0 0 25px #022ca4, 0 0 50px #022ca4, 0 0
 		200px #022ca4;
 	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
@@ -431,19 +429,19 @@ hr.hr {
 							<div class="carousel-item imgbox active">
 								<c:forEach var="i" items="${mv_list_a }" begin="0" end="5"
 									step="1">
-									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+									<a href="/detailMv.content?mv_id=${i.mv_id }"><img src=${i.mv_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${mv_list_a }" begin="6" end="11"
 									step="1">
-									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+									<a href="/detailMv.content?mv_id=${i.mv_id }"><img src=${i.mv_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${mv_list_a}" begin="12" end="17"
 									step="1">
-									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+									<a href="/detailMv.content?mv_id=${i.mv_id }"><img src=${i.mv_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 						</div>
@@ -469,19 +467,19 @@ hr.hr {
 							<div class="carousel-item imgbox active">
 								<c:forEach var="i" items="${mv_list_d }" begin="0" end="5"
 									step="1">
-									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+									<a href="/detailMv.content?mv_id=${i.mv_id }"><img src=${i.mv_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${mv_list_d }" begin="6" end="11"
 									step="1">
-									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+									<a href="/detailMv.content?mv_id=${i.mv_id }"><img src=${i.mv_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${mv_list_d }" begin="12" end="17"
 									step="1">
-									<a href="#"><img src=${i.mv_poster_path } class="postimg"></a>
+									<a href="/detailMv.content?mv_id=${i.mv_id }"><img src=${i.mv_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 						</div>
@@ -507,19 +505,19 @@ hr.hr {
 							<div class="carousel-item imgbox active">
 								<c:forEach var="i" items="${dr_list_a }" begin="0" end="5"
 									step="1">
-									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+									<a href="/detailDr.content?dr_id=${i.dr_id }"><img src=${i.dr_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${dr_list_a }" begin="6" end="11"
 									step="1">
-									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+									<a href="/detailDr.content?dr_id=${i.dr_id }"><img src=${i.dr_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${dr_list_a }" begin="12" end="17"
 									step="1">
-									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+									<a href="/detailDr.content?dr_id=${i.dr_id }"><img src=${i.dr_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 						</div>
@@ -545,19 +543,19 @@ hr.hr {
 							<div class="carousel-item imgbox active">
 								<c:forEach var="i" items="${dr_list_d }" begin="0" end="5"
 									step="1">
-									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+									<a href="/detailDr.content?dr_id=${i.dr_id }"><img src=${i.dr_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${dr_list_d }" begin="6" end="11"
 									step="1">
-									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+									<a href="/detailDr.content?dr_id=${i.dr_id }"><img src=${i.dr_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 							<div class="carousel-item imgbox">
 								<c:forEach var="i" items="${dr_list_d }" begin="12" end="17"
 									step="1">
-									<a href="#"><img src=${i.dr_poster_path } class="postimg"></a>
+									<a href="/detailDr.content?dr_id=${i.dr_id }"><img src=${i.dr_poster_path } class="postimg"></a>
 								</c:forEach>
 							</div>
 						</div>

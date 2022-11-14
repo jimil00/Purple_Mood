@@ -25,6 +25,7 @@ public class BoardController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setCharacterEncoding("UTF-8");
 		try {
 
 			String uri = request.getRequestURI();
@@ -146,22 +147,28 @@ public class BoardController extends HttpServlet {
 				String b_content = request.getParameter("b_content");
 				int result = BoardDAO.getInstance().updateBoardContents(b_title,b_content,b_seq);
 				response.sendRedirect("/boardContents.board?seq="+b_seq);
-			
-				
-				
+
+
+
 				//마이페이지 작성 게시글 출력
-	         }else if(uri.equals("/selectMypageBoard.board")) {
-	            
-	            /*
-	             * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
-	             */
-	            Gson gsonStr   = new Gson();
-	            
-	            List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate();
-	            String strJsonList = gsonStr.toJson(dr_list_d);
-	            System.out.println("************strJsonList******* \n"+strJsonList);
-	            response.getWriter().append(strJsonList);
-	         }
+			}else if(uri.equals("/selectMypageBoard.board")) {
+
+				/*
+				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
+				 */
+				Gson gsonStr   = new Gson();
+				/*
+				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
+				 * String strJsonList = gsonStr.toJson(dr_list_d);
+				 * System.out.println("************strJsonList******* \n"+strJsonList);
+				 * response.getWriter().append(strJsonList);
+				 */
+				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
+				String strJsonList = gsonStr.toJson(b_list);
+				System.out.println("************strJsonList******* \n"+strJsonList);
+				response.getWriter().append(strJsonList);
+			}
 
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
