@@ -10,18 +10,21 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.BoardDTO;
+import dto.FboardDTO;
 
-public class BoardDAO {
-	private static BoardDAO instance;
-	synchronized public static BoardDAO getInstance() {
+public class FboardDAO {
+
+	private FboardDAO() {}
+	
+	private static FboardDAO instance;
+	
+	synchronized public static FboardDAO getInstance() {
 		if(instance == null) {
-			instance = new BoardDAO();
+			instance = new FboardDAO();
 		}
 		return instance;
 	}
 
-	private BoardDAO() {}
 	private Connection getConnection() throws Exception{
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
@@ -34,14 +37,14 @@ public class BoardDAO {
 	//	}
 
 	// 게시글 작성 (C)
-	public int insertBoardContents(BoardDTO dto) throws Exception{
+	public int insertFboardContents(FboardDAO dto) throws Exception{
 
-		String sql = "insert into board values(?, ?, ?, sysdate, ?, ?, 0)";
+		String sql = "insert into fboard values(?, ?, ?, sysdate, ?, ?, 0)";
 		//							파일 기능 추가시 ?
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-			pstat.setInt(1, dto.getB_seq());
+			pstat.setInt(1,dto.get);
 			pstat.setString(2, dto.getB_category());
 			pstat.setString(3, dto.getB_writer());
 			pstat.setString(4, dto.getB_title());
@@ -57,9 +60,9 @@ public class BoardDAO {
 
 
 	// 게시글 번호 미리 받아두기
-	public int getBoardNextVal() throws Exception{
+	public int getFboardNextVal() throws Exception{
 
-		String sql = "select board_seq.nextval from dual";
+		String sql = "select fboard_seq.nextval from dual";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -72,20 +75,20 @@ public class BoardDAO {
 
 
 	// 게시글 출력 (R)
-	public BoardDTO selectBoardContents(int b_seq) throws Exception {
+	public FboardDTO selectFboardContents(int b_seq) throws Exception {
 
-		String sql = "select * from board where b_seq = ?";
+		String sql = "select * from fboard where fb_seq = ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-			pstat.setInt(1, b_seq);
+			pstat.setInt(1, fb_seq);
 
 			try(ResultSet rs = pstat.executeQuery();){
 
 				rs.next();
-				BoardDTO dto = new BoardDTO();
-				dto.setB_seq(rs.getInt("b_seq"));
+				FboardDTO dto = new FboardDTO();
+				dto.setFb_seq(rs.getInt("fb_seq"));
 				dto.setB_category(rs.getString("b_category"));
 				dto.setB_writer(rs.getString("b_writer"));
 				dto.setB_write_date(rs.getTimestamp("b_write_date"));
@@ -418,3 +421,4 @@ public class BoardDAO {
 }
 
 
+}

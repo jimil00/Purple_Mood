@@ -51,14 +51,11 @@ public class BoardController extends HttpServlet {
 			}else if(uri.equals("/boardListSearch.board")) {
 				String boardSearchOption=request.getParameter("boardSearchOption");
 				String boardSearchWord = request.getParameter("boardSearchWord");
-				System.out.println(boardSearchOption + boardSearchWord);
-				List<BoardDTO>list = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord);
-				request.setAttribute("list", list);
-				System.out.println(list.size());
-
+				System.out.println(boardSearchOption +","+boardSearchWord);
+				List<BoardDTO>board = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord);
+				request.setAttribute("board", board);
+				System.out.println(board.size());
 				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
-
-
 
 				// 게시글 입력 (C)
 			}else if(uri.equals("/insertBoardContents.board")) {

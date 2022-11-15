@@ -2,7 +2,7 @@ package dto;
 
 import java.sql.Timestamp;
 
-public class FboardDAO {
+public class FboardDTO {
 
 	private int fb_seq;
 	private String fb_category;
@@ -12,11 +12,12 @@ public class FboardDAO {
 	private String fb_content;
 	private int fb_view_count;
 
-	public FboardDAO(){}
-
-	public FboardDAO(int fb_seq, String fb_category, String fb_writer, Timestamp fb_write_date, String fb_title,
-			String fb_content, int fb_view_count) {
+	public FboardDTO(){
 		super();
+	}
+
+	public FboardDTO(int fb_seq, String fb_category, String fb_writer, Timestamp fb_write_date, String fb_title,
+			String fb_content, int fb_view_count) {
 		this.fb_seq = fb_seq;
 		this.fb_category = fb_category;
 		this.fb_writer = fb_writer;

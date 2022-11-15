@@ -14,11 +14,13 @@ import com.google.gson.Gson;
 import dao.BoardCommentDAO;
 import dao.BoardDAO;
 import dao.DramaDAO;
+import dao.FboardDAO;
 import dto.BoardCommentDTO;
 import dto.BoardDTO;
 import dto.DramaDTO;
+import dto.FboardDTO;
 
-public class fboardController {
+public class FboardController {
 
 	@WebServlet("*.fboard")
 	public class BoardController extends HttpServlet {
@@ -36,10 +38,10 @@ public class fboardController {
 
 					int cpage=Integer.parseInt(request.getParameter("cpage"));
 					System.out.println(cpage);
-					List<BoardDTO> board = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
+					List<FboardDTO> board = FboardDTO.getInstance().selectfboardByRange(cpage*20-19, cpage*20);
 					//List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
 					//String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
-					List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
+					List<String>list=FboardDAO.getInstance().getBoardPageNavi(cpage);
 					int endNavi=Integer.parseInt(list.get(0));
 					String navi=list.get(1);
 					request.setAttribute("board", board);

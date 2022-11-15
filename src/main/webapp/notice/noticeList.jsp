@@ -30,12 +30,6 @@
 	float: right;
 }
 
-#n_content {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
 * {
 	text-align: center;
 }

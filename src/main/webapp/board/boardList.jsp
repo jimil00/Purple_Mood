@@ -29,7 +29,7 @@
 #boardWriteBtn {
 	float: right;
 }
-컹
+
 #b_content {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -82,8 +82,8 @@ body {
 }
 
 .board {
-	border-top: 7px solid #7303c0;
-	border-bottom: 7px solid #7303c0;
+	border-top: 5px solid #7303c0;
+	border-bottom: 5px solid #7303c0;
 }
 
 .theader {
@@ -234,7 +234,7 @@ a {
 						<hr>
 						<div align="center" class="navi">
 							<a href="boardList.board?cpage=1"><button type="button">처음으로</button></a>
-							${navi} <a href="boardList.board?cpage=${endNavi}"><button
+							${navi} <a href="boardList.board?cpage=${endNavi}">P<button
 									type="button">끝으로</button></a>
 						</div>
 						<hr>
