@@ -27,17 +27,17 @@
 	box-sizing: border-box;
 }
 
-/*  div {
+/* div {
 	border: 1px solid black;
-} */
-
+}  */
 body {
 	overflow: hidden;
 	overflow-y: auto;
 	background-color: #03001e;
 }
-.container{
-background-color:white;
+
+.container {
+	background-color: white;
 }
 
 /* header */
@@ -45,19 +45,24 @@ background-color:white;
 	height: 100px;
 	background-color: #03001e;
 }
-#logo,#titleimg{
-height:100%;
+
+#logo, #titleimg {
+	height: 100%;
 }
-#titleimg:hover{
-cursor: pointer;
+
+#titleimg:hover {
+	cursor: pointer;
 }
-@media(max-width:767px){
-#logo{
-height:60%;
+
+@media ( max-width :767px) {
+	#logo {
+		height: 60%;
+	}
+	#titleimg {
+		height: 100%;
+	}
 }
-#titleimg{
-height:100%;}
-}
+
 .searchbox {
 	text-align: right;
 }
@@ -73,7 +78,7 @@ height:100%;}
 
 .menuicon {
 	text-align: center;
-	color:white;
+	color: white;
 }
 
 #menuicon:hover {
@@ -113,9 +118,9 @@ height:100%;}
 	bottom: 15%;
 	background-color: white;
 }
-#profileimg1{
-height:100%;
 
+#profileimg1 {
+	height: 100%;
 }
 
 .contentInfo {
@@ -137,7 +142,7 @@ height:100%;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	background-color: #03001e;
-	color:white;
+	color: white;
 }
 
 .footerAtag {
@@ -146,6 +151,7 @@ height:100%;
 }
 
 .footerAtag>a {
+	font-family: 'DungGeunMo';
 	font-size: large;
 }
 
@@ -179,6 +185,7 @@ height:100%;
 }
 
 .offcanvas-body {
+	color: white;
 	text-align: center;
 }
 
@@ -197,8 +204,9 @@ height:100%;
 	height: 100%;
 	object-fit: cover;
 }
-#profileimg{
-height:100%;
+
+#profileimg {
+	height: 100%;
 }
 
 .profiletext {
@@ -209,6 +217,7 @@ height:100%;
 
 #logoutBtn {
 	font-size: larger;
+	font-family: 'DungGeunMo';
 }
 
 .menulink {
@@ -239,21 +248,20 @@ button {
 }
 
 /* 작성댓들 */
-
 .commentBycomment {
 	padding-top: 8px;
 	margin-left: 20px;
 	border-bottom: 1px solid gray;
 	padding-bottom: 15px;
 }
+
 .commentBycomment>div {
 	color: black;
 }
 
-.commentTitle,.commentDate {
-	font-size: smaller;
-	color:gray;
-	margin-left:5px;
+.commentTitle, .commentDate {
+	font-size: 11px;
+	color: gray;
 }
 
 /* 작성게시글 */
@@ -261,6 +269,11 @@ button {
 	margin-bottom: 30px;
 	padding-left: 10px;
 	font-family: 'DungGeunMo';
+	text-align: left;
+}
+
+.Boardtitle {
+	text-align: center;
 }
 
 .boardByboard {
@@ -272,6 +285,15 @@ button {
 
 .boardByboard>div {
 	color: black;
+}
+
+#boardbox>a:hover {
+	text-decoration: underline;
+	text-decoration-color: gray;
+}
+
+.boardView, .boardDate {
+	text-align: center;
 }
 
 @font-face {
@@ -289,7 +311,7 @@ button {
 	<div class="container w-xl">
 		<div class="row header">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
-					<img src="/img/title.png" id="titleimg">
+				<img src="/img/title.png" id="titleimg">
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
@@ -298,15 +320,16 @@ button {
 					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
-			$("#titleimg").on("click",function(){
-				location.href="/main";
-			})
-                function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
-                    if (window.event.keyCode == 13) {
-                        location.href = "/search.content?searchtext=" + $("#searchtext").val();
-                    }
-                }
-            </script>
+				$("#titleimg").on("click", function() {
+					location.href = "/main";
+				})
+				function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+					if (window.event.keyCode == 13) {
+						location.href = "/search.content?searchtext="
+								+ $("#searchtext").val();
+					}
+				}
+			</script>
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
 				<i class="fas fa-bars fa-2x" id="menuicon"
 					data-bs-toggle="offcanvas"
@@ -322,7 +345,7 @@ button {
 						<div class="contentProfilebox" id="Btn"
 							style="background: #BDBDBD;">
 							<img src="/img/logo2.png" id="profileimg1">
-							</div>
+						</div>
 						<!-- <button type="button" id="profileBtn">
 							<i class="fa-solid fa-pen"></i>
 						</button> -->
@@ -340,69 +363,116 @@ button {
 						<a id="mycomment">작성댓글</a>
 					</div>
 					<script>
-					//게시글 출력
-                   $("#myboard").on("click",function(){
-                       $("#boardbox").empty(); 
-                      $.ajax({
-                         url : "/selectMypageBoard.board",
-                       dataType: "json"
-                      }).done(function(data){
-                         console.log("receive값은:"  + data);
-                         console.log("receive값은:"  + typeof data);
-                         console.log("receive값은:"  + data.length);
-                         if(data!=null){
-                            <!--리스트불러오기-->
-                            let r = '';   
-                            r+="<div class='col-10 fs-5 titleBoard'>작성게시글</div>"
-                            r+="<div class='col-12 col-md-2 d-none d-md-block boardseq'>글번호</div>"
-                          	r+="<div class='col-12 col-md-6 boardOnTitle'>제목</div>"
-                            /*r+="<div class='col-8 col-md-3  boardDate'>작성시간</div>"
-                            r+="<div class='col-4 col-md-1  boardView'>조회수</div>" */
-                            for(i=0; i < data.length; i++){
-                               r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row boardByboard'>";
-                                r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>"+data[i].b_seq +"</div>";
-                                r += "<div class='col-12 col-md-6 boardOnTitle'>"+data[i].b_title+"</div>";
-                                r += "<div class='col-8 col-md-3  boardDate'>"+data[i].b_write_date+"</div>";
-                                r += "<div class='col-4 col-md-1  boardView'>"+data[i].b_view_count+"</div>";
-                                r+="</div></a>";
-                            }
-                            $("#boardbox").append(r);
-                         }
-                      });
-                   })
-                   //댓글출력
-                   $("#mycomment").on("click",function(){
-                       $("#boardbox").empty(); 
-                       $.ajax({
-                           url : "/selectMypageComment.boardcomment",
-                         dataType: "json"
-                        }).done(function(data){
-                           console.log("receive값은:"  + data);
-                           console.log("receive값은:"  + typeof data);
-                           console.log("receive값은:"  + data.length);
-                           if(data!=null){
-                              <!--리스트불러오기-->
-                              let r = '';   
-                              r+="<div class='col-10 fs-5 titleBoard'>작성댓글</div>"
-                              for(i=0; i < data.length; i++){
-                                 r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row commentBycomment'>";
-                                  r += "<div class='col-12 comment'>"+data[i].bcm_content +"</div>";
-                                  r += "<div class='col-12 commentDate'>"+data[i].bcm_write_date+"</div>";
-                                  r += "<div class='col-12 commentTitle'>"+data[i].b_title+"</div>";
-                                  r+="</div></a>";
-                                }
-                              $("#boardbox").append(r);
-                           }
-                        });
-                   })
-                </script>
+						//게시글 출력
+						$("#myboard")
+								.on(
+										"click",
+										function() {
+											$("#boardbox").empty();
+											$
+													.ajax(
+															{
+																url : "/selectMypageBoard.member",
+																dataType : "json"
+															})
+													.done(
+															function(data) {
+																console
+																		.log("receive값은:"
+																				+ data);
+																console
+																		.log("receive값은:"
+																				+ typeof data);
+																console
+																		.log("receive값은:"
+																				+ data.length);
+																if (data != null) {
+																	<!--리스트불러오기-->
+																	let r = '';
+																	r += "<div class='col-10 fs-5 titleBoard'>작성게시글</div>";
+																	r += "<div class='row Boardtitle'>"
+																	r += "<div class='col-6'>제목</div>";
+																	r += "<div class='col-4'>작성시간</div>";
+																	r += "<div class='col-2'>조회수</div>";
+																	r += "</div>"
+																	for (i = 0; i < data.length; i++) {
+																		r += "<a href='/selectBoardContents.board?b_seq="
+																				+ data[i].b_seq
+																				+ "'><div class='row boardByboard'>";
+																		r += "<div class='col-6 boardOnTitle'>"
+																				+ data[i].b_title
+																				+ "</div>";
+																		r += "<div class='col-4 boardDate'>"
+																				+ data[i].b_write_date
+																				+ "</div>";
+																		r += "<div class='col-2 boardView'>"
+																				+ data[i].b_view_count
+																				+ "</div>";
+																		r += "</div></a>";
+																	}
+																	$(
+																			"#boardbox")
+																			.append(
+																					r);
+																}
+															});
+										})
+						//댓글출력
+						$("#mycomment")
+								.on(
+										"click",
+										function() {
+											$("#boardbox").empty();
+											$
+													.ajax(
+															{
+																url : "/selectMypageComment.member",
+																dataType : "json"
+															})
+													.done(
+															function(data) {
+																console
+																		.log("receive값은:"
+																				+ data);
+																console
+																		.log("receive값은:"
+																				+ typeof data);
+																console
+																		.log("receive값은:"
+																				+ data.length);
+																if (data != null) {
+																	<!--리스트불러오기-->
+																	let r = '';
+																	r += "<div class='col-10 fs-5 titleBoard'>작성댓글</div>"
+																	for (i = 0; i < data.length; i++) {
+																		r += "<a href='/selectBoardContents.board?b_seq="
+																				+ data[i].b_seq
+																				+ "'><div class='row commentBycomment'>";
+																		r += "<div class='col-12  comment'>"
+																				+ data[i].bcm_content
+																				+ "</div>";
+																		r += "<div class='col-12 commentDate'>"
+																				+ data[i].bcm_write_date
+																				+ "</div>";
+																		r += "<div class='col-12  commentTitle'>"
+																				+ data[i].b_title
+																				+ "</div>";
+																		r += "</div></a>";
+																	}
+																	$(
+																			"#boardbox")
+																			.append(
+																					r);
+																}
+															});
+										})
+					</script>
 				</div>
 			</div>
 			<div class="col-12 col-md-8 col-lg-9 col-xl-10">
 				<!-- 작성 게시글 -->
 				<div class="row">
-					<div class="col-11 boardbox" id="boardbox">
-					</div>
+					<div class="col-11 boardbox" id="boardbox"></div>
 				</div>
 			</div>
 		</div>
@@ -441,33 +511,33 @@ button {
 			<div class="offcanvas-body">
 				<div class="profilebox" id="Btn" style="background: #BDBDBD;">
 					<img src="/img/logo.png" id="profileimg">
-					</div>
-					<div class="profiletext">${loginNickname }</div>
-					<div class="profiletext">
-						<a href="/member/mypage.jsp">
-							<button>마이페이지</button>
-						</a>
-					</div>
-					<a href="/boardList.board?cpage=1">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="/fboardList.fboard?cpage=1">
-						<div class="menulink">자유게시판</div>
-					</a> <a href="/noticeList.notice?cpage=1">
-						<div class="menulink">공지사항</div>
-					</a>
-					<button type="button" id="logoutBtn">로그아웃</button>
 				</div>
-				<script>
-					$("#logoutBtn").on("click", function() {
-						location.href = "/logout.member";
-					})			
-                /* $("#profileBtn").on(
-                    "click",
-                    function () {
-                        window.open("/profile.jsp", "",
-                            "width=400,height=300");
-                    }) */
-            </script>
+				<div class="profiletext">${loginNickname }</div>
+				<div class="profiletext">
+					<a href="/member/mypage.jsp">
+						<button>마이페이지</button>
+					</a>
+				</div>
+				<a href="/boardList.board?cpage=1">
+					<div class="menulink">영화 드라마 게시판</div>
+				</a> <a href="/fboardList.fboard?cpage=1">
+					<div class="menulink">자유게시판</div>
+				</a> <a href="/noticeList.notice?cpage=1">
+					<div class="menulink">공지사항</div>
+				</a>
+				<button type="button" id="logoutBtn">로그아웃</button>
+			</div>
+			<script>
+				$("#logoutBtn").on("click", function() {
+					location.href = "/logout.member";
+				})
+				/* $("#profileBtn").on(
+				    "click",
+				    function () {
+				        window.open("/profile.jsp", "",
+				            "width=400,height=300");
+				    }) */
+			</script>
 		</div>
 
 

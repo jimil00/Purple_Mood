@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import dao.BoardCommentDAO;
+import dao.BoardDAO;
 import dao.MemberDAO;
+import dto.BoardCommentDTO;
+import dto.BoardDTO;
 import dto.MemberDTO;
 
 
@@ -18,7 +25,7 @@ public class MemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf8");
-
+		response.setCharacterEncoding("UTF-8");
 		String uri = request.getRequestURI();
 		System.out.println("요청 URI : " + uri);
 
@@ -107,7 +114,37 @@ public class MemberController extends HttpServlet {
 				request.getSession().invalidate();
 				response.sendRedirect("/main");
 			}
+			//마이페이지 작성 게시글 출력
+			else if(uri.equals("/selectMypageBoard.member")) {
 
+				/*
+				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
+				 */
+				Gson gsonStr   = new Gson();
+				/*
+				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
+				 * String strJsonList = gsonStr.toJson(dr_list_d);
+				 * System.out.println("************strJsonList******* \n"+strJsonList);
+				 * response.getWriter().append(strJsonList);
+				 */
+				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
+				String strJsonList = gsonStr.toJson(b_list);
+				System.out.println("************strJsonList******* \n"+strJsonList);
+				response.getWriter().append(strJsonList);
+			}
+
+			
+			//마이페이지 댓글 출력
+			else if(uri.equals("/selectMypageComment.member")) {
+				Gson gsonStr   = new Gson();
+				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(nickname);
+				String strJsonList = gsonStr.toJson(bcm_list);
+				System.out.println("************strJsonList******* \n"+strJsonList);
+				response.getWriter().append(strJsonList);
+			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("Error.jsp");

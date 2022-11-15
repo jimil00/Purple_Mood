@@ -280,6 +280,7 @@ height:100%;
 
 #logoutBtn {
 	font-size: larger;
+	font-family: 'DungGeunMo';
 }
 
 .menulink {

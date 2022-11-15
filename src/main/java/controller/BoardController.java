@@ -142,28 +142,6 @@ public class BoardController extends HttpServlet {
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");
 				int result = BoardDAO.getInstance().updateBoardContents(b_category, b_title,b_content,b_seq);
-			
-				
-				
-
-				//마이페이지 작성 게시글 출력
-			}else if(uri.equals("/selectMypageBoard.board")) {
-
-				/*
-				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
-				 */
-				Gson gsonStr   = new Gson();
-				/*
-				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
-				 * String strJsonList = gsonStr.toJson(dr_list_d);
-				 * System.out.println("************strJsonList******* \n"+strJsonList);
-				 * response.getWriter().append(strJsonList);
-				 */
-				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
-				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
-				String strJsonList = gsonStr.toJson(b_list);
-				System.out.println("************strJsonList******* \n"+strJsonList);
-				response.getWriter().append(strJsonList);
 			}
 
 		}catch (Exception e) {
