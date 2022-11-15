@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dao.DramaDAO;
 import dao.NoticeDAO;
-import dto.DramaDTO;
 import dto.NoticeDTO;
 
 
@@ -149,9 +147,15 @@ public class NoticeController extends HttpServlet {
 				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
 				 */
 				Gson gsonStr   = new Gson();
-
-				List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate();
-				String strJsonList = gsonStr.toJson(dr_list_d);
+				/*
+				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
+				 * String strJsonList = gsonStr.toJson(dr_list_d);
+				 * System.out.println("************strJsonList******* \n"+strJsonList);
+				 * response.getWriter().append(strJsonList);
+				 */
+				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+				List <NoticeDTO> notice_list =NoticeDAO.getInstance().searchByNickname(nickname);
+				String strJsonList = gsonStr.toJson(notice_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
 			}

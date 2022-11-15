@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.FboardDTO;
 import dto.NoticeDTO;
 
 public class NoticeDAO {
@@ -314,6 +315,30 @@ public class NoticeDAO {
 		return list;
 
 	}
+	
+	//마이페이지 작성글 출력
+		public List<NoticeDTO> searchByNickname(String nickname) throws Exception{
+			List<NoticeDTO> list=new ArrayList<>();
+			String sql="select * from notice where n_writer=?";
+			NoticeDTO dto = new NoticeDTO();
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);     
+					){
+				pstat.setString(1, nickname);
+				try(ResultSet rs = pstat.executeQuery();){
+					while(rs.next()) {
+						dto.setN_seq(rs.getInt("n_seq"));
+						dto.setN_category(rs.getString("n_category"));
+						dto.setN_writer(rs.getString("n_writer"));
+						dto.setN_write_date(rs.getTimestamp("n_write_date"));
+						dto.setN_title(rs.getString("n_title"));
+						dto.setN_content(rs.getString("n_content"));
+						dto.setN_view_count(rs.getInt("n_view_count"));
+					}
+				}
+			}
+			list.add(dto);
+		}
 
 
 }

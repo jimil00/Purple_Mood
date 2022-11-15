@@ -15,9 +15,9 @@ import dto.FboardDTO;
 public class FboardDAO {
 
 	private FboardDAO() {}
-	
+
 	private static FboardDAO instance;
-	
+
 	synchronized public static FboardDAO getInstance() {
 		if(instance == null) {
 			instance = new FboardDAO();
@@ -37,18 +37,17 @@ public class FboardDAO {
 	//	}
 
 	// 게시글 작성 (C)
-	public int insertFboardContents(FboardDAO dto) throws Exception{
-
+	public int insertFboardContents(FboardDTO dto) throws Exception{
 		String sql = "insert into fboard values(?, ?, ?, sysdate, ?, ?, 0)";
 		//							파일 기능 추가시 ?
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-			pstat.setInt(1,dto.get);
-			pstat.setString(2, dto.getB_category());
-			pstat.setString(3, dto.getB_writer());
-			pstat.setString(4, dto.getB_title());
-			pstat.setString(5, dto.getB_content());
+			pstat.setInt(1,dto.getFb_seq());
+			pstat.setString(2, dto.getFb_category());
+			pstat.setString(3, dto.getFb_writer());
+			pstat.setString(4, dto.getFb_title());
+			pstat.setString(5, dto.getFb_content());
 
 
 			int result = pstat.executeUpdate();
@@ -75,7 +74,7 @@ public class FboardDAO {
 
 
 	// 게시글 출력 (R)
-	public FboardDTO selectFboardContents(int b_seq) throws Exception {
+	public FboardDTO selectFboardContents(int fb_seq) throws Exception {
 
 		String sql = "select * from fboard where fb_seq = ?";
 
@@ -89,30 +88,30 @@ public class FboardDAO {
 				rs.next();
 				FboardDTO dto = new FboardDTO();
 				dto.setFb_seq(rs.getInt("fb_seq"));
-				dto.setB_category(rs.getString("b_category"));
-				dto.setB_writer(rs.getString("b_writer"));
-				dto.setB_write_date(rs.getTimestamp("b_write_date"));
-				dto.setB_title(rs.getString("b_title"));
-				dto.setB_content(rs.getString("b_content"));
-				dto.setB_view_count(rs.getInt("b_view_count"));
-				return dto;
+				dto.setFb_category(rs.getString("fb_category"));
+				dto.setFb_writer(rs.getString("fb_writer"));
+				dto.setFb_write_date(rs.getTimestamp("fb_write_date"));
+				dto.setFb_title(rs.getString("fb_title"));
+				dto.setFb_content(rs.getString("fb_content"));
+				dto.setFb_view_count(rs.getInt("fb_view_count"));
+				return dto;			
 			}
 		}
 	}
 
 
 	// 게시글 수정 (U)
-	public int updateBoardContents(String b_category, String b_title, String b_content, int b_seq) throws Exception{
+	public int updateFboardContents(String fb_category, String fb_title, String fb_content, int fb_seq) throws Exception{
 
-		String sql = "update board set b_write_date=sysdate, b_category=?, b_title=?, b_content=? where b_seq=?";
+		String sql = "update fboard set fb_write_date=sysdate, fb_category=?, fb_title=?, fb_content=? where fb_seq=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-			
-			pstat.setString(1, b_category);
-			pstat.setString(2, b_title);
-			pstat.setString(3, b_content);
-			pstat.setInt(4, b_seq);
+
+			pstat.setString(1, fb_category);
+			pstat.setString(2, fb_title);
+			pstat.setString(3, fb_content);
+			pstat.setInt(4, fb_seq);
 
 			int result = pstat.executeUpdate();
 			con.commit();
@@ -122,14 +121,14 @@ public class FboardDAO {
 
 
 	// 게시글 삭제 (D)
-	public int deleteBoardContents(int b_seq) throws Exception{
+	public int deleteFboardContents(int fb_seq) throws Exception{
 
-		String sql = "delete from board where b_seq = ?";
+		String sql = "delete from fboard where fb_seq = ?";
 
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-			pstat.setInt(1, b_seq);
+			pstat.setInt(1, fb_seq);
 			int result = pstat.executeUpdate();
 
 			con.commit();
@@ -139,15 +138,15 @@ public class FboardDAO {
 
 
 	// 게시글 조회수 출력
-	public int addBoardViewCount(int b_seq) throws Exception{
+	public int adFboardViewCount(int fb_seq) throws Exception{
 
-		String sql = "update board set b_view_count=b_view_count+1 where b_seq = ?";
+		String sql = "update fboard set fb_view_count=fb_view_count+1 where fb_seq = ?";
 
 		try (Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
 
-			pstat.setInt(1, b_seq);
+			pstat.setInt(1, fb_seq);
 
 			int result = pstat.executeUpdate();
 
@@ -159,9 +158,9 @@ public class FboardDAO {
 
 
 	// 게시판 리스트 출력 (R)
-	public List<BoardDTO> selectBoardByRange(int start, int end) throws Exception{
+	public List<FboardDTO> selectFboardByRange(int start, int end) throws Exception{
 
-		String sql = "select * from (select board.*, row_number() over(order by b_seq desc) rn from board) where rn between ? and ?";
+		String sql = "select * from (select fboard.*, row_number() over(order by fb_seq desc) rn from fboard) where rn between ? and ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
@@ -171,16 +170,16 @@ public class FboardDAO {
 
 			try(ResultSet rs = pstat.executeQuery();){
 
-				List<BoardDTO> list = new ArrayList<>();
+				List<FboardDTO> list = new ArrayList<>();
 				while(rs.next()) {
-					BoardDTO dto = new BoardDTO();
-					dto.setB_seq(rs.getInt("B_seq"));
-					dto.setB_category(rs.getString("b_category"));
-					dto.setB_writer(rs.getString("b_writer"));
-					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-					dto.setB_title(rs.getString("b_title"));
-					dto.setB_content(rs.getString("b_content"));
-					dto.setB_view_count(rs.getInt("b_view_count"));
+					FboardDTO dto = new FboardDTO();
+					dto.setFb_seq(rs.getInt("fb_seq"));
+					dto.setFb_category(rs.getString("fb_category"));
+					dto.setFb_writer(rs.getString("fb_writer"));
+					dto.setFb_write_date(rs.getTimestamp("fb_write_date"));
+					dto.setFb_title(rs.getString("fb_title"));
+					dto.setFb_content(rs.getString("fb_content"));
+					dto.setFb_view_count(rs.getInt("fb_view_count"));
 					list.add(dto);
 				}
 				return list;
@@ -247,7 +246,7 @@ public class FboardDAO {
 
 
 	public int getRecordCount() throws Exception {
-		String sql = "select count(*) from board";
+		String sql = "select count(*) from fboard";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();){
@@ -256,7 +255,7 @@ public class FboardDAO {
 		}
 	}
 
-	public List<String> getBoardPageNavi(int currentPage) throws Exception {
+	public List<String> getFboardPageNavi(int currentPage) throws Exception {
 		List<String>list=new ArrayList<>();
 		int recordTotalCount = this.getRecordCount(); 
 
@@ -312,11 +311,11 @@ public class FboardDAO {
 
 
 	//게시판 검색 리스트 출력 (R) 페이징해서 다시 해야 함
-	public List<BoardDTO> selectBoardSearchList(String boardSearchOption,String boardSearchWord) throws Exception{
-		List<BoardDTO>list = new ArrayList<>();
-
-		if(boardSearchOption.equals("b_title")) {
-			String sql="select * from board where b_title like ?";
+	public List<FboardDTO> selectFboardSearchList(String boardSearchOption,String boardSearchWord) throws Exception{
+		List<FboardDTO>list = new ArrayList<>();
+		FboardDTO dto = new FboardDTO();
+		if(boardSearchOption.equals("fb_title")) {
+			String sql="select * from fboard where fb_title like ?";
 			try(Connection con = getConnection();
 					PreparedStatement pstat= con.prepareStatement(sql);){
 
@@ -326,20 +325,19 @@ public class FboardDAO {
 
 
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
-						dto.setB_seq(rs.getInt("b_seq"));
-						dto.setB_category(rs.getString("b_category"));
-						dto.setB_writer(rs.getString("b_writer"));
-						dto.setB_write_date(rs.getTimestamp("b_write_date"));
-						dto.setB_title(rs.getString("b_title"));
-						dto.setB_content(rs.getString("b_content"));
-						dto.setB_view_count(rs.getInt("b_view_count"));
-						list.add(dto);
+						dto.setFb_seq(rs.getInt("fb_seq"));
+						dto.setFb_category(rs.getString("fb_category"));
+						dto.setFb_writer(rs.getString("fb_writer"));
+						dto.setFb_write_date(rs.getTimestamp("fb_write_date"));
+						dto.setFb_title(rs.getString("fb_title"));
+						dto.setFb_content(rs.getString("fb_content"));
+						dto.setFb_view_count(rs.getInt("fb_view_count"));
 					}
+					list.add(dto);
 				}
 			}
-		}else if(boardSearchOption.equals("b_writer")) {
-			String sql="select * from board where b_writer like ?";
+		}else if(boardSearchOption.equals("fb_writer")) {
+			String sql="select * from fboard where fb_writer like ?";
 			try(Connection con = getConnection();
 					PreparedStatement pstat= con.prepareStatement(sql);){
 
@@ -349,20 +347,19 @@ public class FboardDAO {
 
 
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
-						dto.setB_seq(rs.getInt("b_seq"));
-						dto.setB_category(rs.getString("b_category"));
-						dto.setB_writer(rs.getString("b_writer"));
-						dto.setB_write_date(rs.getTimestamp("b_write_date"));
-						dto.setB_title(rs.getString("b_title"));
-						dto.setB_content(rs.getString("b_content"));
-						dto.setB_view_count(rs.getInt("b_view_count"));
-						list.add(dto);
+						dto.setFb_seq(rs.getInt("fb_seq"));
+						dto.setFb_category(rs.getString("fb_category"));
+						dto.setFb_writer(rs.getString("fb_writer"));
+						dto.setFb_write_date(rs.getTimestamp("fb_write_date"));
+						dto.setFb_title(rs.getString("fb_title"));
+						dto.setFb_content(rs.getString("fb_content"));
+						dto.setFb_view_count(rs.getInt("fb_view_count"));
 					}
+					list.add(dto);
 				}
 			}
-		}else if(boardSearchOption.equals("b_content")) {
-			String sql="select * from board where b_content like ?";
+		}else if(boardSearchOption.equals("fb_content")) {
+			String sql="select * from fboard where fb_content like ?";
 			try(Connection con = getConnection();
 					PreparedStatement pstat= con.prepareStatement(sql);){
 
@@ -372,16 +369,15 @@ public class FboardDAO {
 
 
 					while(rs.next()) {
-						BoardDTO dto = new BoardDTO();
-						dto.setB_seq(rs.getInt("b_seq"));
-						dto.setB_category(rs.getString("b_category"));
-						dto.setB_writer(rs.getString("b_writer"));
-						dto.setB_write_date(rs.getTimestamp("b_write_date"));
-						dto.setB_title(rs.getString("b_title"));
-						dto.setB_content(rs.getString("b_content"));
-						dto.setB_view_count(rs.getInt("b_view_count"));
-						list.add(dto);
+						dto.setFb_seq(rs.getInt("fb_seq"));
+						dto.setFb_category(rs.getString("fb_category"));
+						dto.setFb_writer(rs.getString("fb_writer"));
+						dto.setFb_write_date(rs.getTimestamp("fb_write_date"));
+						dto.setFb_title(rs.getString("fb_title"));
+						dto.setFb_content(rs.getString("fb_content"));
+						dto.setFb_view_count(rs.getInt("fb_view_count"));
 					}
+					list.add(dto);
 				}
 			}
 
@@ -393,32 +389,26 @@ public class FboardDAO {
 
 
 	//마이페이지 작성글 출력
-	public List <BoardDTO> searchByNickname(String nickname) throws Exception{
-		String sql="select * from board where b_writer=?";
+	public List<FboardDTO> searchByNickname(String nickname) throws Exception{
+		List<FboardDTO> list=new ArrayList<>();
+		String sql="select * from fboard where fb_writer=?";
+		FboardDTO dto = new FboardDTO();
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);     
 				){
 			pstat.setString(1, nickname);
 			try(ResultSet rs = pstat.executeQuery();){
-				List<BoardDTO> list=new ArrayList<>();
 				while(rs.next()) {
-					BoardDTO dto=new BoardDTO();
-					dto.setB_seq(rs.getInt("b_seq"));
-					dto.setB_category(rs.getString("b_category"));
-					dto.setB_writer(rs.getString("b_writer"));
-					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-					dto.setB_title(rs.getString("b_title"));
-					dto.setB_content(rs.getString("b_content"));
-					dto.setB_view_count(rs.getInt("b_view_count"));
-					list.add(dto);    
+					dto.setFb_seq(rs.getInt("fb_seq"));
+					dto.setFb_category(rs.getString("fb_category"));
+					dto.setFb_writer(rs.getString("fb_writer"));
+					dto.setFb_write_date(rs.getTimestamp("fb_write_date"));
+					dto.setFb_title(rs.getString("fb_title"));
+					dto.setFb_content(rs.getString("fb_content"));
+					dto.setFb_view_count(rs.getInt("fb_view_count"));
 				}
-				return list;
 			}
 		}
+		list.add(dto);
 	}
-
-
-}
-
-
 }

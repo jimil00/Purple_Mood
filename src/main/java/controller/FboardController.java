@@ -153,15 +153,21 @@ public class FboardController {
 					//마이페이지 작성 게시글 출력
 		         }else if(uri.equals("/selectMypageBoard.board")) {
 		            
-		            /*
-		             * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
-		             */
-		            Gson gsonStr   = new Gson();
-		            
-		            List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate();
-		            String strJsonList = gsonStr.toJson(dr_list_d);
-		            System.out.println("************strJsonList******* \n"+strJsonList);
-		            response.getWriter().append(strJsonList);
+		        	 /*
+						 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
+						 */
+						Gson gsonStr   = new Gson();
+						/*
+						 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
+						 * String strJsonList = gsonStr.toJson(dr_list_d);
+						 * System.out.println("************strJsonList******* \n"+strJsonList);
+						 * response.getWriter().append(strJsonList);
+						 */
+						String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+						List <FboardDTO> fb_list =FboardDAO.getInstance().searchByNickname(nickname);
+						String strJsonList = gsonStr.toJson(fb_list);
+						System.out.println("************strJsonList******* \n"+strJsonList);
+						response.getWriter().append(strJsonList);
 		         }
 
 			}catch (Exception e) {
