@@ -480,7 +480,7 @@ public class BoardDAO {
 
 	//마이페이지 작성글 출력
 	public List <BoardDTO> searchByID(String id) throws Exception{
-		String sql="select * from board where b_writer_id=?";
+		String sql="select * from board where b_writer_id=? order by b_write_date desc";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);     
 				){

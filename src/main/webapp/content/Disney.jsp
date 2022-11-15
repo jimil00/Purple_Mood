@@ -36,10 +36,6 @@
 	font-family: 'DungGeunMo';
 }
 
-body {
-	background-color: #03001e;
-	color: white;
-}
 
 .ott_logo>img {
 	width: 250px;
@@ -51,7 +47,12 @@ body {
 }
 
 .list_title {
-	text-align: left;
+	font-weight: bold;
+}
+
+body {
+	background-color: #03001e;
+	color: white;
 }
 
 .card {
@@ -291,11 +292,9 @@ button {
         </div>
         </form>-->
 
-
-
 		<!-- ott별로 출력하는 페이지 -->
 
-		<form action="/wv_search.content">			
+		<form action="/d_search.content">
 			<div class="row header">
 				<div class="col-12 col-md-7 col-lg-8" id="logo">
 					<a href="/main"><img src="/img/title.png" class="titleimg"
@@ -303,7 +302,7 @@ button {
 				</div>
 				<div class="col-8 col-md-4 col-lg-3 searchbox">
 					<input type="text" class="searchboxin" id="searchtext"
-						name="wv_searchtext" placeholder="웨이브 내 검색"> <i
+						name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i
 						class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
 				</div>
 				<div class="col-4 col-md-1 col-lg-1 menuicon">
@@ -314,36 +313,36 @@ button {
 				</div>
 			</div>
 		</form>
+
 		<div class="ott_logo col-12">
-			<img src="/img/wavbf.png">
+			<img src="/img/disbf.png">
 		</div>
->>>>>>> 0b6147b3a0181681d76e4f52197c9aad07dc04e3
 		<hr>
 
-		<!-- 웨이브 영화 검색 결과 출력 -->
+		<!-- 디즈니 영화 검색 결과 출력 -->
 		<c:choose>
-			<c:when test="${not empty wv_mv_list}">
+			<c:when test="${not empty d_mv_list}">
 
 				<div class="list_title">
-					영화 검색 결과<span> ${wv_mv_list.size()}개</span>
+					영화 검색 결과<span> ${d_mv_list.size()}개</span>
 				</div>
 				<hr>
 
 				<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
 					<c:set var="i" value="0" />
 					<c:set var="j" value="1" />
-					<c:forEach var="wv" items="${wv_mv_list}">
+					<c:forEach var="d" items="${d_mv_list}">
 						<c:if test="${i%j == 0 }">
 							<div class="col">
 						</c:if>
 
 						<div class="card">
-							<a href="/detailMv.content?mv_id=${wv.mv_id}">
+							<a href="/detailMv.content?mv_id=${d.mv_id}">
 
 								<div class="poster">
-									<img src="${wv.mv_poster_path}" class="card-img-top" alt="...">
+									<img src="${d.mv_poster_path}" class="card-img-top" alt="...">
 								</div>
-								<p class="card-text">${wv.mv_title}</p>
+								<p class="card-text">${d.mv_title}</p>
 							</a>
 						</div>
 						<c:if test="${i%j == j-1 }">
@@ -352,6 +351,7 @@ button {
 				<c:set var="i" value="${i+1 }" />
 				</c:forEach>
 	</div>
+
 	</c:when>
 	<c:otherwise>
 		<div class="list_title pt-2">영화 검색 결과</div>
@@ -360,31 +360,33 @@ button {
 	</c:otherwise>
 	</c:choose>
 
-	<!-- 웨이브 드라마 검색 결과 출력 -->
-	<c:choose>
-		<c:when test="${not empty wv_dr_list}">
 
-			<hr>
+	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
+	
+	<c:choose>
+		<c:when test="${not empty d_dr_list}">
+
 			<div class="list_title">
-				드라마 검색 결과<span> ${wv_dr_list.size()}개</span>
+				<hr>
+				드라마 검색 결과<span> ${d_dr_list.size()}개</span>
 			</div>
 			<hr>
 
 			<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
 				<c:set var="i" value="0" />
 				<c:set var="j" value="1" />
-				<c:forEach var="wv" items="${wv_dr_list}">
+				<c:forEach var="d" items="${d_dr_list}">
 					<c:if test="${i%j == 0 }">
 						<div class="col">
 					</c:if>
 
 					<div class="card">
-						<a href="/detailDr.content?dr_id=${wv.dr_id}">
+						<a href="/detailDr.content?dr_id=${d.dr_id}">
 
 							<div class="poster">
-								<img src="${wv.dr_poster_path}" class="card-img-top" alt="...">
+								<img src="${d.dr_poster_path}" class="card-img-top" alt="...">
 							</div>
-							<p class="card-text">${wv.dr_title}</p>
+							<p class="card-text">${d.dr_title}</p>
 						</a>
 					</div>
 					<c:if test="${i%j == j-1 }">
@@ -393,7 +395,7 @@ button {
 			<c:set var="i" value="${i+1 }" />
 			</c:forEach>
 			</div>
-			
+
 		</c:when>
 		<c:otherwise>
 			<hr>
@@ -401,32 +403,10 @@ button {
 			<hr>
 			<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
-	</c:choose>
-	<div class="row footer">
-		<div class="col-12 footerAtag">
-			<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
-				href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
-		</div>
-		<div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
-		<div class="col-12 footerImpormation">이메일 주소 :
-			purpleMood@purplemood.com</div>
-		<div class="col-12 footerImpormation">사업자등록번호 : 000-00-000</div>
-		<div class="col-12 footerImpormation">통신판매업 신고번호 : 제
-			2022-서울중구-301e호</div>
-		<div class="col-12 footerImpormation">주소 : 대한민국 서울특별시 중구 남대문로
-			120, 대일빌딩 3층</div>
-		<div class="col-12 footerIcon">
-			<span class="snsIcon"><i class="fa-brands fa-instagram fa-2xl"></i></span>
-			<span class="snsIcon"><i class="fa-brands fa-twitter fa-2xl"></i></span>
-			<span class="snsIcon"> <i class="fa-brands fa-facebook fa-2xl"></i>
-			</span>
 		</div>
 	</div>
-
-</div>
-
-
-<c:choose>
+	</div>
+	<c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true"

@@ -113,8 +113,8 @@ public class BoardCommentDAO {
 
 	//마이페이지 작성 출력
 
-	public List <BoardCommentDTO> searchByNickname(String id) throws Exception{
-		String sql="select * from board_comment where bcm_writer_id=?";
+	public List <BoardCommentDTO> searchByID(String id) throws Exception{
+		String sql="select * from board_comment where bcm_writer_id=? order by bcm_write_date desc";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);     
 				){

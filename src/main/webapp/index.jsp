@@ -305,6 +305,14 @@ height:100%;
 	color: white;
 	background-color: #03001e;
 }
+#linksec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+#logoutsec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
 
 a {
 	color: white;
@@ -331,20 +339,24 @@ hr.hr {
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
-					onkeyup="enterkey()" name="searchtext" /> <a
-					href="/search.content?searchtext=" +searchtext> <i
-					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
+					onkeyup="enterkey()" name="searchtext" /> 
+					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
 			$("#titleimg").on("click",function(){
 				location.href="/main";
 			})
-				function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+			
+			$("#searchbtn").on("click",function(){
+				location.href="/search.content?searchtext="+ $("#searchtext").val();;
+			})
+			
+			function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
 					if (window.event.keyCode == 13) {
-						location.href = "/search.content?searchtext="
-								+ $("#searchtext").val();
+						location.href = "/search.content?searchtext="+ $("#searchtext").val();
 					}
 				}
+		
 			</script>
 
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
@@ -644,10 +656,11 @@ hr.hr {
 							<button>마이페이지</button>
 						</a>
 					</div>
-					<a href="/boardList.board?cpage=1">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a>
-					<button type="button" id="logoutBtn">로그아웃</button>
+					 <div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div>
+        <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {
@@ -677,10 +690,11 @@ hr.hr {
 							<button>관리자페이지</button>
 						</a>
 					</div>
-					<a href="/boardList.board?cpage=1">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a> 
-					<button type="button" id="logoutBtn">로그아웃</button>
+					<div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div> 
+					 <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {
@@ -710,9 +724,10 @@ hr.hr {
 							<button id="signinBtn">로그인</button>
 						</a>
 					</div>
-					<a class="noLoginMenu">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a> 
+					<div id="linksec">
+        <a href="#">
+            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
+        </a></div>
 				</div>
 				<script>
 					$(".noLoginMenu").on("click",function(){

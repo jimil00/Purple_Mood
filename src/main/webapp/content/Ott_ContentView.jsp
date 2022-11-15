@@ -34,12 +34,22 @@ pageEncoding="UTF-8"%>
     .container {
 	font-family: 'DungGeunMo';
 }
+
+    .header{}
+
+    .logo{text-align:left;height:100px;}
+    #titleimg{height:100px;}
+    
+    .ott_logo>a>img{width:250px;margin:30px;}
+    
+    
+
     .ott_logo>img{width:250px;margin:30px;}
+
     
     .postimg {width:200px;}
     
-    .list_title{font-weight: bold;
-    }
+    .list_title{font-weight: bold;}
     
     body{
     background-color: #03001e;
@@ -161,7 +171,14 @@ left:-38%;
 	color: white;
 	background-color: #03001e;
 }
-
+#linksec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+#logoutsec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
 a {
 	color: white;
 	text-decoration: none;
@@ -224,6 +241,7 @@ button {
 	<c:choose>
 		<c:when test="${not empty dr_date_n and not empty mv_date_n}">
 		
+
 	<form action="/n_search.content">  
         <div class="row header">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
@@ -241,11 +259,10 @@ button {
 					aria-controls="offcanvasWithBothOptions"></i>
 			</div>
 		</div>
-        
         </form>
         
         <div class="ott_logo col-12">
-            <img src="/img/netbf.png">
+           <a href="/netflix.content"><img src="/img/netbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -288,7 +305,7 @@ button {
                 </div>
               </div>
           	<button class="carousel-control-prev postLRbtn" type="button"
-				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Previous</span>
 			</button>
@@ -487,7 +504,7 @@ button {
         </form>
         
            <div class="ott_logo col-12">
-            <img src="/img/disbf.png">
+            <a href="/disney.content"><img src="/img/disbf.png"></a>
         </div>
         <hr>
         
@@ -732,7 +749,7 @@ button {
 		</div>
         </form>
            <div class="ott_logo col-12">
-            <img src="/img/wavbf.png">
+            <a href="/wavve.content"><img src="/img/wavbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -972,7 +989,7 @@ button {
         </form>    
         
         <div class="ott_logo col-12">
-            <img src="/img/watbf.png">
+            <a href="/watcha.content"><img src="/img/watbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -1184,44 +1201,77 @@ button {
         </c:when>
         </c:choose>
 
+</div>
 
-
-<div class="offcanvas offcanvas-end" data-bs-scroll="true"
-			tabindex="-1" id="offcanvasWithBothOptions"
-			aria-labelledby="offcanvasWithBothOptionsLabel">
-			<div class="offcanvas-header">
-				<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-					aria-label="Close">
-					<i class="fa-solid fa-xmark fa-xl"></i>
-				</button>
-			</div>
-			<div class="offcanvas-body">
-				<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+<c:choose>
+		<c:when test="${loginID!=null && loginID!='admin123'}">
+			<!-- 로그인 -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
 					<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="/member/mypage.jsp">
+							<button>마이페이지</button>
+						</a>
+					</div>
+					 <div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div>
+        <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
 				</div>
-				<div class="profiletext">${loginNickname }</div>
-				<div class="profiletext">
-					<a href="/member/mypage.jsp">
-						<button>마이페이지</button>
-					</a>
-				</div>
-				<a href="/boardList.board?cpage=1">
-					<div class="menulink">영화 드라마 게시판</div>
-				</a> 
-				<button type="button" id="logoutBtn">로그아웃</button>
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
+					})
+				</script>
 			</div>
-			<script>
-				$("#logoutBtn").on("click", function() {
-					location.href = "/logout.member";
-				})
-				/* $("#profileBtn").on(
-				    "click",
-				    function () {
-				        window.open("/profile.jsp", "",
-				            "width=400,height=300");
-				    }) */
-			</script>
-		</div>
-         </div>
+		</c:when>
+<c:otherwise>
+			<!-- 비로그인  -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">익명의 누군가</div>
+					<div class="profiletext">
+						<a href="/member/signin.jsp">
+							<button id="signinBtn">로그인</button>
+						</a>
+					</div>
+					<div id="linksec">
+        <a href="#">
+            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
+        </a></div>
+				</div>
+				<script>
+					$(".noLoginMenu").on("click",function(){
+						alert("로그인을 해주세요");
+					})
+				</script>
+			</div>
+		</c:otherwise>
+	</c:choose>
+         
 </body>
 </html>
