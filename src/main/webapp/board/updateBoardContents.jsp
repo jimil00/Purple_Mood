@@ -102,6 +102,12 @@
         	
             // var fontList = ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'];
             $('#summernote').summernote({
+                lang: 'ko-KR',
+                height: 400,
+                placeholder: "내용을 입력해주세요.",
+                fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+                // addDefaultFonts: false,
+                fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
                 callbacks: {
                     onImageUpload: function (image) {
                         console.log("works")
@@ -170,10 +176,10 @@
                     <div class="headerTitle">카테고리</div>
                     <div>
                         <select id="b_category" name="b_category" value="${dto.b_category }">
-                            <option value="movie">영화</option>
-                            <option value="drama">드라마</option>
-                            <option value="onAir">실시간</option>
-                            <option value="review">후기</option>
+                            <option value="영화">영화</option>
+                            <option value="드라마">드라마</option>
+                            <option value="실시간">실시간</option>
+                            <option value="후기">후기</option>
                         </select>
                     </div>
 
@@ -192,7 +198,7 @@
                 <div class="btns col-lg-12 col-md-12 col-sm-12">
                     <button type="button" class="btn" id="updateBoardContents"
                         name="updateBoardContents">수정하기</button>&nbsp
-                    <a href="/boardList.board"><button type="button" id="toList" name="toList">목록으로</button></a>
+                    <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList" name="toList">목록으로</button></a>
                 </div>
             </div>
         </div>

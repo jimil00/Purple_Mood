@@ -31,147 +31,118 @@ public class BoardController extends HttpServlet {
 			String uri = request.getRequestURI();
 			System.out.println("요청 URI : " + uri);
 
+			
+			
 			//게시판 리스트 출력 (R)
 			if(uri.equals("/boardList.board")) {
 
-				int cpage=Integer.parseInt(request.getParameter("cpage"));
+				String page = request.getParameter("cpage");
+				int cpage = Integer.parseInt(page);
+				request.getSession().setAttribute("boardPage", page);
+				
 				System.out.println(cpage);
 				List<BoardDTO> board = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
 				//List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
-				//String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
-				List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
-				int endNavi=Integer.parseInt(list.get(0));
-				String navi=list.get(1);
+				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
+//				List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
+//				int endNavi=Integer.parseInt(list.get(0));
+//				String navi=list.get(1);
 				request.setAttribute("board", board);
 				request.setAttribute("navi", navi);
-				request.setAttribute("endNavi", endNavi);
+//				request.setAttribute("endNavi", endNavi);
 				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 
-				// 게시판 검색 리스트 출력 (R)
-			}else if(uri.equals("/boardListSearch.board")) {
+			
+			
+			// 게시판 검색 리스트 출력 (R)
+			}else if(uri.equals("/boardSearchList.board")) {
+				
 				String boardSearchOption=request.getParameter("boardSearchOption");
 				String boardSearchWord = request.getParameter("boardSearchWord");
 				System.out.println(boardSearchOption + boardSearchWord);
-				List<BoardDTO>list = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord);
-				request.setAttribute("list", list);
-				System.out.println(list.size());
+				int cpage = Integer.parseInt(request.getParameter("cpage"));
+				List<BoardDTO>board = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord,cpage*20-19, cpage*20);
+//				List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
+				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
+//
+//				int endNavi=Integer.parseInt(list.get(0));
+//				String navi=list.get(1);
+				request.setAttribute("board", board);
+				request.setAttribute("navi", navi);
+//				request.setAttribute("endNavi", endNavi);
+				request.getRequestDispatcher("/board/boardSearchList.jsp").forward(request, response);
 
-				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
+			
 
 
-
-				// 게시글 입력 (C)
+			// 게시글 입력 (C)
 			}else if(uri.equals("/insertBoardContents.board")) {
 
-				//				int maxSize = 1024*1024*10;
-				//				String savePath = request.getServletContext().getRealPath("/files"); 
-				//				File fileSavePath = new File(savePath);
-				//				if(!fileSavePath.exists()) {
-				//					fileSavePath.mkdir();
-				//				}
 				String b_writer = (String)request.getSession().getAttribute("loginNickname");
-
-				//				MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
-				// 실제 자바스크립트 프론트에서 파일 사이즈 체크하고 넘어와야 한다.? 어렵네 이거도 해야 해요?
-
 				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");
-				System.out.println("b_category : "+b_category);
-				System.out.println("b_title : "+b_title);
-				System.out.println("b_content : "+b_content);
 
-								int nextVal = BoardDAO.getInstance().getBoardNextVal();
+				int nextVal = BoardDAO.getInstance().getBoardNextVal();
 
 				BoardDTO dto = new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0);
 				BoardDAO.getInstance().insertBoardContents(dto);
 				String b_seq = String.valueOf(dto.getB_seq());
 				response.getWriter().append(b_seq);
-//				response.sendRedirect("/selectBoardContents.board?seq="+dto.getB_seq());
-//				에이작스라서 안되지ㅠㅠ
-
-				//				Enumeration<String> e = multi.getFileNames();
-				//
-				//				while (e.hasMoreElements()) {
-				//
-				//					String name = e.nextElement();
-				//					// <- 가장 최신 글의 seq를 얻어오는 코드가 선행
-				//					String bf_oriName = multi.getOriginalFileName(name);
-				//
-				//					if(bf_oriName == null) {continue;}
-				//					//프론트에서 값이 없는 인풋타입은 없애는 게 좋겠다 일단 차선책을 비워있는 파일 넘어오면 서버에서 걸러내자
-				//
-				//					String bf_sysName = multi.getFilesystemName(name);
-				//
-				//					//					System.out.println(name);
-				//					BoardFileDAO.getInstance().insertBoardFile(new BoardFileDTO(0,bf_oriName, bf_sysName, null, nextVal));
-				//				}
 
 
-//				response.sendRedirect("/boardList.board");
 
-
-				// 게시글 출력 (R)
+			// 게시글 출력 (R)
 			}else if(uri.equals("/selectBoardContents.board")){
-				String b_writer = (String)request.getSession().getAttribute("loginNickname");
-
+				
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-
-				BoardDAO.getInstance().addBoardViewCount(b_seq); 
+				
+				BoardDAO.getInstance().addBoardViewCount(b_seq);
+				
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
-
 				request.setAttribute("dto", dto);
 
-
-				//				List<BoardFileDTO> filelist = BoardFileDAO.getInstance().selectBoardFile(b_seq);
-				//				request.setAttribute("filelist", filelist); 
-				List<BoardCommentDTO> list =BoardCommentDAO.getInstance().selectBoardComment(b_seq);
-				System.out.println();
+				List<BoardCommentDTO> list = BoardCommentDAO.getInstance().selectBoardComment(b_seq);
 				request.setAttribute("list", list);
 
 				request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
 
 
-				// 게시글 삭제 (D)
+				
+			// 게시글 삭제 (D)
 			}else if(uri.equals("/deleteBoardContents.board")) {
+				
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+				
 				int result = BoardDAO.getInstance().deleteBoardContents(b_seq);
-				//				String page = (String)request.getSession().getAttribute("boardPage");
-				response.sendRedirect("/boardList.board");
-
-
-				//				response.sendRedirect("/boardList.board?cpage="+page);
-				// 그 페이지로
+				
+				String page = (String)request.getSession().getAttribute("boardPage");
+				
+				response.sendRedirect("/boardList.board?cpage="+page);
 
 
 			//게시글 수정페이지 출력
 			}else if(uri.equals("/beforeUpdateBoardContents.board")) {
-				System.out.println("here");
 
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 				
-				System.out.println(b_seq);
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
 
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/board/updateBoardContents.jsp").forward(request, response);
 
+			
 				
 				
 			// 게시글 수정 (U)
 			}else if(uri.equals("/updateBoardContents.board")) {
+				
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-				System.out.println(b_seq);
 				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");
-				System.out.println(b_seq+b_category+b_title+b_content);
 				int result = BoardDAO.getInstance().updateBoardContents(b_category, b_title,b_content,b_seq);
-//				response.sendRedirect("/boardContents.board?seq="+b_seq);
 			
-
-
-
 				
 				
 

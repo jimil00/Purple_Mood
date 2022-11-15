@@ -21,37 +21,18 @@ public class BoardCommentController extends HttpServlet {
 
 
 
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		String uri=request.getRequestURI();
 
-      try {
-         if(uri.equals("/insertBoardComment.boardcomment")) {
+		try {
+			if(uri.equals("/insertBoardComment.boardcomment")) {
+				String nickname = (String)request.getSession().getAttribute("loginNickname");
 
-        	String nickname = (String)request.getSession().getAttribute("loginNickname");
-            String bcm_content=request.getParameter("bcm_content");
-            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
-            String b_title=request.getParameter("b_title");
-            int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq,b_title));
-			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
-
-
-//         }else if(uri.equals("/selectBoardComment.boardcomment")) {
-//
-//            int b_seq=Integer.parseInt(request.getParameter("b_seq"));
-//            BoardCommentDAO dao = BoardCommentDAO.getInstance();
-//            List<BoardCommentDTO>list=dao.selectBoardComment(b_seq);
-//            request.setAttribute("list", list);
-//            request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
-
-         }else if(uri.equals("/updateBoardComment.boardcomment")) {
-
-            String bcm_content = request.getParameter("bcm_content");
-            int bcm_seq = Integer.parseInt(request.getParameter("bcm_seq"));
-            System.out.println(bcm_content +":"+ bcm_seq);
-            int result = BoardCommentDAO.getInstance().updateBoardComment(bcm_content,bcm_seq);
-//			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
-
+				String bcm_content=request.getParameter("bcm_content");
+				int b_seq=Integer.parseInt(request.getParameter("b_seq"));
+				String b_title=request.getParameter("b_title");
+				int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq,b_title));
 
 
 				//         }else if(uri.equals("/selectBoardComment.boardcomment")) {
@@ -70,6 +51,7 @@ public class BoardCommentController extends HttpServlet {
 				int result = BoardCommentDAO.getInstance().updateBoardComment(bcm_content,bcm_seq);
 				//			request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 
+
 			}else if(uri.equals("/deleteBoardComment.boardcomment")) {
 
 				int bcm_seq=Integer.parseInt(request.getParameter("bcm_seq"));
@@ -86,8 +68,8 @@ public class BoardCommentController extends HttpServlet {
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
 			}
-			
-			
+
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");

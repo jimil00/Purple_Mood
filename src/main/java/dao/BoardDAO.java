@@ -253,8 +253,8 @@ public class BoardDAO {
 		}
 	}
 
-	public List<String> getBoardPageNavi(int currentPage) throws Exception {
-		List<String>list=new ArrayList<>();
+	public String getBoardPageNavi(int currentPage) throws Exception {
+//		List<String>list=new ArrayList<>();
 		int recordTotalCount = this.getRecordCount(); 
 
 		int recordCountPerPage = 20; 
@@ -274,12 +274,15 @@ public class BoardDAO {
 		}
 
 		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
-		int endNavi=0;
+		int endNavi = startNavi + naviCountPerPage - 1;
+
+//		int endNavi=0;
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
-		}else {
-			endNavi=startNavi + naviCountPerPage - 1;
 		}
+//		else {
+//			endNavi=startNavi + naviCountPerPage - 1;
+//		}
 
 		boolean needPrev = true;
 		boolean needNext = true;
@@ -300,24 +303,27 @@ public class BoardDAO {
 		if(needNext) {
 			sb.append("<a href='/boardList.board?cpage="+(endNavi+1)+"'>></a> ");
 		}
-		String navi=sb.toString();
-		list.add(String.valueOf(endNavi));
-		list.add(navi);
-		return list;
+//		String navi=sb.toString();
+//		list.add(String.valueOf(endNavi));
+//		list.add(navi);
+//		return list;
+		return sb.toString();
 	}
 
 
 
 	//게시판 검색 리스트 출력 (R) 페이징해서 다시 해야 함
-	public List<BoardDTO> selectBoardSearchList(String boardSearchOption,String boardSearchWord) throws Exception{
+	public List<BoardDTO> selectBoardSearchList(String boardSearchOption,String boardSearchWord, int start, int end) throws Exception{
 		List<BoardDTO>list = new ArrayList<>();
 
 		if(boardSearchOption.equals("b_title")) {
-			String sql="select * from board where b_title like ?";
+			String sql="select * from (select board.*, row_number() over(order by b_seq desc) rn from board where b_title like ?) where rn between ? and ?";
 			try(Connection con = getConnection();
 					PreparedStatement pstat= con.prepareStatement(sql);){
 
 				pstat.setString(1,"%"+boardSearchWord+"%");
+				pstat.setInt(2, start);
+				pstat.setInt(3, end);
 
 				try(ResultSet rs = pstat.executeQuery();){
 
@@ -336,12 +342,14 @@ public class BoardDAO {
 				}
 			}
 		}else if(boardSearchOption.equals("b_writer")) {
-			String sql="select * from board where b_writer like ?";
+			String sql="select * from (select board.*, row_number() over(order by b_seq desc) rn from board where b_writer like ?) where rn between ? and ?";
 			try(Connection con = getConnection();
 					PreparedStatement pstat= con.prepareStatement(sql);){
 
 				pstat.setString(1,"%"+boardSearchWord+"%");
-
+				pstat.setInt(2, start);
+				pstat.setInt(3, end);
+				
 				try(ResultSet rs = pstat.executeQuery();){
 
 
@@ -359,12 +367,14 @@ public class BoardDAO {
 				}
 			}
 		}else if(boardSearchOption.equals("b_content")) {
-			String sql="select * from board where b_content like ?";
+			String sql="select * from (select board.*, row_number() over(order by b_seq desc) rn from board where b_content like ?) where rn between ? and ?";
 			try(Connection con = getConnection();
 					PreparedStatement pstat= con.prepareStatement(sql);){
 
 				pstat.setString(1,"%"+boardSearchWord+"%");
-
+				pstat.setInt(2, start);
+				pstat.setInt(3, end);
+				
 				try(ResultSet rs = pstat.executeQuery();){
 
 
