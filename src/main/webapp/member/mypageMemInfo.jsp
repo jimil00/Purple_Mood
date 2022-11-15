@@ -22,12 +22,14 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 * {
 	box-sizing: border-box;
 	font-family: 'DungGeunMo';
 	color: black;
 	margin: auto;
 }
+
 .modifyForm {
 	float: left;
 	margin: auto;
@@ -37,63 +39,78 @@
 	background-color: white;
 	border-radius: 7px;
 }
+
 input {
 	width: 400px;
 	height: 30px;
 }
+
 #email {
 	width: 200px;
 }
+
 .header {
 	text-align: center;
 	height: 80px;
 	background-color: #03001e;
 }
+
 .selectOption {
 	height: 30px;
 	width: 175px;
 	text-align: center;
 }
+
 .requiredField {
 	color: red;
 }
+
 #result, #duplResult {
 	margin: 0;
 }
+
 .id, .logo, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
 	.address1, .address2, .margin_top, #result, #duplResultID,
 	#duplResultNickname {
 	margin: 15px 0;
 }
+
 .container {
 	margin: auto;
 	display: flex;
 	overflow: hidden;
 	background-color: #03001e;
 }
+
 .logo {
 	font-weight: bold;
 	margin: 40px 0;
 }
+
 .footer {
 	margin-top: 10px;
 	text-align: center;
 }
+
 #duplCheckID, #duplCheckNickname {
 	width: 100px;
 }
+
 .btns button {
 	height: 30px;
 	width: 92px;
 }
+
 .footer {
 	margin: auto;
 }
+
 .btns {
 	width: 100%;
 	margin-top: 10px;
 	text-align: center;
 }
+
 .btn {
 	width: 100px;
 }
@@ -218,8 +235,8 @@ input {
 				<div class="footer col-12">
 					<div class="btns">
 						<input type="button" class="btn" id="modify" value="수정하기">
-						<a href="/main"><input type="button" class="btn"
-							id="back" value="홈으로"></a>
+						<a href="/main"><input type="button" class="btn" id="back"
+							value="홈으로"></a>
 					</div>
 				</div>
 
@@ -229,6 +246,19 @@ input {
 
 	</form>
 	<script>
+		// 우편번호
+		$("#btnsearch")
+				.on(
+						"click",
+						function() {
+							new daum.Postcode(
+									{
+										oncomplete : function(data) {
+											document.getElementById('postcode').value = data.zonecode;
+											document.getElementById("address1").value = data.jibunAddress;
+										}
+									}).open();
+						})
 		$("#pw,#checkpw").on("input", function() {
 			if (!($("#pw").val() == $("#checkpw").val())) {
 				$("#result").text("패스워드가 일치하지 않습니다.");
@@ -241,23 +271,23 @@ input {
 			}
 		})
 		// $("#id").on("input", function() { // 한 글자 쓸 때마다 ajax가 나간다(쏴라)
-		// 	idCheck = false;
-		// 	let id = $("#id").val();
-		// 	$.ajax({
-		// 		url : "/idDuplCheck.member",
-		// 		data : {
-		// 			"id" : id
-		// 		}
-		// 	}).done(function(resp) {
-		// 		if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
-		// 			$("#duplResultID").html("중복된 ID 입니다.");
-		// 			$("#duplResultID").css("color", "red");
-		// 		} else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
-		// 			$("#duplResultID").html("중복되지 않은 ID 입니다.");
-		// 			$("#duplResultID").css("color", "blue");
-		// 			idCheck = true;
-		// 		}
-		// 	})
+		//    idCheck = false;
+		//    let id = $("#id").val();
+		//    $.ajax({
+		//       url : "/idDuplCheck.member",
+		//       data : {
+		//          "id" : id
+		//       }
+		//    }).done(function(resp) {
+		//       if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
+		//          $("#duplResultID").html("중복된 ID 입니다.");
+		//          $("#duplResultID").css("color", "red");
+		//       } else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
+		//          $("#duplResultID").html("중복되지 않은 ID 입니다.");
+		//          $("#duplResultID").css("color", "blue");
+		//          idCheck = true;
+		//       }
+		//    })
 		// })
 		$("#nickname").on("input", function() {
 			nicknameCheck = false;

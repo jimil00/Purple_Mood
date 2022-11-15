@@ -30,6 +30,7 @@ public class BoardCommentController extends HttpServlet {
 			if(uri.equals("/insertBoardComment.boardcomment")) {
 				String bcm_writer_id = (String)request.getSession().getAttribute("loginID");
 				String bcm_writer_nn = (String)request.getSession().getAttribute("loginNickname");
+				System.out.println("bcm_writer_id");
 
 				String bcm_content=request.getParameter("bcm_content");
 				int b_seq=Integer.parseInt(request.getParameter("b_seq"));
@@ -46,7 +47,10 @@ public class BoardCommentController extends HttpServlet {
 				//            request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
 
 			}else if(uri.equals("/updateBoardComment.boardcomment")) {
-
+//				if (request.getMethod().equals("GET")) {
+//					response.sendRedirect("/error.jsp");
+//					return;
+//				}
 				String bcm_content = request.getParameter("bcm_content");
 				int bcm_seq = Integer.parseInt(request.getParameter("bcm_seq"));
 				System.out.println(bcm_content +":"+ bcm_seq);
@@ -67,7 +71,6 @@ public class BoardCommentController extends HttpServlet {
 			response.sendRedirect("/error.jsp");
 		}
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

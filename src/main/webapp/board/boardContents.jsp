@@ -113,7 +113,22 @@ div {
 </style>
 <script>
                 $(function () {
-
+                    $("#insertBoardComment").on("click", function(){
+                    	
+                        var bcm_content = $("#insertBcm_content").val();
+                         var b_seq = $("#b_seq").val();
+                         var b_title = $("#b_title").html();
+                         $.ajax({
+                             url: "/insertBoardComment.boardcomment",
+                             type: "post",
+                             data: {
+                                 "bcm_content": bcm_content,
+                                 "b_seq" : b_seq,
+                                 "b_title": b_title
+                             }
+                          })
+                         location.href="/selectBoardContents.board?b_seq="+b_seq;
+                         });
                    
                     $(".updateBoardComment").on("click", function () {
                         $(this).closest(".boardComment").find(".bcm_content").attr("contenteditable","true");;
@@ -145,7 +160,7 @@ div {
                     });
 
                     $(document).on("click", ".updcmbtn", function () {
-                        let bcm_seq = $(this).closest(".boardComment").find(".bcm_content").attr("bcm_seq");
+                        let bcm_seq = $(this).closest(".boardComment").find(".bcm_seq").val();
                         let bcm_content = $(this).closest(".boardComment").find(".bcm_content").html();
                         console.log(bcm_seq + ":" + bcm_content);
                         $.ajax({
@@ -161,31 +176,6 @@ div {
 
                     })
                     
-                    
-
-                 $(document).ready(function () {
-                    
-                    
-                     $("#insertBoardComment").on("click", function(){
-                         var bcm_content = $("#insertBcm_content").val();
-                          var b_seq = $("#b_seq").val();
-                          var b_title = $("#b_title").html();
-                          $.ajax({
-                              url: "/insertBoardComment.boardcomment",
-                              type: "post",
-                              data: {
-                                  "bcm_content": bcm_content,
-                                  "b_seq" : b_seq,
-                                  "b_title": b_title
-                              }
-                           })
-                          location.href="/selectBoardContents.board?b_seq="+b_seq;
-                          });
-                     
-                     
-
-                 })
-
 
                 })
             </script>
@@ -266,13 +256,13 @@ div {
                         <c:otherwise>
                             <c:forEach var="comment" items="${list}">
                                 <div class="row boardCommentHeader">
-                                    <input type="hidden" class="bcm_seq" name="bcm_seq" value="${comment.bcm_seq }">
-                                    <input type="hidden" class="bcm_writer_id" name="bcm_writer_id" value="${comment.bcm_writer_id }">
                                     <div class="bcm_writer_nn col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer_nn }</div>
                                     <div class="bcm_write_date col-lg-6 col-md-6 col-sm-6" name="bcm_write_date">
                                         ${comment.bcm_write_date }</div>
                                 </div>
                                 <div class="row boardComment">
+                                <input type="hidden" class="bcm_seq" name="bcm_seq" value="${comment.bcm_seq }">
+                                    <input type="hidden" class="bcm_writer_id" name="bcm_writer_id" value="${comment.bcm_writer_id }">
                                     <div class="bcm_content col-lg-9 col-md-9 col-sm-9" name="bcm_content" size="105"
                                       contenteditable="false">${comment.bcm_content }
                                     </div>
