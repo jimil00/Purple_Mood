@@ -26,7 +26,6 @@
 * {
 	box-sizing: border-box;
 }
-
 /* div {
 	border: 1px solid black;
 } */
@@ -35,26 +34,21 @@ body {
 	overflow-y: auto;
 	background-color: #03001e;
 }
-
 .container {
 	background-color: white;
 }
-
 /* header */
 .header {
 	height: 100px;
 	background-color: #03001e;
 	padding-bottom:20px;
 }
-
 #logo, #titleimg {
 	height: 100%;
 }
-
 #titleimg:hover {
 	cursor: pointer;
 }
-
 @media ( max-width :767px) {
 	#logo {
 		height: 60%;
@@ -63,20 +57,16 @@ body {
 		height: 100%;
 	}
 }
-
 .searchbox {
 	text-align: right;
 }
-
 .searchboxin {
 	position: relative;
 	top: 10%;
 }
-
 #searchtext {
 	width: 90%;
 }
-
 .menuicon {
 	text-align: center;
 	color: white;
@@ -85,26 +75,21 @@ body {
 	position:relative;
 	top: 8%;
 }
-
 #menuicon:hover {
 	cursor: pointer;
 }
-
 /* content */
 .content {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	min-height: 500px;
 }
-
 .contentL {
 	border-right: 1px solid black;
 }
-
 .contentrowT {
 	margin-bottom: 50px;
 }
-
 .contentProfilebox {
 	width: 150px;
 	height: 150px;
@@ -116,32 +101,26 @@ body {
 	margin-bottom: 10px;
 	margin-top: 30px;
 }
-
 #profileBtn {
 	position: relative;
 	left: 60%;
 	bottom: 15%;
 	background-color: white;
 }
-
 #profileimg1 {
 	height: 100%;
 }
-
 .contentInfo {
 	text-align: center;
 	font-family: 'DungGeunMo';
 	padding-bottom: 10px;
 }
-
 .contentInfo>a {
 	color: black;
 }
-
 .contentAjax:hover {
 	cursor: pointer;
 }
-
 /* footer */
 .footer {
 	padding-top: 50px;
@@ -149,51 +128,41 @@ body {
 	background-color: #03001e;
 	color: white;
 }
-
 .footerAtag {
 	padding-top: 30px;
 	padding-bottom: 20px;
 }
-
 .footerAtag>a {
 	font-family: 'DungGeunMo';
 	font-size: large;
 }
-
 .footerAtag>a:hover {
 	color: #ec38bc;
 }
-
 .footerImpormation {
 	font-size: smaller;
 }
-
 .footerIcon {
 	padding-top: 10px;
 	height: 50px;
 	line-height: 50px;
 }
-
 .fa-brands:hover {
 	cursor: pointer;
 }
-
 .snsIcon {
 	padding-right: 20px;
 	padding-left: 10px;
 }
-
 /* menu */
 .offcanvas {
 	height: 800px;
 	background-color: #03001e;
 }
-
 .offcanvas-body {
 	color: white;
 	text-align: center;
 }
-
 .profilebox {
 	width: 170px;
 	height: 150px;
@@ -203,44 +172,39 @@ body {
 	margin-bottom: 20px;
 	margin-top: 30px;
 }
-
 .profile {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-
 #profileimg {
 	height: 100%;
 }
-
 .profiletext {
 	font-size: larger;
 	margin-bottom: 10px;
 	font-family: 'DungGeunMo';
 }
-
 #logoutBtn {
 	font-size: larger;
 	font-family: 'DungGeunMo';
 }
-
 .menulink {
 	font-size: x-large;
 	margin-bottom: 50px;
 	margin-top: 50px;
 	font-family: 'DungGeunMo';
 }
-
 .menulink:hover, #searchbtn:hover {
 	color: #c4c4c4;
 }
-
 #colsebtn {
 	border: none;
 	color: white;
 	background-color: #03001e;
 }
+<<<<<<< HEAD
+=======
 #linksec{
     padding-top: 50px;;
     padding-bottom: 50px;;
@@ -250,16 +214,15 @@ body {
     padding-bottom: 50px;;
 }
 
+>>>>>>> 0b6147b3a0181681d76e4f52197c9aad07dc04e3
 a {
 	color: white;
 	text-decoration: none;
 }
-
 button {
 	border: none;
 	border-radius: 5px;
 }
-
 /* 작성댓들 */
 .commentBycomment {
 	padding-top: 8px;
@@ -267,16 +230,13 @@ button {
 	border-bottom: 1px solid gray;
 	padding-bottom: 15px;
 }
-
 .commentBycomment>div {
 	color: black;
 }
-
 .commentTitle, .commentDate {
 	font-size: 11px;
 	color: gray;
 }
-
 /* 작성게시글 */
 .titleBoard {
 	margin-bottom: 30px;
@@ -284,31 +244,25 @@ button {
 	font-family: 'DungGeunMo';
 	text-align: left;
 }
-
 .Boardtitle {
 	text-align: center;
 }
-
 .boardByboard {
 	padding-top: 8px;
 	margin-left: 20px;
 	border-bottom: 1px solid gray;
 	padding-bottom: 15px;
 }
-
 .boardByboard>div {
 	color: black;
 }
-
 #boardbox>a:hover {
 	text-decoration: underline;
 	text-decoration-color: gray;
 }
-
 .boardView, .boardDate {
 	text-align: center;
 }
-
 @font-face {
 	font-family: 'DungGeunMo';
 	src:

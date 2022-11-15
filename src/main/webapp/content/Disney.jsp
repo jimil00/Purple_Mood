@@ -36,6 +36,7 @@
 	font-family: 'DungGeunMo';
 }
 
+
 .ott_logo>img {
 	width: 250px;
 	margin: 30px;
@@ -291,8 +292,6 @@ button {
         </div>
         </form>-->
 
-
-
 		<!-- ott별로 출력하는 페이지 -->
 
 		<form action="/d_search.content">
@@ -363,6 +362,7 @@ button {
 
 
 	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
+	
 	<c:choose>
 		<c:when test="${not empty d_dr_list}">
 
@@ -403,31 +403,9 @@ button {
 			<hr>
 			<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
-	</c:choose>
-	<div class="row footer">
-		<div class="col-12 footerAtag">
-			<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
-				href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
-		</div>
-		<div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
-		<div class="col-12 footerImpormation">이메일 주소 :
-			purpleMood@purplemood.com</div>
-		<div class="col-12 footerImpormation">사업자등록번호 : 000-00-000</div>
-		<div class="col-12 footerImpormation">통신판매업 신고번호 : 제
-			2022-서울중구-301e호</div>
-		<div class="col-12 footerImpormation">주소 : 대한민국 서울특별시 중구 남대문로
-			120, 대일빌딩 3층</div>
-		<div class="col-12 footerIcon">
-			<span class="snsIcon"><i class="fa-brands fa-instagram fa-2xl"></i></span>
-			<span class="snsIcon"><i class="fa-brands fa-twitter fa-2xl"></i></span>
-			<span class="snsIcon"> <i class="fa-brands fa-facebook fa-2xl"></i>
-			</span>
 		</div>
 	</div>
-
 	</div>
-
-
 	<c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->

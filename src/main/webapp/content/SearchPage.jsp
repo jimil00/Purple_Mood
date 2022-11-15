@@ -58,35 +58,11 @@ input [type="submit"] {
 	style: none;
 }
 
-;
 
 .list_title {
 	text-align: left;
 }
 
-ul {
-	overflow: hidden;
-	background-color: #03001e;
-	list-style: none;
-}
-
-ul>li {
-	background-color: #03001e;
-	width: 233px;
-	height: 338px;
-}
-
-li>a>div>img {
-	width: 200px;
-	height: 280px;
-	transition: all 0.2s linear;
-}
-
-img {
-	width: 200px;
-	height: 280px;
-	transition: all 0.2s linear;
-}
 
 .poster {
 	overflow: hidden;
@@ -126,7 +102,7 @@ a {
 
 .card-text{height:fit-content;}
 
-.card-text:hover {
+.card-text:hover{
 	color: #7303c0
 }
 
@@ -157,6 +133,7 @@ span>img {
 
 .poster>img:hover {
 	transform: scale(1.2);
+	color: #7303c0
 }
 
 

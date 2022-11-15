@@ -303,7 +303,7 @@ public class ContentController extends HttpServlet {
 				request.setAttribute("d_mv_list", d_mv_list);
 				
 			
-			request.getRequestDispatcher("/content/Diseny.jsp").forward(request, response); 
+			request.getRequestDispatcher("/content/Disney.jsp").forward(request, response); 
 
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -321,7 +321,7 @@ public class ContentController extends HttpServlet {
 
 			try { 
 				//드라마 출력
-				List <DramaDTO> wv_dr_list =DramaDAO.getInstance().searchByWC_title(request.getParameter("wv_searchtext"));
+				List <DramaDTO> wv_dr_list =DramaDAO.getInstance().searchByWV_title(request.getParameter("wv_searchtext"));
 				request.setAttribute("wv_dr_list", wv_dr_list);
 				
 				//System.out.println(ott_dr_list);
