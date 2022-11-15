@@ -34,12 +34,22 @@ pageEncoding="UTF-8"%>
     .container {
 	font-family: 'DungGeunMo';
 }
+
+    .header{}
+
+    .logo{text-align:left;height:100px;}
+    #titleimg{height:100px;}
+    
+    .ott_logo>a>img{width:250px;margin:30px;}
+    
+    
+
     .ott_logo>img{width:250px;margin:30px;}
+
     
     .postimg {width:200px;}
     
-    .list_title{font-weight: bold;
-    }
+    .list_title{font-weight: bold;}
     
     body{
     background-color: #03001e;
@@ -231,6 +241,7 @@ button {
 	<c:choose>
 		<c:when test="${not empty dr_date_n and not empty mv_date_n}">
 		
+
 	<form action="/n_search.content">  
         <div class="row header">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
@@ -248,11 +259,10 @@ button {
 					aria-controls="offcanvasWithBothOptions"></i>
 			</div>
 		</div>
-        
         </form>
         
         <div class="ott_logo col-12">
-            <img src="/img/netbf.png">
+           <a href="/netflix.content"><img src="/img/netbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -295,7 +305,7 @@ button {
                 </div>
               </div>
           	<button class="carousel-control-prev postLRbtn" type="button"
-				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Previous</span>
 			</button>
@@ -494,7 +504,7 @@ button {
         </form>
         
            <div class="ott_logo col-12">
-            <img src="/img/disbf.png">
+            <a href="/disney.content"><img src="/img/disbf.png"></a>
         </div>
         <hr>
         
@@ -739,7 +749,7 @@ button {
 		</div>
         </form>
            <div class="ott_logo col-12">
-            <img src="/img/wavbf.png">
+            <a href="/wavve.content"><img src="/img/wavbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -979,7 +989,7 @@ button {
         </form>    
         
         <div class="ott_logo col-12">
-            <img src="/img/watbf.png">
+            <a href="/watcha.content"><img src="/img/watbf.png"></a>
         </div>
         <hr>
         </c:when>
