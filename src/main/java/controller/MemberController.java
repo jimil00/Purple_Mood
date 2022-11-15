@@ -118,29 +118,29 @@ public class MemberController extends HttpServlet {
 				request.getSession().invalidate();
 				response.sendRedirect("/main");
 			}
-			//마이페이지 작성 게시글 출력
-			else if(uri.equals("/selectMypageBoard.member")) {
-				Gson gsonStr   = new Gson();
-				String id=(String)request.getSession().getAttribute("loginNickname"); 
-				//메서드 아이디로 집어넣고 변경하기 
-				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(id);
-				String strJsonList = gsonStr.toJson(b_list);
-				System.out.println("************strJsonList******* \n"+strJsonList);
-				response.getWriter().append(strJsonList);
-			}
-
-			
-			//마이페이지 댓글 출력
-			else if(uri.equals("/selectMypageComment.member")) {
-				Gson gsonStr   = new Gson();
-				String id=(String)request.getSession().getAttribute("loginID"); 
-				//메서드 아이디로 집어넣고 변경하기 
-				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(id);
-				String strJsonList = gsonStr.toJson(bcm_list);
-				System.out.println("************strJsonList******* \n"+strJsonList);
-				response.getWriter().append(strJsonList);
-			}
-			
+//			//마이페이지 작성 게시글 출력
+//			else if(uri.equals("/selectMypageBoard.member")) {
+//				Gson gsonStr   = new Gson();
+//				String id=(String)request.getSession().getAttribute("loginNickname"); 
+//				//메서드 아이디로 집어넣고 변경하기 
+//				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(id);
+//				String strJsonList = gsonStr.toJson(b_list);
+//				System.out.println("************strJsonList******* \n"+strJsonList);
+//				response.getWriter().append(strJsonList);
+//			}
+//
+//			
+//			//마이페이지 댓글 출력
+//			else if(uri.equals("/selectMypageComment.member")) {
+//				Gson gsonStr   = new Gson();
+//				String id=(String)request.getSession().getAttribute("loginID"); 
+//				//메서드 아이디로 집어넣고 변경하기 
+//				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(id);
+//				String strJsonList = gsonStr.toJson(bcm_list);
+//				System.out.println("************strJsonList******* \n"+strJsonList);
+//				response.getWriter().append(strJsonList);
+//			}
+//			
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("Error.jsp");
