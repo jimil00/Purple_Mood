@@ -34,16 +34,18 @@ pageEncoding="UTF-8"%>
     .container {
 	font-family: 'DungGeunMo';
 }
-<<<<<<< HEAD
+
     .header{}
 
     .logo{text-align:left;height:100px;}
     #titleimg{height:100px;}
     
     .ott_logo>a>img{width:250px;margin:30px;}
-=======
+    
+    
+
     .ott_logo>img{width:250px;margin:30px;}
->>>>>>> bbf7c7a270bb078d7046a88971dff14e88135329
+
     
     .postimg {width:200px;}
     
@@ -296,7 +298,7 @@ button {
                 </div>
               </div>
           	<button class="carousel-control-prev postLRbtn" type="button"
-				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Previous</span>
 			</button>

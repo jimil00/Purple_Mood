@@ -17,13 +17,37 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
+
 <style>
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@media screen and (max-width: 576px) { 
+	.ott_icon {margin-bottom:20px; border-top:1px solid grey;}
+	#basic_info{max-width:fit-content; word-break:keep-all;}
+	.title>p{margin:15px;}
+	
+ } 
+ 
+ 
+ @media all and (max-width: 1025px) { 
+	.title>p{margin:15px;}
+	
+ } 
+
 * { 
 	box-sizing: border-box;
 	color: grey;
 }
 
-.container-fluid {
+.container{
+	font-family: 'DungGeunMo';
 	background-color: #03001e;
 }
 /* background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9);  border:1px solid grey;*/
@@ -33,36 +57,52 @@
 	height:100px;
 }
  #titleimg{height:100px;}
-  
+ 
+
+ 
 .poster {
 	/*height: fit-content;*/
-	height:
+
 }
 .review_box{}
 
 .poster>img {
-	max-height: 400px;}
+	max-height:400px;}
 
 .header-title{padding:20px;}
 
+ 
+.info{overflow:hidden;}
+
+
 .overview{height:100%;}
 
-#ov_text{height:100px; overflow-y:auto;}
+#ov_text{
+height:100px; 
+overflow-y:auto;
+ -ms-overflow-style: none;
+}
+
+#ov_text::-webkit-scrollbar{
+  display:none;
+}
+  
 
 .ott_icon {
+	margin-bottom:25px;
 	max-height: 50px;
 }
 
 .ott_icon>a>img {
-		max-height: 100px;
+	padding:5px;
 }
-#rv_title{border:1px solid grey}
+#rv_title{border:1px solid white;}
 
 #review_textbox {
 	height: 200px;
 }
 
-#rv_title{border:1px solid grey}
+#rv_title{border:1px solid white;}
 
 .rv_input {
 	width: 90%;
@@ -78,7 +118,7 @@
 
 </style>
 <body>
-	<div class="container-fluid text-center">
+	<div class="container w-xl text-center">
 		<div class="row">
 			<div class="col-12" id="logo">
 				<img src="/img/title.png" id="titleimg">
@@ -89,7 +129,7 @@
 		<c:choose>
 			<c:when test="${not empty mv_detail}">
 				<div class="row p-5">
-					<div class="poster col-sm-3 p-2">
+					<div class="poster col-md-3 p-2">
 						<img src="${mv_detail.getMv_poster_path()}" class="img-fluid"
 							alt="...">
 						<!--  <div id="like_icon">
@@ -97,25 +137,26 @@
 						</div>-->
 					</div>
 
-					<div class="col-sm-9">
-						<div class="header-title row p-2">
-							<div class="title col-12 col-sm-5">
+					<div class="col-md-9">
+						<div class="header-title row">
+							<div class="title col-12 col-lg-8">
 								<p class="fs-3">${mv_detail.getMv_title()}</p>
 							</div>
 							
-							<div class="ott_icon col-12 col-sm-7">
-								<!-- OTT아이콘 출력 -->
+							<div class="ott_icon col-12 col-lg-4">
+							
+                      <!-- OTT아이콘 출력 -->
                         <c:if test="${mv_detail.getMv_ottNF() eq 'Y'.charAt(0)}">
-                           <a href="https://www.netflix.com/kr/"><img src="/img/netbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://www.netflix.com/kr/"><img src="/img/neticon.png" style="width: 70px; height: 70px;"></a>
                         </c:if>
                         <c:if test="${mv_detail.getMv_ottDZ() eq 'Y'.charAt(0)}">
-                           <a href="https://www.disneyplus.com/ko-kr/home"><img src="/img/disbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://www.disneyplus.com/ko-kr/home"><img src="/img/disicon.png" style="width: 50px; height: 50px;"></a>
                         </c:if>
                         <c:if test="${mv_detail.getMv_ottWV() eq 'Y'.charAt(0)}">
-                           <a href="https://www.wavve.com/"><img src="/img/wavbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://www.wavve.com/"><img src="/img/wavicon.png" style="width: 45px; height: 45px;"></a>
                         </c:if>
                         <c:if test="${mv_detail.getMv_ottWC() eq 'Y'.charAt(0)}">
-                           <a href="https://watcha.com/"><img src="/img/watbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://watcha.com/"><img src="/img/waticon.png" style="width: 55px; height: 55px;"></a>
                         </c:if>
 							</div>
 
@@ -123,7 +164,7 @@
 							<hr>
 							<p id="basic_title">기본정보</p>
 							<hr>
-								<div>
+								<div id="basic_info">
 									<span>장르:</span> <span>${mv_detail.getMv_genre()}</span>
 								
 									<span>/ 출시년도:</span> <span>${mv_detail.getMv_release_date()}</span>
@@ -154,29 +195,30 @@
 
 					<div class="col-sm-9">
 						<div class="header-title row p-2">
-							<div class="title col-12 col-sm-7">
+							<div class="title col-12 col-sm-8">
 								<p class="fs-3">${dr_detail.getDr_title()}</p>
 							</div>
-							<div class="ott_icon col-12 col-sm-5">
-									<!-- OTT아이콘 출력 -->
+							<div class="ott_icon col-12 col-sm-4">
+
+                       <!-- OTT아이콘 출력 -->
                         <c:if test="${dr_detail.getDr_ottNF() eq 'Y'.charAt(0)}">
-                           <a href="https://www.netflix.com/kr/"><img src="/img/netbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://www.netflix.com/kr/"><img src="/img/neticon.png" style="width: 70px; height: 70px;"></a>
                         </c:if>
                         <c:if test="${dr_detail.getDr_ottDZ() eq 'Y'.charAt(0)}">
-                           <a href="https://www.disneyplus.com/ko-kr/home"><img src="/img/disbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://www.disneyplus.com/ko-kr/home"><img src="/img/disicon.png" style="width: 50px; height: 50px;"></a>
                         </c:if>
                         <c:if test="${dr_detail.getDr_ottWV() eq 'Y'.charAt(0)}">
-                           <a href="https://www.wavve.com/"><img src="/img/wavbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://www.wavve.com/"><img src="/img/wavicon.png" style="width: 45px; height: 45px;"></a>
                         </c:if>
                         <c:if test="${dr_detail.getDr_ottWC() eq 'Y'.charAt(0)}">
-                           <a href="https://watcha.com/"><img src="/img/watbf.png" style="width: 150px; height: 50px;"></a>
+                           <a href="https://watcha.com/"><img src="/img/waticon.png" style="width: 55px; height: 55px;"></a>
                         </c:if>
 							</div>
 								<hr>
 							<div class="info col-12">
 							<p id="basic_title">기본정보</p>
 							<hr>
-								<div>
+								<div id="basic_info">
 									<span>장르:</span> <span>${dr_detail.getDr_genre()}</span>
 							
 									<span>/ 방영날짜:</span> <span>${dr_detail.getDr_first_air_date()}</span>
@@ -194,81 +236,20 @@
 			</c:otherwise>
 		</c:choose>
 			</div>
-       
-          <div class="col-12 review_box">
-          
-           <div id="rv_outputbox">
-         <div id="review_textbox">
-         <div id="rv_title">감상평</div>
-          
-         <c:choose>
-       <c:when test="${not empty rlist}">
-          <div class="review_text"></div>
-         </div> 
-          </c:when>
-    <c:otherwise>
-    <div class="review_blank">
-    	<p>아직 감상평이 없습니다.</p>
-    	<p>감상평을 달아주세요!</p>
-    </div>
-    </c:otherwise>
-     </c:choose>
-         </div>
-         
-         <form action="/write.review">
-         <div id="rv_inputbox">
-         <input type="hidden" name="mv_id" value="${mv_list.mv_id}"/>
-         <input type="text" class="rv_input" name="rv_content" placeholder="감상평을 입력하세요">
-         <button id="rv_inputbtn">입력</button>  
-        </div>
-        </form>
-        <button id="back">뒤로가기</button>
-         </div>
-    
-             <script>
-        //댓글 입력시 출력
-          $("#rv_inputbtn").on("click", function(){
-          let input=$(".rv_input").val();
-            let div=$("<div>");
-                div.append(input);
-            $(".review_text").append(div); 
+			
+			<div>
+         <button id="back">뒤로 가기</button>
+ 			</div>
 
-        })
-        
+     
+    
+         <script> 
         $("#back").on("click", function(){
         	window.history.back();
         	
         })
         
-        
-        
-      //ott 아이콘 출력 이벤트
-      
-        
-        
-	//좋아요 버튼 이벤트(우선 순위 중하)
-        $("#bi").click(function() {
-        	
-        	//좋아요 예시
-        		$.ajax({
-        	      url: '/like.content',
-        	      type: 'POST',
-        	      data: { 'nickname': nickname, 'dr_id': dr_id, 'mv_id':mv_id },
-        	      success: function (data) {
-        	          if (data == 1) {
-        	              $("#bi").attr("src", "아이콘");
-        	              location.reload();
-        	          } else {
-        	              $("#bi").attr("src", "아이콘");
-        	              location.reload();
-        	          }
-        	      }, error: function () {
-        	          $("#likeimg").attr("src", "/resources/img/좋아요후.png");
-        	          console.log('오타 찾으세요')
-        	      }
 
-        	  });
-       //수정 중
       </script>
 </body>
 </html>

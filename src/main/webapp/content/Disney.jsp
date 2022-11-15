@@ -404,11 +404,10 @@ button {
 		</c:otherwise>
 		</c:choose>
 		
-		
-	
           	</div>
           	</div>
 		</div>
+		
 	<div class="offcanvas offcanvas-end" data-bs-scroll="true"
 		tabindex="-1" id="offcanvasWithBothOptions"
 		aria-labelledby="offcanvasWithBothOptionsLabel">
