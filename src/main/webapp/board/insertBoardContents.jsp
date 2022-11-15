@@ -172,10 +172,10 @@
                     <div class="headerTitle">카테고리</div>
                     <div>
                         <select id="b_category" name="b_category">
-                            <option value="movie">영화</option>
-                            <option value="drama">드라마</option>
-                            <option value="onAir">실시간</option>
-                            <option value="review">후기</option>
+                            <option value="영화">영화</option>
+                            <option value="드라마">드라마</option>
+                            <option value="실시간">실시간</option>
+                            <option value="후기">후기</option>
                         </select>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
                 <div class="btns col-lg-12 col-md-12 col-sm-12">
                     <button type="button" class="btn" id="insertBoardContents"
                         name="insertBoardContents">작성하기</button>&nbsp
-                    <a href="/boardList.board"><button type="button" id="toList" name="toList">목록으로</button></a>
+                    <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList" name="toList">목록으로</button></a>
                 </div>
             </div>
         </div>
