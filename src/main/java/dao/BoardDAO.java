@@ -36,16 +36,17 @@ public class BoardDAO {
 	// 게시글 작성 (C)
 	public int insertBoardContents(BoardDTO dto) throws Exception{
 
-		String sql = "insert into board values(?, ?, ?, sysdate, ?, ?, 0)";
+		String sql = "insert into board values(?, ?, ?, ?, sysdate, ?, ?, 0)";
 		//							파일 기능 추가시 ?
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
 			pstat.setInt(1, dto.getB_seq());
 			pstat.setString(2, dto.getB_category());
-			pstat.setString(3, dto.getB_writer());
-			pstat.setString(4, dto.getB_title());
-			pstat.setString(5, dto.getB_content());
+			pstat.setString(3, dto.getB_writer_id());
+			pstat.setString(4, dto.getB_writer_nn());
+			pstat.setString(5, dto.getB_title());
+			pstat.setString(6, dto.getB_content());
 
 
 			int result = pstat.executeUpdate();
@@ -87,7 +88,8 @@ public class BoardDAO {
 				BoardDTO dto = new BoardDTO();
 				dto.setB_seq(rs.getInt("b_seq"));
 				dto.setB_category(rs.getString("b_category"));
-				dto.setB_writer(rs.getString("b_writer"));
+				dto.setB_writer_id(rs.getString("b_writer_id"));
+				dto.setB_writer_nn(rs.getString("b_writer_nn"));
 				dto.setB_write_date(rs.getTimestamp("b_write_date"));
 				dto.setB_title(rs.getString("b_title"));
 				dto.setB_content(rs.getString("b_content"));
@@ -173,7 +175,8 @@ public class BoardDAO {
 					BoardDTO dto = new BoardDTO();
 					dto.setB_seq(rs.getInt("B_seq"));
 					dto.setB_category(rs.getString("b_category"));
-					dto.setB_writer(rs.getString("b_writer"));
+					dto.setB_writer_id(rs.getString("b_writer_id"));
+					dto.setB_writer_nn(rs.getString("b_writer_nn"));
 					dto.setB_write_date(rs.getTimestamp("b_write_date"));
 					dto.setB_title(rs.getString("b_title"));
 					dto.setB_content(rs.getString("b_content"));
@@ -278,7 +281,8 @@ public class BoardDAO {
 							BoardDTO dto = new BoardDTO();
 							dto.setB_seq(rs.getInt("b_seq"));
 							dto.setB_category(rs.getString("b_category"));
-							dto.setB_writer(rs.getString("b_writer"));
+							dto.setB_writer_id(rs.getString("b_writer_id"));
+							dto.setB_writer_nn(rs.getString("b_writer_nn"));
 							dto.setB_write_date(rs.getTimestamp("b_write_date"));
 							dto.setB_title(rs.getString("b_title"));
 							dto.setB_content(rs.getString("b_content"));
@@ -287,8 +291,8 @@ public class BoardDAO {
 						}
 					}
 				}
-			}else if(boardSearchOption.equals("b_writer")) {
-				String sql="select * from (select board.*, row_number() over(order by b_seq desc) rn from board where b_writer like ?) where rn between ? and ?";
+			}else if(boardSearchOption.equals("b_writer_nn")) {
+				String sql="select * from (select board.*, row_number() over(order by b_seq desc) rn from board where b_writer_nn like ?) where rn between ? and ?";
 				try(Connection con = getConnection();
 						PreparedStatement pstat= con.prepareStatement(sql);){
 
@@ -303,7 +307,8 @@ public class BoardDAO {
 							BoardDTO dto = new BoardDTO();
 							dto.setB_seq(rs.getInt("b_seq"));
 							dto.setB_category(rs.getString("b_category"));
-							dto.setB_writer(rs.getString("b_writer"));
+							dto.setB_writer_id(rs.getString("b_writer_id"));
+							dto.setB_writer_nn(rs.getString("b_writer_nn"));
 							dto.setB_write_date(rs.getTimestamp("b_write_date"));
 							dto.setB_title(rs.getString("b_title"));
 							dto.setB_content(rs.getString("b_content"));
@@ -328,7 +333,8 @@ public class BoardDAO {
 							BoardDTO dto = new BoardDTO();
 							dto.setB_seq(rs.getInt("b_seq"));
 							dto.setB_category(rs.getString("b_category"));
-							dto.setB_writer(rs.getString("b_writer"));
+							dto.setB_writer_id(rs.getString("b_writer_id"));
+							dto.setB_writer_nn(rs.getString("b_writer_nn"));
 							dto.setB_write_date(rs.getTimestamp("b_write_date"));
 							dto.setB_title(rs.getString("b_title"));
 							dto.setB_content(rs.getString("b_content"));
@@ -364,8 +370,8 @@ public class BoardDAO {
 					
 				}
 			}
-		}else if(boardSearchOption.equals("b_writer")) {
-			String sql = "select count(*) from board where b_writer like ?";
+		}else if(boardSearchOption.equals("b_writer_nn")) {
+			String sql = "select count(*) from board where b_writer_nn like ?";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);){
@@ -461,29 +467,29 @@ public class BoardDAO {
 
 
 	//마이페이지 작성글 출력
-	public List <BoardDTO> searchByNickname(String nickname) throws Exception{
-		String sql="select * from board where b_writer=?";
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);     
-				){
-			pstat.setString(1, nickname);
-			try(ResultSet rs = pstat.executeQuery();){
-				List<BoardDTO> list=new ArrayList<>();
-				while(rs.next()) {
-					BoardDTO dto=new BoardDTO();
-					dto.setB_seq(rs.getInt("b_seq"));
-					dto.setB_category(rs.getString("b_category"));
-					dto.setB_writer(rs.getString("b_writer"));
-					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-					dto.setB_title(rs.getString("b_title"));
-					dto.setB_content(rs.getString("b_content"));
-					dto.setB_view_count(rs.getInt("b_view_count"));
-					list.add(dto);    
-				}
-				return list;
-			}
-		}
-	}
+//	public List <BoardDTO> searchByNickname(String nickname) throws Exception{
+//		String sql="select * from board where b_writer=?";
+//		try(Connection con = this.getConnection();
+//				PreparedStatement pstat = con.prepareStatement(sql);     
+//				){
+//			pstat.setString(1, nickname);
+//			try(ResultSet rs = pstat.executeQuery();){
+//				List<BoardDTO> list=new ArrayList<>();
+//				while(rs.next()) {
+//					BoardDTO dto=new BoardDTO();
+//					dto.setB_seq(rs.getInt("b_seq"));
+//					dto.setB_category(rs.getString("b_category"));
+//					dto.setB_writer(rs.getString("b_writer"));
+//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+//					dto.setB_title(rs.getString("b_title"));
+//					dto.setB_content(rs.getString("b_content"));
+//					dto.setB_view_count(rs.getInt("b_view_count"));
+//					list.add(dto);    
+//				}
+//				return list;
+//			}
+//		}
+//	}
 
 
 }
