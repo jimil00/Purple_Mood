@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,75 +26,70 @@
 * {
 	box-sizing: border-box;
 }
-
-/*  div {
+/* div {
 	border: 1px solid black;
-} */
-
+}  */
 body {
 	overflow: hidden;
 	overflow-y: auto;
 	background-color: #03001e;
 }
-.container{
-background-color:white;
+.container {
+	background-color: white;
 }
-
 /* header */
 .header {
 	height: 100px;
 	background-color: #03001e;
+	padding-bottom:20px;
 }
-#logo,#titleimg{
-height:100%;
+#logo, #titleimg {
+	height: 100%;
 }
-#titleimg:hover{
-cursor: pointer;
+#titleimg:hover {
+	cursor: pointer;
 }
-@media(max-width:767px){
-#logo{
-height:60%;
-}
-#titleimg{
-height:100%;}
+@media ( max-width :767px) {
+	#logo {
+		height: 60%;
+	}
+	#titleimg {
+		height: 100%;
+	}
 }
 .searchbox {
 	text-align: right;
 }
-
 .searchboxin {
 	position: relative;
 	top: 10%;
 }
-
 #searchtext {
 	width: 90%;
 }
-
 .menuicon {
 	text-align: center;
-	color:white;
+	color: white;
 }
-
+#menuicon{
+	position:relative;
+	top: 8%;
+}
 #menuicon:hover {
 	cursor: pointer;
 }
-
 /* content */
 .content {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	min-height: 500px;
 }
-
 .contentL {
 	border-right: 1px solid black;
 }
-
 .contentrowT {
 	margin-bottom: 50px;
 }
-
 .contentProfilebox {
 	width: 150px;
 	height: 150px;
@@ -106,82 +101,68 @@ height:100%;}
 	margin-bottom: 10px;
 	margin-top: 30px;
 }
-
 #profileBtn {
 	position: relative;
 	left: 60%;
 	bottom: 15%;
 	background-color: white;
 }
-#profileimg1{
-height:100%;
-
+#profileimg1 {
+	height: 100%;
 }
-
 .contentInfo {
 	text-align: center;
 	font-family: 'DungGeunMo';
 	padding-bottom: 10px;
 }
-
 .contentInfo>a {
 	color: black;
 }
-
 .contentAjax:hover {
 	cursor: pointer;
 }
-
 /* footer */
 .footer {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	background-color: #03001e;
-	color:white;
+	color: white;
 }
-
 .footerAtag {
 	padding-top: 30px;
 	padding-bottom: 20px;
 }
-
 .footerAtag>a {
+	font-family: 'DungGeunMo';
 	font-size: large;
 }
-
 .footerAtag>a:hover {
 	color: #ec38bc;
 }
-
 .footerImpormation {
 	font-size: smaller;
 }
-
 .footerIcon {
 	padding-top: 10px;
 	height: 50px;
 	line-height: 50px;
 }
-
 .fa-brands:hover {
 	cursor: pointer;
 }
-
 .snsIcon {
 	padding-right: 20px;
 	padding-left: 10px;
 }
-
 /* menu */
 .offcanvas {
 	height: 800px;
 	background-color: #03001e;
 }
-
 .offcanvas-body {
+	color: white;
 	text-align: center;
 }
-
 .profilebox {
 	width: 170px;
 	height: 150px;
@@ -191,55 +172,46 @@ height:100%;
 	margin-bottom: 20px;
 	margin-top: 30px;
 }
-
 .profile {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-#profileimg{
-height:100%;
+#profileimg {
+	height: 100%;
 }
-
 .profiletext {
 	font-size: larger;
 	margin-bottom: 10px;
 	font-family: 'DungGeunMo';
 }
-
 #logoutBtn {
 	font-size: larger;
+	font-family: 'DungGeunMo';
 }
-
 .menulink {
 	font-size: x-large;
 	margin-bottom: 50px;
 	margin-top: 50px;
 	font-family: 'DungGeunMo';
 }
-
 .menulink:hover, #searchbtn:hover {
 	color: #c4c4c4;
 }
-
 #colsebtn {
 	border: none;
 	color: white;
 	background-color: #03001e;
 }
-
 a {
 	color: white;
 	text-decoration: none;
 }
-
 button {
 	border: none;
 	border-radius: 5px;
 }
-
-/* ì‘ì„±ëŒ“ë“¤ */
-
+/* ÀÛ¼º´ñµé */
 .commentBycomment {
 	padding-top: 8px;
 	margin-left: 20px;
@@ -249,31 +221,36 @@ button {
 .commentBycomment>div {
 	color: black;
 }
-
-.commentTitle,.commentDate {
-	font-size: smaller;
-	color:gray;
-	margin-left:5px;
+.commentTitle, .commentDate {
+	font-size: 11px;
+	color: gray;
 }
-
-/* ì‘ì„±ê²Œì‹œê¸€ */
+/* ÀÛ¼º°Ô½Ã±Û */
 .titleBoard {
 	margin-bottom: 30px;
 	padding-left: 10px;
 	font-family: 'DungGeunMo';
+	text-align: left;
 }
-
+.Boardtitle {
+	text-align: center;
+}
 .boardByboard {
 	padding-top: 8px;
 	margin-left: 20px;
 	border-bottom: 1px solid gray;
 	padding-bottom: 15px;
 }
-
 .boardByboard>div {
 	color: black;
 }
-
+#boardbox>a:hover {
+	text-decoration: underline;
+	text-decoration-color: gray;
+}
+.boardView, .boardDate {
+	text-align: center;
+}
 @font-face {
 	font-family: 'DungGeunMo';
 	src:
@@ -289,7 +266,7 @@ button {
 	<div class="container w-xl">
 		<div class="row header">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
-					<img src="/img/title.png" id="titleimg">
+				<img src="/img/title.png" id="titleimg">
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
@@ -298,16 +275,16 @@ button {
 					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
-			$("#titleimg").on("click",function(){
-				location.href="/main";
-			})
-            
-			function enterkey() { //ê²€ìƒ‰ì°½ì— ë§ˆìš°ìŠ¤ ì˜¬ë¦° í›„ ì—”í„° ëˆ„ë¥´ë©´ ë°”ë¡œ ë„˜ì–´ê°€ê²Œ ë§Œë“œëŠ” í•¨ìˆ˜
-                    if (window.event.keyCode == 13) {
-                        location.href = "/search.content?searchtext=" + $("#searchtext").val();
-                    }
-                }
-            </script>
+				$("#titleimg").on("click", function() {
+					location.href = "/main";
+				})
+				function enterkey() { //°Ë»öÃ¢¿¡ ¸¶¿ì½º ¿Ã¸° ÈÄ ¿£ÅÍ ´©¸£¸é ¹Ù·Î ³Ñ¾î°¡°Ô ¸¸µå´Â ÇÔ¼ö
+					if (window.event.keyCode == 13) {
+						location.href = "/search.content?searchtext="
+								+ $("#searchtext").val();
+					}
+				}
+			</script>
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
 				<i class="fas fa-bars fa-2x" id="menuicon"
 					data-bs-toggle="offcanvas"
@@ -323,7 +300,7 @@ button {
 						<div class="contentProfilebox" id="Btn"
 							style="background: #BDBDBD;">
 							<img src="/img/logo2.png" id="profileimg1">
-							</div>
+						</div>
 						<!-- <button type="button" id="profileBtn">
 							<i class="fa-solid fa-pen"></i>
 						</button> -->
@@ -332,94 +309,125 @@ button {
 				</div>
 				<div class="row contentrowB">
 					<div class="col-12 fs-4 contentInfo contentAjax">
-						<a href="/member/mypageMemInfo.jsp" id="myinfo">ë‚´ ì •ë³´</a>
+						<a href="/member/mypageMemInfo.jsp" id="myinfo">³» Á¤º¸</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
-						<a id="myboard">ì‘ì„±ê¸€</a>
+						<a id="myboard">ÀÛ¼º±Û</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
-						<a id="mycomment">ì‘ì„±ëŒ“ê¸€</a>
+						<a id="mycomment">ÀÛ¼º´ñ±Û</a>
 					</div>
 					<script>
-					//ê²Œì‹œê¸€ ì¶œë ¥
-                   $("#myboard").on("click",function(){
-                       $("#boardbox").empty(); 
-                      $.ajax({
-                         url : "/selectMypageBoard.board",
-                       dataType: "json"
-                      }).done(function(data){
-                         console.log("receiveê°’ì€:"  + data);
-                         console.log("receiveê°’ì€:"  + typeof data);
-                         console.log("receiveê°’ì€:"  + data.length);
-                         if(data!=null){
-                            <!--ë¦¬ìŠ¤íŠ¸ë¶ˆëŸ¬ì˜¤ê¸°-->
-                            let r = '';   
-                            r+="<div class='col-10 fs-5 titleBoard'>ì‘ì„±ê²Œì‹œê¸€</div>"
-                            r+="<div class='col-12 col-md-2 d-none d-md-block boardseq'>ê¸€ë²ˆí˜¸</div>"
-                          	r+="<div class='col-12 col-md-6 boardOnTitle'>ì œëª©</div>"
-                            /*r+="<div class='col-8 col-md-3  boardDate'>ì‘ì„±ì‹œê°„</div>"
-                            r+="<div class='col-4 col-md-1  boardView'>ì¡°íšŒìˆ˜</div>" */
-                            for(i=0; i < data.length; i++){
-                               r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row boardByboard'>";
-                                r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>"+data[i].b_seq +"</div>";
-                                r += "<div class='col-12 col-md-6 boardOnTitle'>"+data[i].b_title+"</div>";
-                                r += "<div class='col-8 col-md-3  boardDate'>"+data[i].b_write_date+"</div>";
-                                r += "<div class='col-4 col-md-1  boardView'>"+data[i].b_view_count+"</div>";
-                                r+="</div></a>";
-                            }
-                            $("#boardbox").append(r);
-                         }
-                      });
-                   })
-                   //ëŒ“ê¸€ì¶œë ¥
-                   $("#mycomment").on("click",function(){
-                       $("#boardbox").empty(); 
-                       $.ajax({
-                           url : "/selectMypageComment.boardcomment",
-                         dataType: "json"
-                        }).done(function(data){
-                           console.log("receiveê°’ì€:"  + data);
-                           console.log("receiveê°’ì€:"  + typeof data);
-                           console.log("receiveê°’ì€:"  + data.length);
-                           if(data!=null){
-                              <!--ë¦¬ìŠ¤íŠ¸ë¶ˆëŸ¬ì˜¤ê¸°-->
-                              let r = '';   
-                              r+="<div class='col-10 fs-5 titleBoard'>ì‘ì„±ëŒ“ê¸€</div>"
-                              for(i=0; i < data.length; i++){
-                                 r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row commentBycomment'>";
-                                  r += "<div class='col-12 comment'>"+data[i].bcm_content +"</div>";
-                                  r += "<div class='col-12 commentDate'>"+data[i].bcm_write_date+"</div>";
-                                  r += "<div class='col-12 commentTitle'>"+data[i].b_title+"</div>";
-                                  r+="</div></a>";
-                                }
-                              $("#boardbox").append(r);
-                           }
-                        });
-                   })
-                </script>
+						//°Ô½Ã±Û Ãâ·Â
+						$("#myboard").on("click",function() {
+											$("#boardbox").empty();
+											$.ajax({
+												url : "/selectMypageBoard.member",
+												dataType : "json"
+											}).done(function(data) {
+														console.log("receive°ªÀº:"+ data);
+														console.log("receive°ªÀº:"+ typeof data);
+														console.log("receive°ªÀº:"+ data.length);
+															if (data != null) {
+																	<!--¸®½ºÆ®ºÒ·¯¿À±â-->
+																let r = '';
+																r += "<div class='col-10 fs-5 titleBoard'>ÀÛ¼º°Ô½Ã±Û</div>";
+																	r += "<div class='row Boardtitle'>"
+																	r += "<div class='col-6'>Á¦¸ñ</div>";
+																	r += "<div class='col-4'>ÀÛ¼º½Ã°£</div>";
+																	r += "<div class='col-2'>Á¶È¸¼ö</div>";
+																	r += "</div>"
+																	for (i = 0; i < data.length; i++) {
+																		r += "<a href='/selectBoardContents.board?b_seq="
+																				+ data[i].b_seq
+																				+ "'><div class='row boardByboard'>";
+																		r += "<div class='col-6 boardOnTitle'>"
+																				+ data[i].b_title
+																				+ "</div>";
+																		r += "<div class='col-4 boardDate'>"
+																				+ data[i].b_write_date
+																				+ "</div>";
+																		r += "<div class='col-2 boardView'>"
+																				+ data[i].b_view_count
+																				+ "</div>";
+																		r += "</div></a>";
+																	}
+																	$("#boardbox").append(r);
+																}
+															});
+										})
+						//´ñ±ÛÃâ·Â
+						$("#mycomment")
+								.on(
+										"click",
+										function() {
+											$("#boardbox").empty();
+											$
+													.ajax(
+															{
+																url : "/selectMypageComment.member",
+																dataType : "json"
+															})
+													.done(
+															function(data) {
+																console
+																		.log("receive°ªÀº:"
+																				+ data);
+																console
+																		.log("receive°ªÀº:"
+																				+ typeof data);
+																console
+																		.log("receive°ªÀº:"
+																				+ data.length);
+																if (data != null) {
+																	<!--¸®½ºÆ®ºÒ·¯¿À±â-->
+																	let r = '';
+																	r += "<div class='col-10 fs-5 titleBoard'>ÀÛ¼º´ñ±Û</div>"
+																	for (i = 0; i < data.length; i++) {
+																		r += "<a href='/selectBoardContents.board?b_seq="
+																				+ data[i].b_seq
+																				+ "'><div class='row commentBycomment'>";
+																		r += "<div class='col-12  comment'>"
+																				+ data[i].bcm_content
+																				+ "</div>";
+																		r += "<div class='col-12 commentDate'>"
+																				+ data[i].bcm_write_date
+																				+ "</div>";
+																		r += "<div class='col-12  commentTitle'>"
+																				+ data[i].b_title
+																				+ "</div>";
+																		r += "</div></a>";
+																	}
+																	$(
+																			"#boardbox")
+																			.append(
+																					r);
+																}
+															});
+										})
+					</script>
 				</div>
 			</div>
 			<div class="col-12 col-md-8 col-lg-9 col-xl-10">
-				<!-- ì‘ì„± ê²Œì‹œê¸€ -->
+				<!-- ÀÛ¼º °Ô½Ã±Û -->
 				<div class="row">
-					<div class="col-11 boardbox" id="boardbox">
-					</div>
+					<div class="col-11 boardbox" id="boardbox"></div>
 				</div>
 			</div>
 		</div>
 		<div class="row footer">
 			<div class="col-12 footerAtag">
-				<a href="#">íšŒì‚¬ì†Œê°œ</a> &nbsp&nbsp <a href="#">ê³ ê°ì„¼í„°</a> &nbsp&nbsp <a
-					href="#">ì´ìš©ì•½ê´€</a> &nbsp&nbsp <a href="#">ê°œì¸ì •ë³´ ì²˜ë¦¬ë°©ì¹¨</a>
+				<a href="#">È¸»ç¼Ò°³</a> &nbsp&nbsp <a href="#">°í°´¼¾ÅÍ</a> &nbsp&nbsp <a
+					href="#">ÀÌ¿ë¾à°ü</a> &nbsp&nbsp <a href="#">°³ÀÎÁ¤º¸ Ã³¸®¹æÄ§</a>
 			</div>
-			<div class="col-12 footerImpormation">(ì£¼)í¼í”Œë¬´ë“œ | ëŒ€í‘œì´ì‚¬ : ì„±íƒœì¡°</div>
-			<div class="col-12 footerImpormation">ì´ë©”ì¼ ì£¼ì†Œ :
+			<div class="col-12 footerImpormation">(ÁÖ)ÆÛÇÃ¹«µå | ´ëÇ¥ÀÌ»ç : ¼ºÅÂÁ¶</div>
+			<div class="col-12 footerImpormation">ÀÌ¸ŞÀÏ ÁÖ¼Ò :
 				purpleMood@purplemood.com</div>
-			<div class="col-12 footerImpormation">ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ : 000-00-000</div>
-			<div class="col-12 footerImpormation">í†µì‹ íŒë§¤ì—… ì‹ ê³ ë²ˆí˜¸ : ì œ
-				2022-ì„œìš¸ì¤‘êµ¬-301eí˜¸</div>
-			<div class="col-12 footerImpormation">ì£¼ì†Œ : ëŒ€í•œë¯¼êµ­ ì„œìš¸íŠ¹ë³„ì‹œ ì¤‘êµ¬ ë‚¨ëŒ€ë¬¸ë¡œ
-				120, ëŒ€ì¼ë¹Œë”© 3ì¸µ</div>
+			<div class="col-12 footerImpormation">»ç¾÷ÀÚµî·Ï¹øÈ£ : 000-00-000</div>
+			<div class="col-12 footerImpormation">Åë½ÅÆÇ¸Å¾÷ ½Å°í¹øÈ£ : Á¦
+				2022-¼­¿ïÁß±¸-301eÈ£</div>
+			<div class="col-12 footerImpormation">ÁÖ¼Ò : ´ëÇÑ¹Î±¹ ¼­¿ïÆ¯º°½Ã Áß±¸ ³²´ë¹®·Î
+				120, ´ëÀÏºôµù 3Ãş</div>
 			<div class="col-12 footerIcon">
 				<span class="snsIcon"><i
 					class="fa-brands fa-instagram fa-2xl"></i></span> <span class="snsIcon"><i
@@ -442,33 +450,29 @@ button {
 			<div class="offcanvas-body">
 				<div class="profilebox" id="Btn" style="background: #BDBDBD;">
 					<img src="/img/logo.png" id="profileimg">
-					</div>
-					<div class="profiletext">${loginNickname }</div>
-					<div class="profiletext">
-						<a href="/member/mypage.jsp">
-							<button>ë§ˆì´í˜ì´ì§€</button>
-						</a>
-					</div>
-					<a href="/boardList.board?cpage=1">
-						<div class="menulink">ì˜í™” ë“œë¼ë§ˆ ê²Œì‹œíŒ</div>
-					</a> <a href="/fboardList.fboard?cpage=1">
-						<div class="menulink">ììœ ê²Œì‹œíŒ</div>
-					</a> <a href="/noticeList.notice?cpage=1">
-						<div class="menulink">ê³µì§€ì‚¬í•­</div>
-					</a>
-					<button type="button" id="logoutBtn">ë¡œê·¸ì•„ì›ƒ</button>
 				</div>
-				<script>
-					$("#logoutBtn").on("click", function() {
-						location.href = "/logout.member";
-					})			
-                /* $("#profileBtn").on(
-                    "click",
-                    function () {
-                        window.open("/profile.jsp", "",
-                            "width=400,height=300");
-                    }) */
-            </script>
+				<div class="profiletext">${loginNickname }</div>
+				<div class="profiletext">
+					<a href="/member/mypage.jsp">
+						<button>¸¶ÀÌÆäÀÌÁö</button>
+					</a>
+				</div>
+				<a href="/boardList.board?cpage=1">
+					<div class="menulink">¿µÈ­ µå¶ó¸¶ °Ô½ÃÆÇ</div>
+				</a> 
+				<button type="button" id="logoutBtn">·Î±×¾Æ¿ô</button>
+			</div>
+			<script>
+				$("#logoutBtn").on("click", function() {
+					location.href = "/logout.member";
+				})
+				/* $("#profileBtn").on(
+				    "click",
+				    function () {
+				        window.open("/profile.jsp", "",
+				            "width=400,height=300");
+				    }) */
+			</script>
 		</div>
 
 

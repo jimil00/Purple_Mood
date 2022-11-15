@@ -48,7 +48,8 @@ body {
 /* header */
 .header {
 	height: 100px;
-	background-color: #03001e;
+	background-color: #03001e; 
+	margin-bottom:20px;
 }
 #logo,#titleimg{
 height:100%;
@@ -78,6 +79,10 @@ height:100%;}
 
 .menuicon {
 	text-align: center;
+}
+#menuicon{
+	position:relative;
+	top: 8%;
 }
 
 #menuicon:hover {
@@ -280,6 +285,7 @@ height:100%;
 
 #logoutBtn {
 	font-size: larger;
+	font-family: 'DungGeunMo';
 }
 
 .menulink {
@@ -291,6 +297,7 @@ height:100%;
 
 .menulink:hover, #searchbtn:hover {
 	color: #c4c4c4;
+	cursor: pointer;
 }
 
 #colsebtn {
@@ -643,10 +650,6 @@ hr.hr {
 					</div>
 					<a href="/boardList.board?cpage=1">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="/fboardList.fboard?cpage=1">
-						<div class="menulink">자유게시판</div>
-					</a> <a href="/noticeList.notice?cpage=1">
-						<div class="menulink">공지사항</div>
 					</a>
 					<button type="button" id="logoutBtn">로그아웃</button>
 				</div>
@@ -680,11 +683,7 @@ hr.hr {
 					</div>
 					<a href="/boardList.board?cpage=1">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="/fboardList.fboard?cpage=1">
-						<div class="menulink">자유게시판</div>
-					</a> <a href="/noticeList.notice?cpage=1">
-						<div class="menulink">공지사항</div>
-					</a>
+					</a> 
 					<button type="button" id="logoutBtn">로그아웃</button>
 				</div>
 				<script>
@@ -717,11 +716,7 @@ hr.hr {
 					</div>
 					<a class="noLoginMenu">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a class="noLoginMenu">
-						<div class="menulink">자유게시판</div>
-					</a> <a class="noLoginMenu">
-						<div class="menulink">공지사항</div>
-					</a>
+					</a> 
 				</div>
 				<script>
 					$(".noLoginMenu").on("click",function(){

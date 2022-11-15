@@ -8,7 +8,8 @@ public class BoardComplainDTO {
 	private String bcp_complainer;
 	private Timestamp bcp_date;
 	private int b_seq;
-	private String b_writer;
+	private String b_writer_id;
+	private String b_writer_nn;
 	private String b_title;
 	private String b_content;
 	
@@ -16,18 +17,19 @@ public class BoardComplainDTO {
 	public BoardComplainDTO() {
 		super();
 	}
-	public BoardComplainDTO(int bcp_seq, String bcp_complainer, Timestamp bcp_date, int b_seq, String b_writer,
-			String b_title, String b_content) {
+	public BoardComplainDTO(int bcp_seq, String bcp_complainer, Timestamp bcp_date, int b_seq, String b_writer_id,
+			String b_writer_nn, String b_title, String b_content) {
 		this.bcp_seq = bcp_seq;
 		this.bcp_complainer = bcp_complainer;
 		this.bcp_date = bcp_date;
 		this.b_seq = b_seq;
-		this.b_writer = b_writer;
+		this.b_writer_id = b_writer_id;
+		this.b_writer_nn = b_writer_nn;
 		this.b_title = b_title;
 		this.b_content = b_content;
 	}
-
-
+	
+	
 	public int getBcp_seq() {
 		return bcp_seq;
 	}
@@ -52,11 +54,17 @@ public class BoardComplainDTO {
 	public void setB_seq(int b_seq) {
 		this.b_seq = b_seq;
 	}
-	public String getB_writer() {
-		return b_writer;
+	public String getB_writer_id() {
+		return b_writer_id;
 	}
-	public void setB_writer(String b_writer) {
-		this.b_writer = b_writer;
+	public void setB_writer_id(String b_writer_id) {
+		this.b_writer_id = b_writer_id;
+	}
+	public String getB_writer_nn() {
+		return b_writer_nn;
+	}
+	public void setB_writer_nn(String b_writer_nn) {
+		this.b_writer_nn = b_writer_nn;
 	}
 	public String getB_title() {
 		return b_title;
