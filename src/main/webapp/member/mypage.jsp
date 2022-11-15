@@ -34,7 +34,10 @@
 body {
 	overflow: hidden;
 	overflow-y: auto;
-	color: white;
+	background-color: #03001e;
+}
+.container{
+background-color:white;
 }
 
 /* header */
@@ -42,7 +45,19 @@ body {
 	height: 100px;
 	background-color: #03001e;
 }
-
+#logo,#titleimg{
+height:100%;
+}
+#titleimg:hover{
+cursor: pointer;
+}
+@media(max-width:767px){
+#logo{
+height:60%;
+}
+#titleimg{
+height:100%;}
+}
 .searchbox {
 	text-align: right;
 }
@@ -58,6 +73,7 @@ body {
 
 .menuicon {
 	text-align: center;
+	color:white;
 }
 
 #menuicon:hover {
@@ -97,12 +113,15 @@ body {
 	bottom: 15%;
 	background-color: white;
 }
+#profileimg1{
+height:100%;
+
+}
 
 .contentInfo {
 	text-align: center;
 	font-family: 'DungGeunMo';
 	padding-bottom: 10px;
-	color: black;
 }
 
 .contentInfo>a {
@@ -118,6 +137,7 @@ body {
 	padding-top: 50px;
 	padding-bottom: 50px;
 	background-color: #03001e;
+	color:white;
 }
 
 .footerAtag {
@@ -163,9 +183,8 @@ body {
 }
 
 .profilebox {
-	width: 150px;
+	width: 170px;
 	height: 150px;
-	border-radius: 70%;
 	overflow: hidden;
 	position: relative;
 	left: 30%;
@@ -177,6 +196,9 @@ body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+#profileimg{
+height:100%;
 }
 
 .profiletext {
@@ -239,7 +261,6 @@ button {
 	margin-bottom: 30px;
 	padding-left: 10px;
 	font-family: 'DungGeunMo';
-	color:black;
 }
 
 .boardByboard {
@@ -265,10 +286,10 @@ button {
 </head>
 
 <body>
-	<div class="containers">
+	<div class="container w-xl">
 		<div class="row header">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
-				<img src="" />
+					<img src="/img/title.png" id="titleimg">
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
@@ -277,6 +298,9 @@ button {
 					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
+			$("#titleimg").on("click",function(){
+				location.href="/main";
+			})
                 function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
                     if (window.event.keyCode == 13) {
                         location.href = "/search.content?searchtext=" + $("#searchtext").val();
@@ -296,16 +320,18 @@ button {
 				<div class="row contentrowT">
 					<div class="col-12">
 						<div class="contentProfilebox" id="Btn"
-							style="background: #BDBDBD;"></div>
-						<button type="button" id="profileBtn">
+							style="background: #BDBDBD;">
+							<img src="/img/logo2.png" id="profileimg1">
+							</div>
+						<!-- <button type="button" id="profileBtn">
 							<i class="fa-solid fa-pen"></i>
-						</button>
+						</button> -->
 					</div>
 					<div class="col-12 fs-5 contentInfo">${loginNickname }</div>
 				</div>
 				<div class="row contentrowB">
 					<div class="col-12 fs-4 contentInfo contentAjax">
-						<a id="myinfo">내 정보</a>
+						<a href="/member/mypageMemInfo.jsp" id="myinfo">내 정보</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
 						<a id="myboard">작성글</a>
@@ -328,8 +354,12 @@ button {
                             <!--리스트불러오기-->
                             let r = '';   
                             r+="<div class='col-10 fs-5 titleBoard'>작성게시글</div>"
+                            r+="<div class='col-12 col-md-2 d-none d-md-block boardseq'>글번호</div>"
+                          	r+="<div class='col-12 col-md-6 boardOnTitle'>제목</div>"
+                            /*r+="<div class='col-8 col-md-3  boardDate'>작성시간</div>"
+                            r+="<div class='col-4 col-md-1  boardView'>조회수</div>" */
                             for(i=0; i < data.length; i++){
-                               r += "<a href='selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row boardByboard'>";
+                               r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row boardByboard'>";
                                 r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>"+data[i].b_seq +"</div>";
                                 r += "<div class='col-12 col-md-6 boardOnTitle'>"+data[i].b_title+"</div>";
                                 r += "<div class='col-8 col-md-3  boardDate'>"+data[i].b_write_date+"</div>";
@@ -371,18 +401,12 @@ button {
 			<div class="col-12 col-md-8 col-lg-9 col-xl-10">
 				<!-- 작성 게시글 -->
 				<div class="row">
-					<!-- <div class="col-10 fs-5 titleBoard">작성게시글</div> -->
-					<div class="col-10 boardbox" id="boardbox">
-					
-
+					<div class="col-11 boardbox" id="boardbox">
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<div class="row footer">
-
-			<hr class="hr">
 			<div class="col-12 footerAtag">
 				<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
 					href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
@@ -415,35 +439,34 @@ button {
 				</button>
 			</div>
 			<div class="offcanvas-body">
-				<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
-				<div class="profiletext">${loginNickname }</div>
-				<div class="profiletext">
-
-					<a href="/mypageMemInfo.member"><button>마이페이지</button></a>
-
+				<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+					<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="/member/mypage.jsp">
+							<button>마이페이지</button>
+						</a>
+					</div>
+					<a href="/boardList.board?cpage=1">
+						<div class="menulink">영화 드라마 게시판</div>
+					</a> <a href="/fboardList.fboard?cpage=1">
+						<div class="menulink">자유게시판</div>
+					</a> <a href="/noticeList.notice?cpage=1">
+						<div class="menulink">공지사항</div>
+					</a>
+					<button type="button" id="logoutBtn">로그아웃</button>
 				</div>
-				<a href="/boardList.board">
-					<div class="menulink">영화 드라마 게시판</div>
-				</a> <a href="#">
-					<div class="menulink">자유게시판</div>
-				</a> <a href="#">
-					<div class="menulink">공지사항</div>
-				</a>
-				<button type="button" id="logoutBtn">로그아웃</button>
-			</div>
-			<script>
-                $("#profileBtn").on(
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
+					})			
+                /* $("#profileBtn").on(
                     "click",
                     function () {
                         window.open("/profile.jsp", "",
                             "width=400,height=300");
-                    })
-                $("#logoutBtn").on("click", function () {
-                    location.href = "/logout.member";
-                })
-                $("#mypageBtn").on("click", function () {
-                    location.href = "/member/mypageMemInfo.jsp";
-                })
+                    }) */
             </script>
 		</div>
 

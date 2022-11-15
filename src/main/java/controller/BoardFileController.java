@@ -12,12 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import dao.BoardFileDAO;
-import dto.BoardFileDTO;
 
 @WebServlet("*.boardfile")
 public class BoardFileController extends HttpServlet {
