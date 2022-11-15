@@ -218,7 +218,7 @@ a {
 												</div>
 											</div>
 											<div class="row">
-												<div class="contentWriter col-12">${board.b_writer}</div>
+												<div class="contentWriter col-12">${board.b_writer_nn}</div>
 											</div>
 											<div class="row">
 												<div class="contentWriteTime col-12">${board.b_write_date}</div>
@@ -256,7 +256,7 @@ a {
 								<div class="boardListSearch col-12">
 									<select id="boardSearchOption" name="boardSearchOption">
 										<option value="b_title">제목</option>
-										<option value="b_writer">작성자</option>
+										<option value="b_writer_nn">작성자</option>
 										<option value="b_content">내용</option>
 									</select> <input type="text" id="boardSearchWord" name="boardSearchWord">
 									<button>검색</button>

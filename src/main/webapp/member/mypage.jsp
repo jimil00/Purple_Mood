@@ -27,7 +27,7 @@
 	box-sizing: border-box;
 }
 
-/*  div {
+/* div {
 	border: 1px solid black;
 } */
 body {
@@ -44,6 +44,7 @@ body {
 .header {
 	height: 100px;
 	background-color: #03001e;
+	padding-bottom:20px;
 }
 
 #logo, #titleimg {
@@ -79,6 +80,10 @@ body {
 .menuicon {
 	text-align: center;
 	color: white;
+}
+#menuicon{
+	position:relative;
+	top: 8%;
 }
 
 #menuicon:hover {
@@ -151,6 +156,7 @@ body {
 }
 
 .footerAtag>a {
+	font-family: 'DungGeunMo';
 	font-size: large;
 }
 
@@ -184,6 +190,7 @@ body {
 }
 
 .offcanvas-body {
+	color: white;
 	text-align: center;
 }
 
@@ -215,6 +222,7 @@ body {
 
 #logoutBtn {
 	font-size: larger;
+	font-family: 'DungGeunMo';
 }
 
 .menulink {
@@ -257,9 +265,8 @@ button {
 }
 
 .commentTitle, .commentDate {
-	font-size: smaller;
+	font-size: 11px;
 	color: gray;
-	margin-left: 5px;
 }
 
 /* 작성게시글 */
@@ -267,6 +274,11 @@ button {
 	margin-bottom: 30px;
 	padding-left: 10px;
 	font-family: 'DungGeunMo';
+	text-align: left;
+}
+
+.Boardtitle {
+	text-align: center;
 }
 
 .boardByboard {
@@ -278,6 +290,15 @@ button {
 
 .boardByboard>div {
 	color: black;
+}
+
+#boardbox>a:hover {
+	text-decoration: underline;
+	text-decoration-color: gray;
+}
+
+.boardView, .boardDate {
+	text-align: center;
 }
 
 @font-face {
@@ -348,58 +369,40 @@ button {
 					</div>
 					<script>
 						//게시글 출력
-						$("#myboard")
-								.on(
-										"click",
-										function() {
+						$("#myboard").on("click",function() {
 											$("#boardbox").empty();
-											$
-													.ajax(
-															{
-																url : "/selectMypageBoard.board",
-																dataType : "json"
-															})
-													.done(
-															function(data) {
-																console
-																		.log("receive값은:"
-																				+ data);
-																console
-																		.log("receive값은:"
-																				+ typeof data);
-																console
-																		.log("receive값은:"
-																				+ data.length);
-																if (data != null) {
+											$.ajax({
+												url : "/selectMypageBoard.member",
+												dataType : "json"
+											}).done(function(data) {
+														console.log("receive값은:"+ data);
+														console.log("receive값은:"+ typeof data);
+														console.log("receive값은:"+ data.length);
+															if (data != null) {
 																	<!--리스트불러오기-->
-																	let r = '';
-																	r += "<div class='col-10 fs-5 titleBoard'>작성게시글</div>"
-																	r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>글번호</div>"
-																	r += "<div class='col-12 col-md-6 boardOnTitle'>제목</div>"
-																	/*r+="<div class='col-8 col-md-3  boardDate'>작성시간</div>"
-																	r+="<div class='col-4 col-md-1  boardView'>조회수</div>" */
+																let r = '';
+																r += "<div class='col-10 fs-5 titleBoard'>작성게시글</div>";
+																	r += "<div class='row Boardtitle'>"
+																	r += "<div class='col-6'>제목</div>";
+																	r += "<div class='col-4'>작성시간</div>";
+																	r += "<div class='col-2'>조회수</div>";
+																	r += "</div>"
 																	for (i = 0; i < data.length; i++) {
 																		r += "<a href='/selectBoardContents.board?b_seq="
 																				+ data[i].b_seq
 																				+ "'><div class='row boardByboard'>";
-																		r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>"
-																				+ data[i].b_seq
-																				+ "</div>";
-																		r += "<div class='col-12 col-md-6 boardOnTitle'>"
+																		r += "<div class='col-6 boardOnTitle'>"
 																				+ data[i].b_title
 																				+ "</div>";
-																		r += "<div class='col-8 col-md-3  boardDate'>"
+																		r += "<div class='col-4 boardDate'>"
 																				+ data[i].b_write_date
 																				+ "</div>";
-																		r += "<div class='col-4 col-md-1  boardView'>"
+																		r += "<div class='col-2 boardView'>"
 																				+ data[i].b_view_count
 																				+ "</div>";
 																		r += "</div></a>";
 																	}
-																	$(
-																			"#boardbox")
-																			.append(
-																					r);
+																	$("#boardbox").append(r);
 																}
 															});
 										})
@@ -412,7 +415,7 @@ button {
 											$
 													.ajax(
 															{
-																url : "/selectMypageComment.boardcomment",
+																url : "/selectMypageComment.member",
 																dataType : "json"
 															})
 													.done(
@@ -434,13 +437,13 @@ button {
 																		r += "<a href='/selectBoardContents.board?b_seq="
 																				+ data[i].b_seq
 																				+ "'><div class='row commentBycomment'>";
-																		r += "<div class='col-12 comment'>"
+																		r += "<div class='col-12  comment'>"
 																				+ data[i].bcm_content
 																				+ "</div>";
 																		r += "<div class='col-12 commentDate'>"
 																				+ data[i].bcm_write_date
 																				+ "</div>";
-																		r += "<div class='col-12 commentTitle'>"
+																		r += "<div class='col-12  commentTitle'>"
 																				+ data[i].b_title
 																				+ "</div>";
 																		r += "</div></a>";
@@ -506,11 +509,7 @@ button {
 				</div>
 				<a href="/boardList.board?cpage=1">
 					<div class="menulink">영화 드라마 게시판</div>
-				</a> <a href="/fboardList.fboard?cpage=1">
-					<div class="menulink">자유게시판</div>
-				</a> <a href="/noticeList.notice?cpage=1">
-					<div class="menulink">공지사항</div>
-				</a>
+				</a> 
 				<button type="button" id="logoutBtn">로그아웃</button>
 			</div>
 			<script>

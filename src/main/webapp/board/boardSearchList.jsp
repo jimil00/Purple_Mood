@@ -235,10 +235,12 @@ a {
 						</div>
 						<hr>
 						<div align="center" class="navi">
+
 							<a href="/boardSearchList.board?cpage=1"><button
 									type="button">처음으로</button></a> ${navi} <a
 								href="boardSearchList.board?cpage=${endNavi}"><button
-									type="button">끝으로</button></a>
+									type="button">끝으로</button></a> >>>>>>>
+							bbf7c7a270bb078d7046a88971dff14e88135329
 						</div>
 						<hr>
 						<form action="/boardSearchList.board?cpage=1" method="post">

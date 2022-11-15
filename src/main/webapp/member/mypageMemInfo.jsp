@@ -22,14 +22,12 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 * {
 	box-sizing: border-box;
 	font-family: 'DungGeunMo';
 	color: black;
 	margin: auto;
 }
-
 .modifyForm {
 	float: left;
 	margin: auto;
@@ -39,78 +37,63 @@
 	background-color: white;
 	border-radius: 7px;
 }
-
 input {
 	width: 400px;
 	height: 30px;
 }
-
 #email {
 	width: 200px;
 }
-
 .header {
 	text-align: center;
 	height: 80px;
 	background-color: #03001e;
 }
-
 .selectOption {
 	height: 30px;
 	width: 175px;
 	text-align: center;
 }
-
 .requiredField {
 	color: red;
 }
-
 #result, #duplResult {
 	margin: 0;
 }
-
 .id, .logo, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
 	.address1, .address2, .margin_top, #result, #duplResultID,
 	#duplResultNickname {
 	margin: 15px 0;
 }
-
 .container {
 	margin: auto;
 	display: flex;
 	overflow: hidden;
 	background-color: #03001e;
 }
-
 .logo {
 	font-weight: bold;
 	margin: 40px 0;
 }
-
 .footer {
 	margin-top: 10px;
 	text-align: center;
 }
-
 #duplCheckID, #duplCheckNickname {
 	width: 100px;
 }
-
 .btns button {
 	height: 30px;
 	width: 92px;
 }
-
 .footer {
 	margin: auto;
 }
-
 .btns {
 	width: 100%;
 	margin-top: 10px;
 	text-align: center;
 }
-
 .btn {
 	width: 100px;
 }
@@ -153,7 +136,7 @@ input {
 				<div class="id col-12">
 					<span>아이디<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="id" id="id" value="${dto.id}" disabled>
+								<input type="text" name="id" id="id" value="${dto.id }" disabled>
 								<div id="duplResultID"></div>
 							</div>
 				</div>
@@ -235,8 +218,8 @@ input {
 				<div class="footer col-12">
 					<div class="btns">
 						<input type="button" class="btn" id="modify" value="수정하기">
-						<a href="/main"><input type="button" class="btn" id="back"
-							value="홈으로"></a>
+						<a href="/main"><input type="button" class="btn"
+							id="back" value="홈으로"></a>
 					</div>
 				</div>
 
@@ -246,20 +229,6 @@ input {
 
 	</form>
 	<script>
-		// 우편번호
-		$("#btnsearch")
-				.on(
-						"click",
-						function() {
-							new daum.Postcode(
-									{
-										oncomplete : function(data) {
-											document.getElementById('postcode').value = data.zonecode;
-											document.getElementById("address1").value = data.jibunAddress;
-										}
-									}).open();
-						})
-
 		$("#pw,#checkpw").on("input", function() {
 			if (!($("#pw").val() == $("#checkpw").val())) {
 				$("#result").text("패스워드가 일치하지 않습니다.");
@@ -325,7 +294,7 @@ input {
 							|| $("#nickname").val() == ""
 							|| $("#phone").val() == ""
 							|| $("#email").val() == "") {
-						alert("아이디, 패스워드, 이름, 닉네임, 전화번호, 이메일은 필수입력값입니다.");
+						alert("아이디, 패스워드, 이름은 필수입력값입니다.");
 						return false;
 					}
 					let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글만 가능

@@ -197,7 +197,7 @@ input {
 				<div class="footer col-12">
 					<div class="btns">
 						<a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
-							href="/member/signin.jsp"><button type="button" id="back">뒤로
+							href="/member/signin.jsp"><button type="button">뒤로
 								가기</button></a>&nbsp
 						<button type="reset" id="resetBtn">다시 입력</button>
 					</div>
@@ -208,145 +208,144 @@ input {
 	</form>
 
 	<script>
-      //다시입력 버튼을 눌렀을때
-      $("#resetBtn").on("click", function() {
-         location.reload();
-         $("#id").focus();
-      });
-      // 우편번호
-      $("#btnsearch")
-            .on(
-                  "click",
-                  function() {
-                     new daum.Postcode(
-                           {
-                              oncomplete : function(data) {
-                                 document.getElementById('postcode').value = data.zonecode;
-                                 document.getElementById("address1").value = data.jibunAddress;
-                              }
-                           }).open();
-                  })
-      //비번 체크            
-      $("#pw,#checkpw").on("input", function() {
-         if (!($("#pw").val() == $("#checkpw").val())) {
-            $("#result").text("패스워드가 일치하지 않습니다.");
-            $("#result").css("color", "red");
-            pwCheck = false;
-         } else {
-            $("#result").text("패스워드가 일치합니다.");
-            $("#result").css("color", "green");
-            pwCheck = true;
-         }
-      })
-      //아이디 중복검사
-      $("#id").on("input", function() { // 한 글자 쓸 때마다 ajax가 나간다(쏴라)
-         idCheck = false;
-         let id = $("#id").val();
-         $.ajax({
-            url : "/idDuplCheck.member",
-            data : {
-               "id" : id
-            }
-         }).done(function(resp) {
-            if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
-               $("#duplResultID").text("중복된 ID 입니다.");
-               $("#duplResultID").css("color", "red");
-            } else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
-               $("#duplResultID").text("중복되지 않은 ID 입니다.");
-               $("#duplResultID").css("color", "green");
-               idCheck = true;
-            }
-         })
-      })
-      //닉네임 중복검사
-      $("#nickname").on("input", function() {
-         nicknameCheck = false;
-         let nickname = $("#nickname").val();
-         $.ajax({
-            url : "/nicknameDuplCheck.member",
-            data : {
-               "nickname" : nickname
-            }
-         }).done(function(resp) {
-            if (resp == "true") { // 닉네임이 이미 존재하므로 사용할 수 없는 경우
-               $("#duplResultNickname").text("중복된 닉네임입니다.");
-               $("#duplResultNickname").css("color", "red");
-            } else { // 닉네임이 존재하지 않으므로 사용할 수 있는 경우
-               $("#duplResultNickname").text("중복되지 않은 닉네임입니다.");
-               $("#duplResultNickname").css("color", "green");
-               nicknameCheck = true;
-            }
-         })
-      })
-
-      //회원가입 버튼을 눌렀을때
-      $("#signup").on(
-            "click",
-            function() {
-               if ($("#id").val() == "" || $("#pw").val() == ""
-                     || $("#name").val() == ""
-                     || $("#nickname").val() == ""
-                     || $("#phone").val() == ""
-                     || $("#email").val() == "") {
-                  alert("아이디, 패스워드, 닉네임, 이름, 전화번호, 이메일은 필수입력값입니다.");
-                  return false;
-               }
-               if (!idCheck) {
-                  alert("아이디 중복체크를 먼저 수행해주세요.");
-                  return false;
-               }
-               if (!nicknameCheck) {
-                  alert("닉네임 중복체크를 먼저 수행해주세요.");
-                  return false;
-               }
-               if (!pwCheck) {
-                  alert("패스워드가 일치하지 않습니다.");
-                  return false;
-               }
-               let idRegex = /^[a-z0-9_]{6,20}$/; //6~20자의 영문 소문자, 숫자와 특수기호(_) 가능
-               let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글,영문 대 소문자 가능
-               let pwRegex = /^[A-Za-z0-9~!@#$%]{8,20}$/; //8~20자 영문 대 소문자, 숫자, 특수문자(~!@#$%) 가능
-               let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
-               let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
-               let emailRegex = /^[a-zA-Z0-9]{1,20}$/; //숫자,영어 대 소문자 가능
-               if ($("#id").val() != "") {
-                  if (!idRegex.test($("#id").val())) {
-                     alert("아이디 형식을 확인해주세요.");
-                     return false;
-                  }
-               }
-               if ($("#nickname").val() != "") {
-                  if (!nicknameRegex.test($("#nickname").val())) {
-                     alert("닉네임 형식을 확인해주세요.");
-                     return false;
-                  }
-               }
-               if ($("#pw").val() != "") {
-                  if (!pwRegex.test($("#pw").val())) {
-                     alert("패스워드 형식을 확인해주세요.");
-                     return false;
-                  }
-               }
-               if ($("#name").val() != "") {
-                  if (!nameRegex.test($("#name").val())) {
-                     alert("이름 형식을 확인해주세요.");
-                     return false;
-                  }
-               }
-               if ($("#phone").val() != "") {
-                  if (!phoneRegex.test($("#phone").val())) {
-                     alert("전화번호 형식을 확인해주세요.");
-                     return false;
-                  }
-               }
-               if ($("#email").val() != "") {
-                  if (!emailRegex.test($("#email").val())) {
-                     alert("이메일 형식을 확인해주세요.");
-                     return false;
-                  }
-               }
-               location.href = "/signup.member";
-            })
-   </script>
+		//다시입력 버튼을 눌렀을때
+		$("#resetBtn").on("click", function() {
+			location.reload();
+			$("#id").focus();
+		});
+		// 우편번호
+		$("#btnsearch")
+				.on(
+						"click",
+						function() {
+							new daum.Postcode(
+									{
+										oncomplete : function(data) {
+											document.getElementById('postcode').value = data.zonecode;
+											document.getElementById("address1").value = data.jibunAddress;
+										}
+									}).open();
+						})
+		//비번 체크            
+		$("#pw,#checkpw").on("input", function() {
+			if (!($("#pw").val() == $("#checkpw").val())) {
+				$("#result").text("패스워드가 일치하지 않습니다.");
+				$("#result").css("color", "red");
+				pwCheck = false;
+			} else {
+				$("#result").text("패스워드가 일치합니다.");
+				$("#result").css("color", "green");
+				pwCheck = true;
+			}
+		})
+		//아이디 중복검사
+		$("#id").on("input", function() { // 한 글자 쓸 때마다 ajax가 나간다(쏴라)
+			idCheck = false;
+			let id = $("#id").val();
+			$.ajax({
+				url : "/idDuplCheck.member",
+				data : {
+					"id" : id
+				}
+			}).done(function(resp) {
+				if (resp == "true") { // 아이디가 이미 존재하므로 사용할 수 없는 경우
+					$("#duplResultID").text("중복된 ID 입니다.");
+					$("#duplResultID").css("color", "red");
+				} else { // 아이디가 존재하지 않으므로 사용할 수 있는 경우
+					$("#duplResultID").text("중복되지 않은 ID 입니다.");
+					$("#duplResultID").css("color", "green");
+					idCheck = true;
+				}
+			})
+		})
+		//닉네임 중복검사
+		$("#nickname").on("input", function() {
+			nicknameCheck = false;
+			let nickname = $("#nickname").val();
+			$.ajax({
+				url : "/nicknameDuplCheck.member",
+				data : {
+					"nickname" : nickname
+				}
+			}).done(function(resp) {
+				if (resp == "true") { // 닉네임이 이미 존재하므로 사용할 수 없는 경우
+					$("#duplResultNickname").text("중복된 닉네임입니다.");
+					$("#duplResultNickname").css("color", "red");
+				} else { // 닉네임이 존재하지 않으므로 사용할 수 있는 경우
+					$("#duplResultNickname").text("중복되지 않은 닉네임입니다.");
+					$("#duplResultNickname").css("color", "green");
+					nicknameCheck = true;
+				}
+			})
+		})
+		//회원가입 버튼을 눌렀을때
+		$("#signup").on(
+				"click",
+				function() {
+					if ($("#id").val() == "" || $("#pw").val() == ""
+							|| $("#name").val() == ""
+							|| $("#nickname").val() == ""
+							|| $("#phone").val() == ""
+							|| $("#email").val() == "") {
+						alert("아이디, 패스워드, 닉네임, 이름, 전화번호, 이메일은 필수입력값입니다.");
+						return false;
+					}
+					if (!idCheck) {
+						alert("아이디 중복체크를 먼저 수행해주세요.");
+						return false;
+					}
+					if (!nicknameCheck) {
+						alert("닉네임 중복체크를 먼저 수행해주세요.");
+						return false;
+					}
+					if (!pwCheck) {
+						alert("패스워드가 일치하지 않습니다.");
+						return false;
+					}
+					let idRegex = /^[a-z0-9_]{6,20}$/; //6~20자의 영문 소문자, 숫자와 특수기호(_) 가능
+					let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글,영문 대 소문자 가능
+					let pwRegex = /^[A-Za-z0-9~!@#$%]{8,20}$/; //8~20자 영문 대 소문자, 숫자, 특수문자(~!@#$%) 가능
+					let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
+					let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
+					let emailRegex = /^[a-zA-Z0-9]{1,20}$/; //숫자,영어 대 소문자 가능
+					if ($("#id").val() != "") {
+						if (!idRegex.test($("#id").val())) {
+							alert("아이디 형식을 확인해주세요.");
+							return false;
+						}
+					}
+					if ($("#nickname").val() != "") {
+						if (!nicknameRegex.test($("#nickname").val())) {
+							alert("닉네임 형식을 확인해주세요.");
+							return false;
+						}
+					}
+					if ($("#pw").val() != "") {
+						if (!pwRegex.test($("#pw").val())) {
+							alert("패스워드 형식을 확인해주세요.");
+							return false;
+						}
+					}
+					if ($("#name").val() != "") {
+						if (!nameRegex.test($("#name").val())) {
+							alert("이름 형식을 확인해주세요.");
+							return false;
+						}
+					}
+					if ($("#phone").val() != "") {
+						if (!phoneRegex.test($("#phone").val())) {
+							alert("전화번호 형식을 확인해주세요.");
+							return false;
+						}
+					}
+					if ($("#email").val() != "") {
+						if (!emailRegex.test($("#email").val())) {
+							alert("이메일 형식을 확인해주세요.");
+							return false;
+						}
+					}
+					location.href = "/signup.member";
+				})
+	</script>
 </body>
 </html>
