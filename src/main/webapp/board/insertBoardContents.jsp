@@ -115,7 +115,7 @@
                     $.ajax({
                         data: data,
                         type: "post",
-                        url: "/imageupload.boardfile",
+                        url: "/imageupload.board",
                         cache: false,
                         contentType: false,
                         processData: false,
@@ -133,6 +133,8 @@
                 }
             }
         });
+        
+        $('#summernote').summernote('fontName', '둥근모꼴체');
 
         $('#insertBoardContents').on('click', function () {
             saveContent();
