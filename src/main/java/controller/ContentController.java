@@ -141,13 +141,19 @@ public class ContentController extends HttpServlet {
 			
 			
 			try {
+				//최신순 출력
 				List<DramaDTO> dr_date_n=DramaDAO.getInstance().selectByNF_date();
 				List <MovieDTO> mv_date_n=MovieDAO.getInstance().selectByNF_date();
 				
+				//평점순 출력
+				List<DramaDTO> dr_avg_n=DramaDAO.getInstance().selectByNF_avg();
+				List<MovieDTO> mv_avg_n=MovieDAO.getInstance().selectByNF_avg();
 
 				request.setAttribute("dr_date_n", dr_date_n);
-				
 				request.setAttribute("mv_date_n", mv_date_n);
+				
+				request.setAttribute("dr_avg_n", dr_avg_n);
+				request.setAttribute("mv_avg_n", mv_avg_n);
 				
 				System.out.println(dr_date_n);
 
@@ -161,14 +167,22 @@ public class ContentController extends HttpServlet {
 		}else if(uri.equals("/disney.content")) {
 			
 			try {
+			//최신순 출력
 			List<DramaDTO> dr_date_d=DramaDAO.getInstance().selectByDZ_date();
 			List <MovieDTO> mv_date_d=MovieDAO.getInstance().selectByDZ_date();
+			
+			//평점순 출력
+			List<DramaDTO> dr_avg_d=DramaDAO.getInstance().selectByDZ_avg();
+			List<MovieDTO> mv_avg_d=MovieDAO.getInstance().selectByDZ_avg();
 			
 			System.out.println(dr_date_d);
 			
 
 			request.setAttribute("dr_date_d", dr_date_d);
 			request.setAttribute("mv_date_d", mv_date_d);
+			
+			request.setAttribute("dr_avg_d", dr_avg_d);
+			request.setAttribute("mv_avg_d", mv_avg_d);
 
 			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
 
@@ -184,12 +198,18 @@ public class ContentController extends HttpServlet {
 				//최신순 출력
 			List<DramaDTO> dr_date_wv=DramaDAO.getInstance().selectByWV_date();
 			List <MovieDTO> mv_date_wv=MovieDAO.getInstance().selectByWV_date();
+				
+				//평점순 출력
+			List<DramaDTO> dr_avg_wv=DramaDAO.getInstance().selectByWV_avg();
+			List<MovieDTO> mv_avg_wv=MovieDAO.getInstance().selectByWV_avg();
 			
-			System.out.println(dr_date_wv);
 			
 
 			request.setAttribute("dr_date_wv", dr_date_wv);
 			request.setAttribute("mv_date_wv", mv_date_wv);
+			
+			request.setAttribute("dr_avg_wv", dr_avg_wv);
+			request.setAttribute("mv_avg_wv", mv_avg_wv);
 
 			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
 
@@ -201,15 +221,23 @@ public class ContentController extends HttpServlet {
 		}else if(uri.equals("/watcha.content")) {
 			
 			try {
-				//최신순 출력
+			//최신순 출력
 			List<DramaDTO> dr_date_wc=DramaDAO.getInstance().selectByWC_date();
 			List <MovieDTO> mv_date_wc=MovieDAO.getInstance().selectByWC_date();
+			
+			//인기(평점)순 출력
+			List<DramaDTO> dr_avg_wc=DramaDAO.getInstance().selectByWC_avg();
+			List<MovieDTO> mv_avg_wc=MovieDAO.getInstance().selectByWC_avg();
 			
 			System.out.println(dr_date_wc);
 			
 
 			request.setAttribute("dr_date_wc", dr_date_wc);
+			request.setAttribute("dr_avg_wc", dr_avg_wc);
+			
 			request.setAttribute("mv_date_wc", mv_date_wc);
+			request.setAttribute("mv_avg_wc", mv_avg_wc);
+			
 
 			request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
 

@@ -22,6 +22,15 @@ pageEncoding="UTF-8"%>
     rel="stylesheet" />
 </head>
 <style>
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
     .container-fluid {
 	font-family: 'DungGeunMo';
 	color: grey;
@@ -31,7 +40,7 @@ pageEncoding="UTF-8"%>
 
     .logo{height:100px;}
     
-    .ott_logo>img{width:250px;}
+    .ott_logo>img{width:250px; margin:30px;}
     
     .postimg {width:200px;}
     
