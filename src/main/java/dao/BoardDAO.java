@@ -444,15 +444,15 @@ public class BoardDAO {
 		StringBuilder sb = new StringBuilder();
 
 		if(needPrev) {
-			sb.append("<a href='/boardSearchList.board?cpage="+(startNavi-1)+"'><</a> ");
+			sb.append("<a href='/boardSearchList.board?cpage="+(startNavi-1)+"&boardSearchOption="+boardSearchOption+"&boardSearchWord="+boardSearchWord+"'><</a> ");
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/boardSearchList.board?cpage="+i+"'>" + i + "</a> ");
+			sb.append("<a href='/boardSearchList.board?cpage="+i+"&boardSearchOption="+boardSearchOption+"&boardSearchWord="+boardSearchWord+"'>" + i + "</a> ");
 		}
 
 		if(needNext) {
-			sb.append("<a href='/boardSearchList.board?cpage="+(endNavi+1)+"'>></a> ");
+			sb.append("<a href='/boardSearchList.board?cpage="+(endNavi+1)+"&boardSearchOption="+boardSearchOption+"&boardSearchWord="+boardSearchWord+"'>></a> ");
 		}
 		//		String navi=sb.toString();
 		//		list.add(String.valueOf(endNavi));
