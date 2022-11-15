@@ -177,6 +177,14 @@ body {
 	color: white;
 	background-color: #03001e;
 }
+#linksec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+#logoutsec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
 
 a {
 	color: white;
@@ -416,35 +424,74 @@ span>img {
 
 		</div>
 </div>
-	<div class="offcanvas offcanvas-end" data-bs-scroll="true"
-		tabindex="-1" id="offcanvasWithBothOptions"
-		aria-labelledby="offcanvasWithBothOptionsLabel">
-		<div class="offcanvas-header">
-			<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-				aria-label="Close">
-				<i class="fa-solid fa-xmark fa-xl"></i>
-			</button>
-		</div>
-		<div class="offcanvas-body">
-			<div class="profilebox" id="Btn" style="background: #BDBDBD;">
-				<img src="/img/logo.png" id="profileimg">
+	<c:choose>
+		<c:when test="${loginID!=null && loginID!='admin123'}">
+			<!-- 로그인 -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+					<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="/member/mypage.jsp">
+							<button>마이페이지</button>
+						</a>
+					</div>
+					 <div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div>
+        <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
+				</div>
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
+					})
+				</script>
 			</div>
-			<div class="profiletext">${loginNickname }</div>
-			<div class="profiletext">
-				<a href="/member/mypage.jsp">
-					<button>마이페이지</button>
-				</a>
+		</c:when>
+<c:otherwise>
+			<!-- 비로그인  -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">익명의 누군가</div>
+					<div class="profiletext">
+						<a href="/member/signin.jsp">
+							<button id="signinBtn">로그인</button>
+						</a>
+					</div>
+					<div id="linksec">
+        <a href="#">
+            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
+        </a></div>
+				</div>
+				<script>
+					$(".noLoginMenu").on("click",function(){
+						alert("로그인을 해주세요");
+					})
+				</script>
 			</div>
-			<a href="/boardList.board?cpage=1">
-				<div class="menulink">영화 드라마 게시판</div>
-			</a>
-			<button type="button" id="logoutBtn">로그아웃</button>
-		</div>
-		<script>
-				$("#logoutBtn").on("click", function() {
-					location.href = "/logout.member";
-				})
-			</script>
-	</div>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

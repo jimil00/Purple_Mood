@@ -26,17 +26,14 @@
 	font-style: normal;
 }
 *{box-sizing: border-box;}
-.container-fluid {
+
+.container {
 	font-family: 'DungGeunMo';
-	color: grey;
-	background-color: #03001e;
 }
 
-<!--
-background:linear-gradient(#03001e, 50 %, #7303c0, #ec38bc, #fdeff9) ; *
-	/-->
-    #header {
-	height: 100px;
+body {
+	background-color: #03001e;
+	color: white;
 }
 
 .list_title {
@@ -62,9 +59,6 @@ input [type="submit"] {
 }
 
 ;
-#logo {
-	color: white;
-}
 
 .list_title {
 	text-align: left;
@@ -96,6 +90,31 @@ img {
 
 .poster {
 	overflow: hidden;
+}
+
+/* 헤더 */
+#header{
+	padding-top:50px;
+	padding-bottom:50px;
+}
+
+.header{
+	height:150px;
+}
+
+.titleimg{
+	height:100%;
+	width:45%;
+}
+
+@media(max-width:750px){
+	.titleimg{
+		width:60%;
+	}
+}
+
+.searchbtn{
+padding-bottom:60px;
 }
 
 
@@ -143,13 +162,14 @@ span>img {
 
 </style>
 <body>
-	<div class="container-fluid text-center">
+	<div class="container w-xl text-center">
 
 		<!--form으로 검색결과 넘겨주기-->
 		<form action="/search.content">
 			<div class="row" id="header">
-				<div class="col-sm-12">
-					<div id="logo"><a href="/main">퍼플무드(로고 이미지 추가)</a></div>
+				<div class="col-sm-12 header">
+					<a href="/main"><img src="/img/title.png" class="titleimg"
+						id="titleimg"></a>
 				</div>
 			</div>
 
@@ -158,7 +178,7 @@ span>img {
 					<input type="text" id="searchtext" name="searchtext"
 						placeholder="검색어를 입력해주세요.">
 				</div>
-				<div class="col-2 col-md-2 col-lg-1">
+				<div class="col-2 col-md-2 col-lg-1 searchbtn">
 					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
 				</div>
 		</form>
@@ -180,7 +200,7 @@ span>img {
 		<c:choose>
 			<c:when test="${not empty mv_list}">
 				<div class="row" id="movie_bar">
-					<hr>
+
 					<div class="list_title pt-2">
 						영화 검색 결과 <span> ${mv_list.size()}개</span>
 					</div>
@@ -212,7 +232,7 @@ span>img {
 	</div>
 	</c:when>
 	<c:otherwise>
-		<hr>
+
 		<div class="list_title pt-2">영화</div>
 		<hr>
 		<div>검색 결과가 없습니다.</div>
