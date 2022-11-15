@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-    crossorigin="anonymous" />
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-    crossorigin="anonymous"></script>
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
-    rel="stylesheet" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
+	rel="stylesheet" />
 </head>
 <style>
 @font-face {
@@ -31,22 +31,29 @@ pageEncoding="UTF-8"%>
 	font-style: normal;
 }
 
-    .container-fluid {
+.container {
 	font-family: 'DungGeunMo';
-	color: grey;
-	background-color: #03001e;
 }
-    .header{height:150px;}
 
-    .logo{height:100px;}
-    
-    .ott_logo>img{width:250px; margin:30px;}
-    
-    .postimg {width:200px;}
-    
-    .list_title{text-align:left;}
-    
-    .card {
+body {
+	background-color: #03001e;
+	color: white;
+}
+
+.ott_logo>img {
+	width: 250px;
+	margin: 30px;
+}
+
+.postimg {
+	width: 200px;
+}
+
+.list_title {
+	text-align: left;
+}
+
+.card {
 	width: 200px;
 	height: 300px;
 	background-color: #03001e;
@@ -56,14 +63,9 @@ pageEncoding="UTF-8"%>
 	overflow: hidden;
 }
 
-
-
-a {
-	text-decoration: none;
-	color: grey
+.card-text {
+	height: fit-content;
 }
-
-.card-text{height:fit-content;}
 
 .card-text:hover {
 	color: #7303c0
@@ -97,12 +99,179 @@ span>img {
 .poster>img:hover {
 	transform: scale(1.2);
 }
-    
+
+/* header */
+.header {
+	height: 100px;
+	background-color: #03001e;
+	padding-bottom: 20px;
+}
+
+#logo, #titleimg {
+	height: 100%;
+}
+
+#titleimg {
+	position: relative;
+	left: -38%;
+}
+
+#titleimg:hover {
+	cursor: pointer;
+}
+
+@media ( max-width :767px) {
+	#logo {
+		height: 60%;
+	}
+	#titleimg {
+		height: 100%;
+	}
+}
+
+.searchbox {
+	text-align: right;
+}
+
+.searchboxin {
+	position: relative;
+	top: 10%;
+}
+
+#searchtext {
+	width: 90%;
+}
+
+.menuicon {
+	text-align: center;
+}
+
+#menuicon {
+	position: relative;
+	top: 8%;
+}
+
+#menuicon:hover {
+	cursor: pointer;
+}
+
+/* menu */
+.offcanvas {
+	height: 800px;
+	background-color: #03001e;
+}
+
+.offcanvas-body {
+	color: white;
+	text-align: center;
+}
+
+.profilebox {
+	width: 170px;
+	height: 150px;
+	overflow: hidden;
+	position: relative;
+	left: 30%;
+	margin-bottom: 20px;
+	margin-top: 30px;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#profileimg {
+	height: 100%;
+}
+
+.profiletext {
+	font-size: larger;
+	margin-bottom: 10px;
+	font-family: 'DungGeunMo';
+}
+
+#logoutBtn {
+	font-size: larger;
+	font-family: 'DungGeunMo';
+}
+
+.menulink {
+	font-size: x-large;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	font-family: 'DungGeunMo';
+}
+
+.menulink:hover, #searchbtn:hover {
+	color: #c4c4c4;
+	cursor: pointer;
+}
+
+#colsebtn {
+	border: none;
+	color: white;
+	background-color: #03001e;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+button {
+	border: none;
+	border-radius: 5px;
+}
+
+/* footer */
+.footer {
+	text-align: left;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+	background-color: #03001e;
+	color: white;
+}
+
+.footerAtag {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+.footerAtag>a {
+	font-family: 'DungGeunMo';
+	font-size: large;
+}
+
+.footerAtag>a:hover {
+	color: #ec38bc;
+}
+
+.footerImpormation {
+	font-size: smaller;
+}
+
+.footerIcon {
+	padding-top: 10px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.fa-brands:hover {
+	cursor: pointer;
+}
+
+.snsIcon {
+	padding-right: 20px;
+	padding-left: 10px;
+}
 </style>
 <body>
-    <div class="container-fluid text-center">
-    
-    <!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
+	<div class="container w-xl text-center">
+
+		<!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
      <form action="/ott_search.content">
         <div class="header row">
           <div class="logo col-8">퍼플무드 이미지</div>
@@ -112,112 +281,170 @@ span>img {
           </div>
         </div>
         </form>-->
-        
-        
-	
-	<!-- ott별로 출력하는 페이지 -->
-		
-	<form action="/wv_search.content">
-        	<div class="header row">
-         	 <div class="logo col-8">퍼플무드 이미지</div>
-          	<div class="col-4">
-            	<input type="text" name="wv_searchtext" placeholder="웨이브 내 검색">
-            	<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-          	</div>
-        </div>
-        </form>
-           <div class="ott_logo col-12">
-            <img src="/img/wavbf.png">
-        </div>
-        <hr>
-        
-        		  	<!-- 웨이브 영화 검색 결과 출력 -->
-          <c:choose>
-		<c:when test="${not empty wv_mv_list}">
+
+
+
+		<!-- ott별로 출력하는 페이지 -->
+
+		<form action="/wv_search.content">			
+			<div class="row header">
+				<div class="col-12 col-md-7 col-lg-8" id="logo">
+					<a href="/main"><img src="/img/title.png" class="titleimg"
+						id="titleimg"></a>
+				</div>
+				<div class="col-8 col-md-4 col-lg-3 searchbox">
+					<input type="text" class="searchboxin" id="searchtext"
+						name="wv_searchtext" placeholder="웨이브 내 검색"> <i
+						class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+				</div>
+				<div class="col-4 col-md-1 col-lg-1 menuicon">
+					<i class="fas fa-bars fa-2x" id="menuicon"
+						data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasWithBothOptions"
+						aria-controls="offcanvasWithBothOptions"></i>
+				</div>
+			</div>
+		</form>
+		<div class="ott_logo col-12">
+			<img src="/img/wavbf.png">
+		</div>
 		<hr>
-		<div class="list_title">
+
+		<!-- 웨이브 영화 검색 결과 출력 -->
+		<c:choose>
+			<c:when test="${not empty wv_mv_list}">
+				<hr>
+				<div class="list_title">
 					영화 검색 결과<span> ${wv_mv_list.size()}개</span>
 				</div>
-		<hr>
-		
-		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="wv" items="${wv_mv_list}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-         			<a href="/detailMv.content?mv_id=${wv.mv_id}">
-                  
-                  <div class="poster">  
-                    <img src="${wv.mv_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  <p class="card-text">${wv.mv_title}</p>
-                  </a>
-                </div>
-                <c:if test="${i%j == j-1 }">
-              </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-            </div>
-		</c:when>
-		<c:otherwise>
-			<hr>
+				<hr>
+
+				<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+					<c:set var="i" value="0" />
+					<c:set var="j" value="1" />
+					<c:forEach var="wv" items="${wv_mv_list}">
+						<c:if test="${i%j == 0 }">
+							<div class="col">
+						</c:if>
+
+						<div class="card">
+							<a href="/detailMv.content?mv_id=${wv.mv_id}">
+
+								<div class="poster">
+									<img src="${wv.mv_poster_path}" class="card-img-top" alt="...">
+								</div>
+								<p class="card-text">${wv.mv_title}</p>
+							</a>
+						</div>
+						<c:if test="${i%j == j-1 }">
+				</div>
+				</c:if>
+				<c:set var="i" value="${i+1 }" />
+				</c:forEach>
+	</div>
+	</c:when>
+	<c:otherwise>
 		<div class="list_title pt-2">영화 검색 결과</div>
 		<hr>
 		<div>검색 결과가 없습니다.</div>
-		</c:otherwise>
-		</c:choose>
-    
-          	<!-- 웨이브 드라마 검색 결과 출력 -->
-          <c:choose>
+	</c:otherwise>
+	</c:choose>
+
+	<!-- 웨이브 드라마 검색 결과 출력 -->
+	<c:choose>
 		<c:when test="${not empty wv_dr_list}">
-		
-		<hr>
-		<div class="list_title">
-					드라마 검색 결과<span> ${wv_dr_list.size()}개</span>
-				</div>
-		<hr>
-		
-		   <div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-            <c:set var="i" value="0" />
-            <c:set var="j" value="1" />
-            <c:forEach var="wv" items="${wv_dr_list}">			
-                      <c:if test="${i%j == 0 }">
-              <div class="col">
-              </c:if>
-      
-                <div class="card">
-         			<a href="/detailDr.content?dr_id=${wv.dr_id}">
-                  
-                  <div class="poster">  
-                    <img src="${wv.dr_poster_path}" class="card-img-top" alt="...">
-                  </div>
-                  <p class="card-text">${wv.dr_title}</p>
-                  </a>
-                </div>
-                <c:if test="${i%j == j-1 }">
-              </div>
-              </c:if>
-              <c:set var="i" value="${i+1 }" />
-            </c:forEach>
-            </div>
-          </div>
+
+			<hr>
+			<div class="list_title">
+				드라마 검색 결과<span> ${wv_dr_list.size()}개</span>
+			</div>
+			<hr>
+
+			<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
+				<c:set var="i" value="0" />
+				<c:set var="j" value="1" />
+				<c:forEach var="wv" items="${wv_dr_list}">
+					<c:if test="${i%j == 0 }">
+						<div class="col">
+					</c:if>
+
+					<div class="card">
+						<a href="/detailDr.content?dr_id=${wv.dr_id}">
+
+							<div class="poster">
+								<img src="${wv.dr_poster_path}" class="card-img-top" alt="...">
+							</div>
+							<p class="card-text">${wv.dr_title}</p>
+						</a>
+					</div>
+					<c:if test="${i%j == j-1 }">
+			</div>
+			</c:if>
+			<c:set var="i" value="${i+1 }" />
+			</c:forEach>
+			</div>
+			
 		</c:when>
 		<c:otherwise>
 			<hr>
-		<div class="list_title pt-2">드라마 검색 결과</div>
-		<hr>
-		<div>검색 결과가 없습니다.</div>
+			<div class="list_title pt-2">드라마 검색 결과</div>
+			<hr>
+			<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
-		</c:choose>
-		
-          	</div>
-          	</div>
+	</c:choose>
+	<div class="row footer">
+		<div class="col-12 footerAtag">
+			<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
+				href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
 		</div>
+		<div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
+		<div class="col-12 footerImpormation">이메일 주소 :
+			purpleMood@purplemood.com</div>
+		<div class="col-12 footerImpormation">사업자등록번호 : 000-00-000</div>
+		<div class="col-12 footerImpormation">통신판매업 신고번호 : 제
+			2022-서울중구-301e호</div>
+		<div class="col-12 footerImpormation">주소 : 대한민국 서울특별시 중구 남대문로
+			120, 대일빌딩 3층</div>
+		<div class="col-12 footerIcon">
+			<span class="snsIcon"><i class="fa-brands fa-instagram fa-2xl"></i></span>
+			<span class="snsIcon"><i class="fa-brands fa-twitter fa-2xl"></i></span>
+			<span class="snsIcon"> <i class="fa-brands fa-facebook fa-2xl"></i>
+			</span>
+		</div>
+	</div>
 
+</div>
+
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+		tabindex="-1" id="offcanvasWithBothOptions"
+		aria-labelledby="offcanvasWithBothOptionsLabel">
+		<div class="offcanvas-header">
+			<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+				aria-label="Close">
+				<i class="fa-solid fa-xmark fa-xl"></i>
+			</button>
+		</div>
+		<div class="offcanvas-body">
+			<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+				<img src="/img/logo.png" id="profileimg">
+			</div>
+			<div class="profiletext">${loginNickname }</div>
+			<div class="profiletext">
+				<a href="/member/mypage.jsp">
+					<button>마이페이지</button>
+				</a>
+			</div>
+			<a href="/boardList.board?cpage=1">
+				<div class="menulink">영화 드라마 게시판</div>
+			</a>
+			<button type="button" id="logoutBtn">로그아웃</button>
+		</div>
+		<script>
+				$("#logoutBtn").on("click", function() {
+					location.href = "/logout.member";
+				})
+			</script>
+	</div>
 </body>
 </html>

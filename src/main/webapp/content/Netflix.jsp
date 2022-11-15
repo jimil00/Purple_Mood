@@ -346,7 +346,6 @@ span>img {
 	</div>
 	</c:when>
 	<c:otherwise>
-		<hr>
 		<div class="list_title pt-2">영화</div>
 		<hr>
 		<div>검색 결과가 없습니다.</div>
@@ -445,12 +444,6 @@ span>img {
 				$("#logoutBtn").on("click", function() {
 					location.href = "/logout.member";
 				})
-				/* $("#profileBtn").on(
-				    "click",
-				    function () {
-				        window.open("/profile.jsp", "",
-				            "width=400,height=300");
-				    }) */
 			</script>
 	</div>
 </body>
