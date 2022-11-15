@@ -119,6 +119,7 @@ public class MemberController extends HttpServlet {
 				request.getSession().invalidate();
 				response.sendRedirect("/main");
 			}
+
 			//마이페이지 작성 게시글 출력
 			else if(uri.equals("/selectMypageBoard.member")) {
 				Gson gsonStr   = new Gson();
@@ -141,6 +142,7 @@ public class MemberController extends HttpServlet {
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
 			}
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
