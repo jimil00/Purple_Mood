@@ -145,7 +145,7 @@ input:focus {
 							</div>
 							<div class="col-12 pwtextbox">
 								<i class="fa-solid fa-unlock-keyhole pwicon"></i>
-								<input type="text" name="pw" class="pwtext" id="loginpwtext"
+								<input type="password" name="pw" class="pwtext" id="loginpwtext"
 									placeholder="비밀번호">
 							</div>
 						</div>
@@ -186,7 +186,7 @@ input:focus {
 							</div>
 							<div class="col-12 pwtextbox">
 								<span><i class="fa-solid fa-unlock-keyhole pwicon"></i></span>
-								<input type="text" name="pw" class="pwtext" placeholder="비밀번호">
+								<input type="password" name="pw" class="pwtext" placeholder="비밀번호">
 							</div>
 						</div>
 					</div>
