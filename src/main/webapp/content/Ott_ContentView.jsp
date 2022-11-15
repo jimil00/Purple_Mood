@@ -43,7 +43,10 @@ pageEncoding="UTF-8"%>
     
     .postimg {width:200px;}
     
-    .list_title{text-align:left;}
+    .list_title{font-weight: bold;
+    }
+    
+    
     
 </style>
 <body>
@@ -76,7 +79,7 @@ pageEncoding="UTF-8"%>
 		
 
 					<div class="list_title pt-2">
-						영화 검색 결과 <!-- <span> ${mv_date_n.size()}개</span>-->
+						영화<!-- <span> ${mv_date_n.size()}개</span>-->
 					</div>
 				<hr>
 				
@@ -171,7 +174,7 @@ pageEncoding="UTF-8"%>
 
 	<hr>
 		<div class="list_title">
-					드라마 검색 결과<!-- <span> ${dr_date_n.size()}개</span>-->
+					드라마<!-- <span> ${dr_date_n.size()}개</span>-->
 				</div>
 		<hr>
 		
@@ -216,7 +219,7 @@ pageEncoding="UTF-8"%>
           </div>
         </div>
         
-         <div class="poster54">
+         <div class="poster4">
            <hr>
 		<div class="col-12 fs-3 titlename">인기순</div>
 		  <hr>
@@ -288,7 +291,7 @@ pageEncoding="UTF-8"%>
 		<c:when test="${not empty mv_date_d}">
 
 					<div class="list_title pt-2">
-						영화 검색 결과 <!--  <span> ${mv_date_d.size()}개</span>-->
+						영화 <!-- <span> ${mv_date_d.size()}개</span>-->
 					</div>
 				<hr>
 				
@@ -387,7 +390,7 @@ pageEncoding="UTF-8"%>
 		<c:when test="${not empty dr_date_d}">
 		<hr>
 		<div class="list_title">
-					드라마 검색 결과<!--  <span> ${dr_date_d.size()}개</span>-->
+					드라마<!--  <span> ${dr_date_d.size()}개</span>-->
 				</div>
 		<hr>
 		
@@ -502,7 +505,7 @@ pageEncoding="UTF-8"%>
 		<c:when test="${not empty mv_date_wv}">
 
 					<div class="list_title pt-2">
-						영화 검색 결과 <!--  <span> ${mv_date_wv.size()}개</span>-->
+						영화<!--  <span> ${mv_date_wv.size()}개</span>-->
 					</div>
 				<hr>
 				
@@ -598,7 +601,7 @@ pageEncoding="UTF-8"%>
 		<c:when test="${not empty dr_date_wv}">
 		<hr>
 		<div class="list_title">
-					드라마 검색 결과<!--  <span> ${dr_date_wv.size()}개</span>-->
+					드라마<!--  <span> ${dr_date_wv.size()}개</span>-->
 				</div>
 		<hr>
 		
@@ -712,7 +715,7 @@ pageEncoding="UTF-8"%>
 		<c:when test="${not empty mv_date_wc}">
 
 					<div class="list_title pt-2">
-						영화 검색 결과 <!-- <span> ${mv_date_wc.size()}개</span>-->
+						영화<!-- <span> ${mv_date_wc.size()}개</span>-->
 					</div>
 				<hr>
 				
@@ -804,7 +807,7 @@ pageEncoding="UTF-8"%>
 		<c:when test="${not empty dr_date_wc}">
     <hr>
 		<div class="list_title">
-					드라마 검색 결과 <!-- <span> ${dr_date_wc.size()}개</span>-->
+					드라마<!-- <span> ${dr_date_wc.size()}개</span>-->
 				</div>
 		<hr>
 		

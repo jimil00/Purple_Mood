@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
     
     .postimg {width:200px;}
     
-    .list_title{text-align:left;}
+    .list_title{}
     
     .card {
 	width: 200px;
