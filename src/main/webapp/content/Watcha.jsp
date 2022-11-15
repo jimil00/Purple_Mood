@@ -38,9 +38,10 @@ pageEncoding="UTF-8"%>
 }
     .header{height:150px;}
 
-    .logo{height:100px;}
+     .logo{text-align:left;height:100px;}
+    #titleimg{height:100px;}
     
-    .ott_logo>img{width:250px;margin:30px;}
+    .ott_logo>a>img{width:250px;margin:30px;}
     
     .postimg {width:200px;}
     
@@ -120,7 +121,7 @@ span>img {
 		
 	<form action="/wc_search.content">
         <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
+          <div class="logo col-8"> <a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
           <div class="col-4">
             <input type="text" name="wc_searchtext" placeholder="왓챠 내 검색">
             <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
@@ -129,7 +130,7 @@ span>img {
         </form>    
         
         <div class="ott_logo col-12">
-            <img src="/img/watbf.png">
+             <a href="/watcha.content"><img src="/img/watbf.png"></a>
         </div>
         <hr>
         

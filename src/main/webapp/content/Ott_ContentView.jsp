@@ -35,16 +35,16 @@ pageEncoding="UTF-8"%>
 	color: grey;
 	background-color: #03001e;
 }
-    .header{height:150px;}
+    .header{}
 
-    .logo{height:100px;}
+    .logo{text-align:left;height:100px;}
+    #titleimg{height:100px;}
     
-    .ott_logo>img{width:250px;margin:30px;}
+    .ott_logo>a>img{width:250px;margin:30px;}
     
     .postimg {width:200px;}
     
-    .list_title{font-weight: bold;
-    }
+    .list_title{font-weight: bold;}
     
     
     
@@ -59,8 +59,8 @@ pageEncoding="UTF-8"%>
 		
 	<form action="/n_search.content">
         <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
-          <div class="col-4">
+         <div class="logo col-9"><a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
+          <div class="col-3">
             <input type="text" name="n_searchtext" placeholder="넷플릭스 내 검색">
             <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
           </div>
@@ -68,7 +68,7 @@ pageEncoding="UTF-8"%>
         </form>
         
         <div class="ott_logo col-12">
-            <img src="/img/netbf.png">
+           <a href="/netflix.content"><img src="/img/netbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -271,7 +271,7 @@ pageEncoding="UTF-8"%>
 		
 		<form action="/d_search.content">
         	<div class="header row">
-         	 <div class="logo col-8">퍼플무드 이미지</div>
+         	 <div class="logo col-8"><a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
           	<div class="col-4">
             	<input type="text" name="d_searchtext" placeholder="디즈니플러스 내 검색">
             	<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
@@ -280,7 +280,7 @@ pageEncoding="UTF-8"%>
         </form>
         
            <div class="ott_logo col-12">
-            <img src="/img/disbf.png">
+            <a href="/disney.content"><img src="/img/disbf.png"></a>
         </div>
         <hr>
         
@@ -487,7 +487,7 @@ pageEncoding="UTF-8"%>
 		
 		<form action="/wv_search.content">
         	<div class="header row">
-         	 <div class="logo col-8">퍼플무드 이미지</div>
+         	 <div class="logo col-8"><a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
           	<div class="col-4">
             	<input type="text" name="wv_searchtext" placeholder="웨이브 내 검색">
             	<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
@@ -495,7 +495,7 @@ pageEncoding="UTF-8"%>
         </div>
         </form>
            <div class="ott_logo col-12">
-            <img src="/img/wavbf.png">
+            <a href="/wavve.content"><img src="/img/wavbf.png"></a>
         </div>
         <hr>
         </c:when>
@@ -696,7 +696,7 @@ pageEncoding="UTF-8"%>
 		
 	<form action="/wc_search.content">
         <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
+          <div class="logo col-8"><a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
           <div class="col-4">
             <input type="text" name="wc_searchtext" placeholder="왓챠 내 검색">
             <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
@@ -705,7 +705,7 @@ pageEncoding="UTF-8"%>
         </form>    
         
         <div class="ott_logo col-12">
-            <img src="/img/watbf.png">
+            <a href="/watcha.content"><img src="/img/watbf.png"></a>
         </div>
         <hr>
         </c:when>

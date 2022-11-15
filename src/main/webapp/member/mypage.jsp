@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -238,7 +238,7 @@ button {
 	border-radius: 5px;
 }
 
-/* ÀÛ¼º´ñµé */
+/* ì‘ì„±ëŒ“ë“¤ */
 
 .commentBycomment {
 	padding-top: 8px;
@@ -256,7 +256,7 @@ button {
 	margin-left:5px;
 }
 
-/* ÀÛ¼º°Ô½Ã±Û */
+/* ì‘ì„±ê²Œì‹œê¸€ */
 .titleBoard {
 	margin-bottom: 30px;
 	padding-left: 10px;
@@ -301,7 +301,8 @@ button {
 			$("#titleimg").on("click",function(){
 				location.href="/main";
 			})
-                function enterkey() { //°Ë»öÃ¢¿¡ ¸¶¿ì½º ¿Ã¸° ÈÄ ¿£ÅÍ ´©¸£¸é ¹Ù·Î ³Ñ¾î°¡°Ô ¸¸µå´Â ÇÔ¼ö
+            
+			function enterkey() { //ê²€ìƒ‰ì°½ì— ë§ˆìš°ìŠ¤ ì˜¬ë¦° í›„ ì—”í„° ëˆ„ë¥´ë©´ ë°”ë¡œ ë„˜ì–´ê°€ê²Œ ë§Œë“œëŠ” í•¨ìˆ˜
                     if (window.event.keyCode == 13) {
                         location.href = "/search.content?searchtext=" + $("#searchtext").val();
                     }
@@ -331,33 +332,33 @@ button {
 				</div>
 				<div class="row contentrowB">
 					<div class="col-12 fs-4 contentInfo contentAjax">
-						<a href="/member/mypageMemInfo.jsp" id="myinfo">³» Á¤º¸</a>
+						<a href="/member/mypageMemInfo.jsp" id="myinfo">ë‚´ ì •ë³´</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
-						<a id="myboard">ÀÛ¼º±Û</a>
+						<a id="myboard">ì‘ì„±ê¸€</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
-						<a id="mycomment">ÀÛ¼º´ñ±Û</a>
+						<a id="mycomment">ì‘ì„±ëŒ“ê¸€</a>
 					</div>
 					<script>
-					//°Ô½Ã±Û Ãâ·Â
+					//ê²Œì‹œê¸€ ì¶œë ¥
                    $("#myboard").on("click",function(){
                        $("#boardbox").empty(); 
                       $.ajax({
                          url : "/selectMypageBoard.board",
                        dataType: "json"
                       }).done(function(data){
-                         console.log("receive°ªÀº:"  + data);
-                         console.log("receive°ªÀº:"  + typeof data);
-                         console.log("receive°ªÀº:"  + data.length);
+                         console.log("receiveê°’ì€:"  + data);
+                         console.log("receiveê°’ì€:"  + typeof data);
+                         console.log("receiveê°’ì€:"  + data.length);
                          if(data!=null){
-                            <!--¸®½ºÆ®ºÒ·¯¿À±â-->
+                            <!--ë¦¬ìŠ¤íŠ¸ë¶ˆëŸ¬ì˜¤ê¸°-->
                             let r = '';   
-                            r+="<div class='col-10 fs-5 titleBoard'>ÀÛ¼º°Ô½Ã±Û</div>"
-                            r+="<div class='col-12 col-md-2 d-none d-md-block boardseq'>±Û¹øÈ£</div>"
-                          	r+="<div class='col-12 col-md-6 boardOnTitle'>Á¦¸ñ</div>"
-                            /*r+="<div class='col-8 col-md-3  boardDate'>ÀÛ¼º½Ã°£</div>"
-                            r+="<div class='col-4 col-md-1  boardView'>Á¶È¸¼ö</div>" */
+                            r+="<div class='col-10 fs-5 titleBoard'>ì‘ì„±ê²Œì‹œê¸€</div>"
+                            r+="<div class='col-12 col-md-2 d-none d-md-block boardseq'>ê¸€ë²ˆí˜¸</div>"
+                          	r+="<div class='col-12 col-md-6 boardOnTitle'>ì œëª©</div>"
+                            /*r+="<div class='col-8 col-md-3  boardDate'>ì‘ì„±ì‹œê°„</div>"
+                            r+="<div class='col-4 col-md-1  boardView'>ì¡°íšŒìˆ˜</div>" */
                             for(i=0; i < data.length; i++){
                                r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row boardByboard'>";
                                 r += "<div class='col-12 col-md-2 d-none d-md-block boardseq'>"+data[i].b_seq +"</div>";
@@ -370,20 +371,20 @@ button {
                          }
                       });
                    })
-                   //´ñ±ÛÃâ·Â
+                   //ëŒ“ê¸€ì¶œë ¥
                    $("#mycomment").on("click",function(){
                        $("#boardbox").empty(); 
                        $.ajax({
                            url : "/selectMypageComment.boardcomment",
                          dataType: "json"
                         }).done(function(data){
-                           console.log("receive°ªÀº:"  + data);
-                           console.log("receive°ªÀº:"  + typeof data);
-                           console.log("receive°ªÀº:"  + data.length);
+                           console.log("receiveê°’ì€:"  + data);
+                           console.log("receiveê°’ì€:"  + typeof data);
+                           console.log("receiveê°’ì€:"  + data.length);
                            if(data!=null){
-                              <!--¸®½ºÆ®ºÒ·¯¿À±â-->
+                              <!--ë¦¬ìŠ¤íŠ¸ë¶ˆëŸ¬ì˜¤ê¸°-->
                               let r = '';   
-                              r+="<div class='col-10 fs-5 titleBoard'>ÀÛ¼º´ñ±Û</div>"
+                              r+="<div class='col-10 fs-5 titleBoard'>ì‘ì„±ëŒ“ê¸€</div>"
                               for(i=0; i < data.length; i++){
                                  r += "<a href='/selectBoardContents.board?b_seq="+data[i].b_seq+"'><div class='row commentBycomment'>";
                                   r += "<div class='col-12 comment'>"+data[i].bcm_content +"</div>";
@@ -399,7 +400,7 @@ button {
 				</div>
 			</div>
 			<div class="col-12 col-md-8 col-lg-9 col-xl-10">
-				<!-- ÀÛ¼º °Ô½Ã±Û -->
+				<!-- ì‘ì„± ê²Œì‹œê¸€ -->
 				<div class="row">
 					<div class="col-11 boardbox" id="boardbox">
 					</div>
@@ -408,17 +409,17 @@ button {
 		</div>
 		<div class="row footer">
 			<div class="col-12 footerAtag">
-				<a href="#">È¸»ç¼Ò°³</a> &nbsp&nbsp <a href="#">°í°´¼¾ÅÍ</a> &nbsp&nbsp <a
-					href="#">ÀÌ¿ë¾à°ü</a> &nbsp&nbsp <a href="#">°³ÀÎÁ¤º¸ Ã³¸®¹æÄ§</a>
+				<a href="#">íšŒì‚¬ì†Œê°œ</a> &nbsp&nbsp <a href="#">ê³ ê°ì„¼í„°</a> &nbsp&nbsp <a
+					href="#">ì´ìš©ì•½ê´€</a> &nbsp&nbsp <a href="#">ê°œì¸ì •ë³´ ì²˜ë¦¬ë°©ì¹¨</a>
 			</div>
-			<div class="col-12 footerImpormation">(ÁÖ)ÆÛÇÃ¹«µå | ´ëÇ¥ÀÌ»ç : ¼ºÅÂÁ¶</div>
-			<div class="col-12 footerImpormation">ÀÌ¸ŞÀÏ ÁÖ¼Ò :
+			<div class="col-12 footerImpormation">(ì£¼)í¼í”Œë¬´ë“œ | ëŒ€í‘œì´ì‚¬ : ì„±íƒœì¡°</div>
+			<div class="col-12 footerImpormation">ì´ë©”ì¼ ì£¼ì†Œ :
 				purpleMood@purplemood.com</div>
-			<div class="col-12 footerImpormation">»ç¾÷ÀÚµî·Ï¹øÈ£ : 000-00-000</div>
-			<div class="col-12 footerImpormation">Åë½ÅÆÇ¸Å¾÷ ½Å°í¹øÈ£ : Á¦
-				2022-¼­¿ïÁß±¸-301eÈ£</div>
-			<div class="col-12 footerImpormation">ÁÖ¼Ò : ´ëÇÑ¹Î±¹ ¼­¿ïÆ¯º°½Ã Áß±¸ ³²´ë¹®·Î
-				120, ´ëÀÏºôµù 3Ãş</div>
+			<div class="col-12 footerImpormation">ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ : 000-00-000</div>
+			<div class="col-12 footerImpormation">í†µì‹ íŒë§¤ì—… ì‹ ê³ ë²ˆí˜¸ : ì œ
+				2022-ì„œìš¸ì¤‘êµ¬-301eí˜¸</div>
+			<div class="col-12 footerImpormation">ì£¼ì†Œ : ëŒ€í•œë¯¼êµ­ ì„œìš¸íŠ¹ë³„ì‹œ ì¤‘êµ¬ ë‚¨ëŒ€ë¬¸ë¡œ
+				120, ëŒ€ì¼ë¹Œë”© 3ì¸µ</div>
 			<div class="col-12 footerIcon">
 				<span class="snsIcon"><i
 					class="fa-brands fa-instagram fa-2xl"></i></span> <span class="snsIcon"><i
@@ -445,17 +446,17 @@ button {
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 						<a href="/member/mypage.jsp">
-							<button>¸¶ÀÌÆäÀÌÁö</button>
+							<button>ë§ˆì´í˜ì´ì§€</button>
 						</a>
 					</div>
 					<a href="/boardList.board?cpage=1">
-						<div class="menulink">¿µÈ­ µå¶ó¸¶ °Ô½ÃÆÇ</div>
+						<div class="menulink">ì˜í™” ë“œë¼ë§ˆ ê²Œì‹œíŒ</div>
 					</a> <a href="/fboardList.fboard?cpage=1">
-						<div class="menulink">ÀÚÀ¯°Ô½ÃÆÇ</div>
+						<div class="menulink">ììœ ê²Œì‹œíŒ</div>
 					</a> <a href="/noticeList.notice?cpage=1">
-						<div class="menulink">°øÁö»çÇ×</div>
+						<div class="menulink">ê³µì§€ì‚¬í•­</div>
 					</a>
-					<button type="button" id="logoutBtn">·Î±×¾Æ¿ô</button>
+					<button type="button" id="logoutBtn">ë¡œê·¸ì•„ì›ƒ</button>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {

@@ -394,7 +394,7 @@ public class MovieDAO {
 				public  List <MovieDTO> selectByWV_avg() throws Exception { 
 
 
-					String sql="select * from movie_test where mv_ottWV='Y' order by mv_vote_average desc";
+					String sql="select * from movie_test where mv_ottWV='Y'order by mv_vote_average desc";
 
 					try(Connection con = this.getConnection();
 							PreparedStatement pstat = con.prepareStatement(sql);)

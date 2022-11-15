@@ -38,9 +38,11 @@ pageEncoding="UTF-8"%>
 }
     .header{height:150px;}
 
-    .logo{height:100px;}
+    .logo{text-align:left;height:100px;}
     
-    .ott_logo>img{width:250px;margin:30px;}
+    #titleimg{height:100px;}
+    
+    .ott_logo>a>img{width:250px;margin:30px;}
     
     .postimg {width:200px;}
     
@@ -116,11 +118,11 @@ span>img {
         
         
 	
-	<!-- ott별로 출력하는 페이지 -->
+	<!-- 넷플릭스 출력하는 페이지 -->
 		
 	<form action="/n_search.content">
         <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
+          <div class="logo col-8"><a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
           <div class="col-4">
             <input type="text" name="n_searchtext" placeholder="넷플릭스 내 검색">
             <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
@@ -129,7 +131,7 @@ span>img {
         </form>
         
         <div class="ott_logo col-12">
-            <img src="/img/netbf.png">
+            <a href="/netflix.content"><img src="/img/netbf.png"></a>
         </div>
         <hr>
         
@@ -165,7 +167,7 @@ span>img {
               <c:set var="i" value="${i+1 }" />
             </c:forEach>
             </div>
-            </div>
+
 		</c:when>
 		<c:otherwise>
 			<hr>
@@ -207,7 +209,7 @@ span>img {
               <c:set var="i" value="${i+1 }" />
             </c:forEach>
             </div>
-          
+ </div>
 		</c:when>
 		<c:otherwise>
 			<hr>

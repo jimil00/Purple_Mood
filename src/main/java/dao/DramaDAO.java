@@ -198,11 +198,6 @@ public class DramaDAO {
 
 		}
 
-
-
-	
-	
-	
 	
 	//ott 이동
 //	DramaDTO dr_fromOtt=DramaDAO.getInstance().selectOtt_icon(dr_id);

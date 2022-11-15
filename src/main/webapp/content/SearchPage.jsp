@@ -61,38 +61,13 @@ input [type="submit"] {
 	style: none;
 }
 
-;
-#logo {
-	color: white;
-}
+  .logo{height:100px;}
+    #titleimg{height:100px;}
 
 .list_title {
 	text-align: left;
 }
 
-ul {
-	overflow: hidden;
-	background-color: #03001e;
-	list-style: none;
-}
-
-ul>li {
-	background-color: #03001e;
-	width: 233px;
-	height: 338px;
-}
-
-li>a>div>img {
-	width: 200px;
-	height: 280px;
-	transition: all 0.2s linear;
-}
-
-img {
-	width: 200px;
-	height: 280px;
-	transition: all 0.2s linear;
-}
 
 .poster {
 	overflow: hidden;
@@ -107,7 +82,7 @@ a {
 
 .card-text{height:fit-content;}
 
-.card-text:hover {
+.card-text:hover{
 	color: #7303c0
 }
 
@@ -138,6 +113,7 @@ span>img {
 
 .poster>img:hover {
 	transform: scale(1.2);
+	color: #7303c0
 }
 
 
@@ -148,8 +124,8 @@ span>img {
 		<!--form으로 검색결과 넘겨주기-->
 		<form action="/search.content">
 			<div class="row" id="header">
-				<div class="col-sm-12">
-					<div id="logo"><a href="/main">퍼플무드(로고 이미지 추가)</a></div>
+				<div class="col-sm-12 p-3">
+					<div class="logo"><a href="/main"><img src="/img/title.png" id="titleimg"></a></div>
 				</div>
 			</div>
 
