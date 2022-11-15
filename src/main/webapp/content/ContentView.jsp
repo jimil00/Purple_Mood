@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,13 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>콘텐츠 상세 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <style>
 * {
@@ -73,8 +67,7 @@
 			<c:when test="${not empty mv_detail}">
 				<div class="row">
 					<div class="poster col-sm-3 p-2">
-						<img src="${mv_detail.getMv_poster_path()}" class="img-fluid"
-							alt="...">
+						<img src="${mv_detail.getMv_poster_path()}" class="img-fluid" alt="...">
 						<div id="like_icon ">
 							<i class="bi bi-hand-thumbs-up">${mv_detail.getMv_like()}</i>
 							<!-- <i class="bi bi-hand-thumbs-up-fill">클릭이벤트</i> -->
@@ -118,8 +111,7 @@
 				<!-- 드라마 정보 출력 -->
 				<div class="row">
 					<div class="poster col-sm-3 p-2">
-						<img src="${dr_detail.getDr_poster_path()}" class="img-fluid"
-							alt="...">
+						<img src="${dr_detail.getDr_poster_path()}" class="img-fluid" alt="...">
 						<div id="like_icon ">
 							<i class="bi bi-hand-thumbs-up">${mv_detail.getMv_like()}</i>
 							<!-- <i class="bi bi-hand-thumbs-up-fill">클릭이벤트</i> -->
@@ -132,8 +124,7 @@
 								<p class="fs-3">${dr_detail.getDr_title()}</p>
 							</div>
 							<div class="ott_icon col-12 col-sm-5">
-								<img src="C:\Users\SOX\Desktop\넷플릭스 전체 로고_투명바탕.png"
-									class="otticon img-fluid" alt="...">
+								<img src="C:\Users\SOX\Desktop\넷플릭스 전체 로고_투명바탕.png" class="otticon img-fluid" alt="...">
 							</div>
 
 							<div class="info col-12">
@@ -158,45 +149,44 @@
 
 		<!-- </div>
             </div> -->
-       
 
-          <div class="col-12 review_box">
-          
-           <div id="rv_outputbox">
-         <div id="review_textbox">
-         
-         <c:choose>
-       <c:when test="${not empty rlist}">
-          <div>감상평 출력될 부분</div>
-          <div id="review_text"></div>
-          <div id="review_date">2022년 9월 25일</div> 
-         </div> 
-          </c:when>
-    <c:otherwise>
-    <div>
-    	<p>아직 감상평이 없습니다.</p>
-    	<p>감상평을 달아주세요!</p>
-    </div>
-    </c:otherwise>
-     </c:choose>
-         </div>
-         
-         <form action="/write.review">
-         <div id="rv_inputbox">여기가 감상평 입력될 부분 ↓
-         <input type="hidden" name="mv_id" value="${mv_list.mv_id}"/>
-         <input type="text" class="rv_input" name="rv_content" placeholder="감상평을 입력하세요">
-         <button id="rv_inputbtn">입력</button>  
-        </div>
-        </form>
-        
-         </div>
-        </div>
-      </div>   
-    </div>
-    
-  
-               
-      <script>
+
+		<div class="col-12 review_box">
+
+			<div id="rv_outputbox">
+				<div id="review_textbox">
+
+					<c:choose>
+						<c:when test="${not empty rlist}">
+							<div>감상평 출력될 부분</div>
+							<div id="review_text"></div>
+							<div id="review_date">2022년 9월 25일</div>
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div>
+						<p>아직 감상평이 없습니다.</p>
+						<p>감상평을 달아주세요!</p>
+					</div>
+				</c:otherwise>
+				</c:choose>
+			</div>
+
+			<form action="/write.review">
+				<div id="rv_inputbox">
+					여기가 감상평 입력될 부분 ↓ <input type="hidden" name="mv_id" value="${mv_list.mv_id}" /> <input type="text" class="rv_input" name="rv_content" placeholder="감상평을 입력하세요">
+					<button id="rv_inputbtn">입력</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	</div>
+	</div>
+
+
+
+	<script>
         //댓글 입력시 출력
           $("#rv_inputbtn").on("click", function(){
           let input=$(".rv_input").val();

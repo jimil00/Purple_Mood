@@ -1,303 +1,339 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>SignUp</title>
-<link
-   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
-<script
-   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script
-   src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 @font-face {
-   font-family: 'DungGeunMo';
-   src:
-      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
-      format('woff');
-   font-weight: normal;
-   font-style: normal;
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
+
 * {
-   box-sizing: border-box;
-   font-family: 'DungGeunMo';
-   margin: auto;
-   color: black;
+	box-sizing: border-box;
+	font-family: 'DungGeunMo';
+	margin: auto;
+	color: black;
 }
+
 .container {
-   margin: auto;
-   display: flex;
-   overflow: hidden;
-   background-color: #03001e;
+	margin: auto;
+	display: flex;
+	overflow: hidden;
+	background-color: #03001e;
 }
+
 .joinForm {
-   background-color: white;
-   float: left;
-   margin: auto;
-   display: inline-block;
-   float: left;
-   width: 460px;
-   text-align: center;
-   border-radius: 7px;
+	background-color: white;
+	float: left;
+	margin: auto;
+	display: inline-block;
+	float: left;
+	width: 460px;
+	text-align: center;
+	border-radius: 7px;
 }
+
 input {
-   width: 400px;
-   height: 30px;
+	width: 400px;
+	height: 30px;
 }
+
 #email {
-   width: 200px;
+	width: 200px;
 }
+
 .selectOption {
-   height: 30px;
-   width: 175px;
-   text-align: center;
+	height: 30px;
+	width: 175px;
+	text-align: center;
 }
+
 .requiredField {
-   color: red;
+	color: red;
 }
+
 #result, #duplResult {
-   margin: 0;
+	margin: 0;
 }
+
 .id, .logo, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
-   .address1, .address2, .margin_top, #result, #duplResultID,
-   #duplResultNickname {
-   margin: 15px 0;
+	.address1, .address2, .margin_top, #result, #duplResultID,
+	#duplResultNickname {
+	margin: 15px 0;
 }
+
 .logo {
-   font-weight: bold;
-   margin: 40px 0;
+	font-weight: bold;
+	margin: 40px 0;
 }
+
 .footer {
-   margin-top: 10px;
-   text-align: center;
+	margin-top: 10px;
+	text-align: center;
 }
+
 #duplCheckID, #duplCheckNickname {
-   width: 100px;
+	width: 100px;
 }
+
 .btns {
-   width: 100%;
-   margin-top: 10px;
-   text-align: center;
+	width: 100%;
+	margin-top: 10px;
+	text-align: center;
 }
+
 .btns button {
-   height: 30px;
-   width: 92px;
+	height: 30px;
+	width: 92px;
 }
+
 .footer {
-   margin: auto;
+	margin: auto;
 }
 
 a {
-   position: relative;
-   display: inline-block;
-   color: #03e9f4;
-   text-decoration: none;
-   text-transform: uppercase;
-   transition: 0.5s;
-   overflow: hidden;
-   margin-right: 50px;
-   margin: auto;
-   color: white;
-   background-color: #03001e;
-   padding: 10px 15px;
-}
-a:hover{
-    background: #03001e;
-    color: #050801;
-    box-shadow: 0 0 5px red,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 200px #03e9f4;
-     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
-}
-a:nth-child(1){
-    filter: hue-rotate(270deg);
-}
-a:nth-child(2){
-    filter: hue-rotate(110deg);
-}
-a span{
-    position: absolute;
-    display: block;
-}
-a span:nth-child(1){
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg,transparent,#03e9f4);
-    animation: animate1 1s linear infinite;
-}@keyframes animate1{
-    0%{
-        left: -100%;
-    }
-    50%,100%{
-        left: 100%;
-    }
-}
-a span:nth-child(2){
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg,transparent,#03e9f4);
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
-}
-@keyframes animate2{
-    0%{
-        top: -100%;
-    }
-    50%,100%{
-        top: 100%;
-    }
-}
-a span:nth-child(3){
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg,transparent,#03e9f4);
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.50s;
-}
-@keyframes animate3{
-    0%{
-        right: -100%;
-    }
-    50%,100%{
-        right: 100%;
-    }
+	position: relative;
+	display: inline-block;
+	color: #03e9f4;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: 0.5s;
+	overflow: hidden;
+	margin-right: 50px;
+	margin: auto;
+	color: white;
+	background-color: #03001e;
+	padding: 10px 15px;
 }
 
-a span:nth-child(4){
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg,transparent,#03e9f4);
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
+a:hover {
+	background: #03001e;
+	color: #050801;
+	box-shadow: 0 0 5px red, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 200px
+		#03e9f4;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
-@keyframes animate4{
-    0%{
-        bottom: -100%;
-    }
-    50%,100%{
-        bottom: 100%;
-    }
+
+a:nth-child(1) {
+	filter: hue-rotate(270deg);
+}
+
+a:nth-child(2) {
+	filter: hue-rotate(110deg);
+}
+
+a span {
+	position: absolute;
+	display: block;
+}
+
+a span:nth-child(1) {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #03e9f4);
+	animation: animate1 1s linear infinite;
+}
+
+@
+keyframes animate1 { 0%{
+	left: -100%;
+}
+
+50
+%
+,
+100
+%
+{
+left
+:
+100%;
+}
+}
+a span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #03e9f4);
+	animation: animate2 1s linear infinite;
+	animation-delay: 0.25s;
+}
+
+@
+keyframes animate2 { 0%{
+	top: -100%;
+}
+
+50
+%
+,
+100
+%
+{
+top
+:
+100%;
+}
+}
+a span:nth-child(3) {
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #03e9f4);
+	animation: animate3 1s linear infinite;
+	animation-delay: 0.50s;
+}
+
+@
+keyframes animate3 { 0%{
+	right: -100%;
+}
+
+50
+%
+,
+100
+%
+{
+right
+:
+100%;
+}
+}
+a span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #03e9f4);
+	animation: animate4 1s linear infinite;
+	animation-delay: 0.75s;
+}
+
+@
+keyframes animate4 { 0%{
+	bottom: -100%;
+}
+50
+%
+,
+100
+%
+{
+bottom
+:
+100%;
+}
 }
 /* div {border: 1px solid black;} */
 </style>
 </head>
 
 <body>
-   <form action="/signup.member" method="post" id="frm">
-      <div class="container signupForm col-12" style="min-width: 350px;">
-         <div class="joinForm col-12">
-            <div class="logo">회원가입</div>
-            <div class="id col-12">
-               <span>아이디<span class="requiredField">*<span></span>
-                     <div class="margin_top col-12">
-                        <input type="text" name="id" id="id"
-                           placeholder="6~20자의 영문 소문자, 숫자와 특수기호(_)">
-                        <div id="duplResultID"></div>
-                     </div>
-            </div>
-            <div class="nickname col-12">
-               <span>닉네임<span class="requiredField">*<span></span>
-                     <div class="margin_top col-12">
-                        <input type="text" name="nickname" id="nickname"
-                           placeholder="2~8자 영문 대 소문자,한글">
-                        <div id="duplResultNickname"></div>
-                     </div>
-            </div>
-            <div class="pw col-12">
-               <span>패스워드<span class="requiredField">*<span></span>
-                     <div class="margin_top col-12">
-                        <input type="password" name="pw" id="pw"
-                           placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)">
-                     </div>
-            </div>
-            <div class="pwcheck col-12">
-               <span>패스워드 확인</span>
-               <div class="margin_top col-12">
-                  <input type="password" id="checkpw">
-                  <div id="result"></div>
-               </div>
-            </div>
-            <div class="name col-12">
-               <span>이름<span class="requiredField">*<span></span>
-                     <div class="margin_top col-12">
-                        <input type="text" name="name" id="name" placeholder="2~5자 한글">
-                     </div>
-            </div>
-            <div class="phone col-12">
-               <span>전화번호<span class="requiredField">*<span></span>
-                     <div class="margin_top col-12">
-                        <input type="text" name="phone" id="phone" placeholder="숫자만 입력">
-                     </div>
-            </div>
-            <div class="email col-12">
-               <span>이메일<span class="requiredField">*<span></span>
-                     <div class="margin_top col-12">
-                        <input type="text" name="email" id="email"
-                           placeholder="영어 대 소문자, 숫자"> @ <select id="emailAddress"
-                           name="emailAddress" class="selectOption">
-                           <option value="gmail.com">gmail.com</option>
-                           <option value="naver.com">naver.com</option>
-                           <option value="hanmail.net">hanmail.net</option>
-                           <option value="nate.com">nate.com</option>
-                        </select>
-                     </div>
-            </div>
-            <div class="postcode col-12">
-               <div class="col-12">
-                  <span>우편번호</span>&nbsp&nbsp<input type="button"
-                     onclick="postcode()" value="우편번호 찾기" id="btnsearch"
-                     style="width: 100px;">
-               </div>
-               <div class="margin_top col-12">
-                  <input type="text" name="postcode" id="postcode"
-                     placeholder="우편번호">
-               </div>
-            </div>
-            <div class="address1 col-12">
-               <span>주소</span>
-               <div class="margin_top col-12">
-                  <input type="text" name="address1" id="address1" placeholder="주소">
-               </div>
-            </div>
-            <div class="address2 col-12">
-               <span>상세주소</span>
-               <div class="margin_top col-12">
-                  <input type="text" name="address2" id="address2"
-                     placeholder="상세주소">
-               </div>
-            </div>
-            <div class="footer col-12">
-               <div class="btns">
-                  <!-- <a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
+	<form action="/signup.member" method="post" id="frm">
+		<div class="container signupForm col-12" style="min-width: 350px;">
+			<div class="joinForm col-12">
+				<div class="logo">회원가입</div>
+				<div class="id col-12">
+					<span>아이디<span class="requiredField">*<span></span>
+							<div class="margin_top col-12">
+								<input type="text" name="id" id="id" placeholder="6~20자의 영문 소문자, 숫자와 특수기호(_)">
+								<div id="duplResultID"></div>
+							</div>
+				</div>
+				<div class="nickname col-12">
+					<span>닉네임<span class="requiredField">*<span></span>
+							<div class="margin_top col-12">
+								<input type="text" name="nickname" id="nickname" placeholder="2~8자 영문 대 소문자,한글">
+								<div id="duplResultNickname"></div>
+							</div>
+				</div>
+				<div class="pw col-12">
+					<span>패스워드<span class="requiredField">*<span></span>
+							<div class="margin_top col-12">
+								<input type="password" name="pw" id="pw" placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)">
+							</div>
+				</div>
+				<div class="pwcheck col-12">
+					<span>패스워드 확인</span>
+					<div class="margin_top col-12">
+						<input type="password" id="checkpw">
+						<div id="result"></div>
+					</div>
+				</div>
+				<div class="name col-12">
+					<span>이름<span class="requiredField">*<span></span>
+							<div class="margin_top col-12">
+								<input type="text" name="name" id="name" placeholder="2~5자 한글">
+							</div>
+				</div>
+				<div class="phone col-12">
+					<span>전화번호<span class="requiredField">*<span></span>
+							<div class="margin_top col-12">
+								<input type="text" name="phone" id="phone" placeholder="숫자만 입력">
+							</div>
+				</div>
+				<div class="email col-12">
+					<span>이메일<span class="requiredField">*<span></span>
+							<div class="margin_top col-12">
+								<input type="text" name="email" id="email" placeholder="영어 대 소문자, 숫자"> @ <select id="emailAddress" name="emailAddress" class="selectOption">
+									<option value="gmail.com">gmail.com</option>
+									<option value="naver.com">naver.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="nate.com">nate.com</option>
+								</select>
+							</div>
+				</div>
+				<div class="postcode col-12">
+					<div class="col-12">
+						<span>우편번호</span>&nbsp&nbsp<input type="button" onclick="postcode()" value="우편번호 찾기" id="btnsearch" style="width: 100px;">
+					</div>
+					<div class="margin_top col-12">
+						<input type="text" name="postcode" id="postcode" placeholder="우편번호">
+					</div>
+				</div>
+				<div class="address1 col-12">
+					<span>주소</span>
+					<div class="margin_top col-12">
+						<input type="text" name="address1" id="address1" placeholder="주소">
+					</div>
+				</div>
+				<div class="address2 col-12">
+					<span>상세주소</span>
+					<div class="margin_top col-12">
+						<input type="text" name="address2" id="address2" placeholder="상세주소">
+					</div>
+				</div>
+				<div class="footer col-12">
+					<div class="btns">
+						<!-- <a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
                      href="/member/signin.jsp"><button type="button">뒤로
                         가기</button></a>&nbsp
                   <button type="reset" id="resetBtn">다시 입력</button> -->
-                  <a href="#" id="signup"><span></span> <span></span> <span></span>
-                     <span></span> 회원가입 </a> <a href="/member/signin.jsp" id="signup"><span></span>
-                     <span></span> <span></span> <span></span> 뒤로가기 </a> <a href="#"
-                     id="resetBtn"><span></span> <span></span> <span></span> <span></span>
-                     다시입력 </a>
-               </div>
-            </div>
-         </div>
-      </div>
-      </div>
-   </form>
+						<a href="#" id="signup"><span></span> <span></span> <span></span> <span></span> 회원가입 </a> <a href="/member/signin.jsp" id="signup"><span></span> <span></span> <span></span> <span></span> 뒤로가기 </a> <a href="#" id="resetBtn"><span></span> <span></span> <span></span> <span></span> 다시입력 </a>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</form>
 
-   <script>
+	<script>
       //다시입력 버튼을 눌렀을때
       $("#resetBtn").on("click", function() {
          location.reload();

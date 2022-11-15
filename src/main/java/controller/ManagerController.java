@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
+import dao.MemberDAO;
 import dao.MovieDAO;
+import dto.MemberDTO;
 import dto.MovieDTO;
 
-@WebServlet("*.ajax")
+@WebServlet("*.manager")
 public class ManagerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,28 +26,27 @@ public class ManagerController extends HttpServlet {
 
 		try {
 
-			// 영화 전체 조회
-			if(uri.equals("/MovieAllOutput.ajax")) {
+			// 회원 전체 조회
+			if(uri.equals("/memberOutput.manager")) {
 
-				System.out.println("MovieAllOutput : 비동기 통신 도착");
+				List<MemberDTO> list = MemberDAO.getInstance().selectAll();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("manager/memberOutput.jsp").forward(request, response);
 
-				MovieDAO dao = MovieDAO.getInstance();
-				List<MovieDTO> list = dao.selectAllMovie();
-				System.out.println(list.size());
+				// 영화 전체 조회
+			}else if(uri.equals("/movieOutput.manager")) {
 
-				Gson g = new Gson();
-				String jsonString = g.toJson(list);
-				response.getWriter().append(jsonString);
+				List<MovieDTO> list = MovieDAO.getInstance().selectAllMovie();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("manager/movieOutput.jsp").forward(request, response);
 
 				// 영화 삭제
-			}else if(uri.equals("/MovieDelete.ajax")) {
-				
-				System.out.println("MovieDelete : 비동기 통신 도착");
-//				String mv_id = request.getParameter("mv_id");
+			}else if(uri.equals("/movieDelete.manager")) {
+
 				int mv_id = Integer.parseInt(request.getParameter("mv_id"));
 				int result = MovieDAO.getInstance().delete(mv_id);
-				System.out.println(mv_id);
-//				response.getWriter().append(mv_id+"번의 콘텐츠가 삭제되었습니다.");	
+				response.sendRedirect("/movieOutput.manager");
+
 			}
 
 		}catch (Exception e) {
