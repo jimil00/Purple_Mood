@@ -87,6 +87,11 @@ public class MemberController extends HttpServlet {
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
 				int result = MemberDAO.getInstance().update(new MemberDTO(id, nickname, pw, name, phone, email+"@"+emailAddress, postcode, address1, address2, null));
+				//세션 저장값 지우고 다시 저장
+				request.getSession().invalidate();
+				request.getSession().setAttribute("loginID",id);
+				request.getSession().setAttribute("loginNickname", nickname);
+				//
 				response.sendRedirect("/mypageMemInfo.member");
 
 				//로그인
@@ -110,25 +115,15 @@ public class MemberController extends HttpServlet {
 
 				//로그아웃
 			}else if(uri.equals("/logout.member")) {
-				//로그아웃 기능 
 				request.getSession().invalidate();
 				response.sendRedirect("/main");
 			}
 			//마이페이지 작성 게시글 출력
 			else if(uri.equals("/selectMypageBoard.member")) {
-
-				/*
-				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
-				 */
 				Gson gsonStr   = new Gson();
-				/*
-				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
-				 * String strJsonList = gsonStr.toJson(dr_list_d);
-				 * System.out.println("************strJsonList******* \n"+strJsonList);
-				 * response.getWriter().append(strJsonList);
-				 */
-				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
-				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
+				String id=(String)request.getSession().getAttribute("loginNickname"); 
+				//메서드 아이디로 집어넣고 변경하기 
+				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(id);
 				String strJsonList = gsonStr.toJson(b_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);
@@ -138,8 +133,9 @@ public class MemberController extends HttpServlet {
 			//마이페이지 댓글 출력
 			else if(uri.equals("/selectMypageComment.member")) {
 				Gson gsonStr   = new Gson();
-				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
-				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(nickname);
+				String id=(String)request.getSession().getAttribute("loginID"); 
+				//메서드 아이디로 집어넣고 변경하기 
+				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(id);
 				String strJsonList = gsonStr.toJson(bcm_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);

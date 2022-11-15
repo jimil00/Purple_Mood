@@ -44,6 +44,7 @@ body {
 .header {
 	height: 100px;
 	background-color: #03001e;
+	padding-bottom:20px;
 }
 
 #logo, #titleimg {
@@ -79,6 +80,10 @@ body {
 .menuicon {
 	text-align: center;
 	color: white;
+}
+#menuicon{
+	position:relative;
+	top: 8%;
 }
 
 #menuicon:hover {
@@ -364,32 +369,19 @@ button {
 					</div>
 					<script>
 						//게시글 출력
-						$("#myboard")
-								.on(
-										"click",
-										function() {
+						$("#myboard").on("click",function() {
 											$("#boardbox").empty();
-											$
-													.ajax(
-															{
-																url : "/selectMypageBoard.member",
-																dataType : "json"
-															})
-													.done(
-															function(data) {
-																console
-																		.log("receive값은:"
-																				+ data);
-																console
-																		.log("receive값은:"
-																				+ typeof data);
-																console
-																		.log("receive값은:"
-																				+ data.length);
-																if (data != null) {
+											$.ajax({
+												url : "/selectMypageBoard.member",
+												dataType : "json"
+											}).done(function(data) {
+														console.log("receive값은:"+ data);
+														console.log("receive값은:"+ typeof data);
+														console.log("receive값은:"+ data.length);
+															if (data != null) {
 																	<!--리스트불러오기-->
-																	let r = '';
-																	r += "<div class='col-10 fs-5 titleBoard'>작성게시글</div>";
+																let r = '';
+																r += "<div class='col-10 fs-5 titleBoard'>작성게시글</div>";
 																	r += "<div class='row Boardtitle'>"
 																	r += "<div class='col-6'>제목</div>";
 																	r += "<div class='col-4'>작성시간</div>";
@@ -410,10 +402,7 @@ button {
 																				+ "</div>";
 																		r += "</div></a>";
 																	}
-																	$(
-																			"#boardbox")
-																			.append(
-																					r);
+																	$("#boardbox").append(r);
 																}
 															});
 										})
@@ -520,11 +509,7 @@ button {
 				</div>
 				<a href="/boardList.board?cpage=1">
 					<div class="menulink">영화 드라마 게시판</div>
-				</a> <a href="/fboardList.fboard?cpage=1">
-					<div class="menulink">자유게시판</div>
-				</a> <a href="/noticeList.notice?cpage=1">
-					<div class="menulink">공지사항</div>
-				</a>
+				</a> 
 				<button type="button" id="logoutBtn">로그아웃</button>
 			</div>
 			<script>
