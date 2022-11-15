@@ -112,6 +112,7 @@ public class BoardCommentDAO {
 	}
 
 	//마이페이지 작성 출력
+
 //	public List <BoardCommentDTO> searchByNickname(String nickname) throws Exception{
 //		String sql="select * from board_comment where bcm_writer=?";
 //		try(Connection con = this.getConnection();
@@ -127,6 +128,7 @@ public class BoardCommentDAO {
 //					dto.setBcm_write_date(rs.getTimestamp("bcm_write_date"));
 //					dto.setBcm_content(rs.getString("bcm_content"));
 //					dto.setB_seq(rs.getInt("b_seq"));
+//					dto.setB_title(rs.getString("b_title"));
 //					list.add(dto);    
 //				}
 //				return list;

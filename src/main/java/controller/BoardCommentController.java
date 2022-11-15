@@ -61,16 +61,6 @@ public class BoardCommentController extends HttpServlet {
 				request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 			}
 
-//			//마이페이지 댓글 출력
-//			else if(uri.equals("/selectMypageComment.boardcomment")) {
-//				Gson gsonStr   = new Gson();
-//				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
-//				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(nickname);
-//				String strJsonList = gsonStr.toJson(bcm_list);
-//				System.out.println("************strJsonList******* \n"+strJsonList);
-//				response.getWriter().append(strJsonList);
-//			}
-
 
 		}catch(Exception e) {
 			e.printStackTrace();

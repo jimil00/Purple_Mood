@@ -53,7 +53,9 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 }
-
+#logoimg:hover{
+cursor: pointer;
+}
 .logintextbox {
 	padding: 0px;
 	text-align: center;
