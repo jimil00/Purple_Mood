@@ -28,7 +28,7 @@
 }
 /* div {
 	border: 1px solid black;
-}  */
+} */
 body {
 	overflow: hidden;
 	overflow-y: auto;
@@ -321,7 +321,7 @@ button {
 				</div>
 				<div class="row contentrowB">
 					<div class="col-12 fs-4 contentInfo contentAjax">
-						<a href="/member/mypageMemInfo.jsp" id="myinfo">내 정보</a>
+						<a href="/mypageMemInfo.member" id="myinfo">내 정보</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
 						<a id="myboard">작성글</a>
