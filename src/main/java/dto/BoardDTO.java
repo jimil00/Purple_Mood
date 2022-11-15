@@ -7,17 +7,19 @@ public class BoardDTO {
 
 	private int b_seq;
 	private String b_category;
+	private String b_writer_id;
+	private String b_writer_nn;
 	private String b_writer;
 	private Timestamp b_write_date;
 	private String b_title;
 	private String b_content;
 	private int b_view_count;
 
-
 	public BoardDTO() {
 		super();
 	}
-	public BoardDTO(int b_seq, String b_category, String b_writer, Timestamp b_write_date, String b_title,
+	public BoardDTO(int b_seq, String b_category, String b_writer_nn,
+			String b_writer_id,String b_writer, Timestamp b_write_date, String b_title,
 			String b_content, int b_view_count) {
 		this.b_seq = b_seq;
 		this.b_category = b_category;
@@ -26,6 +28,8 @@ public class BoardDTO {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.b_view_count = b_view_count;
+		this.b_writer_id=b_writer_id;
+		this.b_writer_nn=b_writer_nn;
 	}
 
 
@@ -41,12 +45,27 @@ public class BoardDTO {
 	public void setB_category(String b_category) {
 		this.b_category = b_category;
 	}
+	public String getB_writer_nn(){
+		return b_writer_nn;
+	}
+	public void setB_writer_nn(String b_writer_nn) {
+		this.b_writer_nn= b_writer_nn;
+	}
+
+	public String getB_writer_id() {
+		return b_writer_id;
+	}
+	public void setB_writer_id(String b_writer_id) {
+		this.b_writer_id = b_writer_id;
+	}
 	public String getB_writer() {
 		return b_writer;
 	}
 	public void setB_writer(String b_writer) {
 		this.b_writer = b_writer;
 	}
+
+
 	public String getB_write_date() {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
 		String sdf1_b_write_date = sdf1.format(this.b_write_date);

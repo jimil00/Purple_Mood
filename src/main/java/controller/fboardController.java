@@ -9,8 +9,6 @@
 <meta charset="UTF-8">
 <title>summernoteselect</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link rel="stylesheet" 
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -91,10 +89,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 
 * {
 	box-sizing: border-box;
-    /* color: white; */
 }
 
-/* body{background-color: #03001e;} */
+body{/* background-color: #03001e; */}
 
 div {
 	border: 1px solid black;
@@ -105,11 +102,7 @@ div {
 .b_contents{margin-top:20px;}
 .b_contents_header1{margin-left:100px; text-align:center;}
 #b_category{width:20%;}
-#b_title{width:70%;}
-#b_writer{width: 38%;}
-#b_write_date{width: 38%;}
-#b_view_count{width: 23%;}
-#bcm_writer{width:23%}
+#b_title{width:50%;}
 </style>
 <script>
                 $(function () {
@@ -141,8 +134,7 @@ div {
                         $(this).closest(".cbtns").append(btnUpdateBComment);
                         $(this).closest(".cbtns").append(btnCancelBCommentU);
 
-                    });
-
+                    })
                     $(document).on("click", ".updcmbtn", function () {
                         let bcm_seq = $(this).closest(".boardComment").find(".bcm_content").attr("bcm_seq");
                         let bcm_content = $(this).closest(".boardComment").find(".bcm_content").html();
@@ -173,9 +165,9 @@ div {
 					size="129" contenteditable="false">${dto.b_title }</div>
 			</div>
 			<div class="row b_contents_header2">
-				<div class="col-lg-6 col-md-6 col-sm-6" id="b_writer">${dto.b_writer}</div>
-				<div class="col-lg-4 col-md-4 col-sm-4" id="b_write_date">${dto.b_write_date}</div>
-				<div class="col-lg-2 col-md-2 col-sm-1" id="b_view_count">${dto.b_view_count }</div>
+				<div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer}</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">${dto.b_write_date}</div>
+				<div class="col-lg-2 col-md-2 col-sm-1">${dto.b_view_count }</div>
 			</div>
 
 			<div class="row b_contents_body">
@@ -199,7 +191,6 @@ div {
 					</c:when>
 					<c:otherwise>
 						<div class="col-lg-6 col-md-6 col-sm-6">
-                           
 							<a href="#" id="insertBoardComplain">신고</a>
 						</div>
 						<div class="btns col-lg-6 col-md-6 col-sm-6">
@@ -224,8 +215,8 @@ div {
 						<div class="row">
 							<input type="hidden" class="bcm_seq" name="bcm_seq"
 								value="${comment.bcm_seq }">
-							<div class="bcm_writer col-lg-6 col-md-6 col-sm-6" id="bcm_writer">${comment.bcm_writer }</div>
-							<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6" id="bcm_write_date"
+							<div class="bcm_writer col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer }</div>
+							<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6"
 								name="bcm_write_date">${comment.bcm_write_date }</div>
 						</div>
 						<div class="row boardComment">
@@ -246,7 +237,7 @@ div {
 								</c:when>
 								<c:otherwise>
 									<div class="col-lg-3 col-md-3 col-sm-3">
-										<a href="insertBoardCommentComplain.boardcommentcomplain">신고<i class="fa-solid fa-light-emergency-on" ></i></a>
+										<a href="insertBoardCommentComplain.boardcommentcomplain">신고</a>
 									</div>
 								</c:otherwise>
 							</c:choose>

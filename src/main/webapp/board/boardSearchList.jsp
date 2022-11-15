@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>영화 드라마 게시판</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -17,6 +17,25 @@
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
+}
+
+.boardWrite {
+	float: hidden;
+}
+
+.boardSearch {
+	text-align: center;
+}
+
+#boardWriteBtn {
+	float: right;
+}
+
+컹
+#b_content {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 * {
@@ -32,7 +51,7 @@ body {
 	color: white;
 }
 
-.fboardTitle {
+.boardTitle {
 	heigth: 50px;
 	text-align: center;
 	line-height: 45px;
@@ -42,14 +61,15 @@ body {
 	text-decoration: underline;
 	text-decoration-thickness: 3px;
 	text-underline-position: under;
+	margin-bottom: 50px;
 }
 
-.fboardTitle, .theader, .content, #insertFboardContentsBtn,
-	.fboardListSearch, .navi *, .fboardListSearch * {
+.boardTitle, .theader, .content, #insertBoardContentsBtn,
+	.boardListSearch, .boardListSearch, .navi *, .boardListSearch * {
 	font-family: 'DungGeunMo';
 }
 
-.fboardContainer {
+.boardContainer {
 	width: 50%;
 	margin: 20px auto;
 	background-color: white;
@@ -57,12 +77,15 @@ body {
 	border-radius: 7px;
 }
 
-.fboard {
+.board {
 	overflow: hidden;
 	text-decoration: none !important;
 	border-radius: 7px;
-	border-top: 3.5px solid #7303c0;
-	border-bottom: 3.5px solid #7303c0;
+}
+
+.board {
+	border-top: 7px solid #7303c0;
+	border-bottom: 7px solid #7303c0;
 }
 
 .theader {
@@ -105,7 +128,7 @@ body {
 	width: 24.6%;
 }
 
-.fboardListSearch {
+.boardListSearch {
 	margin-top: 10px;
 	margin-bottom: -5px;
 }
@@ -118,22 +141,22 @@ a {
 	color: #03001e;
 }
 
-#insertFboardContentsBtn {
+#insertBoardContentsBtn {
 	width: 100px;
 	height: 30px;
 }
 
-.fboardListSearch button {
+.boardListSearch button {
 	width: 70px;
 	height: 30px;
 }
 
-#fboardSearchWord {
+#boardSearchWord {
 	width: 170px;
 	height: 23px;
 }
 
-#fboardSearchOption {
+#boardSearchOption {
 	width: 70px;
 	height: 30px;
 }
@@ -150,12 +173,12 @@ a {
 			<div class="header col-12">logo</div>
 		</div>
 		<div class="row">
-			<div class="fboardTitle col-12">자유게시판</div>
+			<div class="boardTitle col-12">영화/드라마 게시판</div>
 		</div>
 		<div class="row">
-			<div class="fboardContainer" style="min-width: 350px;">
+			<div class="boardContainer" style="min-width: 350px;">
 				<div class="row">
-					<div class="fboard col-12">
+					<div class="board col-12">
 						<div class="row">
 							<div class="theader col-12">
 								<div class="row">
@@ -174,25 +197,24 @@ a {
 						</div>
 						<hr class="hr">
 						<c:choose>
-							<c:when test="${not empty fboard}">
-								<c:forEach var="fboard" items="${fboard}">
+							<c:when test="${not empty board}">
+								<c:forEach var="board" items="${board}">
 									<div class="row">
 										<div class="content col-12">
 											<div class="row">
 												<div class="contentTitle col-12">
-													<a
-														href="/selectFboardContents.fboard?fb_seq=${fboard.fb_seq}"
-														style="text-decoration: none">${fboard.fb_title}</a>
+													<a href="/selectBoardContents.board?b_seq=${board.b_seq}"
+														style="text-decoration: none">${board.b_title}</a>
 												</div>
 											</div>
 											<div class="row">
-												<div class="contentWriter col-12">${fboard.fb_writer}</div>
+												<div class="contentWriter col-12">${board.b_writer}</div>
 											</div>
 											<div class="row">
-												<div class="contentWriteTime col-12">${fboard.fb_write_date}</div>
+												<div class="contentWriteTime col-12">${board.b_write_date}</div>
 											</div>
 											<div class="row">
-												<div class="contentViewCount col-12">${fboard.fb_view_count}</div>
+												<div class="contentViewCount col-12">${board.b_view_count}</div>
 											</div>
 										</div>
 									</div>
@@ -207,26 +229,26 @@ a {
 								<hr>
 							</c:otherwise>
 						</c:choose>
-						<div class="insertfboardContents">
-							<a href="/fboard/inserFboardContents.jsp"><button
-									type="button" id="insertFboardContentsBtn">글쓰기</button></a>
+						<div class="insertBoardContents">
+							<a href="/board/insertBoardContents.jsp"><button
+									type="button" id="insertBoardContentsBtn">글쓰기</button></a>
 						</div>
 						<hr>
 						<div align="center" class="navi">
-							<a href="fboardList.fboard?cpage=1"><button type="button">처음으로</button></a>
-							${navi} <a href="fboardList.fboard?cpage=${endNavi}"><button
+							<a href="/boardSearchList.board?cpage=1"><button
+									type="button">처음으로</button></a> ${navi} <a
+								href="boardSearchList.board?cpage=${endNavi}"><button
 									type="button">끝으로</button></a>
 						</div>
 						<hr>
-						<form action="/fboardListSearch.fboard" method="post">
+						<form action="/boardSearchList.board?cpage=1" method="post">
 							<div class="row">
-								<div class="fboardListSearch col-12">
-									<select id="fboardSearchOption" name="fboardSearchOption">
-										<option value="post">공지</option>
-										<option value="event">이벤트</option>
-										<option value="FAQ">FAQ</option>
-									</select> <input type="text" id="fboardSearchWord"
-										name="fboardSearchWord">
+								<div class="boardSearchList col-12">
+									<select id="boardSearchOption" name="boardSearchOption">
+										<option value="b_title">제목</option>
+										<option value="b_writer">작성자</option>
+										<option value="b_content">내용</option>
+									</select> <input type="text" id="boardSearchWord" name="boardSearchWord">
 									<button>검색</button>
 								</div>
 								<br>

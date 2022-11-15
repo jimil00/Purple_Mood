@@ -162,7 +162,6 @@ public class MovieDAO {
 						List <MovieDTO> list = new ArrayList<>();
 
 						while(rs.next()) {
-
 							MovieDTO dto = new MovieDTO();
 							dto.setMv_id(rs.getInt("mv_id"));
 							dto.setMv_title(rs.getString("mv_title"));
@@ -253,13 +252,13 @@ public class MovieDAO {
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{ List <MovieDTO> list = new ArrayList<>();
-
+		{ 
 		try(ResultSet rs = pstat.executeQuery();){
+			List <MovieDTO> list = new ArrayList<>();
 
-			MovieDTO dto = new MovieDTO();
 
 			while(rs.next()) {
+				MovieDTO dto = new MovieDTO();
 				dto.setMv_id(rs.getInt("mv_id"));
 				dto.setMv_poster_path(rs.getString("mv_poster_path"));	
 
@@ -272,6 +271,34 @@ public class MovieDAO {
 		}
 
 	}
+	
+	//ott별 콘텐츠 출력 1) 넷플릭스 인기(평점)순 
+			public  List <MovieDTO> selectByNF_avg() throws Exception { 
+
+
+				String sql="select * from movie_test where mv_ottNF='Y' order by mv_vote_average desc";
+
+				try(Connection con = this.getConnection();
+						PreparedStatement pstat = con.prepareStatement(sql);)
+				{ 
+
+				try(ResultSet rs = pstat.executeQuery();){
+					List <MovieDTO> list = new ArrayList<>();
+
+
+					while(rs.next()) {
+						MovieDTO dto = new MovieDTO();
+						dto.setMv_id(rs.getInt("mv_id"));
+						dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+						list.add(dto);
+					}
+					return list;
+
+				}
+
+				}
+
+			}
 	
 	//ott별 콘텐츠 출력 2) 디즈니 플러스 최신순 
 	public  List <MovieDTO> selectByDZ_date() throws Exception { 
@@ -281,13 +308,15 @@ public class MovieDAO {
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{  List <MovieDTO> list = new ArrayList<>();
+		{ 
 
-		try(ResultSet rs = pstat.executeQuery();){
+		try(ResultSet rs = pstat.executeQuery();){ 
+			List <MovieDTO> list = new ArrayList<>();
 
-			MovieDTO dto = new MovieDTO();
+			
 
 			while(rs.next()) {
+				MovieDTO dto = new MovieDTO();
 				dto.setMv_id(rs.getInt("mv_id"));
 				dto.setMv_poster_path(rs.getString("mv_poster_path"));	
 
@@ -301,23 +330,22 @@ public class MovieDAO {
 
 	}
 	
-	
-	
-	//ott별 콘텐츠 출력 3) 웨이브 최신순 
-		public  List <MovieDTO> selectByWV_date() throws Exception { 
+	//ott별 콘텐츠 출력 2) 디즈니 플러스 인기순 
+		public  List <MovieDTO> selectByDZ_avg() throws Exception { 
 
 
-			String sql="select * from movie_test where mv_ottWV='Y' order by 4 desc";
+			String sql="select * from movie_test where mv_ottDZ='Y' order by mv_vote_average desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
-			{  List <MovieDTO> list = new ArrayList<>();
+			{  
 
 			try(ResultSet rs = pstat.executeQuery();){
+				List <MovieDTO> list = new ArrayList<>();
 
-				MovieDTO dto = new MovieDTO();
 
 				while(rs.next()) {
+					MovieDTO dto = new MovieDTO();
 					dto.setMv_id(rs.getInt("mv_id"));
 					dto.setMv_poster_path(rs.getString("mv_poster_path"));	
 
@@ -332,21 +360,108 @@ public class MovieDAO {
 		}
 	
 	
-	//ott별 콘텐츠 출력 4) 왓챠 최신순 
+	
+	//ott별 콘텐츠 출력 3) 웨이브 최신순 
+		public  List <MovieDTO> selectByWV_date() throws Exception { 
+
+
+			String sql="select * from movie_test where mv_ottWV='Y' order by 4 desc";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{  
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <MovieDTO> list = new ArrayList<>();
+
+
+				while(rs.next()) {
+					MovieDTO dto = new MovieDTO();
+					dto.setMv_id(rs.getInt("mv_id"));
+					dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+					list.add(dto);
+				}
+				return list;
+
+			}
+
+			}
+
+		}
+		
+		//ott별 콘텐츠 출력 3) 웨이브 인기순 
+				public  List <MovieDTO> selectByWV_avg() throws Exception { 
+
+
+					String sql="select * from movie_test where mv_ottWV='Y' order by mv_vote_average desc";
+
+					try(Connection con = this.getConnection();
+							PreparedStatement pstat = con.prepareStatement(sql);)
+					{ 
+
+					try(ResultSet rs = pstat.executeQuery();){
+						List <MovieDTO> list = new ArrayList<>();
+
+						while(rs.next()) {
+							MovieDTO dto = new MovieDTO();
+							dto.setMv_id(rs.getInt("mv_id"));
+							dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+							list.add(dto);
+						}
+						return list;
+
+					}
+
+					}
+
+				}
+	
+		//ott별 콘텐츠 출력 4) 왓챠 최신순 
+		public  List <MovieDTO> selectByWC_avg() throws Exception { 
+
+
+			String sql="select * from movie_test where mv_ottWC='Y' order by 4 desc";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);)
+			{  
+
+			try(ResultSet rs = pstat.executeQuery();){
+				List <MovieDTO> list = new ArrayList<>();
+
+				while(rs.next()) {
+					MovieDTO dto = new MovieDTO();
+					dto.setMv_id(rs.getInt("mv_id"));
+					dto.setMv_poster_path(rs.getString("mv_poster_path"));	
+
+					list.add(dto);
+				}
+				return list;
+
+			}
+
+			}
+
+		}
+		
+	//ott별 콘텐츠 출력 4) 왓챠 인기순 
 	public  List <MovieDTO> selectByWC_date() throws Exception { 
 
 
-		String sql="select * from movie_test where mv_ottWC='Y' order by 4 desc";
+		String sql="select * from movie_test where mv_ottWC='Y' order by mv_vote_average desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
-		{  List <MovieDTO> list = new ArrayList<>();
+		{ 
 
-		try(ResultSet rs = pstat.executeQuery();){
+		try(ResultSet rs = pstat.executeQuery();){ 
+			List <MovieDTO> list = new ArrayList<>();
 
-			MovieDTO dto = new MovieDTO();
 
 			while(rs.next()) {
+				MovieDTO dto = new MovieDTO();
 				dto.setMv_id(rs.getInt("mv_id"));
 				dto.setMv_poster_path(rs.getString("mv_poster_path"));	
 
@@ -359,6 +474,8 @@ public class MovieDAO {
 		}
 
 	}
+	
+
 	
 	
 	//최신영화 출력

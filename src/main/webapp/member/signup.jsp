@@ -197,7 +197,7 @@ input {
 				<div class="footer col-12">
 					<div class="btns">
 						<a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
-							href="/member/signin.jsp"><button type="button">뒤로
+							href="/member/signin.jsp"><button type="button" id="back">뒤로
 								가기</button></a>&nbsp
 						<button type="reset" id="resetBtn">다시 입력</button>
 					</div>

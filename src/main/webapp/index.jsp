@@ -50,7 +50,19 @@ body {
 	height: 100px;
 	background-color: #03001e;
 }
-
+#logo,#titleimg{
+height:100%;
+}
+#titleimg:hover{
+cursor: pointer;
+}
+@media(max-width:767px){
+#logo{
+height:60%;
+}
+#titleimg{
+height:100%;}
+}
 .searchbox {
 	text-align: right;
 }
@@ -241,9 +253,8 @@ body {
 }
 
 .profilebox {
-	width: 150px;
+	width: 170px;
 	height: 150px;
-	border-radius: 70%;
 	overflow: hidden;
 	position: relative;
 	left: 30%;
@@ -262,6 +273,9 @@ body {
 	margin-bottom: 10px;
 	color: white;
 	font-family: 'DungGeunMo';
+}
+#profileimg{
+height:100%;
 }
 
 #logoutBtn {
@@ -306,7 +320,7 @@ hr.hr {
 	<div class="containers">
 		<div class="row header fixed-top">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
-				<img src="" />
+				<img src="/img/title.png" id="titleimg">
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
@@ -315,6 +329,9 @@ hr.hr {
 					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
 			</div>
 			<script>
+			$("#titleimg").on("click",function(){
+				location.href="/main";
+			})
 				function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
 					if (window.event.keyCode == 13) {
 						location.href = "/search.content?searchtext="
@@ -611,7 +628,9 @@ hr.hr {
 					</button>
 				</div>
 				<div class="offcanvas-body">
-					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+					<img src="/img/logo.png" id="profileimg">
+					</div>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 						<a href="/member/mypage.jsp">
@@ -621,7 +640,7 @@ hr.hr {
 					<a href="/boardList.board?cpage=1">
 						<div class="menulink">영화 드라마 게시판</div>
 					</a> <a href="/fboardList.fboard?cpage=1">
-						<div class="#">자유게시판</div>
+						<div class="menulink">자유게시판</div>
 					</a> <a href="/noticeList.notice?cpage=1">
 						<div class="menulink">공지사항</div>
 					</a>
@@ -646,18 +665,20 @@ hr.hr {
 					</button>
 				</div>
 				<div class="offcanvas-body">
-					<div class="profilebox" id="Btn" style="background: #BDBDBD;"></div>
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
 						<a href="#">
 							<button>관리자페이지</button>
 						</a>
 					</div>
-					<a href="/boardList.board">
+					<a href="/boardList.board?cpage=1">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="#">
+					</a> <a href="/fboardList.fboard?cpage=1">
 						<div class="menulink">자유게시판</div>
-					</a> <a href="#">
+					</a> <a href="/noticeList.notice?cpage=1">
 						<div class="menulink">공지사항</div>
 					</a>
 					<button type="button" id="logoutBtn">로그아웃</button>
@@ -681,21 +702,28 @@ hr.hr {
 					</button>
 				</div>
 				<div class="offcanvas-body">
-					<div class="profilebox" style="background: #BDBDBD;"></div>
+					<div class="profilebox" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
 					<div class="profiletext">익명의 누군가</div>
 					<div class="profiletext">
 						<a href="/member/signin.jsp">
 							<button id="signinBtn">로그인</button>
 						</a>
 					</div>
-					<a href="#">
+					<a class="noLoginMenu">
 						<div class="menulink">영화 드라마 게시판</div>
-					</a> <a href="#">
+					</a> <a class="noLoginMenu">
 						<div class="menulink">자유게시판</div>
-					</a> <a href="#">
+					</a> <a class="noLoginMenu">
 						<div class="menulink">공지사항</div>
 					</a>
 				</div>
+				<script>
+					$(".noLoginMenu").on("click",function(){
+						alert("로그인을 해주세요");
+					})
+				</script>
 			</div>
 		</c:otherwise>
 	</c:choose>

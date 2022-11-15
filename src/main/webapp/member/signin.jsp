@@ -24,21 +24,23 @@
 	box-sizing: border-box;
 }
 
-/* body {
+body {
 	background-color: #03001e;
-}  */
+}
 
 /* div {
             border: 1px solid black;
         } */
 .container {
-	border: 1px solid #c4c4c4;
+	border-top: 7px solid #7303c0;
+	border-bottom: 7px solid #7303c0;
 	border-radius: 5px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 50px;
+	background-color: white;
 }
 
 .logo {
@@ -47,10 +49,9 @@
 
 #logoimg {
 	width: 200px;
-	height: 100px;
 	position: relative;
 	left: 50%;
-	transform: translateX(-55%);
+	transform: translateX(-50%);
 }
 
 .logintextbox {
@@ -131,7 +132,7 @@ input:focus {
 				<div class="container w-50"
 					style="min-width: 350px; max-width: 400px;">
 					<div class="logo row">
-						<img src="" id="logoimg" alt="">
+						<img src="/img/logo.png" id="logoimg">
 					</div>
 					<div class="loginbox row">
 						<div class="logintextbox col-12">
@@ -159,8 +160,6 @@ input:focus {
 			<div class="signupbox row">
 				<div class="col-12">
 					<a href="/member/signup.jsp" class="signup">회원가입</a>
-					|
-					<a href="#" class="findInfo">아이디&비밀번호찾기</a>
 				</div>
 			</div>
 			</div>
@@ -175,7 +174,7 @@ input:focus {
 				<div class="container w-50"
 					style="min-width: 350px; max-width: 400px;">
 					<div class="logo row">
-						<img src="" id="logoimg" alt="">
+						<img src="/img/logo.png" id="logoimg">
 					</div>
 					<div class="loginbox row">
 						<div class="logintextbox col-12">
@@ -199,8 +198,6 @@ input:focus {
 			<div class="signupbox row">
 				<div class="col-12">
 					<a href="/member/signup.jsp" class="signup">회원가입</a>
-					|
-					<a href="#" class="findInfo">아이디&비밀번호찾기</a>
 				</div>
 			</div>
 			</div>
@@ -222,6 +219,9 @@ input:focus {
 		$(".pwtext").on("focusout", function() {
 			$(".pwtextbox").css("border", "1px solid #c4c4c4");
 			$(".pwicon").css("color", "#c4c4c4");
+		})
+		$("#logoimg").on("click",function(){
+			location.href="/main";
 		})
 	</script>
 </body>

@@ -18,6 +18,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 .boardWrite {
 	float: hidden;
 }
@@ -59,7 +60,7 @@ body {
 	text-decoration: underline;
 	text-decoration-thickness: 3px;
 	text-underline-position: under;
-	margin-bottom:50px;
+	margin-bottom: 50px;
 }
 
 .boardTitle, .theader, .content, #insertBoardContentsBtn,
@@ -90,12 +91,12 @@ body {
 	float: left;
 	width: 100%;
 	height: 35px;
-	font-size: 19px;
+	font-size: 16.5px;
 }
 
 .theader>div {
 	float: left;
-	width: 24.6%;
+	width: 20%;
 	height: 100%;
 	line-height: 38.5px;
 	font-weight: bold;
@@ -106,24 +107,29 @@ body {
 	color: #03001e;
 }
 
+.contentCategory {
+	float: left;
+	width: 20%;
+}
+
 .contentTitle {
 	float: left;
-	width: 24.6%;
+	width: 20%;
 }
 
 .contentWriter {
 	float: left;
-	width: 24.6%;
+	width: 20%;
 }
 
 .contentWriteTime {
 	float: left;
-	width: 24.6%;
+	width: 20%;
 }
 
 .contentViewCount {
 	float: left;
-	width: 24.6%;
+	width: 20%;
 }
 
 .boardListSearch {
@@ -180,6 +186,9 @@ a {
 						<div class="row">
 							<div class="theader col-12">
 								<div class="row">
+									<div class="col-12">카테고리</div>
+								</div>
+								<div class="row">
 									<div class="col-12">제목</div>
 								</div>
 								<div class="row">
@@ -199,6 +208,9 @@ a {
 								<c:forEach var="board" items="${board}">
 									<div class="row">
 										<div class="content col-12">
+											<div class="row">
+												<div class="contentCategory col-12">${board.b_category}</div>
+											</div>
 											<div class="row">
 												<div class="contentTitle col-12">
 													<a href="/selectBoardContents.board?b_seq=${board.b_seq}"
@@ -233,12 +245,13 @@ a {
 						</div>
 						<hr>
 						<div align="center" class="navi">
-							<a href="boardList.board?cpage=1"><button type="button">처음으로</button></a>
-							${navi} <a href="boardList.board?cpage=${endNavi}">P<button
-									type="button">끝으로</button></a>
+							<!-- <a href="boardList.board?cpage=1"><button type="button">처음으로</button></a> -->
+							${navi} <!--<a href="boardList.board?cpage=${endNavi}">
+								<button type="button">끝으로</button> -->
+							</a>
 						</div>
 						<hr>
-						<form action="/boardListSearch.board" method="post">
+						<form action="/boardListSearch.board?cpage=1" method="post">
 							<div class="row">
 								<div class="boardListSearch col-12">
 									<select id="boardSearchOption" name="boardSearchOption">
