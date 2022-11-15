@@ -36,7 +36,6 @@
 	font-family: 'DungGeunMo';
 }
 
-
 .ott_logo>img {
 	width: 250px;
 	margin: 30px;
@@ -216,13 +215,15 @@ span>img {
 	color: white;
 	background-color: #03001e;
 }
-#linksec{
-    padding-top: 50px;;
-    padding-bottom: 50px;;
+
+#linksec {
+	padding-top: 50px;;
+	padding-bottom: 50px;;
 }
-#logoutsec{
-    padding-top: 50px;;
-    padding-bottom: 50px;;
+
+#logoutsec {
+	padding-top: 50px;;
+	padding-bottom: 50px;;
 }
 
 a {
@@ -362,7 +363,7 @@ button {
 
 
 	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
-	
+
 	<c:choose>
 		<c:when test="${not empty d_dr_list}">
 
@@ -404,8 +405,8 @@ button {
 			<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
 		</div>
-	</div>
-	</div>
+		</div>
+	</c:choose>
 	<c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->
@@ -420,7 +421,7 @@ button {
 				</div>
 				<div class="offcanvas-body">
 					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
-					<img src="/img/logo.png" id="profileimg">
+						<img src="/img/logo.png" id="profileimg">
 					</div>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
@@ -428,11 +429,14 @@ button {
 							<button>마이페이지</button>
 						</a>
 					</div>
-					 <div id="linksec">
-        <a href="/boardList.board?cpage=1">
-            <div class="menulink">영화 드라마 게시판</div>
-        </a></div>
-        <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
+					<div id="linksec">
+						<a href="/boardList.board?cpage=1">
+							<div class="menulink">영화 드라마 게시판</div>
+						</a>
+					</div>
+					<div id="logoutsec">
+						<button type="button" id="logoutBtn">로그아웃</button>
+					</div>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {
@@ -441,7 +445,7 @@ button {
 				</script>
 			</div>
 		</c:when>
-<c:otherwise>
+		<c:otherwise>
 			<!-- 비로그인  -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
 				tabindex="-1" id="offcanvasWithBothOptions"
@@ -463,12 +467,13 @@ button {
 						</a>
 					</div>
 					<div id="linksec">
-        <a href="#">
-            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
-        </a></div>
+						<a href="#">
+							<div class="menulink noLoginMenu">영화 드라마 게시판</div>
+						</a>
+					</div>
 				</div>
 				<script>
-					$(".noLoginMenu").on("click",function(){
+					$(".noLoginMenu").on("click", function() {
 						alert("로그인을 해주세요");
 					})
 				</script>
