@@ -78,30 +78,34 @@ public class BoardController extends HttpServlet {
 				// 게시글 이미지 입력
 			}else if(uri.equals("/imageupload.board")) {
 
-					int maxSize = 1024*1024*10;
-					String savePath = request.getServletContext().getRealPath("/files");
-					File fileSavePath = new File(savePath);
-					if(!fileSavePath.exists()) {
-						fileSavePath.mkdir();
-					}
+						int maxSize = 1024*1024*10;
+						String savePath = request.getServletContext().getRealPath("/files");
+						File fileSavePath = new File(savePath);
+						if(!fileSavePath.exists()) {
+							fileSavePath.mkdir();
+						}
 
-					MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
-					String sysName = multi.getFilesystemName("image");
-					response.setContentType("text/html;charset=utf8");
-					response.getWriter().append("/files/"+sysName);
-
+						MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
+						String sysName = multi.getFilesystemName("image");
+						response.setContentType("text/html;charset=utf8");
+						response.getWriter().append("/files/"+sysName);
+						
 
 			// 게시글 입력 (C)
 			}else if(uri.equals("/insertBoardContents.board")) {
-
-				String b_writer = (String)request.getSession().getAttribute("loginNickname");
+				if (request.getMethod().equals("GET")) {
+					response.sendRedirect("/error.jsp");
+					return;
+				}
+				String b_writer_id = (String)request.getSession().getAttribute("loginID");
+				String b_writer_nn = (String)request.getSession().getAttribute("loginNickname");
 				String b_category = request.getParameter("b_category");
 				String b_title = request.getParameter("b_title");
 				String b_content = request.getParameter("b_content");
 
 				int nextVal = BoardDAO.getInstance().getBoardNextVal();
 
-				BoardDAO.getInstance().insertBoardContents(new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0));
+				BoardDAO.getInstance().insertBoardContents(new BoardDTO(nextVal ,b_category, b_writer_id, b_writer_nn, null, b_title, b_content, 0));
 				String b_seq = String.valueOf(nextVal);
 				response.getWriter().append(b_seq);
 
@@ -151,6 +155,10 @@ public class BoardController extends HttpServlet {
 				
 			// 게시글 수정 (U)
 			}else if(uri.equals("/updateBoardContents.board")) {
+				if (request.getMethod().equals("GET")) {
+					response.sendRedirect("/error.jsp");
+					return;
+				}
 				
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
 				String b_category = request.getParameter("b_category");
@@ -159,27 +167,27 @@ public class BoardController extends HttpServlet {
 				int result = BoardDAO.getInstance().updateBoardContents(b_category, b_title,b_content,b_seq);
 			
 				
-				
+			}	
 
-				//마이페이지 작성 게시글 출력
-			}else if(uri.equals("/selectMypageBoard.board")) {
-
-				/*
-				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
-				 */
-				Gson gsonStr   = new Gson();
-				/*
-				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
-				 * String strJsonList = gsonStr.toJson(dr_list_d);
-				 * System.out.println("************strJsonList******* \n"+strJsonList);
-				 * response.getWriter().append(strJsonList);
-				 */
-				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
-				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
-				String strJsonList = gsonStr.toJson(b_list);
-				System.out.println("************strJsonList******* \n"+strJsonList);
-				response.getWriter().append(strJsonList);
-			}
+//				//마이페이지 작성 게시글 출력
+//			}else if(uri.equals("/selectMypageBoard.board")) {
+//
+//				/*
+//				 * Map<String, List> listMap = new HashMap<>(); List list = new ArrayList<>();
+//				 */
+//				Gson gsonStr   = new Gson();
+//				/*
+//				 * List <DramaDTO> dr_list_d =DramaDAO.getInstance().searchByDate(); 
+//				 * String strJsonList = gsonStr.toJson(dr_list_d);
+//				 * System.out.println("************strJsonList******* \n"+strJsonList);
+//				 * response.getWriter().append(strJsonList);
+//				 */
+//				String nickname=(String)request.getSession().getAttribute("loginNickname"); 
+//				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(nickname);
+//				String strJsonList = gsonStr.toJson(b_list);
+//				System.out.println("************strJsonList******* \n"+strJsonList);
+//				response.getWriter().append(strJsonList);
+//			}
 
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
