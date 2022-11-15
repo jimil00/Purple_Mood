@@ -22,18 +22,21 @@
    font-weight: normal;
    font-style: normal;
 }
+
 * {
    box-sizing: border-box;
    font-family: 'DungGeunMo';
    margin: auto;
    color: black;
 }
+
 .container {
    margin: auto;
    display: flex;
    overflow: hidden;
    background-color: #03001e;
 }
+
 .joinForm {
    background-color: white;
    float: left;
@@ -44,152 +47,64 @@
    text-align: center;
    border-radius: 7px;
 }
+
 input {
    width: 400px;
    height: 30px;
 }
+
 #email {
    width: 200px;
 }
+
 .selectOption {
    height: 30px;
    width: 175px;
    text-align: center;
 }
+
 .requiredField {
    color: red;
 }
+
 #result, #duplResult {
    margin: 0;
 }
+
 .id, .logo, .nickname, .pw, .pwcheck, .name, .phone, .email, .postcode,
    .address1, .address2, .margin_top, #result, #duplResultID,
    #duplResultNickname {
    margin: 15px 0;
 }
+
 .logo {
+   font-size: 23px;
    font-weight: bold;
    margin: 40px 0;
 }
+
 .footer {
    margin-top: 10px;
    text-align: center;
 }
+
 #duplCheckID, #duplCheckNickname {
    width: 100px;
 }
+
 .btns {
    width: 100%;
    margin-top: 10px;
    text-align: center;
 }
+
 .btns button {
    height: 30px;
    width: 92px;
 }
+
 .footer {
    margin: auto;
-}
-
-a {
-   position: relative;
-   display: inline-block;
-   color: #03e9f4;
-   text-decoration: none;
-   text-transform: uppercase;
-   transition: 0.5s;
-   overflow: hidden;
-   margin-right: 50px;
-   margin: auto;
-   color: white;
-   background-color: #03001e;
-   padding: 10px 15px;
-}
-a:hover{
-    background: #03001e;
-    color: #050801;
-    box-shadow: 0 0 5px red,
-                0 0 25px #03e9f4,
-                0 0 50px #03e9f4,
-                0 0 200px #03e9f4;
-     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
-}
-a:nth-child(1){
-    filter: hue-rotate(270deg);
-}
-a:nth-child(2){
-    filter: hue-rotate(110deg);
-}
-a span{
-    position: absolute;
-    display: block;
-}
-a span:nth-child(1){
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg,transparent,#03e9f4);
-    animation: animate1 1s linear infinite;
-}@keyframes animate1{
-    0%{
-        left: -100%;
-    }
-    50%,100%{
-        left: 100%;
-    }
-}
-a span:nth-child(2){
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg,transparent,#03e9f4);
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
-}
-@keyframes animate2{
-    0%{
-        top: -100%;
-    }
-    50%,100%{
-        top: 100%;
-    }
-}
-a span:nth-child(3){
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg,transparent,#03e9f4);
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.50s;
-}
-@keyframes animate3{
-    0%{
-        right: -100%;
-    }
-    50%,100%{
-        right: 100%;
-    }
-}
-
-a span:nth-child(4){
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg,transparent,#03e9f4);
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
-}
-@keyframes animate4{
-    0%{
-        bottom: -100%;
-    }
-    50%,100%{
-        bottom: 100%;
-    }
 }
 /* div {border: 1px solid black;} */
 </style>
@@ -281,15 +196,10 @@ a span:nth-child(4){
             </div>
             <div class="footer col-12">
                <div class="btns">
-                  <!-- <a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
-                     href="/member/signin.jsp"><button type="button">뒤로
+                  <a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
+                     href="/member/signin.jsp"><button type="button" id="back">뒤로
                         가기</button></a>&nbsp
-                  <button type="reset" id="resetBtn">다시 입력</button> -->
-                  <a href="#" id="signup"><span></span> <span></span> <span></span>
-                     <span></span> 회원가입 </a> <a href="/member/signin.jsp" id="signup"><span></span>
-                     <span></span> <span></span> <span></span> 뒤로가기 </a> <a href="#"
-                     id="resetBtn"><span></span> <span></span> <span></span> <span></span>
-                     다시입력 </a>
+                  <button type="reset" id="resetBtn">다시 입력</button>
                </div>
             </div>
          </div>

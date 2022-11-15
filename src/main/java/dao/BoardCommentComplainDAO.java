@@ -31,13 +31,14 @@ public class BoardCommentComplainDAO {
 
 	// 게시글 신고 테이블에 입력(C)
 	public int insertBoardCommentComplain(BoardCommentComplainDTO dto) throws Exception{
-		String sql = "insert into board_complain values(board_comment_complain_seq.nextval, ?, sysdate, ?, ?, ?)";
+		String sql = "insert into board_complain values(board_comment_complain_seq.nextval, ?, ?, sysdate, ?, ?, ?)";
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
 			pstat.setString(1, dto.getBcmcp_complainer());
 			pstat.setInt(2, dto.getBcm_seq());
-			pstat.setString(3, dto.getBcm_writer());
+			pstat.setString(3, dto.getBcm_writer_id());
+			pstat.setString(3, dto.getBcm_writer_nn());
 			pstat.setString(4, dto.getBcm_content());
 
 			int result = pstat.executeUpdate();
@@ -62,7 +63,8 @@ public class BoardCommentComplainDAO {
 				dto.setBcmcp_complainer(rs.getString("bcmcp_complainer"));
 				dto.setBcmcp_date(rs.getTimestamp("bcmcp_date"));
 				dto.setBcm_seq(rs.getInt("bcm_seq"));
-				dto.setBcm_writer(rs.getString("bcm_writer"));
+				dto.setBcm_writer_id(rs.getString("bcm_writer_id"));
+				dto.setBcm_writer_nn(rs.getString("bcm_writer_nn"));
 				dto.setBcm_content(rs.getString("bcm_content"));
 
 			}

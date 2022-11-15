@@ -27,8 +27,27 @@ public class BoardFileController extends HttpServlet {
 
 		String filePath = request.getServletContext().getRealPath("files");
 		System.out.println(filePath);
+		
+		
 		try {
-			else if(uri.equals("/download.file")) {
+			
+			
+			// 게시글 이미지 입력
+		if(uri.equals("/imageupload.boardfile")) {
+
+				int maxSize = 1024*1024*10;
+				String savePath = request.getServletContext().getRealPath("/files");
+				File fileSavePath = new File(savePath);
+				if(!fileSavePath.exists()) {
+					fileSavePath.mkdir();
+				}
+
+				MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
+				String sysName = multi.getFilesystemName("image");
+				response.setContentType("text/html;charset=utf8");
+				response.getWriter().append("/files/"+sysName);
+
+		}else if(uri.equals("/download.file")) {
 				// 여기에 권한 check 같은 것도 넣을 수 있다 검사 검증 다운로드 거절 가능해서 서블릿만들어서 쓰는 게 장점이 있다
 				// 서블릿을 거쳤을 때 그 페이지를 가는 것을 허락/ 기록 등 제어할 수 있다
 				String sysName = request.getParameter("sysname");
