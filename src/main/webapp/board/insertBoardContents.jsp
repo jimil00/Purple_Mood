@@ -147,7 +147,7 @@
             var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
             console.log("summernoteContent : " + summernoteContent);
             var b_category = $("#b_category").val();
-            var b_title = $("#b_title").val();
+            var b_title = $("#b_title").html();
 
             $.ajax({
                 url: "/insertBoardContents.board",
@@ -183,7 +183,8 @@
                 </div>
                 <div class="title">
                     <div class="headerTitle">제목</div>
-                    <div><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none; width:100%;">
+                    <div  id="b_title" name="b_title" editable="true" style="height:10px; width:80px;">
+<!--                     <input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none; width:100%;"> -->
                     </div>
                 </div>
             </div>
