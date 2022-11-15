@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.BoardCommentDAO;
 import dao.BoardDAO;
@@ -25,7 +28,7 @@ public class BoardController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
-		response.setCharacterEncoding("UTF-8");
+
 		try {
 
 			String uri = request.getRequestURI();
@@ -40,7 +43,6 @@ public class BoardController extends HttpServlet {
 				int cpage = Integer.parseInt(page);
 				request.getSession().setAttribute("boardPage", page);
 				
-				System.out.println(cpage);
 				List<BoardDTO> board = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
 				//List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
 				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
@@ -59,11 +61,11 @@ public class BoardController extends HttpServlet {
 				
 				String boardSearchOption=request.getParameter("boardSearchOption");
 				String boardSearchWord = request.getParameter("boardSearchWord");
-				System.out.println(boardSearchOption + boardSearchWord);
 				int cpage = Integer.parseInt(request.getParameter("cpage"));
+				int count = BoardDAO.getInstance().getSearchRecordCount(boardSearchOption, boardSearchWord);
 				List<BoardDTO>board = BoardDAO.getInstance().selectBoardSearchList(boardSearchOption,boardSearchWord,cpage*20-19, cpage*20);
 //				List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
-				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
+				String navi = BoardDAO.getInstance().getBoardSearchPageNavi(boardSearchOption,boardSearchWord,cpage);
 //
 //				int endNavi=Integer.parseInt(list.get(0));
 //				String navi=list.get(1);
@@ -72,7 +74,21 @@ public class BoardController extends HttpServlet {
 //				request.setAttribute("endNavi", endNavi);
 				request.getRequestDispatcher("/board/boardSearchList.jsp").forward(request, response);
 
-			
+				
+				// 게시글 이미지 입력
+			}else if(uri.equals("/imageupload.board")) {
+
+					int maxSize = 1024*1024*10;
+					String savePath = request.getServletContext().getRealPath("/files");
+					File fileSavePath = new File(savePath);
+					if(!fileSavePath.exists()) {
+						fileSavePath.mkdir();
+					}
+
+					MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, "UTF8", new DefaultFileRenamePolicy());
+					String sysName = multi.getFilesystemName("image");
+					response.setContentType("text/html;charset=utf8");
+					response.getWriter().append("/files/"+sysName);
 
 
 			// 게시글 입력 (C)
@@ -85,9 +101,8 @@ public class BoardController extends HttpServlet {
 
 				int nextVal = BoardDAO.getInstance().getBoardNextVal();
 
-				BoardDTO dto = new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0);
-				BoardDAO.getInstance().insertBoardContents(dto);
-				String b_seq = String.valueOf(dto.getB_seq());
+				BoardDAO.getInstance().insertBoardContents(new BoardDTO(nextVal ,b_category, b_writer, null, b_title, b_content, 0));
+				String b_seq = String.valueOf(nextVal);
 				response.getWriter().append(b_seq);
 
 

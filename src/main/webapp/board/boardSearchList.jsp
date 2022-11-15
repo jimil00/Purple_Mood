@@ -233,9 +233,10 @@ a {
 						</div>
 						<hr>
 						<div align="center" class="navi">
-							<a href="/boardSearchList.board?cpage=1"><button type="button">처음으로</button></a>
-							${navi} <a href="boardSearchList.board?cpage=${endNavi}"><button
-									type="button">끝으로</button></a>
+						${navi}
+<!-- 							<a href="/boardSearchList.board?cpage=1"><button type="button">처음으로</button></a> -->
+<%-- 							${navi} <a href="boardSearchList.board?cpage=${endNavi}"><button --%>
+<!-- 									type="button">끝으로</button></a> -->
 						</div>
 						<hr>
 						<form action="/boardSearchList.board?cpage=1" method="post">
