@@ -91,6 +91,7 @@ public class MemberController extends HttpServlet {
 				request.getSession().invalidate();
 				request.getSession().setAttribute("loginID",id);
 				request.getSession().setAttribute("loginNickname", nickname);
+				System.out.println("새로 바뀐 아이디:닉네임"+id+nickname);
 				//
 				response.sendRedirect("/mypageMemInfo.member");
 
@@ -123,7 +124,7 @@ public class MemberController extends HttpServlet {
 				Gson gsonStr   = new Gson();
 				String id=(String)request.getSession().getAttribute("loginNickname"); 
 				//메서드 아이디로 집어넣고 변경하기 
-				List <BoardDTO> b_list =BoardDAO.getInstance().searchByNickname(id);
+				List <BoardDTO> b_list =BoardDAO.getInstance().searchByID(id);
 				String strJsonList = gsonStr.toJson(b_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);

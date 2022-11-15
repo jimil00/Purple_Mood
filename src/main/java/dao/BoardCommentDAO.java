@@ -113,27 +113,28 @@ public class BoardCommentDAO {
 
 	//마이페이지 작성 출력
 
-//	public List <BoardCommentDTO> searchByNickname(String nickname) throws Exception{
-//		String sql="select * from board_comment where bcm_writer=?";
-//		try(Connection con = this.getConnection();
-//				PreparedStatement pstat = con.prepareStatement(sql);     
-//				){
-//			pstat.setString(1, nickname);
-//			try(ResultSet rs = pstat.executeQuery();){
-//				List<BoardCommentDTO> list=new ArrayList<>();
-//				while(rs.next()) {
-//					BoardCommentDTO dto=new BoardCommentDTO();
-//					dto.setBcm_seq(rs.getInt("bcm_seq"));
-//					dto.setBcm_writer(rs.getString("bcm_writer"));
-//					dto.setBcm_write_date(rs.getTimestamp("bcm_write_date"));
-//					dto.setBcm_content(rs.getString("bcm_content"));
-//					dto.setB_seq(rs.getInt("b_seq"));
-//					dto.setB_title(rs.getString("b_title"));
-//					list.add(dto);    
-//				}
-//				return list;
-//			}
-//		}
-//	}
+	public List <BoardCommentDTO> searchByNickname(String id) throws Exception{
+		String sql="select * from board_comment where bcm_writer_id=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);     
+				){
+			pstat.setString(1, id);
+			try(ResultSet rs = pstat.executeQuery();){
+				List<BoardCommentDTO> list=new ArrayList<>();
+				while(rs.next()) {
+					BoardCommentDTO dto=new BoardCommentDTO();
+					dto.setBcm_seq(rs.getInt("bcm_seq"));
+					dto.setBcm_writer_id(rs.getString("bcm_writer_id"));
+					dto.setBcm_writer_nn(rs.getString("bcm_writer_nn"));
+					dto.setBcm_write_date(rs.getTimestamp("bcm_write_date"));
+					dto.setBcm_content(rs.getString("bcm_content"));
+					dto.setB_seq(rs.getInt("b_seq"));
+					dto.setB_title(rs.getString("b_title"));
+					list.add(dto);    
+				}
+				return list;
+			}
+		}
+	}
 
 }

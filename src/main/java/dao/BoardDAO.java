@@ -467,29 +467,30 @@ public class BoardDAO {
 
 
 	//마이페이지 작성글 출력
-//	public List <BoardDTO> searchByNickname(String nickname) throws Exception{
-//		String sql="select * from board where b_writer=?";
-//		try(Connection con = this.getConnection();
-//				PreparedStatement pstat = con.prepareStatement(sql);     
-//				){
-//			pstat.setString(1, nickname);
-//			try(ResultSet rs = pstat.executeQuery();){
-//				List<BoardDTO> list=new ArrayList<>();
-//				while(rs.next()) {
-//					BoardDTO dto=new BoardDTO();
-//					dto.setB_seq(rs.getInt("b_seq"));
-//					dto.setB_category(rs.getString("b_category"));
-//					dto.setB_writer(rs.getString("b_writer"));
-//					dto.setB_write_date(rs.getTimestamp("b_write_date"));
-//					dto.setB_title(rs.getString("b_title"));
-//					dto.setB_content(rs.getString("b_content"));
-//					dto.setB_view_count(rs.getInt("b_view_count"));
-//					list.add(dto);    
-//				}
-//				return list;
-//			}
-//		}
-//	}
+	public List <BoardDTO> searchByID(String id) throws Exception{
+		String sql="select * from board where b_writer_id=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);     
+				){
+			pstat.setString(1, id);
+			try(ResultSet rs = pstat.executeQuery();){
+				List<BoardDTO> list=new ArrayList<>();
+				while(rs.next()) {
+					BoardDTO dto=new BoardDTO();
+					dto.setB_seq(rs.getInt("b_seq"));
+					dto.setB_category(rs.getString("b_category"));
+					dto.setB_writer_id(rs.getString("b_writer_id"));
+					dto.setB_writer_nn(rs.getString("b_writer_nn"));
+					dto.setB_write_date(rs.getTimestamp("b_write_date"));
+					dto.setB_title(rs.getString("b_title"));
+					dto.setB_content(rs.getString("b_content"));
+					dto.setB_view_count(rs.getInt("b_view_count"));
+					list.add(dto);    
+				}
+				return list;
+			}
+		}
+	}
 
 
 }
