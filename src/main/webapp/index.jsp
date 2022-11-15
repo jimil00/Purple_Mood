@@ -302,6 +302,14 @@ body {
 	color: white;
 	background-color: #03001e;
 }
+#linksec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+#logoutsec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
 
 a {
 	color: white;
@@ -579,10 +587,11 @@ hr.hr {
 							<button>마이페이지</button>
 						</a>
 					</div>
-					<a href="/boardList.board?cpage=1">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a>
-					<button type="button" id="logoutBtn">로그아웃</button>
+					 <div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div>
+        <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {
@@ -609,10 +618,11 @@ hr.hr {
 							<button>관리자페이지</button>
 						</a>
 					</div>
-					<a href="/boardList.board?cpage=1">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a>
-					<button type="button" id="logoutBtn">로그아웃</button>
+					<div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div> 
+					 <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {
@@ -639,9 +649,10 @@ hr.hr {
 							<button id="signinBtn">로그인</button>
 						</a>
 					</div>
-					<a class="noLoginMenu">
-						<div class="menulink">영화 드라마 게시판</div>
-					</a>
+					<div id="linksec">
+        <a href="#">
+            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
+        </a></div>
 				</div>
 				<script>
 					$(".noLoginMenu").on("click",function(){

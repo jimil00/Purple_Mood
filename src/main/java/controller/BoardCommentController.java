@@ -24,15 +24,22 @@ public class BoardCommentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		String uri=request.getRequestURI();
+		System.out.println(uri);
 
 		try {
 			if(uri.equals("/insertBoardComment.boardcomment")) {
-				String nickname = (String)request.getSession().getAttribute("loginNickname");
+				if (request.getMethod().equals("GET")) {
+					response.sendRedirect("/error.jsp");
+					return;
+				}
+				String bcm_writer_id = (String)request.getSession().getAttribute("loginID");
+				String bcm_writer_nn = (String)request.getSession().getAttribute("loginNickname");
+				System.out.println("bcm_writer_id");
 
 				String bcm_content=request.getParameter("bcm_content");
 				int b_seq=Integer.parseInt(request.getParameter("b_seq"));
 				String b_title=request.getParameter("b_title");
-				int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,nickname,null,bcm_content,b_seq,b_title));
+				int result = BoardCommentDAO.getInstance().insertBoardComment(new BoardCommentDTO(0,bcm_writer_id, bcm_writer_nn,null,bcm_content,b_seq,b_title));
 
 
 				//         }else if(uri.equals("/selectBoardComment.boardcomment")) {
@@ -44,7 +51,10 @@ public class BoardCommentController extends HttpServlet {
 				//            request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
 
 			}else if(uri.equals("/updateBoardComment.boardcomment")) {
-
+//				if (request.getMethod().equals("GET")) {
+//					response.sendRedirect("/error.jsp");
+//					return;
+//				}
 				String bcm_content = request.getParameter("bcm_content");
 				int bcm_seq = Integer.parseInt(request.getParameter("bcm_seq"));
 				System.out.println(bcm_content +":"+ bcm_seq);
@@ -58,8 +68,6 @@ public class BoardCommentController extends HttpServlet {
 				int result = BoardCommentDAO.getInstance().deleteBoardComment(bcm_seq);
 				request.getRequestDispatcher("/selectBoardContents.board").forward(request, response);
 			}
-
-			
 
 
 		}catch(Exception e) {

@@ -34,14 +34,15 @@ public class BoardCommentDAO {
 
 	// 게시글 댓글 입력 (C)
 	public int insertBoardComment(BoardCommentDTO dto) throws Exception {
-		String sql = "insert into board_comment values(board_comment_seq.nextval, ?, sysdate, ?, ?,?)";
+		String sql = "insert into board_comment values(board_comment_seq.nextval, ?, ?, sysdate, ?, ?,?)";
 		try(Connection con = getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
-			pstat.setString(1, dto.getBcm_writer());
-			pstat.setString(2, dto.getBcm_content());
-			pstat.setInt(3, dto.getB_seq());
-			pstat.setString(4, dto.getB_title());
+			pstat.setString(1, dto.getBcm_writer_id());
+			pstat.setString(2, dto.getBcm_writer_nn());
+			pstat.setString(3, dto.getBcm_content());
+			pstat.setInt(4, dto.getB_seq());
+			pstat.setString(5, dto.getB_title());
 
 			int result = pstat.executeUpdate();
 
@@ -65,7 +66,8 @@ public class BoardCommentDAO {
 					BoardCommentDTO dto = new BoardCommentDTO();
 
 					dto.setBcm_seq(rs.getInt("bcm_seq"));
-					dto.setBcm_writer(rs.getString("bcm_writer"));
+					dto.setBcm_writer_id(rs.getString("bcm_writer_id"));
+					dto.setBcm_writer_nn(rs.getString("bcm_writer_nn"));
 					dto.setBcm_write_date(rs.getTimestamp("bcm_write_date"));
 					dto.setBcm_content(rs.getString("bcm_content"));
 					dto.setB_seq(rs.getInt("b_seq"));
@@ -110,18 +112,20 @@ public class BoardCommentDAO {
 	}
 
 	//마이페이지 작성 출력
-	public List <BoardCommentDTO> searchByNickname(String nickname) throws Exception{
-		String sql="select * from board_comment where bcm_writer=?";
+
+	public List <BoardCommentDTO> searchByID(String id) throws Exception{
+		String sql="select * from board_comment where bcm_writer_id=? order by bcm_write_date desc";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);     
 				){
-			pstat.setString(1, nickname);
+			pstat.setString(1, id);
 			try(ResultSet rs = pstat.executeQuery();){
 				List<BoardCommentDTO> list=new ArrayList<>();
 				while(rs.next()) {
 					BoardCommentDTO dto=new BoardCommentDTO();
 					dto.setBcm_seq(rs.getInt("bcm_seq"));
-					dto.setBcm_writer(rs.getString("bcm_writer"));
+					dto.setBcm_writer_id(rs.getString("bcm_writer_id"));
+					dto.setBcm_writer_nn(rs.getString("bcm_writer_nn"));
 					dto.setBcm_write_date(rs.getTimestamp("bcm_write_date"));
 					dto.setBcm_content(rs.getString("bcm_content"));
 					dto.setB_seq(rs.getInt("b_seq"));

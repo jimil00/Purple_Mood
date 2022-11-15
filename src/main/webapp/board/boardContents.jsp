@@ -94,7 +94,23 @@ div {
 
 
                 $(function () {
-
+                    $("#insertBoardComment").on("click", function(){
+                    	
+                        var bcm_content = $("#insertBcm_content").val();
+                         var b_seq = $("#b_seq").val();
+                         var b_title = $("#b_title").html();
+                         $.ajax({
+                             url: "/insertBoardComment.boardcomment",
+                             type: "post",
+                             data: {
+                                 "bcm_content": bcm_content,
+                                 "b_seq" : b_seq,
+                                 "b_title": b_title
+                             }
+                          })
+                         location.href="/selectBoardContents.board?b_seq="+b_seq;
+                         });
+                   
                     $(".updateBoardComment").on("click", function () {
                         $(this).closest(".boardComment").find(".bcm_content").attr("contenteditable","true");;
 
@@ -124,7 +140,7 @@ div {
 
                     })
                     $(document).on("click", ".updcmbtn", function () {
-                        let bcm_seq = $(this).closest(".boardComment").find(".bcm_content").attr("bcm_seq");
+                        let bcm_seq = $(this).closest(".boardComment").find(".bcm_seq").val();
                         let bcm_content = $(this).closest(".boardComment").find(".bcm_content").html();
                         console.log(bcm_seq + ":" + bcm_content);
                         $.ajax({
@@ -139,11 +155,11 @@ div {
                         })
 
                     })
+                    
 
                 })
             </script>
 </head>
-
 <body>
 	<div class="container">
 		<div class="b_contents">
@@ -152,7 +168,7 @@ div {
 				<div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title" size="129" contenteditable="false">${dto.b_title }</div>
 			</div>
 			<div class="row b_contents_header2">
-				<div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer}</div>
+				<div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer_nn}</div>
 				<div class="col-lg-4 col-md-4 col-sm-4">${dto.b_write_date}</div>
 				<div class="col-lg-2 col-md-2 col-sm-1">${dto.b_view_count }</div>
 			</div>
@@ -162,7 +178,7 @@ div {
 			</div>
 			<div class="row b_contents_footer">
 				<c:choose>
-					<c:when test="${loginNickname == dto.b_writer}">
+					<c:when test="${loginID == dto.b_writer_id}">
 						<div class="btns col-lg-12 col-md-12 col-sm-12">
 							<a href="/beforeUpdateBoardContents.board?b_seq=${dto.b_seq }"><button type="button" id="updateBoardContents" name="updateBoardContents">수정하기</button></a>&nbsp <a href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><button type="button" class="btn" id="deleteBoardContents" name="deleteBoardContents">삭제하기</button></a> &nbsp <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList" name="toList">목록으로</button></a>
 						</div>
@@ -170,6 +186,24 @@ div {
 					<c:otherwise>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<a href="#" id="insertBoardComplain">신고</a>
+							<script>
+                                    $("#insertBoardComplain").on("click", function () {
+                                        if (confirm("${dto.b_writer_nn}님의 글 ${dto.b_title}을 신고하시겠습니까?")) {
+                                            $.ajax({
+                                                url: "/insertBoardComplain.boardcomplain",
+                                                datatype: "post",
+                                                data: {
+                                                    "b_seq": "${dto.b_seq }",
+                                                    "b_writer_id":"${dto.b_writer_id}"
+                                                    "b_writer_nn": "${dto.b_writer_nn}",
+                                                    "b_title": "${dto.b_title}",
+                                                    "b_content": '${dto.b_content}'
+                                                }
+                                            })
+                                        }
+                                    });
+
+                                    </script>
 						</div>
 						<div class="btns col-lg-6 col-md-6 col-sm-6">
 							<a href="/boardList.board?cpage=${boardPage }"><button type="button" id="back" name="back">목록으로</button></a>
@@ -189,15 +223,15 @@ div {
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="comment" items="${list}">
-						<div class="row">
-							<input type="hidden" class="bcm_seq" name="bcm_seq" value="${comment.bcm_seq }">
-							<div class="bcm_writer col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer }</div>
+						<div class="row boardCommentHeader">
+							<div class="bcm_writer_nn col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer_nn }</div>
 							<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6" name="bcm_write_date">${comment.bcm_write_date }</div>
 						</div>
 						<div class="row boardComment">
-							<div class="bcm_content col-lg-9 col-md-9 col-sm-9" name="bcm_content" size="105" bcm_seq="${comment.bcm_seq }" contenteditable="false">${comment.bcm_content }</div>
+							<input type="hidden" class="bcm_seq" name="bcm_seq" value="${comment.bcm_seq }"> <input type="hidden" class="bcm_writer_id" name="bcm_writer_id" value="${comment.bcm_writer_id }">
+							<div class="bcm_content col-lg-9 col-md-9 col-sm-9" name="bcm_content" size="105" contenteditable="false">${comment.bcm_content }</div>
 							<c:choose>
-								<c:when test="${loginNickname == comment.bcm_writer}">
+								<c:when test="${loginID == comment.bcm_writer_id}">
 									<div class="cbtns col-lg-3 col-md-3 col-sm-3">
 										<button type="button" class="updateBoardComment" name="updateBoardComment">댓글수정</button>
 										&nbsp <a href="/deleteBoardComment.boardcomment?bcm_seq=${comment.bcm_seq }&b_seq=${dto.b_seq}">
@@ -207,8 +241,31 @@ div {
 								</c:when>
 								<c:otherwise>
 									<div class="col-lg-3 col-md-3 col-sm-3">
-										<a href="insertBoardCommentComplain.boardcommentcomplain">신고</a>
+										<a href="#" id="insertBoardCommentComplain">신고</a>
 									</div>
+									<script>
+                                                    let bcm_seq = $(this).closest(".boardCommentHeader").find(".bcm_seq").val();
+                                                    let bcm_writer_id = $(this).closest(".boardCommentHeader").find(".bcm_writer_id").val();
+                                                    let bcm_writer_nn = $(this).closest(".boardCommentHeader").find(".bcm_writer_nn").html();
+                                                    let bcm_content = $(this).closest(".boardComment").find(".bcm_content").html();
+                                                    let b_seq = $(this).closest(".bcm_contents").find(input).val();
+                                                    $("#insertBoardCommentComplain").on("click", function () {
+                                                    	let bcm_seq = $(this).closest(input).val()
+                                                        if (confirm("${comment.bcm_writer_nn}님의 댓글을 신고하시겠습니까?")) {
+                                                            $.ajax({
+                                                                url: "/insertBoardCommentComplain.boardcommentcomplain",
+                                                                datatype: "post",
+                                                                data: {
+                                                                    "bcm_seq": bcm_seq,
+                                                                    "bcm_writer_id" : bcm_writer_id,
+                                                                    "bcm_writer_nn": bcm_writer_nn,
+                                                                    "bcm_content": bcm_content,
+                                                                    "b_seq": b_seq
+                                                                }
+                                                            })
+                                                        }
+                                                    });
+</script>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -225,51 +282,6 @@ div {
 				</div>
 			</div>
 		</div>
-		<script>
-                    $("#insertBoardComplain").on("click", function () {
-                        if (confirm("${dto.b_writer}님의 글 ${dto.b_title}을 신고하시겠습니까?")) {
-                            $.ajax({
-                                url: "/insertBoardComplain.boardcomplain",
-                                datatype: "post",
-                                data: {
-                                    "b_seq": "${dto.b_seq }",
-                                    "b_writer": "${dto.b_writer}",
-                                    "b_title": "${dto.b_title}",
-                                    "b_content": '${dto.b_content}'
-                                }
-                            })
-                        }
-                    });
-                    $("#insertBoardCommentComplain").on("click", function () {
-                        if (confirm("${comment.bcm_writer}님의 댓글을 신고하시겠습니까?")) {
-                            $.ajax({
-                                url: "/insertBoardCommentComplain.boardcommentcomplain",
-                                datatype: "post",
-                                data: {
-                                    "bcm_seq": "${comment.bcm_seq }",
-                                    "bcm_writer": "${comment.bcm_writer}",
-                                    "bcm_content": "${comment.bcm_content}",
-                                    "b_seq": "${dto.b_seq}"
-                                }
-                            })
-                        }
-                    });
-                    $("#insertBoardComment").on("click", function(){
-                    	var bcm_content = $("#insertBcm_content").val();
-                        var b_seq = $("#b_seq").val();
-                        var b_title = $("#b_title").html();
-                        $.ajax({
-                            url: "/insertBoardComment.boardcomment",
-                            type: "post",
-                            data: {
-                                "bcm_content": bcm_content,
-                                "b_seq" : b_seq,
-                                "b_title": b_title
-                            }
-                         })
-                        location.href="/selectBoardContents.board?b_seq="+b_seq;
-                        });
-                </script>
 </body>
 
 </html>
