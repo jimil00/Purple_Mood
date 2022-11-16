@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.DramaDTO;
+import dto.MovieDTO;
 
 
 
@@ -547,5 +548,47 @@ public class DramaDAO {
 			return list;
 		}
 	}
+	
+	// 관리자페이지_드라마 전체 조회
+		public List<DramaDTO> selectAllDrama() throws Exception{
+			String sql = "select * from drama_test";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					ResultSet rs = pstat.executeQuery();){
+
+				List<DramaDTO> list = new ArrayList<>();
+				while(rs.next()) {
+
+					DramaDTO dto = new DramaDTO();
+					dto.setDr_id(rs.getInt("dr_id"));
+					dto.setDr_title(rs.getString("dr_title"));
+					dto.setDr_genre(rs.getString("dr_genre"));
+					dto.setDr_first_air_date(rs.getString("dr_genre"));	
+					dto.setDr_vote_average(rs.getString("dr_first_air_date"));
+					dto.setDr_ottNF((rs.getString("dr_ottNF").charAt(0))); 
+					dto.setDr_ottWV((rs.getString("dr_ottWV").charAt(0)));
+					dto.setDr_ottDZ((rs.getString("dr_ottDZ").charAt(0)));
+					dto.setDr_ottWC((rs.getString("dr_ottWC").charAt(0)));
+					dto.setDr_like(rs.getInt("dr_like"));
+					dto.setDr_poster_path(rs.getString("dr_poster_path"));
+					dto.setDr_overview(rs.getString("dr_overview"));
+
+					list.add(dto);
+				}
+				return list;
+			}
+		}
+		
+		// 관리자페이지_드라마 삭제
+		public int delete(int dr_id) throws Exception{
+			String sql = "delete from drama_test where dr_id = ?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, dr_id);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
 }
 

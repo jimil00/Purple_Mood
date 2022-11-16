@@ -155,7 +155,7 @@ public class ContentController extends HttpServlet {
 				request.setAttribute("dr_avg_n", dr_avg_n);
 				request.setAttribute("mv_avg_n", mv_avg_n);
 				
-				System.out.println(dr_date_n);
+				System.out.println(mv_date_n);
 
 				request.getRequestDispatcher("/content/Ott_ContentView.jsp").forward(request, response); 
 

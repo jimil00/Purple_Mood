@@ -14,7 +14,6 @@ public class BoardDTO {
 	private String b_content;
 	private int b_view_count;
 
-
 	public BoardDTO() {
 		super();
 	}
@@ -28,6 +27,8 @@ public class BoardDTO {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.b_view_count = b_view_count;
+		this.b_writer_id=b_writer_id;
+		this.b_writer_nn=b_writer_nn;
 	}
 
 
@@ -55,6 +56,8 @@ public class BoardDTO {
 	public void setB_writer_nn(String b_writer_nn) {
 		this.b_writer_nn = b_writer_nn;
 	}
+
+
 	public String getB_write_date() {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
 		String sdf1_b_write_date = sdf1.format(this.b_write_date);

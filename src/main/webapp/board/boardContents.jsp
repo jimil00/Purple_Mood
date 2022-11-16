@@ -1,93 +1,117 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-        <!DOCTYPE html>
-        <html>
+<!DOCTYPE html>
+<html>
 
-        <head>
-            <meta charset="UTF-8">
-            <title>summernoteselect</title>
-            <!-- include libraries(jQuery, bootstrap) -->
-            <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<head>
+<meta charset="UTF-8">
+<title>summernoteselect</title>
+<!-- include libraries(jQuery, bootstrap) -->
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-            <!-- include summernote css/js -->
-            <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
-            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
+<!-- include summernote css/js -->
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
 
-            <style>
-                @font-face {
-                    font-family: 'NotoSansKR';
-                    src: url('font/NotoSansKR-Black.otf') format('opentype')
-                }
+<style>
+@font-face {
+	font-family: 'NotoSansKR';
+	src: url('font/NotoSansKR-Black.otf') format('opentype')
+}
 
-                @font-face {
-                    font-family: 'J송명';
-                    src:
-                        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/JSongMyung-Regular-KO.woff2') format('woff2');
-                    font-weight: normal;
-                    font-style: normal;
-                }
+@font-face {
+	font-family: 'J송명';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/JSongMyung-Regular-KO.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
 
-                @font-face {
-                    font-family: '교보손글씨';
-                    src:
-                        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff') format('woff');
-                    font-weight: normal;
-                    font-style: normal;
-                }
+@font-face {
+	font-family: '교보손글씨';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
-                @font-face {
-                    font-family: '빙그레싸만코체';
-                    src:
-                        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff') format('woff');
-                    font-weight: normal;
-                    font-style: normal;
-                }
+@font-face {
+	font-family: '빙그레싸만코체';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/BinggraeSamanco-Bold.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
-                @font-face {
-                    font-family: '주아체';
-                    src:
-                        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
-                    font-weight: normal;
-                    font-style: normal;
-                }
+@font-face {
+	font-family: '주아체';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
-                @font-face {
-                    font-family: '한림고딕체';
-                    src:
-                        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2') format('woff2');
-                    font-weight: 400;
-                    font-style: normal;
-                }
+@font-face {
+	font-family: '한림고딕체';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymGothic-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
 
-                @font-face {
-                    font-family: '둥근모꼴체';
-                    src:
-                        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
-                    font-weight: normal;
-                    font-style: normal;
-                }
+@font-face {
+	font-family: '둥근모꼴체';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
-                * {
-                    box-sizing: border-box;
-                }
+* {
+	box-sizing: border-box;
+    /* color: white; */
+}
 
-                div {
-                    border: 1px solid black;
-                }
+/* body{background-color: #03001e;} */
 
-                .b_contents,
-                .bcm_contents {
-                    overflow: hidden;
-                }
-            </style>
-            <script>
-
-
+div {
+	border: 1px solid black;
+}
+.b_contents, .bcm_contents {
+	overflow: hidden;
+}
+.b_contents{margin-top:20px;}
+.b_contents_header1{margin-left:100px; text-align:center;}
+#b_category{width:20%;}
+#b_title{width:70%;}
+#b_writer{width: 38%;}
+#b_write_date{width: 38%;}
+#b_view_count{width: 23%;}
+#bcm_writer{width:23%}
+</style>
+<script>
                 $(function () {
                     $("#insertBoardComment").on("click", function(){
                     	
@@ -133,7 +157,8 @@
                         $(this).closest(".cbtns").append(btnUpdateBComment);
                         $(this).closest(".cbtns").append(btnCancelBCommentU);
 
-                    })
+                    });
+
                     $(document).on("click", ".updcmbtn", function () {
                         let bcm_seq = $(this).closest(".boardComment").find(".bcm_seq").val();
                         let bcm_content = $(this).closest(".boardComment").find(".bcm_content").html();
@@ -154,8 +179,6 @@
 
                 })
             </script>
-        </head>
-
         <body>
             <div class="container">
                 <div class="b_contents">
@@ -212,16 +235,16 @@
                                     });
 
                                     </script>
-                                </div>
-                                <div class="btns col-lg-6 col-md-6 col-sm-6">
-                                    <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="back"
-                                            name="back">목록으로</button></a>
-                                </div>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                </div>
+						</div>
+						<div class="btns col-lg-6 col-md-6 col-sm-6">
+							<a href="/boardList.board?cpage=${boardPage }"><button type="button" id="back" name="back">목록으로</button></a>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
 
+<<<<<<< HEAD
                 <div class="bcm_contents">
                     <input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
                     <c:choose>
@@ -264,6 +287,39 @@
                                             <div class="col-lg-3 col-md-3 col-sm-3"><a
                                                     href="#" id="insertBoardCommentComplain" >신고</a></div>
                                                     <script>
+=======
+		<div class="bcm_contents">
+			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
+			<c:choose>
+				<c:when test="${empty list}">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">댓글이 없습니다.</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="comment" items="${list}">
+						<div class="row boardCommentHeader">
+							<div class="bcm_writer_nn col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer_nn }</div>
+							<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6" name="bcm_write_date">${comment.bcm_write_date }</div>
+						</div>
+						<div class="row boardComment">
+							<input type="hidden" class="bcm_seq" name="bcm_seq" value="${comment.bcm_seq }"> <input type="hidden" class="bcm_writer_id" name="bcm_writer_id" value="${comment.bcm_writer_id }">
+							<div class="bcm_content col-lg-9 col-md-9 col-sm-9" name="bcm_content" size="105" contenteditable="false">${comment.bcm_content }</div>
+							<c:choose>
+								<c:when test="${loginID == comment.bcm_writer_id}">
+									<div class="cbtns col-lg-3 col-md-3 col-sm-3">
+										<button type="button" class="updateBoardComment" name="updateBoardComment">댓글수정</button>
+										&nbsp <a href="/deleteBoardComment.boardcomment?bcm_seq=${comment.bcm_seq }&b_seq=${dto.b_seq}">
+											<button type="button" class="deleteBoardComment" name="deleteBoardComment">댓글삭제</button>
+										</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="col-lg-3 col-md-3 col-sm-3">
+										<a href="#" id="insertBoardCommentComplain">신고</a>
+									</div>
+									<script>
+>>>>>>> 616c305dc611d2814250766556698c514c015dad
                                                     let bcm_seq = $(this).closest(".boardCommentHeader").find(".bcm_seq").val();
                                                     let bcm_writer_id = $(this).closest(".boardCommentHeader").find(".bcm_writer_id").val();
                                                     let bcm_writer_nn = $(this).closest(".boardCommentHeader").find(".bcm_writer_nn").html();
@@ -286,6 +342,7 @@
                                                         }
                                                     });
 </script>
+<<<<<<< HEAD
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -302,6 +359,26 @@
                         </div>
                 </div>
         
+=======
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			<div class="row insertBcm">
+				<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
+				<div class="col-lg-9 col-md-9 col-sm-9" class=>
+					<input type="text" id="insertBcm_content" name="insertBcm_content" placeholder="내용을 입력하세요." style="border: none; width: 100%;">
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3">
+					<button id="insertBoardComment">댓글작성</button>
+				</div>
+			</div>
+		</div>
+</body>
+
+>>>>>>> 616c305dc611d2814250766556698c514c015dad
         </body>
 
-        </html>
+</html>

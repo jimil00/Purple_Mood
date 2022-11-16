@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,18 +6,9 @@
 <meta charset="UTF-8">
 <title>SignIn</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-	crossorigin="anonymous"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
 <style>
 * {
 	box-sizing: border-box;
@@ -53,9 +43,11 @@ body {
 	left: 50%;
 	transform: translateX(-50%);
 }
-#logoimg:hover{
-cursor: pointer;
+
+#logoimg:hover {
+	cursor: pointer;
 }
+
 .logintextbox {
 	padding: 0px;
 	text-align: center;
@@ -71,7 +63,7 @@ cursor: pointer;
 	color: #c4c4c4;
 }
 
-.idtext,.pwtext {
+.idtext, .pwtext {
 	width: 92%;
 	height: 100%;
 	border: none;
@@ -131,17 +123,14 @@ input:focus {
 	<c:choose>
 		<c:when test="${result==false }">
 			<form action="/signin.member" method="post">
-				<div class="container w-50"
-					style="min-width: 350px; max-width: 400px;">
+				<div class="container w-50" style="min-width: 350px; max-width: 400px;">
 					<div class="logo row">
 						<img src="/img/logo.png" id="logoimg">
 					</div>
 					<div class="loginbox row">
 						<div class="logintextbox col-12">
 							<div class="col-12 idtextbox">
-								<i class="fa-solid fa-user idicon"></i>
-								<input type="text" name="id" class="idtext" placeholder="아이디"
-									value="${id }">
+								<i class="fa-solid fa-user idicon"></i> <input type="text" name="id" class="idtext" placeholder="아이디" value="${id }">
 							</div>
 							<div class="col-12 pwtextbox">
 								<i class="fa-solid fa-unlock-keyhole pwicon"></i>
@@ -173,16 +162,14 @@ input:focus {
 		</c:when>
 		<c:otherwise>
 			<form action="/signin.member" method="post">
-				<div class="container w-50"
-					style="min-width: 350px; max-width: 400px;">
+				<div class="container w-50" style="min-width: 350px; max-width: 400px;">
 					<div class="logo row">
 						<img src="/img/logo.png" id="logoimg">
 					</div>
 					<div class="loginbox row">
 						<div class="logintextbox col-12">
 							<div class="col-12 idtextbox">
-								<i class="fa-solid fa-user idicon"></i>
-								<input type="text" name="id" class="idtext" placeholder="아이디">
+								<i class="fa-solid fa-user idicon"></i> <input type="text" name="id" class="idtext" placeholder="아이디">
 							</div>
 							<div class="col-12 pwtextbox">
 								<span><i class="fa-solid fa-unlock-keyhole pwicon"></i></span>

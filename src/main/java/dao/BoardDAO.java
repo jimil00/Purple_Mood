@@ -13,28 +13,28 @@ import javax.sql.DataSource;
 import dto.BoardDTO;
 
 public class BoardDAO {
-	private static BoardDAO instance;
-	synchronized public static BoardDAO getInstance() {
-		if(instance == null) {
-			instance = new BoardDAO();
-		}
-		return instance;
-	}
+   private static BoardDAO instance;
+   synchronized public static BoardDAO getInstance() {
+      if(instance == null) {
+         instance = new BoardDAO();
+      }
+      return instance;
+   }
 
-	private BoardDAO() {}
-	private Connection getConnection() throws Exception{
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
-		return ds.getConnection();
-	}
+   private BoardDAO() {}
+   private Connection getConnection() throws Exception{
+      Context ctx = new InitialContext();
+      DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+      return ds.getConnection();
+   }
 
-	//editor
-	//	public String removeHTML(String str) throws Exception {
-	//		String editedText=str.replace("/<br\/>/ig", "\n");
-	//	}
+   //editor
+   //   public String removeHTML(String str) throws Exception {
+   //      String editedText=str.replace("/<br\/>/ig", "\n");
+   //   }
 
-	// 게시글 작성 (C)
-	public int insertBoardContents(BoardDTO dto) throws Exception{
+   // 게시글 작성 (C)
+   public int insertBoardContents(BoardDTO dto) throws Exception{
 
 		String sql = "insert into board values(?, ?, ?, ?, sysdate, ?, ?, 0)";
 		//							파일 기능 추가시 ?
@@ -48,42 +48,40 @@ public class BoardDAO {
 			pstat.setString(5, dto.getB_title());
 			pstat.setString(6, dto.getB_content());
 
+         int result = pstat.executeUpdate();
 
-			int result = pstat.executeUpdate();
-
-			con.commit();
-			return result;
-		}
-	}
-
-
-	// 게시글 번호 미리 받아두기
-	public int getBoardNextVal() throws Exception{
-
-		String sql = "select board_seq.nextval from dual";
-
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				ResultSet rs = pstat.executeQuery();){
-
-			rs.next();
-			return rs.getInt(1);
-		}
-	}
+         con.commit();
+         return result;
+      }
+   }
 
 
-	// 게시글 출력 (R)
-	public BoardDTO selectBoardContents(int b_seq) throws Exception {
+   // 게시글 번호 미리 받아두기
+   public int getBoardNextVal() throws Exception{
 
-		String sql = "select * from board where b_seq = ?";
+      String sql = "select board_seq.nextval from dual";
 
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
+      try(Connection con = this.getConnection();
+            PreparedStatement pstat = con.prepareStatement(sql);
+            ResultSet rs = pstat.executeQuery();){
 
-			pstat.setInt(1, b_seq);
+         rs.next();
+         return rs.getInt(1);
+      }
+   }
 
-			try(ResultSet rs = pstat.executeQuery();){
 
+   // 게시글 출력 (R)
+   public BoardDTO selectBoardContents(int b_seq) throws Exception {
+
+      String sql = "select * from board where b_seq = ?";
+
+      try(Connection con = this.getConnection();
+            PreparedStatement pstat = con.prepareStatement(sql);){
+
+         pstat.setInt(1, b_seq);
+
+         try(ResultSet rs = pstat.executeQuery();){
 				rs.next();
 				BoardDTO dto = new BoardDTO();
 				dto.setB_seq(rs.getInt("b_seq"));
@@ -100,10 +98,10 @@ public class BoardDAO {
 	}
 
 
-	// 게시글 수정 (U)
-	public int updateBoardContents(String b_category, String b_title, String b_content, int b_seq) throws Exception{
+   // 게시글 수정 (U)
+   public int updateBoardContents(String b_category, String b_title, String b_content, int b_seq) throws Exception{
 
-		String sql = "update board set b_write_date=sysdate, b_category=?, b_title=?, b_content=? where b_seq=?";
+      String sql = "update board set b_write_date=sysdate, b_category=?, b_title=?, b_content=? where b_seq=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
@@ -506,5 +504,4 @@ public class BoardDAO {
 
 
 }
-
 
