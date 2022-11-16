@@ -154,7 +154,13 @@ public class MemberController extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// GET 요청 시 에러페이지로 넘김
+		   if (request.getMethod().equals("GET")) {
+		      response.sendRedirect("/error.jsp");
+		      return;
+		   }
 		doGet(request, response);
+		
 	}
 
 }
