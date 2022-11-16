@@ -19,7 +19,9 @@ public class BoardComplainController extends HttpServlet {
 
 		String uri = request.getRequestURI();
 		System.out.println("요청 URI : " + uri);
-
+		String loginID = (String)request.getSession().getAttribute("loginID");
+		System.out.println(loginID);
+		if (loginID != null) {
 
       try {
          if(uri.equals("/insertBoardComplain.boardcomplain")) {
@@ -45,6 +47,10 @@ public class BoardComplainController extends HttpServlet {
 		response.sendRedirect("/error.jsp");
 
 	}
+		}else {
+			response.sendRedirect("/error.jsp");
+
+		}
 	}
 
 
