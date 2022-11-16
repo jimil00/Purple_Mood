@@ -332,7 +332,7 @@ hr.hr {
 </head>
 <body>
 	<div class="containers">
-		<div class="row header fixed-top" id="Header">
+		<div class="row header fixed-top">
 			<div class="col-12 col-md-7 col-lg-8" id="logo">
 				<img src="/img/title.png" id="titleimg">
 			</div>
