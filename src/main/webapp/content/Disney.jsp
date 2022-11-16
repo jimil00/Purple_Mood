@@ -473,7 +473,7 @@ button {
 					</div>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
-						<a href="#">
+						<a href="/memberOutput.manager">
 							<button>관리자페이지</button>
 						</a>
 					</div>

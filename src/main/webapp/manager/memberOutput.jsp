@@ -80,7 +80,7 @@ button {
 	<div class="container">
 		<div class="header">
 			<div>
-				관리자 페이지 <a href="index.jsp"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
+				관리자 페이지 <a href="/main"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
 			</div>
 		</div>
 		<div class="navi">
