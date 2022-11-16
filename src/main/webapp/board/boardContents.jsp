@@ -100,7 +100,7 @@
                              data: {
                                  "bcm_content": bcm_content,
                                  "b_seq" : b_seq,
-                                 "b_title": b_title
+                                 "b_title":b_title
                              }
                           })
                          location.href="/selectBoardContents.board?b_seq="+b_seq;
@@ -163,11 +163,14 @@
                         <div class="col-lg-4 col-md-4 col-sm-4">${dto.b_category}</div>
                         <div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title" size="129"
                             contenteditable="false"> ${dto.b_title }</div>
+                            <script>
+                            $("#b_title").text($("#b_title").html());
+                            </script>
                     </div>
                     <div class="row b_contents_header2">
                         <div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer_nn}</div>
                         <div class="col-lg-4 col-md-4 col-sm-4">${dto.b_write_date}</div>
-                        <div class="col-lg-2 col-md-2 col-sm-1">${dto.b_view_count }</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">${dto.b_view_count }</div>
                     </div>
 
                     <div class="row b_contents_body">
@@ -182,7 +185,7 @@
                                     <a href="/beforeUpdateBoardContents.board?b_seq=${dto.b_seq }"><button type="button"
                                             id="updateBoardContents" name="updateBoardContents">수정하기</button></a>&nbsp
                                     <a href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><button type="button"
-                                            class="btn" id="deleteBoardContents"
+                                            id="deleteBoardContents"
                                             name="deleteBoardContents">삭제하기</button></a> &nbsp
                                     <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList"
                                             name="toList">목록으로</button></a>
@@ -242,6 +245,9 @@
                                     <div class="bcm_content col-lg-9 col-md-9 col-sm-9" name="bcm_content" size="105"
                                       contenteditable="false">${comment.bcm_content }
                                     </div>
+                                                                <script>
+                            $(".bcm_content").text($(".bcm_content").html());
+                            </script>
                                     <c:choose>
                                         <c:when test="${loginID == comment.bcm_writer_id}">
                                             <div class="cbtns col-lg-3 col-md-3 col-sm-3">
@@ -290,12 +296,12 @@
                             <input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
                             <div class="col-lg-9 col-md-9 col-sm-9" class=>
                                 <input type="text" id="insertBcm_content" name="insertBcm_content"
-                                    placeholder="내용을 입력하세요." style="border:none; width:100%;">
+                                    placeholder="내용을 입력하세요." maxlength="300" style="border:none; width:100%;">
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3"><button id="insertBoardComment">댓글작성</button></div>
                         </div>
                 </div>
-
+        
         </body>
 
         </html>

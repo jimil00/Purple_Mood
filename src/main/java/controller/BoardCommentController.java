@@ -25,6 +25,8 @@ public class BoardCommentController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		String uri=request.getRequestURI();
 		System.out.println(uri);
+		String loginID = (String)request.getSession().getAttribute("loginID");
+		if (loginID != null) {
 
 		try {
 			if(uri.equals("/insertBoardComment.boardcomment")) {
@@ -73,6 +75,10 @@ public class BoardCommentController extends HttpServlet {
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
+		}
+		}else {
+			response.sendRedirect("/error.jsp");
+
 		}
 	}
 

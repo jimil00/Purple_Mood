@@ -29,7 +29,7 @@
 #boardWriteBtn {
 	float: right;
 }
-컹
+
 #b_content {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -202,7 +202,12 @@ a {
 											<div class="row">
 												<div class="contentTitle col-12">
 													<a href="/selectBoardContents.board?b_seq=${board.b_seq}"
-														style="text-decoration: none">${board.b_title}</a>
+														 style="text-decoration: none">
+														 <div id="b_title">${board.b_title}</div>
+														 													<script>
+                            						$("#b_title").text($("#b_title").html());
+                            						</script></a>
+
 												</div>
 											</div>
 											<div class="row">

@@ -18,10 +18,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
 
     <style>
-        @font-face {
-            font-family: 'NotoSansKR';
-            src: url('font/NotoSansKR-Black.otf') format('opentype')
-        }
 
         @font-face {
             font-family: 'J송명';
@@ -105,9 +101,9 @@
                 lang: 'ko-KR',
                 height: 400,
                 placeholder: "내용을 입력해주세요.",
-                fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+                fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
                 // addDefaultFonts: false,
-                fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+                fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
                 callbacks: {
                     onImageUpload: function (image) {
                         console.log("works")
@@ -135,21 +131,37 @@
                     }
                 }
             });
-            $('#summernote').summernote('fontName', '둥근모꼴체');
+//             $('#summernote').summernote('fontName', '둥근모꼴체');
 
+            $('#updateBoardContents').on('click', function () {
+                if(saveContent()){
+                location.href = "/selectBoardContents.board?b_seq=${dto.b_seq}";
+                }
+
+            });
 
             function saveContent() {
 
                 //값 가져오기
                 var summernoteContent = $('#summernote').summernote('code');        //썸머노트(설명)
-                console.log("summernoteContent : " + summernoteContent);
                 var b_seq = $("#b_seq").val();
                 var b_category = $("#b_category").val();
-                var b_title = $("#b_title").html();
+                var b_title = $("#b_title").val();
+                
+            	if(b_title==""){
+        			alert('제목을 입력해주세요.');
+        			return false;
+            	}
+            	if ($('#summernote').summernote('isEmpty')) {
+            		  alert("내용을 입력해주세요.");
+          			return false;
+
+            	}
 
                 $.ajax({
                     url: "/updateBoardContents.board",
                     type: "post",
+                    async:false,
                     data: {
                         "b_seq": b_seq,
                         "b_category": b_category,
@@ -157,13 +169,9 @@
                         "b_content": summernoteContent
                     }
                 });
+                return true;
             };
-            $('#updateBoardContents').on('click', function () {
-                saveContent();
-                location.href = "/selectBoardContents.board?b_seq=${dto.b_seq}";
 
-
-            });
         });
     </script>
 </head>
@@ -186,18 +194,18 @@
 
                 </div>
                 <div class="title">
-                    <div class="headerTitle">제목</div>
-                <div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title" contenteditable="true"> ${dto.b_title }</div>
-
+                    <div class="headerTitle col-lg-4 col-md-4 col-sm-4">제목</div>
+                	<div class="b_title col-lg-8 col-md-8 col-sm-8">
+                	   <input type="text" id="b_title" name="b_title" value="${dto.b_title }" placeholder="제목을 입력해주세요." maxlength="99" style="border:none; width:100%;">
+                	</div>
                 </div>
             </div>
             <div class="row body">
-                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">${dto.b_content }
-                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">${dto.b_content}</div>
             </div>
             <div class="row footer">
                 <div class="btns col-lg-12 col-md-12 col-sm-12">
-                    <button type="button" class="btn" id="updateBoardContents"
+                    <button type="button" id="updateBoardContents"
                         name="updateBoardContents">수정하기</button>&nbsp
                     <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList" name="toList">목록으로</button></a>
                 </div>
