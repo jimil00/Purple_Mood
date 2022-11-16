@@ -25,12 +25,13 @@
 
 * {
 	box-sizing: border-box;
-/* 	font-family: 'DungGeunMo'; */
+	/* 	font-family: 'DungGeunMo'; */
 	color: black;
 	margin: auto;
 }
-body{
-background-color: #03001e;
+
+body {
+	background-color: #03001e;
 }
 
 .modifyForm {
@@ -51,7 +52,6 @@ input {
 #email {
 	width: 200px;
 }
-
 
 .selectOption {
 	height: 30px;
@@ -116,16 +116,26 @@ input {
 /* div {
 	border: 1px solid black;
 } */
-
-.dongfont{
-font-family: 'DungGeunMo'; 
+.dongfont {
+	font-family: 'DungGeunMo';
 }
 </style>
 <script>
 	$(function() {
 		//    window.onload와 같다
 		$("#modify").on("click", function() {
-			$("input").removeAttr("readonly");
+			$("#nickname").removeAttr("disabled");
+			$("#pw").removeAttr("disabled");
+			$("#checkpw").removeAttr("disabled");
+			$("#name").removeAttr("disabled");
+			$("#phone").removeAttr("disabled");
+			$("#email").removeAttr("disabled");
+			$("#postcode").removeAttr("disabled");
+			$("#address1").removeAttr("disabled");
+			$("#address2").removeAttr("disabled");
+			$("#btnsearch").removeAttr("disabled");
+			$("#emailAddress").removeAttr("disabled");
+
 			$("#modify").css("display", "none");
 			let btnModify = $("<button>");
 			btnModify.text("수정완료");
@@ -165,46 +175,47 @@ font-family: 'DungGeunMo';
 				<div class="nickname col-12">
 					<span class="dongfont">닉네임<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="nickname" id="nickname"
-									placeholder="2~8자 영문 대 소문자,한글" readonly value="${dto.nickname}">
+								<input type="text" name="nickname" id="nickname" maxlength="9"
+									placeholder="2~8자 영문 대 소문자,한글" disabled value="${dto.nickname}">
 								<div id="duplResultNickname"></div>
 							</div>
 				</div>
 				<div class="pw col-12">
 					<span class="dongfont">패스워드<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="password" name="pw" id="pw"
-									placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)" readonly>
+								<input type="password" name="pw" id="pw" maxlength="16"
+									placeholder="8~16자 영문 대 소문자,숫자,특수문자(~!@#$%)" disabled>
 							</div>
 				</div>
 				<div class="pwcheck col-12">
 					<span class="dongfont">패스워드 확인</span>
 					<div class="margin_top col-12">
-						<input type="password" id="checkpw" readonly>
+						<input type="password" id="checkpw" disabled maxlength="16">
 						<div id="result"></div>
 					</div>
 				</div>
 				<div class="name col-12">
 					<span class="dongfont">이름<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="name" id="name" placeholder="2~5자 한글"
-									value="${dto.name}" readonly>
+								<input type="text"  name="name" id="name" placeholder="2~5자 한글"
+								maxlength="5"
+									value="${dto.name}" disabled >
 							</div>
 				</div>
 				<div class="phone col-12">
 					<span class="dongfont">전화번호<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="phone" id="phone" placeholder="숫자만 입력"
-									value="${dto.phone}" readonly>
+								<input type="text" maxlength="11" name="phone" id="phone" placeholder="숫자만 입력"
+									value="${dto.phone}" disabled>
 							</div>
 				</div>
 				<div class="email col-12">
 					<span class="dongfont">이메일<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="email" id="email"
-									placeholder="영어 대 소문자, 숫자" value="${dto.email}" readonly>
+								<input type="text" name="email" id="email" maxlength="20"
+									placeholder="영어 대 소문자, 숫자" value="${dto.email}" disabled>
 								@ <select id="emailAddress" name="emailAddress"
-									class="selectOption">
+									class="selectOption" disabled>
 									<option value="gmail.com">gmail.com</option>
 									<option value="naver.com">naver.com</option>
 									<option value="hanmail.net">hanmail.net</option>
@@ -214,34 +225,34 @@ font-family: 'DungGeunMo';
 				</div>
 				<div class="postcode col-12">
 					<div class="col-12">
-						<span class="dongfont">우편번호</span>&nbsp&nbsp<input type="button"
+						<span class="dongfont">우편번호</span>&nbsp&nbsp<input type="button" 
 							onclick="postcode()" value="우편번호 찾기" id="btnsearch"
-							style="width: 100px;" readonly>
+							style="width: 100px;" disabled>
 					</div>
 					<div class="margin_top col-12">
-						<input type="text" name="postcode" id="postcode" 
-							placeholder="우편번호" value="${dto.postcode}" readonly>
+						<input type="text" name="postcode" id="postcode" maxlength="7" 
+							placeholder="우편번호" value="${dto.postcode}" disabled>
 					</div>
 				</div>
 				<div class="address1 col-12">
 					<span class="dongfont">주소</span>
 					<div class="margin_top col-12">
-						<input type="text" name="address1" id="address1" placeholder="주소"
-							value="${dto.address1}" readonly>
+						<input type="text" name="address1" id="address1" placeholder="주소" maxlength="65"
+							value="${dto.address1}" disabled>
 					</div>
 				</div>
 				<div class="address2 col-12">
 					<span class="dongfont">상세주소</span>
 					<div class="margin_top col-12">
-						<input type="text" name="address2" id="address2"
-							placeholder="상세주소" value="${dto.address2}" readonly>
+						<input type="text" name="address2" id="address2" maxlength="65"
+							placeholder="상세주소" value="${dto.address2}" disabled>
 					</div>
 				</div>
 				<div class="footer col-12">
 					<div class="btns">
 						<input type="button" class="btn dongfont" id="modify" value="수정하기">
-						<a href="/member/mypage.jsp"><input type="button" class="btn dongfont" id="back"
-							value="마이페이지"></a>
+						<a href="/member/mypage.jsp"><input type="button"
+							class="btn dongfont" id="back" value="마이페이지"></a>
 					</div>
 				</div>
 
@@ -316,20 +327,22 @@ font-family: 'DungGeunMo';
 		$("#frm").on(
 				"submit",
 				function() {
+
+					if ($("#id").val() == "" || $("#pw").val() == ""
+							|| $("#name").val() == ""
+							|| $("#nickname").val() == ""
+							|| $("#phone").val() == ""
+							|| $("#email").val() == "") {
+						alert("아이디, 패스워드, 이름, 닉네임, 전화번호, 이메일은 필수입력값입니다.");
+						return false;
+					}
+
 					if (!nicknameCheck) {
 						alert("닉네임 중복체크를 먼저 수행해주세요.");
 						return false;
 					}
 					if (!pwCheck) {
 						alert("두 패스워드가 일치하지 않습니다.");
-						return false;
-					}
-					if ($("#id").val() == "" || $("#pw").val() == ""
-							|| $("#name").val() == ""
-							|| $("#nickname").val() == ""
-							|| $("#phone").val() == ""
-							|| $("#email").val() == "") {
-						alert("아이디, 패스워드, 이름은 필수입력값입니다.");
 						return false;
 					}
 					let nicknameRegex = /^[가-힣a-zA-Z]{2,8}$/; //2~8자 한글만 가능

@@ -36,9 +36,6 @@ public class BoardController extends HttpServlet {
 			System.out.println("요청 URI : " + uri);
 
 
-
-
-
 				//게시판 리스트 출력 (R)
 				if(uri.equals("/boardList.board")) {
 
@@ -58,10 +55,8 @@ public class BoardController extends HttpServlet {
 					request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 
 
-
 					// 게시판 검색 리스트 출력 (R)
 				}else if(uri.equals("/boardSearchList.board")) {
-
 					String boardSearchOption=request.getParameter("boardSearchOption");
 					String boardSearchWord = request.getParameter("boardSearchWord");
 					int cpage = Integer.parseInt(request.getParameter("cpage"));

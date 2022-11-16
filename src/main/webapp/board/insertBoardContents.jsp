@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%String keyword = request.getParameter("keyword"); %>
 keyword = keyword.replaceAll("&","&amp;");
 keyword = keyword.replaceAll("<","&lt;");
@@ -155,14 +155,14 @@ keyword = keyword.replaceAll(">","&gt;");
             var b_title = $("#b_title").val();
             
             
-        	if(b_title==""){
-    			alert('제목을 입력해주세요.');
+           if(b_title==""){
+             alert('제목을 입력해주세요.');
                 return false;
-        	}
-        	if ($('#summernote').summernote('isEmpty')) {
-        		  alert("내용을 입력해주세요.");
-        		  return false;
-        		}
+           }
+           if ($('#summernote').summernote('isEmpty')) {
+                alert("내용을 입력해주세요.");
+                return false;
+              }
 
             $.ajax({
                 url: "/insertBoardContents.board",

@@ -11,42 +11,42 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 @font-face {
-	font-family: 'DungGeunMo';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
+   font-family: 'DungGeunMo';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
 }
 .boardWrite {
-	float: hidden;
+   float: hidden;
 }
 
 .boardSearch {
-	text-align: center;
+   text-align: center;
 }
 
 #boardWriteBtn {
-	float: right;
+   float: right;
 }
 
 #b_content {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 * {
-	text-align: center;
+   text-align: center;
 }
 
 body {
-	background-color: #03001e;
+   background-color: #03001e;
 }
 
 .header {
-	height: 100px;
-	color: white;
+   height: 100px;
+   color: white;
 }
 
 .boardTitle {
@@ -63,22 +63,22 @@ body {
 }
 
 .boardTitle, .theader, .content, #insertBoardContentsBtn,
-	.boardListSearch, .boardListSearch, .navi *, .boardListSearch * {
-	font-family: 'DungGeunMo';
+   .boardListSearch, .boardListSearch, .navi *, .boardListSearch * {
+   font-family: 'DungGeunMo';
 }
 
 .boardContainer {
-	width: 50%;
-	margin: 20px auto;
-	background-color: white;
-	text-decoration: none !important;
-	border-radius: 7px;
+   width: 50%;
+   margin: 20px auto;
+   background-color: white;
+   text-decoration: none !important;
+   border-radius: 7px;
 }
 
 .board {
-	overflow: hidden;
-	text-decoration: none !important;
-	border-radius: 7px;
+   overflow: hidden;
+   text-decoration: none !important;
+   border-radius: 7px;
 }
 
 .board {
@@ -102,8 +102,8 @@ body {
 }
 
 .content {
-	overflow: hidden;
-	color: #03001e;
+   overflow: hidden;
+   color: #03001e;
 }
 
 .contentTitle {
@@ -127,41 +127,41 @@ body {
 }
 
 .boardListSearch {
-	margin-top: 10px;
-	margin-bottom: -5px;
+   margin-top: 10px;
+   margin-bottom: -5px;
 }
 
 a {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 .content *, .theader>div {
-	color: #03001e;
+   color: #03001e;
 }
 
 #insertBoardContentsBtn {
-	width: 100px;
-	height: 30px;
+   width: 100px;
+   height: 30px;
 }
 
 .boardListSearch button {
-	width: 70px;
-	height: 30px;
+   width: 70px;
+   height: 30px;
 }
 
 #boardSearchWord {
-	width: 170px;
-	height: 23px;
+   width: 170px;
+   height: 23px;
 }
 
 #boardSearchOption {
-	width: 70px;
-	height: 30px;
+   width: 70px;
+   height: 30px;
 }
 
 .navi * {
-	color: #03001e;
-	text-decoration: none;
+   color: #03001e;
+   text-decoration: none;
 }
 </style>
 </head>
