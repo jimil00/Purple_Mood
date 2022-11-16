@@ -78,10 +78,6 @@
 	font-style: normal;
 }
 
-div {
-	border: 1px solid;
-}
-
 .header, .footer {
 	background-color: #03001e;
 }
@@ -89,18 +85,10 @@ div {
 .header {
 	font-family: '둥근모꼴체';
 	color: #03001e;
-	overflow: hidden;
 }
 
 .headerTitle {
 	color: #fdeff9;
-	float: left;
-	font-size: larger;
-	overflow: hidden;
-}
-
-#b_category {
-	font-size: larger;
 }
 
 /* 추가한부분 */
@@ -135,11 +123,6 @@ body {
 	background-color: #03001e;
 	margin-bottom: 20px;
 }
-
-.headera{
-	height: 200px;
-}
-
 
 #logo, #titleimg {
 	height: 100%;
@@ -322,7 +305,6 @@ hr.hr {
 	margint-top: 15px;
 	color: white;
 	background-color: white;
-	text-align: right;
 }
 
 #editor {
@@ -332,18 +314,6 @@ hr.hr {
 
 .note-toolbar * {
 	color: black;
-}
-
-.boardTitle {
-	heigth: 50px;
-	text-align: center;
-	line-height: 45px;
-	font-size: 40px;
-	font-weight: bold;
-	color: white;
-	text-decoration: underline;
-	text-decoration-thickness: 3px;
-	text-underline-position: under;
 }
 </style>
 
@@ -424,7 +394,7 @@ hr.hr {
 				<img src="/img/title.png" id="titleimg">
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
-				<input type="text" class="searchboxin" id="searchtext" onkeyup="enterkey()" name="searchtext" /> <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn" style="color: white;"></i>
+				<input type="text" class="searchboxin" id="searchtext" onkeyup="enterkey()" name="searchtext" /> <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn" style="color: white;"></i></a>
 			</div>
 			<script>
                     $("#titleimg").on("click", function () {
@@ -449,13 +419,9 @@ hr.hr {
 		<div class="row header"></div>
 		<div class="row content"></div>
 		<div class="insertBoardContents col-12">
-			<div class="row headera">
-				<div class="">
-					<a href="/boardList.board?cpage=1"><div class="boardTitle col-12">영화/드라마 게시판</div></a>
-
-				</div>
+			<div class="row header">
 				<div class="category col-12">
-					<div class="headerTitle" style="width: 7%;">카테고리</div>
+					<div class="headerTitle">카테고리</div>
 					<div>
 						<select id="b_category" name="b_category">
 							<option value="영화">영화</option>
@@ -466,27 +432,16 @@ hr.hr {
 					</div>
 				</div>
 				<div class="title">
-					<div class="headerTitle" style="width: 4%;">제목</div>
+					<div class="headerTitle">제목</div>
 					<div>
-						<input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border: none; width: 70%;">
+						<input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border: none; width: 100%;">
 					</div>
 				</div>
 			</div>
 			<div class="row body" id="editor">
 				<div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content"></div>
 			</div>
-			<div class="row editorBtn">
-				<div class="btns col-lg-12 col-md-12 col-sm-12">
-					<button type="button" id="insertBoardContents" name="insertBoardContents" style=>작성하기</button>
-					&nbsp
-					<button type="button" id="toList" name="toList">목록으로</button>
-					<script>
-					$("#toList").on("click",function(){
-                    	location.href=/boardList.board?cpage=${boardPage };
-                       })
-                   </script>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<div class="row footer">
@@ -555,7 +510,7 @@ hr.hr {
 					</div>
 					<div class="profiletext">${loginNickname }</div>
 					<div class="profiletext">
-						<a href="#">
+						<a href="/memberOutput.manager">
 							<button>관리자페이지</button>
 						</a>
 					</div>

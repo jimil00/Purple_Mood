@@ -22,17 +22,21 @@
 	font-weight: normal;
 	font-style: normal;
 }
-.dongfont{
-font-family: 'DungGeunMo';
+
+.dongfont {
+	font-family: 'DungGeunMo';
 }
+
 * {
 	box-sizing: border-box;
 	margin: auto;
 	color: black;
 }
-body{
-background-color: #03001e;
+
+body {
+	background-color: #03001e;
 }
+
 .container {
 	margin: auto;
 	display: flex;
@@ -129,7 +133,7 @@ input {
 				<div class="nickname col-12">
 					<span class="dongfont">닉네임<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="nickname" id="nickname"
+								<input type="text" name="nickname" id="nickname" maxlength="9"
 									placeholder="2~8자 영문 대 소문자,한글">
 								<div id="duplResultNickname"></div>
 							</div>
@@ -137,35 +141,37 @@ input {
 				<div class="pw col-12">
 					<span class="dongfont">패스워드<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="password" name="pw" id="pw"
-									placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)">
+								<input type="password" name="pw" id="pw" maxlength="16"
+									placeholder="8~16자 영문 대 소문자,숫자,특수문자(~!@#$%)">
 							</div>
 				</div>
 				<div class="pwcheck col-12">
 					<span class="dongfont">패스워드 확인</span>
 					<div class="margin_top col-12">
-						<input type="password" id="checkpw">
+						<input type="password" id="checkpw" maxlength="16">
 						<div id="result"></div>
 					</div>
 				</div>
 				<div class="name col-12">
 					<span class="dongfont">이름<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="name" id="name" placeholder="2~5자 한글">
+								<input type="text" name="name" id="name" placeholder="2~5자 한글"
+									maxlength="5">
 							</div>
 				</div>
 				<div class="phone col-12">
 					<span class="dongfont">전화번호<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="phone" id="phone" placeholder="숫자만 입력">
+								<input type="text" name="phone" id="phone" placeholder="숫자만 입력"
+									maxlength="11">
 							</div>
 				</div>
 				<div class="email col-12">
 					<span class="dongfont">이메일<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="email" id="email"
-									placeholder="영어 대 소문자, 숫자"> @ <select id="emailAddress"
-									name="emailAddress" class="selectOption">
+									placeholder="영어 대 소문자, 숫자" maxlength="20"> @ <select
+									id="emailAddress" name="emailAddress" class="selectOption">
 									<option value="gmail.com">gmail.com</option>
 									<option value="naver.com">naver.com</option>
 									<option value="hanmail.net">hanmail.net</option>
@@ -181,28 +187,29 @@ input {
 					</div>
 					<div class="margin_top col-12">
 						<input type="text" name="postcode" id="postcode"
-							placeholder="우편번호">
+							placeholder="우편번호" maxlength="7">
 					</div>
 				</div>
 				<div class="address1 col-12">
 					<span class="dongfont">주소</span>
 					<div class="margin_top col-12">
-						<input type="text" name="address1" id="address1" placeholder="주소">
+						<input type="text" name="address1" id="address1" placeholder="주소"
+							maxlength="65">
 					</div>
 				</div>
 				<div class="address2 col-12">
 					<span class="dongfont">상세주소</span>
 					<div class="margin_top col-12">
 						<input type="text" name="address2" id="address2"
-							placeholder="상세주소">
+							placeholder="상세주소" maxlength="65">
 					</div>
 				</div>
 				<div class="footer col-12">
 					<div class="btns">
 						<a href=/main><button id="signup" class="dongfont">회원가입</button></a>&nbsp&nbsp<a
-							href="/member/signin.jsp"><button type="button" class="dongfont">뒤로
-								가기</button></a>&nbsp
-						<button type="reset" id="resetBtn"  class="dongfont">다시 입력</button>
+							href="/member/signin.jsp"><button type="button"
+								class="dongfont">뒤로 가기</button></a>&nbsp
+						<button type="reset" id="resetBtn" class="dongfont">다시 입력</button>
 					</div>
 				</div>
 			</div>
