@@ -2,25 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>콘텐츠 상세 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+	crossorigin="anonymous"></script>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
 	rel="stylesheet" />
-</head>
-
 <style>
 @font-face {
 	font-family: 'DungGeunMo';
@@ -46,7 +43,6 @@
 
 * { 
 	box-sizing: border-box;
-	color: grey;
 }
 
 body {
@@ -56,6 +52,7 @@ body {
 .container{
 	font-family: 'DungGeunMo';
 	background-color: #03001e;
+	color: grey;
 }
 /* background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9);  border:1px solid grey;*/
 #logo {
@@ -301,6 +298,7 @@ button {
 	padding-left: 10px;
 }
 </style>
+</head>
 <body>
 	<div class="container w-xl text-center">
 		<div class="row header">
@@ -455,7 +453,7 @@ button {
 			<hr class="hr">
 			<div class="col-12 footerAtag">
 				<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
-					href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
+					href="#">이용약관</a> &nbsp&nbsp&nbsp <a href="#">개인정보 처리방침</a>
 			</div>
 			<div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
 			<div class="col-12 footerImpormation">이메일 주소 :
@@ -473,7 +471,7 @@ button {
 				</span>
 			</div>
 		</div>
-			</div>
+			
 			
 
      
@@ -556,7 +554,7 @@ button {
 				</script>
 			</div>
 		</c:when>
-<c:otherwise>
+		<c:otherwise>
 			<!-- 비로그인  -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
 				tabindex="-1" id="offcanvasWithBothOptions"
