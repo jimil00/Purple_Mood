@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%String keyword = request.getParameter("keyword"); %>
+keyword = keyword.replaceAll("&","&amp;");
+keyword = keyword.replaceAll("<","&lt;");
+keyword = keyword.replaceAll(">","&gt;");
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+검색결과 : <c:out value = "&{m.content}"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,10 +29,6 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
 
     <style>
-        @font-face {
-            font-family: 'NotoSansKR';
-            src: url('font/NotoSansKR-Black.otf') format('opentype')
-        }
 
         @font-face {
             font-family: 'J송명';
@@ -103,9 +107,9 @@
             lang: 'ko-KR',
             height: 400,
             placeholder: "내용을 입력해주세요.",
-            fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+            fontNames: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
             // addDefaultFonts: false,
-            fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'NotoSansKR', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
+            fontNamesIgnoreCheck: ['굴림', '맑은고딕', '돋움', '바탕', 'J송명', '교보손글씨', '빙그레싸만코체', '주아체', '한림고딕체', '둥근모꼴체', 'Arial', 'Courier New', 'Verdana', 'Times New Roamn'],
             callbacks: {
                 onImageUpload: function (image) {
                     console.log("works")
@@ -134,12 +138,13 @@
             }
         });
         
-        $('#summernote').summernote('fontName', '둥근모꼴체');
+//         $('#summernote').summernote('fontName', '둥근모꼴체');
+       
 
+        
         $('#insertBoardContents').on('click', function () {
+
             saveContent();
-
-
         });
         function saveContent() {
 
@@ -148,6 +153,16 @@
             console.log("summernoteContent : " + summernoteContent);
             var b_category = $("#b_category").val();
             var b_title = $("#b_title").val();
+            
+            
+        	if(b_title==""){
+    			alert('제목을 입력해주세요.');
+                return false;
+        	}
+        	if ($('#summernote').summernote('isEmpty')) {
+        		  alert("내용을 입력해주세요.");
+        		  return false;
+        		}
 
             $.ajax({
                 url: "/insertBoardContents.board",
@@ -183,17 +198,16 @@
                 </div>
                 <div class="title">
                     <div class="headerTitle">제목</div>
-                    <div><input type="text" id="b_title" name="b_title" placeholder="제목을 입력하세요." style="border:none; width:100%;">
+                    <input type="text" id="b_title" name="b_title" placeholder="제목을 입력해주세요." maxlength="99" style="border:none; width:100%;">
                     </div>
                 </div>
             </div>
             <div class="row body">
-                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content">
+                <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content"></div>
                 </div>
-            </div>
             <div class="row footer">
                 <div class="btns col-lg-12 col-md-12 col-sm-12">
-                    <button type="button" class="btn" id="insertBoardContents"
+                    <button type="button" id="insertBoardContents"
                         name="insertBoardContents">작성하기</button>&nbsp
                     <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList" name="toList">목록으로</button></a>
                 </div>
