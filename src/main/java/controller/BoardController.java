@@ -31,8 +31,6 @@ public class BoardController extends HttpServlet {
 			String uri = request.getRequestURI();
 			System.out.println("요청 URI : " + uri);
 
-
-
 			//게시판 리스트 출력 (R)
 			if(uri.equals("/boardList.board")) {
 
@@ -50,7 +48,6 @@ public class BoardController extends HttpServlet {
 				request.setAttribute("navi", navi);
 				//				request.setAttribute("endNavi", endNavi);
 				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
-
 
 
 				// 게시판 검색 리스트 출력 (R)

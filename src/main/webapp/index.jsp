@@ -53,6 +53,7 @@ body {
 }
 #logo,#titleimg{
 height:100%;
+
 }
 #titleimg:hover{
 cursor: pointer;

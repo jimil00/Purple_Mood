@@ -223,7 +223,7 @@ div {
                                                 datatype: "post",
                                                 data: {
                                                     "b_seq": "${dto.b_seq }",
-                                                    "b_writer_id":"${dto.b_writer_id}"
+                                                    "b_writer_id":"${dto.b_writer_id}",
                                                     "b_writer_nn": "${dto.b_writer_nn}",
                                                     "b_title": "${dto.b_title}",
                                                     "b_content": '${dto.b_content}'
