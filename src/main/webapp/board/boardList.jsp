@@ -29,10 +29,6 @@
 	float: right;
 }
 
-<<<<<<< HEAD
-컹
-=======
->>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
 #b_content {
 	overflow: hidden;
 	text-overflow: ellipsis;

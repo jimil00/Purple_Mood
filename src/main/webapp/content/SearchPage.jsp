@@ -18,18 +18,9 @@
 	font-weight: normal;
 	font-style: normal;
 }
-<<<<<<< HEAD
-
-* {
-	box-sizing: border-box;
-}
-
-.container-fluid {
-=======
 *{box-sizing: border-box;}
 
 .container {
->>>>>>> 0b6147b3a0181681d76e4f52197c9aad07dc04e3
 	font-family: 'DungGeunMo';
 }
 
