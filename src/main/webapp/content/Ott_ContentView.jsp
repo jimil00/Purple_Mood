@@ -73,6 +73,10 @@ left:-38%;
    cursor: pointer;
 }
 
+.carousel-control-prev{margin:5px; width:60px;}
+
+.carousel-control-next{margin:5px; width:60px;}
+
 @media ( max-width :767px) {
    #logo {
       height: 60%;
