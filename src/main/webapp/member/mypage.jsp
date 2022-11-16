@@ -216,7 +216,6 @@ color:white;
     padding-bottom: 50px;;
 }
 
-
 a {
 	color: white;
 	text-decoration: none;
@@ -284,24 +283,26 @@ button {
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
 				<input type="text" class="searchboxin" id="searchtext"
-					onkeyup="enterkey()" name="searchtext" /> 
+					onkeyup="enterkey()" name="searchtext"/>
 					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
 			</div>
 			<script>
-			$("#titleimg").on("click",function(){
-				location.href="/main";
-			})
-			
-			$("#searchbtn").on("click",function(){
-				location.href="/search.content?searchtext="+ $("#searchtext").val();;
-			})
-			
-			function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+				function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
 					if (window.event.keyCode == 13) {
 						location.href = "/search.content?searchtext="+ $("#searchtext").val();
 					}
-				}
-		
+				};
+				
+				$("#titleimg").on("click", function() {
+					location.href = "/main";
+				});
+				
+				
+				$("#searchbtn").on("click", function(){
+					location.href="/search.content?searchtext="+$("#searchtext").val();
+					
+				});
+				
 			</script>
 
 			<div class="col-4 col-md-1 col-lg-1 menuicon">

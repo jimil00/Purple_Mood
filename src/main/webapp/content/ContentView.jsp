@@ -29,16 +29,15 @@
 }
 
 @media screen and (max-width: 576px) { 
-	.ott_icon {margin-bottom:20px; border-top:1px solid grey;}
+	.ott_icon {padding:15px; border-top:1px solid grey;}
+
 	#basic_info{max-width:fit-content; word-break:keep-all;}
-	.title>p{margin:15px;}
-	
+	.title>p{word-break:keep-all;margin:15px;}
  } 
  
  
  @media all and (max-width: 1025px) { 
-	.title>p{margin:15px;}
-	
+	.title>p{margin-top:5px;}
  } 
 
 * { 
@@ -61,14 +60,12 @@ body {
 	height:100px;
 }
  #titleimg{height:100px;}
- 
 
  
 .poster {
 	/*height: fit-content;*/
 
 }
-.review_box{}
 
 .poster>img {
 	max-height:400px;}
@@ -100,25 +97,6 @@ overflow-y:auto;
 .ott_icon>a>img {
 	padding:5px;
 }
-#rv_title{border:1px solid white;}
-
-#review_textbox {
-	height: 200px;
-}
-
-#rv_title{border:1px solid white;}
-
-.rv_input {
-	width: 90%;
-	height:100%;
-}
-
-
-#rv_inputbox {
-	width: 100%;
-}
-
-.review_blank{margin:50px;}
 
 
 
@@ -392,7 +370,8 @@ button {
 								<p id="ov_text">${mv_detail.getMv_overview()}</p>
 							</div>
 						</div>
-		
+				</div>
+			</div>
 			</c:when>
 			<c:otherwise>
 			
@@ -445,10 +424,10 @@ button {
 						</div>
 			</c:otherwise>
 		</c:choose>
-		<div>
-         <button id="back">뒤로 가기</button>
- 			</div>
- 			</div>
+			<div><button id="back">이전</button></div>
+         
+
+ 	
 		<div class="row footer">
 			<hr class="hr">
 			<div class="col-12 footerAtag">
@@ -472,10 +451,6 @@ button {
 			</div>
 		</div>
 			
-			
-
-     
-    
          <script> 
         $("#back").on("click", function(){
         	window.history.back();
