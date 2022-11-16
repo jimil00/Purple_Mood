@@ -24,7 +24,7 @@
 }
 
 
-.ott_logo>img {
+.ott_logo>a>img {
    width: 250px;
    margin: 30px;
 }
@@ -79,14 +79,18 @@ span>img {
    background-color: #03001e;
 }
 
+
 .poster>img {
    width: 200px;
    height: 280px;
    transition: all 0.2s linear;
 }
 
+.poster:hover{}
+
 .poster>img:hover {
    transform: scale(1.2);
+   color: #7303c0
 }
 
 #dsbtn:hover{
