@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,24 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<<<<<<< HEAD
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet" />
-=======
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-	crossorigin="anonymous" />
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-	crossorigin="anonymous"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
-	rel="stylesheet" />
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 </head>
 <style>
 @font-face {
@@ -46,7 +26,6 @@
    font-family: 'DungGeunMo';
 }
 
-<<<<<<< HEAD
 
 .ott_logo>img {
    width: 250px;
@@ -72,42 +51,12 @@ body {
    background-color: #03001e;
 }
 
-=======
-.ott_logo>img {
-	width: 250px;
-	margin: 30px;
-}
-
-.postimg {
-	width: 200px;
-}
-
-.list_title {
-	font-weight: bold;
-}
-
-body {
-	background-color: #03001e;
-	color: white;
-}
-
-.card {
-	width: 200px;
-	height: 300px;
-	background-color: #03001e;
-}
-
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 .poster {
    overflow: hidden;
 }
 
 .card-text {
-<<<<<<< HEAD
    height: fit-content;
-=======
-	height: fit-content;
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 }
 
 .card-text:hover {
@@ -145,15 +94,9 @@ span>img {
 
 /* header */
 .header {
-<<<<<<< HEAD
    height: 100px;
    background-color: #03001e;
    padding-bottom: 20px;
-=======
-	height: 100px;
-	background-color: #03001e;
-	padding-bottom: 20px;
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 }
 
 #logo, #titleimg {
@@ -161,13 +104,8 @@ span>img {
 }
 
 #titleimg {
-<<<<<<< HEAD
    position: relative;
    left: -38%;
-=======
-	position: relative;
-	left: -38%;
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 }
 
 #titleimg:hover {
@@ -201,13 +139,8 @@ span>img {
 }
 
 #menuicon {
-<<<<<<< HEAD
    position: relative;
    top: 8%;
-=======
-	position: relative;
-	top: 8%;
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 }
 
 #menuicon:hover {
@@ -264,13 +197,8 @@ span>img {
 }
 
 .menulink:hover, #searchbtn:hover {
-<<<<<<< HEAD
    color: #c4c4c4;
    cursor: pointer;
-=======
-	color: #c4c4c4;
-	cursor: pointer;
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 }
 
 #colsebtn {
@@ -289,16 +217,6 @@ span>img {
    padding-bottom: 50px;;
 }
 
-#linksec {
-	padding-top: 50px;;
-	padding-bottom: 50px;;
-}
-
-#logoutsec {
-	padding-top: 50px;;
-	padding-bottom: 50px;;
-}
-
 a {
    color: white;
    text-decoration: none;
@@ -311,21 +229,12 @@ button {
 
 /* footer */
 .footer {
-<<<<<<< HEAD
    text-align: left;
    padding-top: 50px;
    padding-bottom: 50px;
    padding-left: 20px;
    background-color: #03001e;
    color: white;
-=======
-	text-align: left;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	padding-left: 20px;
-	background-color: #03001e;
-	color: white;
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 }
 
 .footerAtag {
@@ -362,15 +271,9 @@ button {
 }
 </style>
 <body>
-<<<<<<< HEAD
    <div class="container w-xl text-center">
 
       <!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
-=======
-	<div class="container w-xl text-center">
-
-		<!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
      <form action="/ott_search.content">
         <div class="header row">
           <div class="logo col-8">퍼플무드 이미지</div>
@@ -381,7 +284,6 @@ button {
         </div>
         </form>-->
 
-<<<<<<< HEAD
       <!-- ott별로 출력하는 페이지 -->
 
       <form action="/d_search.content">
@@ -570,194 +472,5 @@ button {
          </div>
       </c:otherwise>
    </c:choose>
-=======
-		<!-- ott별로 출력하는 페이지 -->
-
-		<form action="/d_search.content">
-			<div class="row header">
-				<div class="col-12 col-md-7 col-lg-8" id="logo">
-					<a href="/main"><img src="/img/title.png" class="titleimg"
-						id="titleimg"></a>
-				</div>
-				<div class="col-8 col-md-4 col-lg-3 searchbox">
-					<input type="text" class="searchboxin" id="searchtext"
-						name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i
-						class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-				</div>
-				<div class="col-4 col-md-1 col-lg-1 menuicon">
-					<i class="fas fa-bars fa-2x" id="menuicon"
-						data-bs-toggle="offcanvas"
-						data-bs-target="#offcanvasWithBothOptions"
-						aria-controls="offcanvasWithBothOptions"></i>
-				</div>
-			</div>
-		</form>
-
-		<div class="ott_logo col-12">
-			<img src="/img/disbf.png">
-		</div>
-		<hr>
-
-		<!-- 디즈니 영화 검색 결과 출력 -->
-		<c:choose>
-			<c:when test="${not empty d_mv_list}">
-
-				<div class="list_title">
-					영화 검색 결과<span> ${d_mv_list.size()}개</span>
-				</div>
-				<hr>
-
-				<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-					<c:set var="i" value="0" />
-					<c:set var="j" value="1" />
-					<c:forEach var="d" items="${d_mv_list}">
-						<c:if test="${i%j == 0 }">
-							<div class="col">
-						</c:if>
-
-						<div class="card">
-							<a href="/detailMv.content?mv_id=${d.mv_id}">
-
-								<div class="poster">
-									<img src="${d.mv_poster_path}" class="card-img-top" alt="...">
-								</div>
-								<p class="card-text">${d.mv_title}</p>
-							</a>
-						</div>
-						<c:if test="${i%j == j-1 }">
-				</div>
-				</c:if>
-				<c:set var="i" value="${i+1 }" />
-				</c:forEach>
-	</div>
-
-	</c:when>
-	<c:otherwise>
-		<div class="list_title pt-2">영화 검색 결과</div>
-		<hr>
-		<div>검색 결과가 없습니다.</div>
-	</c:otherwise>
-	</c:choose>
-
-
-	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
-
-	<c:choose>
-		<c:when test="${not empty d_dr_list}">
-
-			<div class="list_title">
-				<hr>
-				드라마 검색 결과<span> ${d_dr_list.size()}개</span>
-			</div>
-			<hr>
-
-			<div class="row row-cols-2 row-cols-md-6 g-4 m-auto p-3">
-				<c:set var="i" value="0" />
-				<c:set var="j" value="1" />
-				<c:forEach var="d" items="${d_dr_list}">
-					<c:if test="${i%j == 0 }">
-						<div class="col">
-					</c:if>
-
-					<div class="card">
-						<a href="/detailDr.content?dr_id=${d.dr_id}">
-
-							<div class="poster">
-								<img src="${d.dr_poster_path}" class="card-img-top" alt="...">
-							</div>
-							<p class="card-text">${d.dr_title}</p>
-						</a>
-					</div>
-					<c:if test="${i%j == j-1 }">
-			</div>
-			</c:if>
-			<c:set var="i" value="${i+1 }" />
-			</c:forEach>
-			</div>
-
-		</c:when>
-		<c:otherwise>
-			<hr>
-			<div class="list_title pt-2">드라마 검색 결과</div>
-			<hr>
-			<div>검색 결과가 없습니다.</div>
-		</c:otherwise>
-		</div>
-		</div>
-	</c:choose>
-	<c:choose>
-		<c:when test="${loginID!=null && loginID!='admin123'}">
-			<!-- 로그인 -->
-			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
-				tabindex="-1" id="offcanvasWithBothOptions"
-				aria-labelledby="offcanvasWithBothOptionsLabel">
-				<div class="offcanvas-header">
-					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-						aria-label="Close">
-						<i class="fa-solid fa-xmark fa-xl"></i>
-					</button>
-				</div>
-				<div class="offcanvas-body">
-					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
-						<img src="/img/logo.png" id="profileimg">
-					</div>
-					<div class="profiletext">${loginNickname }</div>
-					<div class="profiletext">
-						<a href="/member/mypage.jsp">
-							<button>마이페이지</button>
-						</a>
-					</div>
-					<div id="linksec">
-						<a href="/boardList.board?cpage=1">
-							<div class="menulink">영화 드라마 게시판</div>
-						</a>
-					</div>
-					<div id="logoutsec">
-						<button type="button" id="logoutBtn">로그아웃</button>
-					</div>
-				</div>
-				<script>
-					$("#logoutBtn").on("click", function() {
-						location.href = "/logout.member";
-					})
-				</script>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<!-- 비로그인  -->
-			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
-				tabindex="-1" id="offcanvasWithBothOptions"
-				aria-labelledby="offcanvasWithBothOptionsLabel">
-				<div class="offcanvas-header">
-					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-						aria-label="Close">
-						<i class="fa-solid fa-xmark fa-xl"></i>
-					</button>
-				</div>
-				<div class="offcanvas-body">
-					<div class="profilebox" style="background: #BDBDBD;">
-						<img src="/img/logo.png" id="profileimg">
-					</div>
-					<div class="profiletext">익명의 누군가</div>
-					<div class="profiletext">
-						<a href="/member/signin.jsp">
-							<button id="signinBtn">로그인</button>
-						</a>
-					</div>
-					<div id="linksec">
-						<a href="#">
-							<div class="menulink noLoginMenu">영화 드라마 게시판</div>
-						</a>
-					</div>
-				</div>
-				<script>
-					$(".noLoginMenu").on("click", function() {
-						alert("로그인을 해주세요");
-					})
-				</script>
-			</div>
-		</c:otherwise>
-	</c:choose>
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 </body>
 </html>
