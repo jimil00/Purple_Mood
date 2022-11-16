@@ -24,7 +24,7 @@
 }
 
 
-.ott_logo>a>img {
+.ott_logo>img {
    width: 250px;
    margin: 30px;
 }
@@ -52,9 +52,6 @@ body {
    overflow: hidden;
 }
 
-.card-text {
-   height: fit-content;
-}
 
 .card-text:hover {
    color: #7303c0
@@ -77,24 +74,37 @@ span>img {
    width: 200px;
    height: 300px;
    background-color: #03001e;
+   
 }
 
+.card :hover{ color: #7303c0;}
+
+.card-text{	
+text-decoration:none;
+	overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;}
 
 .poster>img {
+	border-radius: 5px;
    width: 200px;
    height: 280px;
    transition: all 0.2s linear;
 }
 
-.poster:hover{}
+
+.poster:hover{color: #7303c0;}
+
 
 .poster>img:hover {
    transform: scale(1.2);
    color: #7303c0
+
 }
 
 #dsbtn:hover{
 cursor: pointer;
+
 }
 
 /* header */
@@ -312,6 +322,7 @@ button {
       </form>
 
       <div class="ott_logo col-12">
+
          <img src="/img/disbf.png" id="dsbtn">
          <script>
 				$("#dsbtn").on("click",function(){

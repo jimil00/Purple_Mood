@@ -62,12 +62,17 @@ body {
 }
 
 .card-text {
+	overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
 	height: fit-content;
 }
 
 .card-text:hover {
 	color: #7303c0
 }
+
+.card :hover{ color: inherit;color: #7303c0;}
 
 #searchbtn:hover {
 	cursor: pointer;
@@ -89,6 +94,7 @@ span>img {
 }
 
 .poster>img {
+	border-radius: 5px;
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
@@ -281,19 +287,6 @@ button {
 <body>
 	<div class="container w-xl text-center">
 
-		<!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
-     <form action="/ott_search.content">
-        <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
-          <div class="col-4">
-            <input type="text" name="ott_searchtext" placeholder="해당 Ott내 검색">
-            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-          </div>
-        </div>
-        </form>-->
-
-
-
 		<!-- ott별로 출력하는 페이지 -->
 
 		<form action="/wv_search.content">			
@@ -322,6 +315,7 @@ button {
 			</div>
 		</form>
 		<div class="ott_logo col-12">
+
 			<img src="/img/wavbf.png" id="wvbtn">
 			<script>
 				$("#wvbtn").on("click",function(){

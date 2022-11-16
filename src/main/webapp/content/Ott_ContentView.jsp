@@ -23,9 +23,6 @@
 	font-family: 'DungGeunMo';
 }
 
-.header {
-	
-}
 
 .logo {
 	text-align: left;
@@ -47,6 +44,7 @@
 }
 
 .postimg {
+	border-radius: 5px;
 	width: 200px;
 }
 
@@ -78,6 +76,9 @@ body {
 #titleimg:hover {
 	cursor: pointer;
 }
+
+
+.carousel-item>a>img{width:200px;height: 280px;}
 
 .carousel-control-prev {
 	margin: 5px;
@@ -292,7 +293,7 @@ button {
 
 		<c:choose>
 			<c:when test="${not empty mv_date_n}">
-
+			       <hr>
 				<div class="list_title pt-2">
 					영화
 					<!-- <span> ${mv_date_n.size()}개</span>-->

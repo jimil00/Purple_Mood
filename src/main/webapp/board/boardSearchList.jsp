@@ -29,7 +29,7 @@
 	float: right;
 }
 
-컹
+
 #b_content {
 	overflow: hidden;
 	text-overflow: ellipsis;

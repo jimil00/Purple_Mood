@@ -39,6 +39,7 @@ body {
 	width: 250px;
 	margin: 30px;
 }
+
 .postimg {
 	width: 200px;
 }
@@ -206,11 +207,17 @@ button {
 	padding-left: 10px;
 }
 .card-text {
+		overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
 	height: fit-content;
 }
 .card-text:hover {
 	color: #7303c0
 }
+
+.card :hover{ color: inherit;color: #7303c0;}
+
 #searchbtn:hover {
 	cursor: pointer;
 }
@@ -228,6 +235,7 @@ span>img {
 	background-color: #03001e;
 }
 .poster>img {
+	border-radius: 5px;
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
@@ -268,12 +276,14 @@ span>img {
 		</form>
 
 		<div class="ott_logo col-12">
+
 			<img src="/img/netbf.png" id="ntbtn">
 			<script>
 				$("#ntbtn").on("click",function(){
 					location.href="/netflix.content";
 				})
 			</script>
+
 		</div>
 		<hr>
 
