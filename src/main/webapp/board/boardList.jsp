@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -6,7 +7,8 @@
 <meta charset="UTF-8">
 <title>영화 드라마 게시판</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 @font-face {
 	font-family: 'DungGeunMo';
@@ -16,7 +18,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 .boardWrite {
 	float: hidden;
 }
@@ -58,7 +59,7 @@ body {
 	text-decoration: underline;
 	text-decoration-thickness: 3px;
 	text-underline-position: under;
-	margin-bottom: 50px;
+	margin-bottom:50px;
 }
 
 .boardTitle, .theader, .content, #insertBoardContentsBtn,
@@ -81,20 +82,20 @@ body {
 }
 
 .board {
-	border-top: 5px solid #7303c0;
-	border-bottom: 5px solid #7303c0;
+	border-top: 7px solid #7303c0;
+	border-bottom: 7px solid #7303c0;
 }
 
 .theader {
 	float: left;
 	width: 100%;
 	height: 35px;
-	font-size: 16.5px;
+	font-size: 19px;
 }
 
 .theader>div {
 	float: left;
-	width: 20%;
+	width: 24.6%;
 	height: 100%;
 	line-height: 38.5px;
 	font-weight: bold;
@@ -105,29 +106,24 @@ body {
 	color: #03001e;
 }
 
-.contentCategory {
-	float: left;
-	width: 20%;
-}
-
 .contentTitle {
 	float: left;
-	width: 20%;
+	width: 24.6%;
 }
 
 .contentWriter {
 	float: left;
-	width: 20%;
+	width: 24.6%;
 }
 
 .contentWriteTime {
 	float: left;
-	width: 20%;
+	width: 24.6%;
 }
 
 .contentViewCount {
 	float: left;
-	width: 20%;
+	width: 24.6%;
 }
 
 .boardListSearch {
@@ -184,9 +180,6 @@ a {
 						<div class="row">
 							<div class="theader col-12">
 								<div class="row">
-									<div class="col-12">카테고리</div>
-								</div>
-								<div class="row">
 									<div class="col-12">제목</div>
 								</div>
 								<div class="row">
@@ -206,9 +199,6 @@ a {
 								<c:forEach var="board" items="${board}">
 									<div class="row">
 										<div class="content col-12">
-											<div class="row">
-												<div class="contentCategory col-12">${board.b_category}</div>
-											</div>
 											<div class="row">
 												<div class="contentTitle col-12">
 													<a href="/selectBoardContents.board?b_seq=${board.b_seq}"
@@ -236,25 +226,28 @@ a {
 							</c:when>
 							<c:otherwise>
 								<div>
-									<div colspan="6" style="font-family: 'DungGeunMo';">출력할 글이 없습니다.</div>
+									<div colspan="6" style="font-family: 'DungGeunMo';">출력할
+										글이 없습니다.</div>
 								</div>
 								<hr>
 							</c:otherwise>
 						</c:choose>
 						<div class="insertBoardContents">
-							<a href="/board/insertBoardContents.jsp"><button type="button" id="insertBoardContentsBtn">글쓰기</button></a>
+							<a href="/board/insertBoardContents.jsp"><button
+									type="button" id="insertBoardContentsBtn">글쓰기</button></a>
 						</div>
 						<hr>
 						<div align="center" class="navi">
-							<!-- <a href="boardList.board?cpage=1"><button type="button">처음으로</button></a> -->
-							${navi} <!--<a href="boardList.board?cpage=${endNavi}">
-								<button type="button">끝으로</button> -->
-							</a>
+<!-- 							<a href="/boardList.board?cpage=1"><button type="button">처음으로</button></a> -->
+<%-- 							${navi} <a href="boardList.board?cpage=${endNavi}"><button --%>
+<!-- 									type="button">끝으로</button></a> -->
+										${navi }
+						
 						</div>
 						<hr>
-						<form action="/boardListSearch.board?cpage=1" method="post">
+						<form action="/boardSearchList.board?cpage=1" method="post">
 							<div class="row">
-								<div class="boardListSearch col-12">
+								<div class="boardSearchList col-12">
 									<select id="boardSearchOption" name="boardSearchOption">
 										<option value="b_title">제목</option>
 										<option value="b_writer_nn">작성자</option>

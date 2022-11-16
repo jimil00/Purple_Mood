@@ -244,7 +244,6 @@ div {
 			</div>
 		</div>
 
-<<<<<<< HEAD
                 <div class="bcm_contents">
                     <input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
                     <c:choose>
@@ -271,40 +270,7 @@ div {
                                                                 <script>
                             $(".bcm_content").text($(".bcm_content").html());
                             </script>
-                                    <c:choose>
-                                        <c:when test="${loginID == comment.bcm_writer_id}">
-                                            <div class="cbtns col-lg-3 col-md-3 col-sm-3">
-                                                <button type="button" class="updateBoardComment"
-                                                    name="updateBoardComment">댓글수정</button>&nbsp
-                                                <a
-                                                    href="/deleteBoardComment.boardcomment?bcm_seq=${comment.bcm_seq }&b_seq=${dto.b_seq}">
-                                                    <button type="button" class="deleteBoardComment"
-                                                        name="deleteBoardComment">댓글삭제</button>
-                                                </a>
-                                            </div>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="col-lg-3 col-md-3 col-sm-3"><a
-                                                    href="#" id="insertBoardCommentComplain" >신고</a></div>
-                                                    <script>
-=======
-		<div class="bcm_contents">
-			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
-			<c:choose>
-				<c:when test="${empty list}">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12">댓글이 없습니다.</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="comment" items="${list}">
-						<div class="row boardCommentHeader">
-							<div class="bcm_writer_nn col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer_nn }</div>
-							<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6" name="bcm_write_date">${comment.bcm_write_date }</div>
-						</div>
-						<div class="row boardComment">
-							<input type="hidden" class="bcm_seq" name="bcm_seq" value="${comment.bcm_seq }"> <input type="hidden" class="bcm_writer_id" name="bcm_writer_id" value="${comment.bcm_writer_id }">
-							<div class="bcm_content col-lg-9 col-md-9 col-sm-9" name="bcm_content" size="105" contenteditable="false">${comment.bcm_content }</div>
+					
 							<c:choose>
 								<c:when test="${loginID == comment.bcm_writer_id}">
 									<div class="cbtns col-lg-3 col-md-3 col-sm-3">
@@ -319,7 +285,6 @@ div {
 										<a href="#" id="insertBoardCommentComplain">신고</a>
 									</div>
 									<script>
->>>>>>> 616c305dc611d2814250766556698c514c015dad
                                                     let bcm_seq = $(this).closest(".boardCommentHeader").find(".bcm_seq").val();
                                                     let bcm_writer_id = $(this).closest(".boardCommentHeader").find(".bcm_writer_id").val();
                                                     let bcm_writer_nn = $(this).closest(".boardCommentHeader").find(".bcm_writer_nn").html();
@@ -342,7 +307,6 @@ div {
                                                         }
                                                     });
 </script>
-<<<<<<< HEAD
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -351,34 +315,13 @@ div {
                     </c:choose>
                         <div class="row insertBcm">
                             <input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
-                            <div class="col-lg-9 col-md-9 col-sm-9" class=>
+                            <div class="col-lg-9 col-md-9 col-sm-9">
                                 <input type="text" id="insertBcm_content" name="insertBcm_content"
                                     placeholder="내용을 입력하세요." maxlength="300" style="border:none; width:100%;">
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3"><button id="insertBoardComment">댓글작성</button></div>
                         </div>
                 </div>
-        
-=======
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-			<div class="row insertBcm">
-				<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
-				<div class="col-lg-9 col-md-9 col-sm-9" class=>
-					<input type="text" id="insertBcm_content" name="insertBcm_content" placeholder="내용을 입력하세요." style="border: none; width: 100%;">
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3">
-					<button id="insertBoardComment">댓글작성</button>
-				</div>
-			</div>
-		</div>
-</body>
-
->>>>>>> 616c305dc611d2814250766556698c514c015dad
-        </body>
+                </body>
 
 </html>
