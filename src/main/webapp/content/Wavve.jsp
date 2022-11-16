@@ -317,10 +317,6 @@ button {
 		<div class="ott_logo col-12">
 			<img src="/img/wavbf.png">
 		</div>
-<<<<<<< HEAD
-=======
->>>>>>> 0b6147b3a0181681d76e4f52197c9aad07dc04e3
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 		<hr>
 
 		<!-- 웨이브 영화 검색 결과 출력 -->

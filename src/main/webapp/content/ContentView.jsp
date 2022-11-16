@@ -424,16 +424,10 @@ button {
 						</div>
 			</c:otherwise>
 		</c:choose>
-<<<<<<< HEAD
-			</div>
-			<div>
-         <button id="back">이전</button>
-=======
-		<div>
-         <button id="back">뒤로 가기</button>
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
- 			</div>
- 			</div>
+			<div><button id="back">이전</button></div>
+         
+
+ 	
 		<div class="row footer">
 			<hr class="hr">
 			<div class="col-12 footerAtag">
@@ -457,10 +451,6 @@ button {
 			</div>
 		</div>
 			
-			
-
-     
-    
          <script> 
         $("#back").on("click", function(){
         	window.history.back();

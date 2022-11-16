@@ -176,8 +176,7 @@ left:-38%;
     padding-top: 50px;;
     padding-bottom: 50px;;
 }
-<<<<<<< HEAD
-=======
+
 #linksec{
     padding-top: 50px;;
     padding-bottom: 50px;;
@@ -186,7 +185,7 @@ left:-38%;
     padding-top: 50px;;
     padding-bottom: 50px;;
 }
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
+
 a {
    color: white;
    text-decoration: none;
@@ -255,9 +254,9 @@ button {
             <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
          </div>
          <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="searchtext"
+            <input type="text" class="searchboxin" id="n_searchtext"
                 name="n_searchtext" placeholder="넷플릭스 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+               class="fa-solid fa-magnifying-glass searchboxin" id="n_searchbtn"></i>
          </div>
          <div class="col-4 col-md-1 col-lg-1 menuicon">
             <i class="fas fa-bars fa-2x" id="menuicon"
@@ -513,9 +512,9 @@ button {
             <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
          </div>
          <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="searchtext"
+            <input type="text" class="searchboxin" id="d_searchtext"
                 name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+               class="fa-solid fa-magnifying-glass searchboxin" id="d_searchbtn"></i>
          </div>
          <div class="col-4 col-md-1 col-lg-1 menuicon">
             <i class="fas fa-bars fa-2x" id="menuicon"
@@ -777,9 +776,9 @@ button {
             <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
          </div>
          <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="searchtext"
+            <input type="text" class="searchboxin" id="wv_searchtext"
                 name="wv_searchtext" placeholder="웨이브 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+               class="fa-solid fa-magnifying-glass searchboxin" id="wv_searchbtn"></i>
          </div>
          <div class="col-4 col-md-1 col-lg-1 menuicon">
             <i class="fas fa-bars fa-2x" id="menuicon"
@@ -1043,9 +1042,9 @@ button {
             <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
          </div>
          <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="searchtext"
+            <input type="text" class="searchboxin" id="wc_searchtext"
                 name="wc_searchtext" placeholder="왓챠 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+               class="fa-solid fa-magnifying-glass searchboxin" id="wc_searchbtn"></i>
          </div>
          <div class="col-4 col-md-1 col-lg-1 menuicon">
             <i class="fas fa-bars fa-2x" id="menuicon"
@@ -1290,30 +1289,6 @@ button {
 </div>
 
 <c:choose>
-<<<<<<< HEAD
-      <c:when test="${loginID!=null && loginID!='admin123'}">
-         <!-- 로그인 -->
-         <div class="offcanvas offcanvas-end" data-bs-scroll="true"
-            tabindex="-1" id="offcanvasWithBothOptions"
-            aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
-               <button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-                  aria-label="Close">
-                  <i class="fa-solid fa-xmark fa-xl"></i>
-               </button>
-            </div>
-            <div class="offcanvas-body">
-               <div class="profilebox" id="Btn" style="background: #BDBDBD;">
-               <img src="/img/logo.png" id="profileimg">
-               </div>
-               <div class="profiletext">${loginNickname }</div>
-               <div class="profiletext">
-                  <a href="/member/mypage.jsp">
-                     <button>마이페이지</button>
-                  </a>
-               </div>
-                <div id="linksec">
-=======
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
@@ -1336,55 +1311,14 @@ button {
 						</a>
 					</div>
 					 <div id="linksec">
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
+
         <a href="/boardList.board?cpage=1">
             <div class="menulink">영화 드라마 게시판</div>
         </a></div>
         <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
-<<<<<<< HEAD
-            </div>
-            <script>
-               $("#logoutBtn").on("click", function() {
-                  location.href = "/logout.member";
-               })
-            </script>
-         </div>
-      </c:when>
-<c:otherwise>
-         <!-- 비로그인  -->
-         <div class="offcanvas offcanvas-end" data-bs-scroll="true"
-            tabindex="-1" id="offcanvasWithBothOptions"
-            aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
-               <button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-                  aria-label="Close">
-                  <i class="fa-solid fa-xmark fa-xl"></i>
-               </button>
-            </div>
-            <div class="offcanvas-body">
-               <div class="profilebox" style="background: #BDBDBD;">
-                  <img src="/img/logo.png" id="profileimg">
-               </div>
-               <div class="profiletext">익명의 누군가</div>
-               <div class="profiletext">
-                  <a href="/member/signin.jsp">
-                     <button id="signinBtn">로그인</button>
-                  </a>
-               </div>
-               <div id="linksec">
-        <a href="#">
-            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
-        </a></div>
-            </div>
-            <script>
-               $(".noLoginMenu").on("click",function(){
-                  alert("로그인을 해주세요");
-               })
-            </script>
-         </div>
-      </c:otherwise>
-   </c:choose>
-=======
+        
+        
+
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {
@@ -1423,11 +1357,45 @@ button {
 					$(".noLoginMenu").on("click",function(){
 						alert("로그인을 해주세요");
 					})
+
+		function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+			if (window.event.keyCode == 13) {
+		location.href="/search.content?searchtext="+$("#searchtext").val(); 
+    			}
+		};
+		
+		$("#searchbtn").on("click", function(){
+			location.href="/search.content?searchtext="+$("#searchtext").val();
+			
+		});
+		
+
+		$("#n_searchbtn").on("click", function(){
+				location.href="/n_search.content?n_searchtext="+$("#n_searchtext").val();
+				
+			});
+		
+		$("#d_searchbtn").on("click", function(){
+			location.href="/d_search.content?d_searchtext="+$("#d_searchtext").val();
+			
+		});
+		
+		$("#wv_searchbtn").on("click", function(){
+			location.href="/wv_search.content?wv_searchtext="+$("#wv_searchtext").val();
+			
+		});
+		
+		$("#wc_searchbtn").on("click", function(){
+			location.href="/wc_search.content?wc_searchtext="+$("#wc_searchtext").val();
+			
+		});
+		
+			
+		
 				</script>
 			</div>
 		</c:otherwise>
 	</c:choose>
->>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
          
 </body>
 </html>
