@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,14 +6,8 @@
 <meta charset="UTF-8">
 <title>검색 메인 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
-	rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet" />
 </head>
 <style>
 @font-face {
@@ -100,7 +93,9 @@ a {
 	color: grey
 }
 
-.card-text{height:fit-content;}
+.card-text {
+	height: fit-content;
+}
 
 .card-text:hover{
 	color: #7303c0
@@ -135,8 +130,6 @@ span>img {
 	transform: scale(1.2);
 	color: #7303c0
 }
-
-
 </style>
 <body>
 	<div class="container w-xl text-center">
@@ -152,26 +145,27 @@ span>img {
 
 			<div class="row" id="searchbar">
 				<div class="col-10 col-md-10 col-lg-11">
-					<input type="text" id="searchtext" name="searchtext"
-						placeholder="검색어를 입력해주세요.">
+					<input type="text" id="searchtext" name="searchtext" placeholder="검색어를 입력해주세요.">
 				</div>
 				<div class="col-2 col-md-2 col-lg-1 searchbtn">
 					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
 				</div>
 		</form>
 		<script>
-		
-		function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
-			if (window.event.keyCode == 13) {
-		location.href="/search.content?searchtext="+$("#searchtext").val(); 
-    			}
-		};
-		
-		$("#searchbtn").on("click", function(){
-			location.href="/search.content?searchtext="+$("#searchtext").val();
-			
-		});
-		
+			function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
+				if (window.event.keyCode == 13) {
+					location.href = "/search.content?searchtext="
+							+ $("#searchtext").val();
+				}
+			};
+
+			$("#searchbtn").on(
+					"click",
+					function() {
+						location.href = "/search.content?searchtext="
+								+ $("#searchtext").val();
+
+					});
 		</script>
 		<!--검색 결과 출력-->
 		<c:choose>
@@ -262,11 +256,11 @@ span>img {
 	</div>
 
 	<script>
- $(function(){
-	 
-console.log($(".mv_search").length);
+		$(function() {
 
-	 });
-</script>
+			console.log($(".mv_search").length);
+
+		});
+	</script>
 </body>
 </html>

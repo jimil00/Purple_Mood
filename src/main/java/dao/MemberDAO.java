@@ -5,6 +5,8 @@ import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -185,4 +187,29 @@ public class MemberDAO {
 		}
 	}
 
+	// 관리자페이지_회원 전체 조회
+	public List<MemberDTO> selectAll() throws Exception{
+		String sql = "select * from member order by SIGNUP_DATE desc";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+
+			List<MemberDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setId(rs.getString("id"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPostcode(rs.getString("postcode"));
+				dto.setAddress1(rs.getString("address1"));
+				dto.setAddress2(rs.getString("address2"));
+				dto.setSignup_date(rs.getTimestamp("signup_date"));
+				list.add(dto);
+			}
+			return list;
+		}
+	}
 }
