@@ -121,8 +121,8 @@ input {
 				<div class="id col-12">
 					<span class="dongfont">아이디<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="id" id="id"
-									placeholder="6~20자의 영문 소문자, 숫자와 특수기호(_)">
+								<input type="text" name="id" id="id" maxlength="16"
+									placeholder="6~16자의 영문 소문자, 숫자와 특수기호(_)">
 								<div id="duplResultID"></div>
 							</div>
 				</div>
