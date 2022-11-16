@@ -37,7 +37,7 @@ body {
 	background-color: #03001e;
 	color: white;
 }
-.ott_logo>img {
+.ott_logo>a>img {
 	width: 250px;
 	margin: 30px;
 }
@@ -203,6 +203,9 @@ button {
 	padding-left: 10px;
 }
 .card-text {
+		overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
 	height: fit-content;
 }
 .card-text:hover {
@@ -259,7 +262,7 @@ span>img {
 		</form>
 
 		<div class="ott_logo col-12">
-			<img src="/img/netbf.png">
+			<a href="/netflix.content"><img src="/img/netbf.png"></a>
 		</div>
 		<hr>
 

@@ -35,10 +35,12 @@
 	.title>p{word-break:keep-all;margin:15px;}
  } 
  
- 
- @media all and (max-width: 1025px) { 
-	.title>p{margin-top:5px;}
+ @media all and (max-width: 991px) { 
+	.ott_icon {col}
  } 
+ 
+
+.title>p{margin:15px;}
 
 * { 
 	box-sizing: border-box;
@@ -97,7 +99,6 @@ overflow-y:auto;
 .ott_icon>a>img {
 	padding:5px;
 }
-
 
 
 /* header */
@@ -319,19 +320,16 @@ button {
 					<div class="poster col-md-3 p-2">
 						<img src="${mv_detail.getMv_poster_path()}" class="img-fluid"
 							alt="...">
-						<!--  <div id="like_icon">
-							<i class="bi bi-hand-thumbs-up">${mv_detail.getMv_like()}</i>
-						</div>-->
 					</div>
 					
 
 					<div class="col-md-9">
 						<div class="header-title row">
-							<div class="title col-12 col-lg-8">
+							<div class="title col-12 col-lg-7">
 								<p class="fs-3">${mv_detail.getMv_title()}</p>
 							</div>
 							
-							<div class="ott_icon col-12 col-lg-4">
+							<div class="ott_icon col-12 col-lg-5">
 							
                       <!-- OTT아이콘 출력 -->
                         <c:if test="${mv_detail.getMv_ottNF() eq 'Y'.charAt(0)}">
@@ -384,10 +382,10 @@ button {
 
 					<div class="col-sm-9">
 						<div class="header-title row p-2">
-							<div class="title col-12 col-sm-8">
+							<div class="title col-12 col-sm-7">
 								<p class="fs-3">${dr_detail.getDr_title()}</p>
 							</div>
-							<div class="ott_icon col-12 col-sm-4">
+							<div class="ott_icon col-12 col-sm-5">
 
                        <!-- OTT아이콘 출력 -->
                         <c:if test="${dr_detail.getDr_ottNF() eq 'Y'.charAt(0)}">
@@ -424,7 +422,8 @@ button {
 						</div>
 			</c:otherwise>
 		</c:choose>
-			<div><button id="back">이전</button></div>
+			<!-- <div><button id="back">이전</button></div>-->
+			</div>
          
 
  	
@@ -451,14 +450,13 @@ button {
 			</div>
 		</div>
 			
-         <script> 
+      <!--   <script> 
         $("#back").on("click", function(){
         	window.history.back();
         	
         })
-        
 
-      </script>
+      </script>--> 
       
       <c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">

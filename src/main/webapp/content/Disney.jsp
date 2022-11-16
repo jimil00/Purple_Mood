@@ -27,7 +27,7 @@
 }
 
 
-.ott_logo>img {
+.ott_logo>a>img {
    width: 250px;
    margin: 30px;
 }
@@ -80,7 +80,16 @@ span>img {
    width: 200px;
    height: 300px;
    background-color: #03001e;
+   
 }
+
+.card:hover{ color: #7303c0;}
+
+.card-text{	
+text-decoration:none;
+	overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;}
 
 .poster>img {
    width: 200px;
@@ -88,8 +97,11 @@ span>img {
    transition: all 0.2s linear;
 }
 
+.poster:hover{color: #7303c0;}
+
 .poster>img:hover {
    transform: scale(1.2);
+   color: #7303c0
 }
 
 /* header */
@@ -301,7 +313,7 @@ button {
       </form>
 
       <div class="ott_logo col-12">
-         <img src="/img/disbf.png">
+         <a href="/disney.content"><img src="/img/disbf.png"></a>
       </div>
       <hr>
 

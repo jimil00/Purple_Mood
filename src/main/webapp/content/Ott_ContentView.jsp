@@ -32,13 +32,12 @@
    font-family: 'DungGeunMo';
 }
 
-    .header{}
-
     .logo{text-align:left;height:100px;}
+    
+    
     #titleimg{height:100px;}
     
     .ott_logo>a>img{width:250px;margin:30px;}
-    
     
 
     .ott_logo>img{width:250px;margin:30px;}
@@ -72,6 +71,8 @@ left:-38%;
 #titleimg:hover {
    cursor: pointer;
 }
+
+.carousel-item>a>img{width:200px;height: 280px;}
 
 .carousel-control-prev{margin:5px; width:60px;}
 
@@ -110,7 +111,7 @@ left:-38%;
    cursor: pointer;
 }
     
-    
+ 
     
     
 /* menu */
