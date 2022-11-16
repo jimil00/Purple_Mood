@@ -24,13 +24,13 @@ public class BoardCommentComplainController extends HttpServlet {
 
 		try {
 			if(uri.equals("/insertBoardCommentComplain.boardcommentcomplain")) {
+
 				String bcmcp_complainer = String.valueOf(request.getSession().getAttribute("loginID"));
 				int bcm_seq = Integer.parseInt(request.getParameter("bcm_seq"));
-				String bcm_writer_id = request.getParameter("bcm_writer_id");
-				String bcm_writer_nn = request.getParameter("bcm_writer_nn");
+				String bcm_writer = request.getParameter("bcm_writer"); // 닉네임값일텐데 아이디값으로 필요?
 				String bcm_content = request.getParameter("bcm_content");
 
-				BoardCommentComplainDAO.getInstance().insertBoardCommentComplain(new BoardCommentComplainDTO(0,bcmcp_complainer,null,bcm_seq,bcm_writer_id, bcm_writer_nn, bcm_content));
+				BoardCommentComplainDAO.getInstance().insertBoardCommentComplain(new BoardCommentComplainDTO(0,bcmcp_complainer,null,bcm_seq,bcm_writer, bcm_content));
 
 				response.sendRedirect("/board/boardContents.jsp");	 
 			}

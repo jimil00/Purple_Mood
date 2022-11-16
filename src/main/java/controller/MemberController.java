@@ -123,7 +123,7 @@ public class MemberController extends HttpServlet {
 			//마이페이지 작성 게시글 출력
 			else if(uri.equals("/selectMypageBoard.member")) {
 				Gson gsonStr   = new Gson();
-				String id=(String)request.getSession().getAttribute("loginNickname"); 
+				String id=(String)request.getSession().getAttribute("loginID"); 
 				//메서드 아이디로 집어넣고 변경하기 
 				List <BoardDTO> b_list =BoardDAO.getInstance().searchByID(id);
 				String strJsonList = gsonStr.toJson(b_list);
@@ -137,7 +137,7 @@ public class MemberController extends HttpServlet {
 				Gson gsonStr   = new Gson();
 				String id=(String)request.getSession().getAttribute("loginID"); 
 				//메서드 아이디로 집어넣고 변경하기 
-				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByNickname(id);
+				List <BoardCommentDTO> bcm_list =BoardCommentDAO.getInstance().searchByID(id);
 				String strJsonList = gsonStr.toJson(bcm_list);
 				System.out.println("************strJsonList******* \n"+strJsonList);
 				response.getWriter().append(strJsonList);

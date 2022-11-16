@@ -149,6 +149,16 @@ body {
 	color: white;
 	background-color: #03001e;
 }
+
+#linksec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+#logoutsec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+
 a {
 	color: white;
 	text-decoration: none;
@@ -224,21 +234,7 @@ span>img {
 }
 </style>
 <body>
-<body>
 	<div class="container w-xl text-center">
-
-		<!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
-     <form action="/ott_search.content">
-        <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
-          <div class="col-4">
-            <input type="text" name="ott_searchtext" placeholder="해당 Ott내 검색">
-            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-          </div>
-        </div>
-        </form>-->
-
-
 
 		<!-- ott별로 출력하는 페이지 -->
 
@@ -301,7 +297,6 @@ span>img {
 	</div>
 	</c:when>
 	<c:otherwise>
-		<hr>
 		<div class="list_title pt-2">영화</div>
 		<hr>
 		<div>검색 결과가 없습니다.</div>
@@ -309,6 +304,7 @@ span>img {
 	</c:choose>
 
 	<!-- 넷플릭스 드라마 검색 결과 출력 -->
+	
 	<c:choose>
 		<c:when test="${not empty n_dr_list}">
 			<hr>
@@ -324,7 +320,6 @@ span>img {
 					<c:if test="${i%j == 0 }">
 						<div class="col">
 					</c:if>
-
 					<div class="card">
 						<a href="/detailDr.content?dr_id=${n.dr_id}">
 
@@ -340,7 +335,7 @@ span>img {
 			<c:set var="i" value="${i+1 }" />
 			</c:forEach>
 			</div>
-
+			</div>
 		</c:when>
 		<c:otherwise>
 			<hr>
@@ -348,7 +343,9 @@ span>img {
 			<hr>
 			<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
-	</c:choose>
+			</c:choose>
+	
+	
 	<div class="row footer">
 			<div class="col-12 footerAtag">
 				<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
@@ -372,41 +369,75 @@ span>img {
 
 		</div>
 </div>
-	<div class="offcanvas offcanvas-end" data-bs-scroll="true"
-		tabindex="-1" id="offcanvasWithBothOptions"
-		aria-labelledby="offcanvasWithBothOptionsLabel">
-		<div class="offcanvas-header">
-			<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-				aria-label="Close">
-				<i class="fa-solid fa-xmark fa-xl"></i>
-			</button>
-		</div>
-		<div class="offcanvas-body">
-			<div class="profilebox" id="Btn" style="background: #BDBDBD;">
-				<img src="/img/logo.png" id="profileimg">
+
+	<c:choose>
+		<c:when test="${loginID!=null && loginID!='admin123'}">
+			<!-- 로그인 -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+					<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="/member/mypage.jsp">
+							<button>마이페이지</button>
+						</a>
+					</div>
+					 <div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div>
+        <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
+				</div>
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
+					})
+				</script>
 			</div>
-			<div class="profiletext">${loginNickname }</div>
-			<div class="profiletext">
-				<a href="/member/mypage.jsp">
-					<button>마이페이지</button>
-				</a>
+		</c:when>
+<c:otherwise>
+			<!-- 비로그인  -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">익명의 누군가</div>
+					<div class="profiletext">
+						<a href="/member/signin.jsp">
+							<button id="signinBtn">로그인</button>
+						</a>
+					</div>
+					<div id="linksec">
+        <a href="#">
+            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
+        </a></div>
+				</div>
+				<script>
+					$(".noLoginMenu").on("click",function(){
+						alert("로그인을 해주세요");
+					})
+				</script>
 			</div>
-			<a href="/boardList.board?cpage=1">
-				<div class="menulink">영화 드라마 게시판</div>
-			</a>
-			<button type="button" id="logoutBtn">로그아웃</button>
-		</div>
-		<script>
-				$("#logoutBtn").on("click", function() {
-					location.href = "/logout.member";
-				})
-				/* $("#profileBtn").on(
-				    "click",
-				    function () {
-				        window.open("/profile.jsp", "",
-				            "width=400,height=300");
-				    }) */
-			</script>
-	</div>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>
