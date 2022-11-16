@@ -73,7 +73,7 @@ input [type="submit"] {
 
 .titleimg{
 	height:100%;
-	width:45%;
+	width:40%;
 }
 
 @media(max-width:750px){
@@ -90,19 +90,9 @@ padding-bottom:60px;
 
 a {
 	text-decoration: none;
-	color: grey
+	color: grey;
 }
 
-<<<<<<< HEAD
-=======
-.card-text {
-	height: fit-content;
-}
-
-.card-text:hover{
-	color: #7303c0
-}
->>>>>>> 616c305dc611d2814250766556698c514c015dad
 
 #searchbtn:hover {
 	cursor: pointer;
@@ -121,7 +111,10 @@ span>img {
 	width: 200px;
 	height: 300px;
 	background-color: #03001e;
+	
 }
+.card :hover{ color: inherit;color: #7303c0;}
+
 
 .card-text{height:fit-content;  
 	overflow:hidden;
@@ -133,6 +126,7 @@ span>img {
 }
 
 .poster>img {
+	border-radius: 5px;
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
@@ -140,8 +134,9 @@ span>img {
 
 .poster>img:hover {
 	transform: scale(1.2);
-	color: #7303c0
 }
+
+
 </style>
 <body>
 	<div class="container w-xl text-center">

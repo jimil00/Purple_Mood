@@ -52,7 +52,7 @@ body {
 .container{
 	font-family: 'DungGeunMo';
 	background-color: #03001e;
-	color: grey;
+	color: white;
 }
 /* background:linear-gradient(#03001e,50%,#7303c0,#ec38bc,#fdeff9);  border:1px solid grey;*/
 #logo {
@@ -64,12 +64,12 @@ body {
 
  
 .poster {
-	/*height: fit-content;*/
+	height: fit-content;
 
 }
 
 .poster>img {
-	max-height:400px;}
+	max-height:500px;}
 
 .header-title{padding:20px;}
 

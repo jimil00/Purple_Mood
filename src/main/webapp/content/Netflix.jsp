@@ -35,10 +35,11 @@ body {
 	background-color: #03001e;
 	color: white;
 }
-.ott_logo>a>img {
+.ott_logo>img {
 	width: 250px;
 	margin: 30px;
 }
+
 .postimg {
 	width: 200px;
 }
@@ -214,6 +215,9 @@ button {
 .card-text:hover {
 	color: #7303c0
 }
+
+.card :hover{ color: inherit;color: #7303c0;}
+
 #searchbtn:hover {
 	cursor: pointer;
 }
@@ -231,6 +235,7 @@ span>img {
 	background-color: #03001e;
 }
 .poster>img {
+	border-radius: 5px;
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
@@ -271,16 +276,14 @@ span>img {
 		</form>
 
 		<div class="ott_logo col-12">
-<<<<<<< HEAD
-			<a href="/netflix.content"><img src="/img/netbf.png"></a>
-=======
+
 			<img src="/img/netbf.png" id="ntbtn">
 			<script>
 				$("#ntbtn").on("click",function(){
 					location.href="/netflix.content";
 				})
 			</script>
->>>>>>> 616c305dc611d2814250766556698c514c015dad
+
 		</div>
 		<hr>
 

@@ -24,7 +24,7 @@
 }
 
 
-.ott_logo>a>img {
+.ott_logo>img {
    width: 250px;
    margin: 30px;
 }
@@ -52,9 +52,6 @@ body {
    overflow: hidden;
 }
 
-.card-text {
-   height: fit-content;
-}
 
 .card-text:hover {
    color: #7303c0
@@ -80,39 +77,34 @@ span>img {
    
 }
 
-<<<<<<< HEAD
-.card:hover{ color: #7303c0;}
+.card :hover{ color: #7303c0;}
 
 .card-text{	
 text-decoration:none;
 	overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;}
-=======
->>>>>>> 616c305dc611d2814250766556698c514c015dad
 
 .poster>img {
+	border-radius: 5px;
    width: 200px;
    height: 280px;
    transition: all 0.2s linear;
 }
 
-<<<<<<< HEAD
+
 .poster:hover{color: #7303c0;}
-=======
-.poster:hover{}
->>>>>>> 616c305dc611d2814250766556698c514c015dad
+
 
 .poster>img:hover {
    transform: scale(1.2);
    color: #7303c0
-<<<<<<< HEAD
-=======
+
 }
 
 #dsbtn:hover{
 cursor: pointer;
->>>>>>> 616c305dc611d2814250766556698c514c015dad
+
 }
 
 /* header */
@@ -330,16 +322,13 @@ button {
       </form>
 
       <div class="ott_logo col-12">
-<<<<<<< HEAD
-         <a href="/disney.content"><img src="/img/disbf.png"></a>
-=======
+
          <img src="/img/disbf.png" id="dsbtn">
          <script>
 				$("#dsbtn").on("click",function(){
 					location.href="/disney.content";
 				})
 			</script>
->>>>>>> 616c305dc611d2814250766556698c514c015dad
       </div>
       <hr>
 

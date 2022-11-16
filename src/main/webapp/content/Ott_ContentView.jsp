@@ -19,23 +19,10 @@
 	font-style: normal;
 }
 
-<<<<<<< HEAD
-    .logo{text-align:left;height:100px;}
-    
-    
-    #titleimg{height:100px;}
-    
-    .ott_logo>a>img{width:250px;margin:30px;}
-    
-=======
 .container {
 	font-family: 'DungGeunMo';
 }
 
-.header {
-	
-}
->>>>>>> 616c305dc611d2814250766556698c514c015dad
 
 .logo {
 	text-align: left;
@@ -57,6 +44,7 @@
 }
 
 .postimg {
+	border-radius: 5px;
 	width: 200px;
 }
 
@@ -89,16 +77,13 @@ body {
 	cursor: pointer;
 }
 
-<<<<<<< HEAD
+
 .carousel-item>a>img{width:200px;height: 280px;}
 
-.carousel-control-prev{margin:5px; width:60px;}
-=======
 .carousel-control-prev {
 	margin: 5px;
 	width: 60px;
 }
->>>>>>> 616c305dc611d2814250766556698c514c015dad
 
 .carousel-control-next {
 	margin: 5px;
@@ -139,14 +124,7 @@ body {
 #menuicon:hover {
 	cursor: pointer;
 }
-<<<<<<< HEAD
-    
- 
-    
-    
-=======
 
->>>>>>> 616c305dc611d2814250766556698c514c015dad
 /* menu */
 .offcanvas {
 	height: 800px;
@@ -315,7 +293,7 @@ button {
 
 		<c:choose>
 			<c:when test="${not empty mv_date_n}">
-
+			       <hr>
 				<div class="list_title pt-2">
 					영화
 					<!-- <span> ${mv_date_n.size()}개</span>-->

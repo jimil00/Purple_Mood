@@ -28,7 +28,7 @@ body {
 	color: white;
 }
 
-.ott_logo>a>img {
+.ott_logo>img {
 	width: 250px;
 	margin: 30px;
 }
@@ -62,6 +62,8 @@ body {
 	color: #7303c0
 }
 
+.card :hover{ color: inherit;color: #7303c0;}
+
 #searchbtn:hover {
 	cursor: pointer;
 }
@@ -82,6 +84,7 @@ span>img {
 }
 
 .poster>img {
+	border-radius: 5px;
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
@@ -300,16 +303,13 @@ button {
 		</form>
 
 		<div class="ott_logo col-12">
-<<<<<<< HEAD
-			<a href="/watcha.content"><img src="/img/watbf.png"></a>
-=======
+
 			<img src="/img/watbf.png" id="wtbtn">
 			<script>
 				$("#wtbtn").on("click",function(){
 					location.href="/watcha.content";
 				})
 			</script>
->>>>>>> 616c305dc611d2814250766556698c514c015dad
 		</div>
 		<hr>
 
