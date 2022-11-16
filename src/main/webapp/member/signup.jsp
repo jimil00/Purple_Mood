@@ -33,14 +33,17 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
+.dongfont{
+font-family: 'DungGeunMo';
+}
 * {
 	box-sizing: border-box;
-	font-family: 'DungGeunMo';
 	margin: auto;
 	color: black;
 }
-
+body{
+background-color: #03001e;
+}
 .container {
 	margin: auto;
 	display: flex;
@@ -106,6 +109,7 @@ input {
 .btns {
 	width: 100%;
 	margin-top: 10px;
+	margin-bottom: 9px;
 	text-align: center;
 }
 
@@ -266,9 +270,9 @@ bottom
 	<form action="/signup.member" method="post" id="frm">
 		<div class="container signupForm col-12" style="min-width: 350px;">
 			<div class="joinForm col-12">
-				<div class="logo">회원가입</div>
+				<div class="logo dongfont">회원가입</div>
 				<div class="id col-12">
-					<span>아이디<span class="requiredField">*<span></span>
+					<span class="dongfont">아이디<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="id" id="id"
 									placeholder="6~20자의 영문 소문자, 숫자와 특수기호(_)">
@@ -276,7 +280,7 @@ bottom
 							</div>
 				</div>
 				<div class="nickname col-12">
-					<span>닉네임<span class="requiredField">*<span></span>
+					<span class="dongfont">닉네임<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="nickname" id="nickname"
 									placeholder="2~8자 영문 대 소문자,한글">
@@ -284,33 +288,33 @@ bottom
 							</div>
 				</div>
 				<div class="pw col-12">
-					<span>패스워드<span class="requiredField">*<span></span>
+					<span class="dongfont">패스워드<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="password" name="pw" id="pw"
 									placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)">
 							</div>
 				</div>
 				<div class="pwcheck col-12">
-					<span>패스워드 확인</span>
+					<span class="dongfont">패스워드 확인</span>
 					<div class="margin_top col-12">
 						<input type="password" id="checkpw">
 						<div id="result"></div>
 					</div>
 				</div>
 				<div class="name col-12">
-					<span>이름<span class="requiredField">*<span></span>
+					<span class="dongfont">이름<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="name" id="name" placeholder="2~5자 한글">
 							</div>
 				</div>
 				<div class="phone col-12">
-					<span>전화번호<span class="requiredField">*<span></span>
+					<span class="dongfont">전화번호<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="phone" id="phone" placeholder="숫자만 입력">
 							</div>
 				</div>
 				<div class="email col-12">
-					<span>이메일<span class="requiredField">*<span></span>
+					<span class="dongfont">이메일<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="email" id="email"
 									placeholder="영어 대 소문자, 숫자"> @ <select id="emailAddress"
@@ -324,7 +328,7 @@ bottom
 				</div>
 				<div class="postcode col-12">
 					<div class="col-12">
-						<span>우편번호</span>&nbsp&nbsp<input type="button"
+						<span class="dongfont">우편번호</span>&nbsp&nbsp<input type="button"
 							onclick="postcode()" value="우편번호 찾기" id="btnsearch"
 							style="width: 100px;">
 					</div>
@@ -334,13 +338,13 @@ bottom
 					</div>
 				</div>
 				<div class="address1 col-12">
-					<span>주소</span>
+					<span class="dongfont">주소</span>
 					<div class="margin_top col-12">
 						<input type="text" name="address1" id="address1" placeholder="주소">
 					</div>
 				</div>
 				<div class="address2 col-12">
-					<span>상세주소</span>
+					<span class="dongfont">상세주소</span>
 					<div class="margin_top col-12">
 						<input type="text" name="address2" id="address2"
 							placeholder="상세주소">
@@ -348,10 +352,10 @@ bottom
 				</div>
 				<div class="footer col-12">
 					<div class="btns">
-						<a href=/main><button id=signup>회원가입</button></a>&nbsp&nbsp<a
-							href="/member/signin.jsp"><button type="button">뒤로
+						<a href=/main><button id="signup" class="dongfont">회원가입</button></a>&nbsp&nbsp<a
+							href="/member/signin.jsp"><button type="button" class="dongfont">뒤로
 								가기</button></a>&nbsp
-						<button type="reset" id="resetBtn">다시 입력</button>
+						<button type="reset" id="resetBtn"  class="dongfont">다시 입력</button>
 					</div>
 				</div>
 			</div>
@@ -525,10 +529,12 @@ bottom
 			if (!($("#pw").val() == $("#checkpw").val())) {
 				$("#result").text("패스워드가 일치하지 않습니다.");
 				$("#result").css("color", "red");
+				$("#result").css("font-family", "'DungGeunMo'");
 				pwCheck = false;
 			} else {
 				$("#result").text("패스워드가 일치합니다.");
 				$("#result").css("color", "green");
+				$("#result").css("font-family", "'DungGeunMo'");
 				pwCheck = true;
 			}
 		})
