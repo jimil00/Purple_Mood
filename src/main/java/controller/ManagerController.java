@@ -64,12 +64,16 @@ public class ManagerController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("manager/dramaOutput.jsp").forward(request, response);
 
+				// 드라마 삭제
 			}else if(uri.equals("/dramaDelete.manager")) {
 				
 				int dr_id = Integer.parseInt(request.getParameter("dr_id"));
 				int result = DramaDAO.getInstance().delete(dr_id);
 				response.sendRedirect("/dramaOutput.manager");
 				
+				// 신고 게시글 조회
+			}else if(uri.equals("/boardComplainOutput.manager")) {
+				System.out.println("여기");
 			}
 
 		}catch (Exception e) {

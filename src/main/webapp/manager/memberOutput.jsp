@@ -9,13 +9,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <style>
+@font-face {
+	font-family: 'DungGeunMo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.dongfont {
+	font-family: 'DungGeunMo';
+}
+
 * {
 	box-sizing: border-box;
 	text-align: center;
-}
-
-div {
-	border: 1px solid;
 }
 
 .container {
@@ -26,9 +35,10 @@ div {
 .header {
 	height: 100px;
 	line-height: 100px;
-	background-color: #431e5c60;
 	font-size: x-large;
-	font-weight: bold;
+	color: white;
+	background-color: #03001e;
+	font-family: 'DungGeunMo';
 }
 
 .navi {
@@ -68,7 +78,11 @@ button {
 </head>
 <body>
 	<div class="container">
-		<div class="header">관리자페이지</div>
+		<div class="header">
+			<div>
+				관리자 페이지 <a href="index.jsp"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
+			</div>
+		</div>
 		<div class="navi">
 			<ul class="nav nav-tabs">
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: black;">회원관리</a>
@@ -92,7 +106,9 @@ button {
 		</div>
 		<div class="main">
 			<div class="memberAllOutput">
-				<div class="title">회원관리 > 전체조회</div>
+				<div class="title">
+					<strong>회원관리 > 전체조회</strong>
+				</div>
 				<div class="contentTitles">
 					<div class="contentTitle" style="width: 10%;">아이디</div>
 					<div class="contentTitle" style="width: 9%;">닉네임</div>
@@ -123,16 +139,19 @@ button {
 						</div>
 					</div>
 					<script>
-					$(function() {
-						$("#${i.id}").on("click", function() {
-							if (confirm("해당 회원을 탈퇴시키겠습니까?")) {
-								 location.href="/memberDelete.manager?id=${i.id}";
-								alert("삭제되었습니다.");
-							} else {
-								alert("취소되었습니다.");
-							}
-						});
-					})
+						$(function() {
+							$("#${i.id}")
+									.on(
+											"click",
+											function() {
+												if (confirm("해당 회원을 탈퇴시키겠습니까?")) {
+													location.href = "/memberDelete.manager?id=${i.id}";
+													alert("삭제되었습니다.");
+												} else {
+													alert("취소되었습니다.");
+												}
+											});
+						})
 					</script>
 				</c:forEach>
 			</div>

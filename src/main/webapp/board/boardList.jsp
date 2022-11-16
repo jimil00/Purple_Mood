@@ -244,18 +244,10 @@ a {
 						</div>
 						<hr>
 						<div align="center" class="navi">
-<<<<<<< HEAD
-							<!-- 							<a href="/boardList.board?cpage=1"><button type="button">처음으로</button></a> -->
-							<%-- 							${navi} <a href="boardList.board?cpage=${endNavi}"><button --%>
-							<!-- 									type="button">끝으로</button></a> -->
-							${navi }
-
-=======
 							<!-- <a href="boardList.board?cpage=1"><button type="button">처음으로</button></a> -->
 							${navi} <!--<a href="boardList.board?cpage=${endNavi}">
 								<button type="button">끝으로</button> -->
 							</a>
->>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
 						</div>
 						<hr>
 						<form action="/boardListSearch.board?cpage=1" method="post">
