@@ -175,7 +175,7 @@ input {
 				<div class="nickname col-12">
 					<span class="dongfont">닉네임<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="nickname" id="nickname"
+								<input type="text" name="nickname" id="nickname" maxlength="9"
 									placeholder="2~8자 영문 대 소문자,한글" disabled value="${dto.nickname}">
 								<div id="duplResultNickname"></div>
 							</div>
@@ -183,35 +183,36 @@ input {
 				<div class="pw col-12">
 					<span class="dongfont">패스워드<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="password" name="pw" id="pw"
-									placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)" disabled>
+								<input type="password" name="pw" id="pw" maxlength="16"
+									placeholder="8~16자 영문 대 소문자,숫자,특수문자(~!@#$%)" disabled>
 							</div>
 				</div>
 				<div class="pwcheck col-12">
 					<span class="dongfont">패스워드 확인</span>
 					<div class="margin_top col-12">
-						<input type="password" id="checkpw" disabled>
+						<input type="password" id="checkpw" disabled maxlength="16">
 						<div id="result"></div>
 					</div>
 				</div>
 				<div class="name col-12">
 					<span class="dongfont">이름<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="name" id="name" placeholder="2~5자 한글"
-									value="${dto.name}" disabled>
+								<input type="text"  name="name" id="name" placeholder="2~5자 한글"
+								maxlength="5"
+									value="${dto.name}" disabled >
 							</div>
 				</div>
 				<div class="phone col-12">
 					<span class="dongfont">전화번호<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="phone" id="phone" placeholder="숫자만 입력"
+								<input type="text" maxlength="11" name="phone" id="phone" placeholder="숫자만 입력"
 									value="${dto.phone}" disabled>
 							</div>
 				</div>
 				<div class="email col-12">
 					<span class="dongfont">이메일<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="email" id="email"
+								<input type="text" name="email" id="email" maxlength="20"
 									placeholder="영어 대 소문자, 숫자" value="${dto.email}" disabled>
 								@ <select id="emailAddress" name="emailAddress"
 									class="selectOption" disabled>
@@ -224,26 +225,26 @@ input {
 				</div>
 				<div class="postcode col-12">
 					<div class="col-12">
-						<span class="dongfont">우편번호</span>&nbsp&nbsp<input type="button"
+						<span class="dongfont">우편번호</span>&nbsp&nbsp<input type="button" 
 							onclick="postcode()" value="우편번호 찾기" id="btnsearch"
 							style="width: 100px;" disabled>
 					</div>
 					<div class="margin_top col-12">
-						<input type="text" name="postcode" id="postcode"
+						<input type="text" name="postcode" id="postcode" maxlength="7" 
 							placeholder="우편번호" value="${dto.postcode}" disabled>
 					</div>
 				</div>
 				<div class="address1 col-12">
 					<span class="dongfont">주소</span>
 					<div class="margin_top col-12">
-						<input type="text" name="address1" id="address1" placeholder="주소"
+						<input type="text" name="address1" id="address1" placeholder="주소" maxlength="65"
 							value="${dto.address1}" disabled>
 					</div>
 				</div>
 				<div class="address2 col-12">
 					<span class="dongfont">상세주소</span>
 					<div class="margin_top col-12">
-						<input type="text" name="address2" id="address2"
+						<input type="text" name="address2" id="address2" maxlength="65"
 							placeholder="상세주소" value="${dto.address2}" disabled>
 					</div>
 				</div>

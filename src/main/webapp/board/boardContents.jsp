@@ -149,7 +149,7 @@ div {
                              data: {
                                  "bcm_content": bcm_content,
                                  "b_seq" : b_seq,
-                                 "b_title": b_title
+                                 "b_title":b_title
                              }
                           })
                          location.href="/selectBoardContents.board?b_seq="+b_seq;
@@ -206,41 +206,43 @@ div {
             </script>
 <body>
 	<div class="container">
-		<div class="b_contents">
-			<div class="row b_contents_header1">
-				<div class="col-lg-4 col-md-4 col-sm-4">${dto.b_category}</div>
-				<div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title"
-					size="129" contenteditable="false">${dto.b_title }</div>
-			</div>
-			<div class="row b_contents_header2">
-				<div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer_nn}</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">${dto.b_write_date}</div>
-				<div class="col-lg-2 col-md-2 col-sm-1">${dto.b_view_count }</div>
-			</div>
+                <div class="b_contents">
+                    <div class="row b_contents_header1">
+                        <div class="col-lg-4 col-md-4 col-sm-4">${dto.b_category}</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8"
+					id="b_title" name="b_title" size="129" contenteditable="false"> ${dto.b_title }</div>
+                            <script>
+                            $("#b_title").text($("#b_title").html());
+                            
+</script>
+</div>
+<div class="row b_contents_header2">
+	<div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer_nn}</div>
+	<div class="col-lg-4 col-md-4 col-sm-4">${dto.b_write_date}</div>
+	<div class="col-lg-2 col-md-2 col-sm-2">${dto.b_view_count }</div>
+</div>
 
-			<div class="row b_contents_body">
-				<div class="col-lg-12 col-md-12 col-sm-12" id="summernote"
-					name="b_content" cols="131" rows="15" contenteditable="false">${dto.b_content }
-				</div>
+<div class="row b_contents_body">
+	<div class="col-lg-12 col-md-12 col-sm-12" id="summernote"
+		name="b_content" cols="131" rows="15" contenteditable="false">${dto.b_content }
+	</div>
+</div>
+<div class="row b_contents_footer">
+	<c:choose>
+		<c:when test="${loginID == dto.b_writer_id}">
+			<div class="btns col-lg-12 col-md-12 col-sm-12">
+				<a href="/beforeUpdateBoardContents.board?b_seq=${dto.b_seq }"><button
+						type="button" id="updateBoardContents" name="updateBoardContents">수정하기</button></a>&nbsp
+				<a href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><button
+						type="button" id="deleteBoardContents" name="deleteBoardContents">삭제하기</button></a>
+				&nbsp <a href="/boardList.board?cpage=${boardPage }"><button
+						type="button" id="toList" name="toList">목록으로</button></a>
 			</div>
-			<div class="row b_contents_footer">
-				<c:choose>
-					<c:when test="${loginID == dto.b_writer_id}">
-						<div class="btns col-lg-12 col-md-12 col-sm-12">
-							<a href="/beforeUpdateBoardContents.board?b_seq=${dto.b_seq }"><button
-									type="button" id="updateBoardContents"
-									name="updateBoardContents">수정하기</button></a>&nbsp <a
-								href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><button
-									type="button" class="btn" id="deleteBoardContents"
-									name="deleteBoardContents">삭제하기</button></a> &nbsp <a
-								href="/boardList.board?cpage=${boardPage }"><button
-									type="button" id="toList" name="toList">목록으로</button></a>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="col-lg-6 col-md-6 col-sm-6">
-							<a href="#" id="insertBoardComplain">신고</a>
-							<script>
+		</c:when>
+		<c:otherwise>
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				<a href="#" id="insertBoardComplain">신고</a>
+				<script>
                                     $("#insertBoardComplain").on("click", function () {
                                         if (confirm("${dto.b_writer_nn}님의 글 ${dto.b_title}을 신고하시겠습니까?")) {
                                             $.ajax({
@@ -258,55 +260,60 @@ div {
                                     });
 
                                     </script>
-						</div>
-						<div class="btns col-lg-6 col-md-6 col-sm-6">
-							<a href="/boardList.board?cpage=${boardPage }"><button
-									type="button" id="back" name="back">목록으로</button></a>
-						</div>
-					</c:otherwise>
-				</c:choose>
 			</div>
-		</div>
+			<div class="btns col-lg-6 col-md-6 col-sm-6">
+				<a href="/boardList.board?cpage=${boardPage }"><button
+						type="button" id="back" name="back">목록으로</button></a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+</div>
+</div>
 
-		<div class="bcm_contents">
-			<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
-			<c:choose>
-				<c:when test="${empty list}">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12">댓글이 없습니다.</div>
+<div class="bcm_contents">
+	<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
+	<c:choose>
+		<c:when test="${empty list}">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">댓글이 없습니다.</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="comment" items="${list}">
+				<div class="row boardCommentHeader">
+					<div class="bcm_writer_nn col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer_nn }</div>
+					<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6"
+						name="bcm_write_date">${comment.bcm_write_date }</div>
+				</div>
+				<div class="row boardComment">
+					<input type="hidden" class="bcm_seq" name="bcm_seq"
+						value="${comment.bcm_seq }"> <input type="hidden"
+						class="bcm_writer_id" name="bcm_writer_id"
+						value="${comment.bcm_writer_id }">
+					<div class="bcm_content col-lg-9 col-md-9 col-sm-9"
+						name="bcm_content" size="105" contenteditable="false">${comment.bcm_content }
 					</div>
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="comment" items="${list}">
-						<div class="row boardCommentHeader">
-							<div class="bcm_writer_nn col-lg-6 col-md-6 col-sm-6">${comment.bcm_writer_nn }</div>
-							<div class="bcm_write_date col-lg-6 col-md-6 col-sm-6"
-								name="bcm_write_date">${comment.bcm_write_date }</div>
-						</div>
-						<div class="row boardComment">
-							<input type="hidden" class="bcm_seq" name="bcm_seq"
-								value="${comment.bcm_seq }"> <input type="hidden"
-								class="bcm_writer_id" name="bcm_writer_id"
-								value="${comment.bcm_writer_id }">
-							<div class="bcm_content col-lg-9 col-md-9 col-sm-9"
-								name="bcm_content" size="105" contenteditable="false">${comment.bcm_content }</div>
-							<c:choose>
-								<c:when test="${loginID == comment.bcm_writer_id}">
-									<div class="cbtns col-lg-3 col-md-3 col-sm-3">
-										<button type="button" class="updateBoardComment"
-											name="updateBoardComment">댓글수정</button>
-										&nbsp <a
-											href="/deleteBoardComment.boardcomment?bcm_seq=${comment.bcm_seq }&b_seq=${dto.b_seq}">
-											<button type="button" class="deleteBoardComment"
-												name="deleteBoardComment">댓글삭제</button>
-										</a>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="col-lg-3 col-md-3 col-sm-3">
-										<a href="#" id="insertBoardCommentComplain">신고</a>
-									</div>
-									<script>
+					<script>
+                            $(".bcm_content").text($(".bcm_content").html());
+                            </script>
+
+					<c:choose>
+						<c:when test="${loginID == comment.bcm_writer_id}">
+							<div class="cbtns col-lg-3 col-md-3 col-sm-3">
+								<button type="button" class="updateBoardComment"
+									name="updateBoardComment">댓글수정</button>
+								&nbsp <a
+									href="/deleteBoardComment.boardcomment?bcm_seq=${comment.bcm_seq }&b_seq=${dto.b_seq}">
+									<button type="button" class="deleteBoardComment"
+										name="deleteBoardComment">댓글삭제</button>
+								</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="col-lg-3 col-md-3 col-sm-3">
+								<a href="#" id="insertBoardCommentComplain">신고</a>
+							</div>
+							<script>
                                                     let bcm_seq = $(this).closest(".boardCommentHeader").find(".bcm_seq").val();
                                                     let bcm_writer_id = $(this).closest(".boardCommentHeader").find(".bcm_writer_id").val();
                                                     let bcm_writer_nn = $(this).closest(".boardCommentHeader").find(".bcm_writer_nn").html();
@@ -329,25 +336,24 @@ div {
                                                         }
                                                     });
 </script>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-			<div class="row insertBcm">
-				<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
-				<div class="col-lg-9 col-md-9 col-sm-9" class=>
-					<input type="text" id="insertBcm_content" name="insertBcm_content"
-						placeholder="내용을 입력하세요." style="border: none; width: 100%;">
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3">
-					<button id="insertBoardComment">댓글작성</button>
-				</div>
-			</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
+	<div class="row insertBcm">
+		<input type="hidden" id="b_seq" name="b_seq" value="${dto.b_seq }">
+		<div class="col-lg-9 col-md-9 col-sm-9">
+			<input type="text" id="insertBcm_content" name="insertBcm_content"
+				placeholder="내용을 입력하세요." maxlength="300"
+				style="border: none; width: 100%;">
 		</div>
-</body>
-
+		<div class="col-lg-3 col-md-3 col-sm-3">
+			<button id="insertBoardComment">댓글작성</button>
+		</div>
+	</div>
+</div>
 </body>
 
 </html>

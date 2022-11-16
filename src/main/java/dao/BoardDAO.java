@@ -243,7 +243,13 @@ public class BoardDAO {
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/boardList.board?cpage="+i+"'>" + i + "</a> ");
+			if(currentPage == i){
+				sb.append("<a href='/boardList.board?cpage="+i+"'><b>" + i + "</b></a> ");
+
+			}else {
+				sb.append("<a href='/boardList.board?cpage="+i+"'>" + i + "</a> ");
+
+			}
 		}
 
 		if(needNext) {
@@ -446,7 +452,13 @@ public class BoardDAO {
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append("<a href='/boardSearchList.board?cpage="+i+"&boardSearchOption="+boardSearchOption+"&boardSearchWord="+boardSearchWord+"'>" + i + "</a> ");
+			if(currentPage==i) {
+				sb.append("<a href='/boardSearchList.board?cpage="+i+"&boardSearchOption="+boardSearchOption+"&boardSearchWord="+boardSearchWord+"'><b>" + i + "</b></a> ");
+
+			}else {
+				sb.append("<a href='/boardSearchList.board?cpage="+i+"&boardSearchOption="+boardSearchOption+"&boardSearchWord="+boardSearchWord+"'>" + i + "</a> ");
+
+			}
 		}
 
 		if(needNext) {
