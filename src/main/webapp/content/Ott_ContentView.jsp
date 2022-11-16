@@ -173,15 +173,9 @@ body {
 	font-family: 'DungGeunMo';
 }
 
-<<<<<<< HEAD
 .menulink:hover, .searchbtn:hover {
    color: #c4c4c4;
    cursor:pointer;
-=======
-.menulink:hover, #searchbtn:hover {
-	color: #c4c4c4;
-	cursor: pointer;
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
 }
 
 #colsebtn {
@@ -295,29 +289,6 @@ button {
         </div>
        </c:when>
         </c:choose>
-
-		<c:choose>
-			<c:when test="${not empty dr_date_n or not empty mv_date_n}">
-
-				<form action="/n_search.content">
-					<div class="row header">
-						<div class="col-12 col-md-7 col-lg-8" id="logo">
-							<a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
-						</div>
-						<div class="col-8 col-md-4 col-lg-3 searchbox">
-							<input type="text" class="searchboxin" id="n_searchtext" name="n_searchtext" placeholder="넷플릭스 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin" id="n_searchbtn"></i>
-						</div>
-						<div class="col-4 col-md-1 col-lg-1 menuicon">
-							<i class="fas fa-bars fa-2x" id="menuicon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
-						</div>
-					</div>
-				</form>
-
-				<div class="ott_logo col-12">
-					<a href="/netflix.content"><img src="/img/netbf.png"></a>
-				</div>
-			</c:when>
-		</c:choose>
 
 		<c:choose>
 			<c:when test="${not empty mv_date_n}">
@@ -1206,7 +1177,6 @@ button {
 				</script>
 			</div>
 		</c:when>
-<<<<<<< HEAD
 		<c:when test="${loginID!=null && loginID == 'admin123'}">
 			<!-- 관리자 -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
