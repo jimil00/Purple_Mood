@@ -336,7 +336,9 @@ hr.hr {
 				<img src="/img/title.png" id="titleimg">
 			</div>
 			<div class="col-8 col-md-4 col-lg-3 searchbox">
-				<input type="text" class="searchboxin" id="searchtext" onkeyup="enterkey()" name="searchtext" /> <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i></a>
+				<input type="text" class="searchboxin" id="searchtext"
+					onkeyup="enterkey()" name="searchtext" /> 
+					<i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
 			</div>
 			<script>
 			$("#titleimg").on("click",function(){
