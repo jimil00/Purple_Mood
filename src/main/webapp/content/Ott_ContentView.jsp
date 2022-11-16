@@ -268,8 +268,7 @@ button {
 <body>
 	<div class="container w-xl text-center">
 
-<<<<<<< HEAD
-           <c:choose>
+     <c:choose>
       <c:when test="${not empty dr_date_n or not empty mv_date_n}">
       
    <form action="/n_search.content">  
@@ -296,9 +295,6 @@ button {
         </div>
        </c:when>
         </c:choose>
-=======
-		<!-- ott별로 출력하는 페이지 -->
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
 
 		<c:choose>
 			<c:when test="${not empty dr_date_n or not empty mv_date_n}">
@@ -454,41 +450,6 @@ button {
 					</div>
 				</div>
 
-<<<<<<< HEAD
-<!-- 디즈니 플러스 -->
-      <c:choose>
-      <c:when test="${not empty dr_date_d or not empty mv_date_d}">
-      
-      <form action="/d_search.content">  
-        <div class="row header">
-         <div class="col-12 col-md-7 col-lg-8" id="logo">
-            <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
-         </div>
-         <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="d_searchtext"
-                name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin searchbtn" id="d_searchbtn"></i>
-         </div>
-         <div class="col-4 col-md-1 col-lg-1 menuicon">
-            <i class="fas fa-bars fa-2x" id="menuicon"
-               data-bs-toggle="offcanvas"
-               data-bs-target="#offcanvasWithBothOptions"
-               aria-controls="offcanvasWithBothOptions"></i>
-         </div>
-      </div>
-        </form>
-        
-           <div class="ott_logo col-12">
-            <a href="/disney.content"><img src="/img/disbf.png"></a>
-        </div>
-        <hr>
-        
-        </c:when>
-        </c:choose>
-        
-  <c:choose>
-      <c:when test="${not empty mv_date_d}">
-=======
 				<div class="poster4">
 					<hr>
 					<div class="col-12 fs-3 titlename">인기순</div>
@@ -534,8 +495,6 @@ button {
 						<span class="snsIcon"><i class="fa-brands fa-instagram fa-2xl"></i></span> <span class="snsIcon"><i class="fa-brands fa-twitter fa-2xl"></i></span> <span class="snsIcon"> <i class="fa-brands fa-facebook fa-2xl"></i>
 						</span>
 					</div>
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
-
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -569,92 +528,20 @@ button {
 					</div>
 				</form>
 
-<<<<<<< HEAD
-   <c:choose>
-      <c:when test="${not empty dr_date_wv and not empty mv_date_wv}">
-      
-      <form action="/wv_search.content">      
-          <div class="row header">
-         <div class="col-12 col-md-7 col-lg-8" id="logo">
-            <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
-         </div>
-         <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="wv_searchtext"
-                name="wv_searchtext" placeholder="웨이브 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin searchbtn" id="wv_searchbtn"></i>
-         </div>
-         <div class="col-4 col-md-1 col-lg-1 menuicon">
-            <i class="fas fa-bars fa-2x" id="menuicon"
-               data-bs-toggle="offcanvas"
-               data-bs-target="#offcanvasWithBothOptions"
-               aria-controls="offcanvasWithBothOptions"></i>
-         </div>
-      </div>
-        </form>
-           <div class="ott_logo col-12">
-            <a href="/wavve.content"><img src="/img/wavbf.png"></a>
-        </div>
-        <hr>
-        </c:when>
-        </c:choose>
-        
-           <c:choose>
-      <c:when test="${not empty mv_date_wv}">
-=======
 				<div class="ott_logo col-12">
 					<a href="/disney.content"><img src="/img/disbf.png"></a>
 				</div>
 				<hr>
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
-
 			</c:when>
 		</c:choose>
 
 		<c:choose>
 			<c:when test="${not empty mv_date_d}">
-
-<<<<<<< HEAD
-        
-<!-- 왓챠 -->
-      <c:choose>
-      <c:when test="${not empty dr_date_wc and not empty mv_date_wc}">
-      
-   <form action="/wc_search.content">
-        <div class="row header">
-         <div class="col-12 col-md-7 col-lg-8" id="logo">
-            <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
-         </div>
-         <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="wc_searchtext"
-                name="wc_searchtext" placeholder="왓챠 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin searchbtn" id="wc_searchbtn"></i>
-         </div>
-         <div class="col-4 col-md-1 col-lg-1 menuicon">
-            <i class="fas fa-bars fa-2x" id="menuicon"
-               data-bs-toggle="offcanvas"
-               data-bs-target="#offcanvasWithBothOptions"
-               aria-controls="offcanvasWithBothOptions"></i>
-         </div>
-      </div>
-        </form>    
-        
-        <div class="ott_logo col-12">
-            <a href="/watcha.content"><img src="/img/watbf.png"></a>
-        </div>
-        <hr>
-        </c:when>
-        </c:choose>
-        
-        <c:choose>
-      <c:when test="${not empty mv_date_wc}">
-=======
 				<div class="list_title pt-2">
 					영화
 					<!-- <span> ${mv_date_d.size()}개</span>-->
 				</div>
 				<hr>
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
-
 				<div class="poster1">
 					<div class="col-12 fs-3 titlename">최신작</div>
 					<hr>
@@ -1355,9 +1242,6 @@ button {
 			</div>
 		</c:when>
 <c:otherwise>
-=======
-		<c:otherwise>
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
 			<!-- 비로그인  -->
 			<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 				<div class="offcanvas-header">
@@ -1416,17 +1300,7 @@ button {
 			location.href="/wc_search.content?wc_searchtext="+$("#wc_searchtext").val();
 			
 		});
-<<<<<<< HEAD
 		</script>
-=======
-		
-			
-		
-				</script>
-			</div>
-		</c:otherwise>
-	</c:choose>
 
->>>>>>> 7a5462b9ab68a35dc56e1aea5d8e80d6cc160489
 </body>
 </html>
