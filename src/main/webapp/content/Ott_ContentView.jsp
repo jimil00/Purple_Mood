@@ -238,27 +238,27 @@ button {
     
    <!-- ott별로 출력하는 페이지 -->
 
-   <c:choose>
-      <c:when test="${not empty dr_date_n and not empty mv_date_n}">
-      
+	<c:choose>
+		<c:when test="${not empty dr_date_n and not empty mv_date_n}">
+		
 
-   <form action="/n_search.content">  
+	<form action="/n_search.content">  
         <div class="row header">
-         <div class="col-12 col-md-7 col-lg-8" id="logo">
-            <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
-         </div>
-         <div class="col-8 col-md-4 col-lg-3 searchbox">
-            <input type="text" class="searchboxin" id="searchtext"
-                name="n_searchtext" placeholder="넷플릭스 내 검색"> <i
-               class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-         </div>
-         <div class="col-4 col-md-1 col-lg-1 menuicon">
-            <i class="fas fa-bars fa-2x" id="menuicon"
-               data-bs-toggle="offcanvas"
-               data-bs-target="#offcanvasWithBothOptions"
-               aria-controls="offcanvasWithBothOptions"></i>
-         </div>
-      </div>
+			<div class="col-12 col-md-7 col-lg-8" id="logo">
+				<a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
+			</div>
+			<div class="col-8 col-md-4 col-lg-3 searchbox">
+				<input type="text" class="searchboxin" id="searchtext"
+					 name="n_searchtext" placeholder="넷플릭스 내 검색"> <i
+					class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
+			</div>
+			<div class="col-4 col-md-1 col-lg-1 menuicon">
+				<i class="fas fa-bars fa-2x" id="menuicon"
+					data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasWithBothOptions"
+					aria-controls="offcanvasWithBothOptions"></i>
+			</div>
+		</div>
         </form>
         
         <div class="ott_logo col-12">
@@ -304,16 +304,16 @@ button {
                       </c:forEach>
                 </div>
               </div>
-             <button class="carousel-control-prev postLRbtn" type="button"
-            data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="visually-hidden">Previous</span>
-         </button>
-            <button class="carousel-control-next postLRbtn" type="button"
-               data-bs-target="#carouselExampleControls1" data-bs-slide="next">
-               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-               <span class="visually-hidden ">Next</span>
-            </button>
+          	<button class="carousel-control-prev postLRbtn" type="button"
+				data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+			</button>
+				<button class="carousel-control-next postLRbtn" type="button"
+					data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden ">Next</span>
+				</button>
             </div>
           </div>
         </div>       

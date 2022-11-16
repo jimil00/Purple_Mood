@@ -30,7 +30,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 .container {
 	font-family: 'DungGeunMo';
 }
@@ -38,50 +37,40 @@ body {
 	background-color: #03001e;
 	color: white;
 }
-
 .ott_logo>img {
 	width: 250px;
 	margin: 30px;
 }
-
 .postimg {
 	width: 200px;
 }
-
 .list_title {
 	text-align: left;
 }
-
 .card {
 	width: 200px;
 	height: 300px;
 	background-color: #03001e;
 }
-
 .poster {
 	overflow: hidden;
 }
-
 /* header */
 .header {
 	height: 100px;
 	background-color: #03001e;
 	padding-bottom: 20px;
 }
-
 #logo, #titleimg {
 	height: 100%;
 }
-
 #titleimg {
 	position: relative;
 	left: -38%;
 }
-
 #titleimg:hover {
 	cursor: pointer;
 }
-
 @media ( max-width :767px) {
 	#logo {
 		height: 60%;
@@ -90,44 +79,35 @@ body {
 		height: 100%;
 	}
 }
-
 .searchbox {
 	text-align: right;
 }
-
 .searchboxin {
 	position: relative;
 	top: 10%;
 }
-
 #searchtext {
 	width: 90%;
 }
-
 .menuicon {
 	text-align: center;
 }
-
 #menuicon {
 	position: relative;
 	top: 8%;
 }
-
 #menuicon:hover {
 	cursor: pointer;
 }
-
 /* menu */
 .offcanvas {
 	height: 800px;
 	background-color: #03001e;
 }
-
 .offcanvas-body {
 	color: white;
 	text-align: center;
 }
-
 .profilebox {
 	width: 170px;
 	height: 150px;
@@ -137,45 +117,39 @@ body {
 	margin-bottom: 20px;
 	margin-top: 30px;
 }
-
 .profile {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
-
 #profileimg {
 	height: 100%;
 }
-
 .profiletext {
 	font-size: larger;
 	margin-bottom: 10px;
 	font-family: 'DungGeunMo';
 }
-
 #logoutBtn {
 	font-size: larger;
 	font-family: 'DungGeunMo';
 }
-
 .menulink {
 	font-size: x-large;
 	margin-bottom: 50px;
 	margin-top: 50px;
 	font-family: 'DungGeunMo';
 }
-
 .menulink:hover, #searchbtn:hover {
 	color: #c4c4c4;
 	cursor: pointer;
 }
-
 #colsebtn {
 	border: none;
 	color: white;
 	background-color: #03001e;
 }
+
 #linksec{
     padding-top: 50px;;
     padding-bottom: 50px;;
@@ -189,12 +163,10 @@ a {
 	color: white;
 	text-decoration: none;
 }
-
 button {
 	border: none;
 	border-radius: 5px;
 }
-
 /* footer */
 .footer {
 	text-align: left;
@@ -204,52 +176,41 @@ button {
 	background-color: #03001e;
 	color: white;
 }
-
 .footerAtag {
 	padding-top: 30px;
 	padding-bottom: 20px;
 }
-
 .footerAtag>a {
 	font-family: 'DungGeunMo';
 	font-size: large;
 }
-
 .footerAtag>a:hover {
 	color: #ec38bc;
 }
-
 .footerImpormation {
 	font-size: smaller;
 }
-
 .footerIcon {
 	padding-top: 10px;
 	height: 50px;
 	line-height: 50px;
 }
-
 .fa-brands:hover {
 	cursor: pointer;
 }
-
 .snsIcon {
 	padding-right: 20px;
 	padding-left: 10px;
 }
-
 .card-text {
 	height: fit-content;
 }
-
 .card-text:hover {
 	color: #7303c0
 }
-
 #searchbtn:hover {
 	cursor: pointer;
 }
-
 span>img {
 	width: 45px;
 	position: relative;
@@ -257,20 +218,17 @@ span>img {
 	left: 80%; . mv_reaech >img{ width : 200px;
 	height: 280px;
 }
-
 }
 .card {
 	width: 200px;
 	height: 300px;
 	background-color: #03001e;
 }
-
 .poster>img {
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
 }
-
 .poster>img:hover {
 	transform: scale(1.2);
 }

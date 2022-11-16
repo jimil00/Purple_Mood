@@ -26,6 +26,7 @@
 	font-family: 'DungGeunMo';
 }
 
+
 .ott_logo>img {
 	width: 250px;
 	margin: 30px;
@@ -283,8 +284,6 @@ button {
         </div>
         </form>-->
 
-
-
 		<!-- ott별로 출력하는 페이지 -->
 
 		<form action="/d_search.content">
@@ -349,6 +348,7 @@ button {
 
 
 	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
+	
 	<c:choose>
 		<c:when test="${not empty d_dr_list}">
 
@@ -404,10 +404,7 @@ button {
 			</span>
 		</div>
 	</div>
-
 	</div>
-
-
 	<c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->

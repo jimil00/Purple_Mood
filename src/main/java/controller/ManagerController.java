@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DramaDAO;
 import dao.MemberDAO;
 import dao.MovieDAO;
+import dto.DramaDTO;
 import dto.MemberDTO;
 import dto.MovieDTO;
 
@@ -33,6 +35,14 @@ public class ManagerController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("manager/memberOutput.jsp").forward(request, response);
 
+				// 회원 삭제
+			}else if(uri.equals("/memberDelete.manager")) {
+
+				String id = request.getParameter("id");
+				int result = MemberDAO.getInstance().delete(id);
+				System.out.println(id);
+				response.sendRedirect("/memberOutput.manager");
+
 				// 영화 전체 조회
 			}else if(uri.equals("/movieOutput.manager")) {
 
@@ -46,7 +56,20 @@ public class ManagerController extends HttpServlet {
 				int mv_id = Integer.parseInt(request.getParameter("mv_id"));
 				int result = MovieDAO.getInstance().delete(mv_id);
 				response.sendRedirect("/movieOutput.manager");
+				
+				// 드라마 조회
+			}else if(uri.equals("/dramaOutput.manager")) {
 
+				List<DramaDTO> list = DramaDAO.getInstance().selectAllDrama();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("manager/dramaOutput.jsp").forward(request, response);
+
+			}else if(uri.equals("/dramaDelete.manager")) {
+				
+				int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+				int result = DramaDAO.getInstance().delete(dr_id);
+				response.sendRedirect("/dramaOutput.manager");
+				
 			}
 
 		}catch (Exception e) {

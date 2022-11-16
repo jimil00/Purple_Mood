@@ -79,7 +79,7 @@ button {
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: black;">콘텐츠관리</a>
 					<ul class="dropdown-menu">
 						<li id="MovieOutputLi"><a class="dropdown-item" href="/movieOutput.manager"><strong>영화조회</strong></a></li>
-						<li id="DramaOutputLi"><a class="dropdown-item" href="#"><strong>드라마조회</strong></a></li>
+						<li id="DramaOutputLi"><a class="dropdown-item" href="/dramaOutput.manager"><strong>드라마조회</strong></a></li>
 					</ul></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: black;">게시판관리</a>
 					<ul class="dropdown-menu">
@@ -119,9 +119,21 @@ button {
 						<div class="content" style="width: 11%;">${i.address2}</div>
 						<div class="content" style="width: 7%;">${i.formedDate}</div>
 						<div class="content" style="width: 6%;">
-							<button>탈퇴</button>
+							<button type="button" id="${i.id}">탈퇴</button>
 						</div>
 					</div>
+					<script>
+					$(function() {
+						$("#${i.id}").on("click", function() {
+							if (confirm("해당 회원을 탈퇴시키겠습니까?")) {
+								 location.href="/memberDelete.manager?id=${i.id}";
+								alert("삭제되었습니다.");
+							} else {
+								alert("취소되었습니다.");
+							}
+						});
+					})
+					</script>
 				</c:forEach>
 			</div>
 		</div>

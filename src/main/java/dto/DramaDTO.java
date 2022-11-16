@@ -181,20 +181,24 @@ public class DramaDTO {
 	
 //	public String from_Ott(char dr_ottNF, char dr_ottWV,char dr_ottDZ,char dr_ottWC) {
 //		
-//		char dr_ottNF;
-//		char dr_ottWV;
-//		char dr_ottDZ;
-//		char dr_ottWC;
+//		DramaDTO ott=new DramaDTO();		
 //		
-//		String result=
-//				if(dr_ott) {
-//					
+//		String result;
+//		
+//				if(dr_ottNF.euqalus "Y") {
+//					result="/img/netbf.png";
+//				}else if(dr_ottDZ == 'Y') {
+//					result="/img/disbf.png";
+//				}else if(dr_ottDZ ==Y) {
+//					result="/img/disbf.png";
+//				}else if(dr_ottWV) {
+//					result="/img/wavbf.png";
+//				}else if(dr_ottWC) {
+//					result="/img/watbf.png";
 //				}
 //		
-//		return result
-//		
-//		
-//	}
+//		return result;
+//			}
 	
 
 	
