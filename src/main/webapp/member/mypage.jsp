@@ -18,7 +18,7 @@
 }
 /* div {
 	border: 1px solid black;
-}  */
+} */
 body {
 	overflow: hidden;
 	overflow-y: auto;
@@ -194,8 +194,7 @@ body {
 	color: white;
 	background-color: #03001e;
 }
-<<<<<<< HEAD
-=======
+
 #linksec{
     padding-top: 50px;;
     padding-bottom: 50px;;
@@ -205,7 +204,7 @@ body {
     padding-bottom: 50px;;
 }
 
->>>>>>> 0b6147b3a0181681d76e4f52197c9aad07dc04e3
+
 a {
 	color: white;
 	text-decoration: none;
@@ -305,7 +304,7 @@ button {
 				</div>
 				<div class="row contentrowB">
 					<div class="col-12 fs-4 contentInfo contentAjax">
-						<a href="/member/mypageMemInfo.jsp" id="myinfo">내 정보</a>
+						<a href="/mypageMemInfo.member" id="myinfo">내 정보</a>
 					</div>
 					<div class="col-12 fs-4  contentInfo contentAjax">
 						<a id="myboard">작성글</a>

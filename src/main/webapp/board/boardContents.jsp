@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+>>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -8,6 +13,7 @@
 <meta charset="UTF-8">
 <title>summernoteselect</title>
 <!-- include libraries(jQuery, bootstrap) -->
+<<<<<<< HEAD
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -17,6 +23,27 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
+=======
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-en-US.js"></script>
+>>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
 
 <style>
 @font-face {
@@ -80,6 +107,7 @@
 
 * {
 	box-sizing: border-box;
+<<<<<<< HEAD
 }
 
 div {
@@ -91,8 +119,29 @@ div {
 }
 </style>
 <script>
+=======
+    /* color: white; */
+}
+>>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
 
+/* body{background-color: #03001e;} */
 
+div {
+	border: 1px solid black;
+}
+.b_contents, .bcm_contents {
+	overflow: hidden;
+}
+.b_contents{margin-top:20px;}
+.b_contents_header1{margin-left:100px; text-align:center;}
+#b_category{width:20%;}
+#b_title{width:70%;}
+#b_writer{width: 38%;}
+#b_write_date{width: 38%;}
+#b_view_count{width: 23%;}
+#bcm_writer{width:23%}
+</style>
+<script>
                 $(function () {
                     $("#insertBoardComment").on("click", function(){
                     	
@@ -138,7 +187,8 @@ div {
                         $(this).closest(".cbtns").append(btnUpdateBComment);
                         $(this).closest(".cbtns").append(btnCancelBCommentU);
 
-                    })
+                    });
+
                     $(document).on("click", ".updcmbtn", function () {
                         let bcm_seq = $(this).closest(".boardComment").find(".bcm_seq").val();
                         let bcm_content = $(this).closest(".boardComment").find(".bcm_content").html();
@@ -160,6 +210,7 @@ div {
                 })
             </script>
 </head>
+<<<<<<< HEAD
 <body>
 	<div class="container">
 		<div class="b_contents">
@@ -187,6 +238,44 @@ div {
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<a href="#" id="insertBoardComplain">신고</a>
 							<script>
+=======
+        <body>
+            <div class="container">
+                <div class="b_contents">
+                    <div class="row b_contents_header1">
+                        <div class="col-lg-4 col-md-4 col-sm-4">${dto.b_category}</div>
+                        <div class="col-lg-8 col-md-8 col-sm-8" id="b_title" name="b_title" size="129"
+                            contenteditable="false"> ${dto.b_title }</div>
+                    </div>
+                    <div class="row b_contents_header2">
+                        <div class="col-lg-6 col-md-6 col-sm-6">${dto.b_writer_nn}</div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">${dto.b_write_date}</div>
+                        <div class="col-lg-2 col-md-2 col-sm-1">${dto.b_view_count }</div>
+                    </div>
+
+                    <div class="row b_contents_body">
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="summernote" name="b_content" cols="131" rows="15"
+                            contenteditable="false">${dto.b_content }
+                        </div>
+                    </div>
+                    <div class="row b_contents_footer">
+                        <c:choose>
+                            <c:when test="${loginID == dto.b_writer_id}">
+                                <div class="btns col-lg-12 col-md-12 col-sm-12">
+                                    <a href="/beforeUpdateBoardContents.board?b_seq=${dto.b_seq }"><button type="button"
+                                            id="updateBoardContents" name="updateBoardContents">수정하기</button></a>&nbsp
+                                    <a href="/deleteBoardContents.board?b_seq=${dto.b_seq }"><button type="button"
+                                            class="btn" id="deleteBoardContents"
+                                            name="deleteBoardContents">삭제하기</button></a> &nbsp
+                                    <a href="/boardList.board?cpage=${boardPage }"><button type="button" id="toList"
+                                            name="toList">목록으로</button></a>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a href="#" id="insertBoardComplain">신고</a>
+                                    <script>
+>>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
                                     $("#insertBoardComplain").on("click", function () {
                                         if (confirm("${dto.b_writer_nn}님의 글 ${dto.b_title}을 신고하시겠습니까?")) {
                                             $.ajax({
@@ -284,4 +373,9 @@ div {
 		</div>
 </body>
 
+<<<<<<< HEAD
+=======
+        </body>
+
+>>>>>>> 9418425f8ef2aa8a98e97852bffa49b65fde7fc2
 </html>

@@ -26,7 +26,6 @@
 	font-family: 'DungGeunMo';
 }
 
-
 .ott_logo>img {
 	width: 250px;
 	margin: 30px;
@@ -348,7 +347,7 @@ button {
 
 
 	<!-- 디즈니 플러스 드라마 검색 결과 출력 -->
-	
+
 	<c:choose>
 		<c:when test="${not empty d_dr_list}">
 
@@ -403,8 +402,8 @@ button {
 			<span class="snsIcon"><i class="fa-brands fa-instagram fa-2xl"></i></span> <span class="snsIcon"><i class="fa-brands fa-twitter fa-2xl"></i></span> <span class="snsIcon"> <i class="fa-brands fa-facebook fa-2xl"></i>
 			</span>
 		</div>
-	</div>
-	</div>
+		</div>
+	</c:choose>
 	<c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->
@@ -465,7 +464,7 @@ button {
 					</div>
 				</div>
 				<script>
-					$(".noLoginMenu").on("click",function(){
+					$(".noLoginMenu").on("click", function() {
 						alert("로그인을 해주세요");
 					})
 				</script>

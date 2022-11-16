@@ -10,16 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.BoardCommentDAO;
 import dao.BoardDAO;
-import dao.DramaDAO;
 import dto.BoardCommentDTO;
 import dto.BoardDTO;
-import dto.DramaDTO;
 
 
 @WebServlet("*.board")
@@ -34,31 +31,31 @@ public class BoardController extends HttpServlet {
 			String uri = request.getRequestURI();
 			System.out.println("요청 URI : " + uri);
 
-			
-			
+
+
 			//게시판 리스트 출력 (R)
 			if(uri.equals("/boardList.board")) {
 
 				String page = request.getParameter("cpage");
 				int cpage = Integer.parseInt(page);
 				request.getSession().setAttribute("boardPage", page);
-				
+				System.out.println(cpage);
 				List<BoardDTO> board = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
 				//List<BoardDTO> list = BoardDAO.getInstance().selectBoardByRange(cpage*20-19, cpage*20);
 				String navi = BoardDAO.getInstance().getBoardPageNavi(cpage);
-//				List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
-//				int endNavi=Integer.parseInt(list.get(0));
-//				String navi=list.get(1);
+				//List<String>list=BoardDAO.getInstance().getBoardPageNavi(cpage);
+				//int endNavi=Integer.parseInt(list.get(0));
+				//				String navi=list.get(1);
 				request.setAttribute("board", board);
 				request.setAttribute("navi", navi);
-//				request.setAttribute("endNavi", endNavi);
+				//				request.setAttribute("endNavi", endNavi);
 				request.getRequestDispatcher("/board/boardList.jsp").forward(request, response);
 
-			
-			
-			// 게시판 검색 리스트 출력 (R)
-			}else if(uri.equals("/boardSearchList.board")) {
-				
+
+
+				// 게시판 검색 리스트 출력 (R)
+			}else if(uri.equals("/boardListSearch.board")) {
+
 				String boardSearchOption=request.getParameter("boardSearchOption");
 				String boardSearchWord = request.getParameter("boardSearchWord");
 				int cpage = Integer.parseInt(request.getParameter("cpage"));
@@ -71,10 +68,9 @@ public class BoardController extends HttpServlet {
 //				String navi=list.get(1);
 				request.setAttribute("board", board);
 				request.setAttribute("navi", navi);
-//				request.setAttribute("endNavi", endNavi);
+				//				request.setAttribute("endNavi", endNavi);
 				request.getRequestDispatcher("/board/boardSearchList.jsp").forward(request, response);
 
-				
 				// 게시글 이미지 입력
 			}else if(uri.equals("/imageupload.board")) {
 
@@ -111,13 +107,13 @@ public class BoardController extends HttpServlet {
 
 
 
-			// 게시글 출력 (R)
+				// 게시글 출력 (R)
 			}else if(uri.equals("/selectBoardContents.board")){
-				
+
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-				
+
 				BoardDAO.getInstance().addBoardViewCount(b_seq);
-				
+
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
 				request.setAttribute("dto", dto);
 
@@ -127,33 +123,30 @@ public class BoardController extends HttpServlet {
 				request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
 
 
-				
-			// 게시글 삭제 (D)
+
+				// 게시글 삭제 (D)
 			}else if(uri.equals("/deleteBoardContents.board")) {
-				
+
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-				
+
 				int result = BoardDAO.getInstance().deleteBoardContents(b_seq);
-				
+
 				String page = (String)request.getSession().getAttribute("boardPage");
-				
+
 				response.sendRedirect("/boardList.board?cpage="+page);
 
 
-			//게시글 수정페이지 출력
+				//게시글 수정페이지 출력
 			}else if(uri.equals("/beforeUpdateBoardContents.board")) {
 
 				int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-				
+
 				BoardDTO dto = BoardDAO.getInstance().selectBoardContents(b_seq);
 
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/board/updateBoardContents.jsp").forward(request, response);
 
-			
-				
-				
-			// 게시글 수정 (U)
+				// 게시글 수정 (U)
 			}else if(uri.equals("/updateBoardContents.board")) {
 				if (request.getMethod().equals("GET")) {
 					response.sendRedirect("/error.jsp");
@@ -169,12 +162,10 @@ public class BoardController extends HttpServlet {
 				
 			}	
 
-
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
-
 		}
 	}
 
