@@ -461,7 +461,7 @@ a {
 							<c:choose>
 								<c:when test="${not empty board}">
 									<c:forEach var="board" items="${board}">
-										<div class="row">
+										<div class="row col-12">
 											<div class="content col-12">
 												<div class="row">
 													<div class="contentCategory col-12">${board.b_category}</div>
