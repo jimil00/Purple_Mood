@@ -234,21 +234,7 @@ span>img {
 }
 </style>
 <body>
-<body>
 	<div class="container w-xl text-center">
-
-		<!-- 한번 검색결과 받고 각각 페이지에서 출력하는 방식
-     <form action="/ott_search.content">
-        <div class="header row">
-          <div class="logo col-8">퍼플무드 이미지</div>
-          <div class="col-4">
-            <input type="text" name="ott_searchtext" placeholder="해당 Ott내 검색">
-            <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
-          </div>
-        </div>
-        </form>-->
-
-
 
 		<!-- ott별로 출력하는 페이지 -->
 
@@ -318,6 +304,7 @@ span>img {
 	</c:choose>
 
 	<!-- 넷플릭스 드라마 검색 결과 출력 -->
+	
 	<c:choose>
 		<c:when test="${not empty n_dr_list}">
 			<hr>
@@ -333,7 +320,6 @@ span>img {
 					<c:if test="${i%j == 0 }">
 						<div class="col">
 					</c:if>
-
 					<div class="card">
 						<a href="/detailDr.content?dr_id=${n.dr_id}">
 
@@ -349,7 +335,7 @@ span>img {
 			<c:set var="i" value="${i+1 }" />
 			</c:forEach>
 			</div>
-
+			</div>
 		</c:when>
 		<c:otherwise>
 			<hr>
@@ -357,7 +343,9 @@ span>img {
 			<hr>
 			<div>검색 결과가 없습니다.</div>
 		</c:otherwise>
-	</c:choose>
+			</c:choose>
+	
+	
 	<div class="row footer">
 			<div class="col-12 footerAtag">
 				<a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a
