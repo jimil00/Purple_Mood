@@ -22,17 +22,21 @@
 	font-weight: normal;
 	font-style: normal;
 }
-.dongfont{
-font-family: 'DungGeunMo';
+
+.dongfont {
+	font-family: 'DungGeunMo';
 }
+
 * {
 	box-sizing: border-box;
 	margin: auto;
 	color: black;
 }
-body{
-background-color: #03001e;
+
+body {
+	background-color: #03001e;
 }
+
 .container {
 	margin: auto;
 	display: flex;
@@ -151,21 +155,23 @@ input {
 				<div class="name col-12">
 					<span class="dongfont">이름<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="name" id="name" placeholder="2~5자 한글" maxlength="5">
+								<input type="text" name="name" id="name" placeholder="2~5자 한글"
+									maxlength="5">
 							</div>
 				</div>
 				<div class="phone col-12">
 					<span class="dongfont">전화번호<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="phone" id="phone" placeholder="숫자만 입력" maxlength="11" >
+								<input type="text" name="phone" id="phone" placeholder="숫자만 입력"
+									maxlength="11">
 							</div>
 				</div>
 				<div class="email col-12">
 					<span class="dongfont">이메일<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="email" id="email"
-									placeholder="영어 대 소문자, 숫자"  maxlength="20"> @ <select id="emailAddress"
-									name="emailAddress" class="selectOption">
+									placeholder="영어 대 소문자, 숫자" maxlength="20"> @ <select
+									id="emailAddress" name="emailAddress" class="selectOption">
 									<option value="gmail.com">gmail.com</option>
 									<option value="naver.com">naver.com</option>
 									<option value="hanmail.net">hanmail.net</option>
@@ -187,7 +193,8 @@ input {
 				<div class="address1 col-12">
 					<span class="dongfont">주소</span>
 					<div class="margin_top col-12">
-						<input type="text" name="address1" id="address1" placeholder="주소" maxlength="65">
+						<input type="text" name="address1" id="address1" placeholder="주소"
+							maxlength="65">
 					</div>
 				</div>
 				<div class="address2 col-12">
@@ -200,9 +207,9 @@ input {
 				<div class="footer col-12">
 					<div class="btns">
 						<a href=/main><button id="signup" class="dongfont">회원가입</button></a>&nbsp&nbsp<a
-							href="/member/signin.jsp"><button type="button" class="dongfont">뒤로
-								가기</button></a>&nbsp
-						<button type="reset" id="resetBtn"  class="dongfont">다시 입력</button>
+							href="/member/signin.jsp"><button type="button"
+								class="dongfont">뒤로 가기</button></a>&nbsp
+						<button type="reset" id="resetBtn" class="dongfont">다시 입력</button>
 					</div>
 				</div>
 			</div>
@@ -228,6 +235,8 @@ input {
 											document.getElementById("address1").value = data.jibunAddress;
 										}
 									}).open();
+							postcodeCheck = true;
+							address1Check = true;
 						})
 		//비번 체크            
 		$("#pw,#checkpw").on("input", function() {
@@ -283,6 +292,18 @@ input {
 				}
 			})
 		})
+
+		$("#postcode").on("input", function() {
+			alert("우편번호 찾기 버튼을 클릭해주세요.");
+		    $(this).val("");
+
+		})
+		$("#address1").on("input", function() {
+			alert("우편번호 찾기 버튼을 클릭해주세요.");
+			 $(this).val("");
+
+		})
+		
 		//회원가입 버튼을 눌렀을때
 		$("#signup").on(
 				"click",
@@ -295,6 +316,7 @@ input {
 						alert("아이디, 패스워드, 닉네임, 이름, 전화번호, 이메일은 필수입력값입니다.");
 						return false;
 					}
+
 					if (!idCheck) {
 						alert("아이디 중복체크를 먼저 수행해주세요.");
 						return false;
@@ -313,9 +335,6 @@ input {
 					let nameRegex = /^[가-힣]{2,5}$/; // 한글 2~5자
 					let phoneRegex = /^01\d\d{3,4}\d{4}$/; //010으로 시작하고 숫자만 입력
 					let emailRegex = /^[a-zA-Z0-9]{1,20}$/; //숫자,영어 대 소문자 가능
-					let postcodeRegex=/^[0-9]{7}$/;
-					let address1Regex=/^[가-힣]{65}$/;
-					let address2Regex=/^[가-힣]{65}$/;
 					if ($("#id").val() != "") {
 						if (!idRegex.test($("#id").val())) {
 							alert("아이디 형식을 확인해주세요.");
@@ -343,24 +362,6 @@ input {
 					if ($("#phone").val() != "") {
 						if (!phoneRegex.test($("#phone").val())) {
 							alert("전화번호 형식을 확인해주세요.");
-							return false;
-						}
-					}
-					if ($("#email").val() != "") {
-						if (!emailRegex.test($("#email").val())) {
-							alert("이메일 형식을 확인해주세요.");
-							return false;
-						}
-					}
-					if ($("#postcode").val() != "") {
-						if (!postcodeRegex.test($("#postcode").val())) {
-							alert("우편번호 찾기 버튼을 클릭해주세요.");
-							return false;
-						}
-					}
-					if ($("#address1").val() != "") {
-						if (!emailRegex.test($("#address1").val())) {
-							alert("우편번호 찾기 버튼을 클릭해주세요.");
 							return false;
 						}
 					}
