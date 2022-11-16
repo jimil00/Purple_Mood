@@ -2,12 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>웨이브</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -102,6 +99,10 @@ span>img {
 
 .poster>img:hover {
 	transform: scale(1.2);
+}
+
+#wvbtn:hover{
+cursor: pointer;
 }
 
 /* header */
@@ -302,10 +303,25 @@ button {
 						data-bs-target="#offcanvasWithBothOptions"
 						aria-controls="offcanvasWithBothOptions"></i>
 				</div>
+				<script>
+				$("#searchbtn").on("click", function(){
+					location.href="/wv_search.content?wv_searchtext="+$("#searchtext").val();
+					
+				});
+				</script>
 			</div>
 		</form>
 		<div class="ott_logo col-12">
+<<<<<<< HEAD
 			<a href="/wavve.content"><img src="/img/wavbf.png"></a>
+=======
+			<img src="/img/wavbf.png" id="wvbtn">
+			<script>
+				$("#wvbtn").on("click",function(){
+					location.href="/wavve.content";
+				})
+			</script>
+>>>>>>> 616c305dc611d2814250766556698c514c015dad
 		</div>
 		<hr>
 
@@ -382,7 +398,6 @@ button {
 			<c:set var="i" value="${i+1 }" />
 			</c:forEach>
 			</div>
-			
 		</c:when>
 		<c:otherwise>
 			<hr>
@@ -442,6 +457,40 @@ button {
             <div class="menulink">영화 드라마 게시판</div>
         </a></div>
         <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
+				</div>
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
+					})
+				</script>
+			</div>
+		</c:when>
+		<c:when test="${loginID!=null && loginID == 'admin123'}">
+			<!-- 관리자 -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="#">
+							<button>관리자페이지</button>
+						</a>
+					</div>
+					<div id="linksec">
+        <a href="/boardList.board?cpage=1">
+            <div class="menulink">영화 드라마 게시판</div>
+        </a></div> 
+					 <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
 				</div>
 				<script>
 					$("#logoutBtn").on("click", function() {

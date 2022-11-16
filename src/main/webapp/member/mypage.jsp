@@ -10,18 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>my page</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-	crossorigin="anonymous"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css" rel="stylesheet">
 <style>
 * {
 	box-sizing: border-box;
@@ -41,7 +32,7 @@ body {
 .header {
 	height: 100px;
 	background-color: #03001e;
-	padding-bottom:20px;
+	padding-bottom: 20px;
 }
 #logo, #titleimg {
 	height: 100%;
@@ -71,12 +62,16 @@ body {
 	text-align: center;
 	color: white;
 }
-#menuicon{
-	position:relative;
+
+#menuicon {
+	position: relative;
 	top: 8%;
 }
 #menuicon:hover {
 	cursor: pointer;
+}
+#searchbtn{
+color:white;
 }
 /* content */
 .content {
@@ -286,8 +281,7 @@ button {
 			<script>
 				function enterkey() { //검색창에 마우스 올린 후 엔터 누르면 바로 넘어가게 만드는 함수
 					if (window.event.keyCode == 13) {
-						location.href = "/search.content?searchtext="
-								+ $("#searchtext").val();
+						location.href = "/search.content?searchtext="+ $("#searchtext").val();
 					}
 				};
 				
@@ -302,11 +296,9 @@ button {
 				});
 				
 			</script>
+
 			<div class="col-4 col-md-1 col-lg-1 menuicon">
-				<i class="fas fa-bars fa-2x" id="menuicon"
-					data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasWithBothOptions"
-					aria-controls="offcanvasWithBothOptions"></i>
+				<i class="fas fa-bars fa-2x" id="menuicon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
 			</div>
 		</div>
 
@@ -314,8 +306,7 @@ button {
 			<div class="col-12 col-md-4 col-lg-3 col-xl-2 contentL">
 				<div class="row contentrowT">
 					<div class="col-12">
-						<div class="contentProfilebox" id="Btn"
-							style="background: #BDBDBD;">
+						<div class="contentProfilebox" id="Btn" style="background: #BDBDBD;">
 							<img src="/img/logo2.png" id="profileimg1">
 						</div>
 						<!-- <button type="button" id="profileBtn">
@@ -446,21 +437,15 @@ button {
 			<div class="col-12 footerImpormation">주소 : 대한민국 서울특별시 중구 남대문로
 				120, 대일빌딩 3층</div>
 			<div class="col-12 footerIcon">
-				<span class="snsIcon"><i
-					class="fa-brands fa-instagram fa-2xl"></i></span> <span class="snsIcon"><i
-					class="fa-brands fa-twitter fa-2xl"></i></span> <span class="snsIcon">
-					<i class="fa-brands fa-facebook fa-2xl"></i>
+				<span class="snsIcon"><i class="fa-brands fa-instagram fa-2xl"></i></span> <span class="snsIcon"><i class="fa-brands fa-twitter fa-2xl"></i></span> <span class="snsIcon"> <i class="fa-brands fa-facebook fa-2xl"></i>
 				</span>
 			</div>
 
 		</div>
 
-		<div class="offcanvas offcanvas-end" data-bs-scroll="true"
-			tabindex="-1" id="offcanvasWithBothOptions"
-			aria-labelledby="offcanvasWithBothOptionsLabel">
+		<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 			<div class="offcanvas-header">
-				<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
-					aria-label="Close">
+				<button type="button" data-bs-dismiss="offcanvas" id="colsebtn" aria-label="Close">
 					<i class="fa-solid fa-xmark fa-xl"></i>
 				</button>
 			</div>

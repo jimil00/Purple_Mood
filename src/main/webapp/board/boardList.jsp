@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,8 +6,7 @@
 <meta charset="UTF-8">
 <title>영화 드라마 게시판</title>
 <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 @font-face {
 	font-family: 'DungGeunMo';
@@ -213,8 +211,7 @@ a {
 											</div>
 											<div class="row">
 												<div class="contentTitle col-12">
-													<a href="/selectBoardContents.board?b_seq=${board.b_seq}"
-														style="text-decoration: none">${board.b_title}</a>
+													<a href="/selectBoardContents.board?b_seq=${board.b_seq}" style="text-decoration: none">${board.b_title}</a>
 												</div>
 											</div>
 											<div class="row">
@@ -233,15 +230,13 @@ a {
 							</c:when>
 							<c:otherwise>
 								<div>
-									<div colspan="6" style="font-family: 'DungGeunMo';">출력할
-										글이 없습니다.</div>
+									<div colspan="6" style="font-family: 'DungGeunMo';">출력할 글이 없습니다.</div>
 								</div>
 								<hr>
 							</c:otherwise>
 						</c:choose>
 						<div class="insertBoardContents">
-							<a href="/board/insertBoardContents.jsp"><button
-									type="button" id="insertBoardContentsBtn">글쓰기</button></a>
+							<a href="/board/insertBoardContents.jsp"><button type="button" id="insertBoardContentsBtn">글쓰기</button></a>
 						</div>
 						<hr>
 						<div align="center" class="navi">
