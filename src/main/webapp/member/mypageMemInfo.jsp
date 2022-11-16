@@ -25,9 +25,12 @@
 
 * {
 	box-sizing: border-box;
-	font-family: 'DungGeunMo';
+/* 	font-family: 'DungGeunMo'; */
 	color: black;
 	margin: auto;
+}
+body{
+background-color: #03001e;
 }
 
 .modifyForm {
@@ -49,11 +52,6 @@ input {
 	width: 200px;
 }
 
-.header {
-	text-align: center;
-	height: 80px;
-	background-color: #03001e;
-}
 
 .selectOption {
 	height: 30px;
@@ -89,6 +87,7 @@ input {
 
 .footer {
 	margin-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 }
 
@@ -117,6 +116,10 @@ input {
 /* div {
 	border: 1px solid black;
 } */
+
+.dongfont{
+font-family: 'DungGeunMo'; 
+}
 </style>
 <script>
 	$(function() {
@@ -127,13 +130,15 @@ input {
 			let btnModify = $("<button>");
 			btnModify.text("수정완료");
 			btnModify.addClass("btn")
-			btnModify.css("width", "90px");
+			btnModify.css("width", "100px");
+			btnModify.css("font-family", "'DungGeunMo'");
 			/* btnModify.css("margin-right", "5px") */
 			let btnCancel = $("<button>");
 			btnCancel.attr("type", "button");
 			btnCancel.text("취소");
 			btnCancel.addClass("btn");
-			btnCancel.css("width", "90px");
+			btnCancel.css("width", "100px");
+			btnCancel.css("font-family", "'DungGeunMo'");
 			btnCancel.on("click", function() {
 				location.reload();
 			});
@@ -149,16 +154,16 @@ input {
 	<form action="/updateMemInfo.member" method="post" id="frm">
 		<div class="container mypage col-12" style="min-width: 350px;">
 			<div class="modifyForm col-12">
-				<div class="logo">회원정보수정</div>
+				<div class="logo dongfont">회원정보수정</div>
 				<div class="id col-12">
-					<span>아이디<span class="requiredField">*<span></span>
+					<span class="dongfont">아이디<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="id" id="id" value="${dto.id }" disabled>
 								<div id="duplResultID"></div>
 							</div>
 				</div>
 				<div class="nickname col-12">
-					<span>닉네임<span class="requiredField">*<span></span>
+					<span class="dongfont">닉네임<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="nickname" id="nickname"
 									placeholder="2~8자 영문 대 소문자,한글" readonly value="${dto.nickname}">
@@ -166,35 +171,35 @@ input {
 							</div>
 				</div>
 				<div class="pw col-12">
-					<span>패스워드<span class="requiredField">*<span></span>
+					<span class="dongfont">패스워드<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="password" name="pw" id="pw"
 									placeholder="8~20자 영문 대 소문자,숫자,특수문자(~!@#$%)" readonly>
 							</div>
 				</div>
 				<div class="pwcheck col-12">
-					<span>패스워드 확인</span>
+					<span class="dongfont">패스워드 확인</span>
 					<div class="margin_top col-12">
 						<input type="password" id="checkpw" readonly>
 						<div id="result"></div>
 					</div>
 				</div>
 				<div class="name col-12">
-					<span>이름<span class="requiredField">*<span></span>
+					<span class="dongfont">이름<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="name" id="name" placeholder="2~5자 한글"
 									value="${dto.name}" readonly>
 							</div>
 				</div>
 				<div class="phone col-12">
-					<span>전화번호<span class="requiredField">*<span></span>
+					<span class="dongfont">전화번호<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="phone" id="phone" placeholder="숫자만 입력"
 									value="${dto.phone}" readonly>
 							</div>
 				</div>
 				<div class="email col-12">
-					<span>이메일<span class="requiredField">*<span></span>
+					<span class="dongfont">이메일<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
 								<input type="text" name="email" id="email"
 									placeholder="영어 대 소문자, 숫자" value="${dto.email}" readonly>
@@ -209,24 +214,24 @@ input {
 				</div>
 				<div class="postcode col-12">
 					<div class="col-12">
-						<span>우편번호</span>&nbsp&nbsp<input type="button"
+						<span class="dongfont">우편번호</span>&nbsp&nbsp<input type="button"
 							onclick="postcode()" value="우편번호 찾기" id="btnsearch"
 							style="width: 100px;" readonly>
 					</div>
 					<div class="margin_top col-12">
-						<input type="text" name="postcode" id="postcode"
+						<input type="text" name="postcode" id="postcode" 
 							placeholder="우편번호" value="${dto.postcode}" readonly>
 					</div>
 				</div>
 				<div class="address1 col-12">
-					<span>주소</span>
+					<span class="dongfont">주소</span>
 					<div class="margin_top col-12">
 						<input type="text" name="address1" id="address1" placeholder="주소"
 							value="${dto.address1}" readonly>
 					</div>
 				</div>
 				<div class="address2 col-12">
-					<span>상세주소</span>
+					<span class="dongfont">상세주소</span>
 					<div class="margin_top col-12">
 						<input type="text" name="address2" id="address2"
 							placeholder="상세주소" value="${dto.address2}" readonly>
@@ -234,9 +239,9 @@ input {
 				</div>
 				<div class="footer col-12">
 					<div class="btns">
-						<input type="button" class="btn" id="modify" value="수정하기">
-						<a href="/main"><input type="button" class="btn" id="back"
-							value="홈으로"></a>
+						<input type="button" class="btn dongfont" id="modify" value="수정하기">
+						<a href="/member/mypage.jsp"><input type="button" class="btn dongfont" id="back"
+							value="마이페이지"></a>
 					</div>
 				</div>
 
