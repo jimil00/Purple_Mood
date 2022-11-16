@@ -256,6 +256,10 @@ button {
 .boardView, .boardDate {
 	text-align: center;
 }
+.boardOnTitle,.commentBycomment,.commentTitle{
+
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
 @font-face {
 	font-family: 'DungGeunMo';
 	src:
@@ -336,7 +340,7 @@ button {
 														console.log("receive값은:"+ data);
 														console.log("receive값은:"+ typeof data);
 														console.log("receive값은:"+ data.length);
-															if (data != null) {
+															if (data.length != 0) {
 																	<!--리스트불러오기-->
 																let r = '';
 																r += "<div class='col-10 fs-5 titleBoard'>작성게시글</div>";
@@ -361,6 +365,14 @@ button {
 																		r += "</div></a>";
 																	}
 																	$("#boardbox").append(r);
+																}else{
+																	let r = '';
+																	r += "<div class='col-10 fs-5 titleBoard'>작성댓글</div>";
+																	r += "<div class='col-10 fs-5 titleBoard'>출력할 내용이 없습니다.</div>";
+																	$(
+																	"#boardbox")
+																	.append(
+																			r);
 																}
 															});
 										})
@@ -387,7 +399,7 @@ button {
 																console
 																		.log("receive값은:"
 																				+ data.length);
-																if (data != null) {
+																if (data.length != 0) {
 																	<!--리스트불러오기-->
 																	let r = '';
 																	r += "<div class='col-10 fs-5 titleBoard'>작성댓글</div>"
@@ -410,6 +422,14 @@ button {
 																			"#boardbox")
 																			.append(
 																					r);
+																}else{
+																	let r = '';
+																	r += "<div class='col-10 fs-5 titleBoard'>작성댓글</div>";
+																	r += "<div class='col-10 fs-5 titleBoard'>출력할 내용이 없습니다.</div>";
+																	$(
+																	"#boardbox")
+																	.append(
+																			r);
 																}
 															});
 										})
@@ -419,7 +439,9 @@ button {
 			<div class="col-12 col-md-8 col-lg-9 col-xl-10">
 				<!-- 작성 게시글 -->
 				<div class="row">
-					<div class="col-11 boardbox" id="boardbox"></div>
+					<div class="col-11 boardbox" id="boardbox" >
+											
+					</div>
 				</div>
 			</div>
 		</div>
