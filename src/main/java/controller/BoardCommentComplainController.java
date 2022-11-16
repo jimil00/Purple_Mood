@@ -17,10 +17,8 @@ public class BoardCommentComplainController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
-
 		String uri = request.getRequestURI();
 		System.out.println("요청 URI : " + uri);
-
 
 		try {
 			if(uri.equals("/insertBoardCommentComplain.boardcommentcomplain")) {
@@ -32,7 +30,7 @@ public class BoardCommentComplainController extends HttpServlet {
 
 				BoardCommentComplainDAO.getInstance().insertBoardCommentComplain(new BoardCommentComplainDTO(0,bcmcp_complainer,null,bcm_seq,bcm_writer, bcm_content));
 
-				response.sendRedirect("/board/boardContents.jsp");	 
+				response.sendRedirect("/board/boardContents.jsp");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

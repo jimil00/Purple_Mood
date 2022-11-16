@@ -28,10 +28,6 @@ public class BoardCommentController extends HttpServlet {
 
 		try {
 			if(uri.equals("/insertBoardComment.boardcomment")) {
-				if (request.getMethod().equals("GET")) {
-					response.sendRedirect("/error.jsp");
-					return;
-				}
 				String bcm_writer_id = (String)request.getSession().getAttribute("loginID");
 				String bcm_writer_nn = (String)request.getSession().getAttribute("loginNickname");
 				System.out.println("bcm_writer_id");
@@ -75,7 +71,6 @@ public class BoardCommentController extends HttpServlet {
 			response.sendRedirect("/error.jsp");
 		}
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

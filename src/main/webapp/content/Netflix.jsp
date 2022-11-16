@@ -369,7 +369,10 @@ span>img {
 
 		</div>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 	<c:choose>
 		<c:when test="${loginID!=null && loginID!='admin123'}">
 			<!-- 로그인 -->

@@ -18,6 +18,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
 .boardWrite {
 	float: hidden;
 }
@@ -29,6 +30,7 @@
 #boardWriteBtn {
 	float: right;
 }
+
 컹
 #b_content {
 	overflow: hidden;
@@ -59,7 +61,7 @@ body {
 	text-decoration: underline;
 	text-decoration-thickness: 3px;
 	text-underline-position: under;
-	margin-bottom:50px;
+	margin-bottom: 50px;
 }
 
 .boardTitle, .theader, .content, #insertBoardContentsBtn,
@@ -233,10 +235,11 @@ a {
 						</div>
 						<hr>
 						<div align="center" class="navi">
-						${navi}
-<!-- 							<a href="/boardSearchList.board?cpage=1"><button type="button">처음으로</button></a> -->
-<%-- 							${navi} <a href="boardSearchList.board?cpage=${endNavi}"><button --%>
-<!-- 									type="button">끝으로</button></a> -->
+
+							<a href="/boardSearchList.board?cpage=1"><button
+									type="button">처음으로</button></a> ${navi} <a
+								href="boardSearchList.board?cpage=${endNavi}"><button
+									type="button">끝으로</button></a> 
 						</div>
 						<hr>
 						<form action="/boardSearchList.board?cpage=1" method="post">

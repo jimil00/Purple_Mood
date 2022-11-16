@@ -1,26 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
-   <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-    crossorigin="anonymous" />
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-    crossorigin="anonymous"></script>
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
-    rel="stylesheet" />
+<title>OTT 플랫폼</title>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"
+	rel="stylesheet" />
 </head>
 <style>
 @font-face {
@@ -179,6 +176,17 @@ left:-38%;
     padding-top: 50px;;
     padding-bottom: 50px;;
 }
+<<<<<<< HEAD
+=======
+#linksec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+#logoutsec{
+    padding-top: 50px;;
+    padding-bottom: 50px;;
+}
+>>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
 a {
    color: white;
    text-decoration: none;
@@ -1282,6 +1290,7 @@ button {
 </div>
 
 <c:choose>
+<<<<<<< HEAD
       <c:when test="${loginID!=null && loginID!='admin123'}">
          <!-- 로그인 -->
          <div class="offcanvas offcanvas-end" data-bs-scroll="true"
@@ -1304,10 +1313,35 @@ button {
                   </a>
                </div>
                 <div id="linksec">
+=======
+		<c:when test="${loginID!=null && loginID!='admin123'}">
+			<!-- 로그인 -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" id="Btn" style="background: #BDBDBD;">
+					<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">${loginNickname }</div>
+					<div class="profiletext">
+						<a href="/member/mypage.jsp">
+							<button>마이페이지</button>
+						</a>
+					</div>
+					 <div id="linksec">
+>>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
         <a href="/boardList.board?cpage=1">
             <div class="menulink">영화 드라마 게시판</div>
         </a></div>
         <div id="logoutsec"><button type="button" id="logoutBtn">로그아웃</button></div>
+<<<<<<< HEAD
             </div>
             <script>
                $("#logoutBtn").on("click", function() {
@@ -1350,6 +1384,50 @@ button {
          </div>
       </c:otherwise>
    </c:choose>
+=======
+				</div>
+				<script>
+					$("#logoutBtn").on("click", function() {
+						location.href = "/logout.member";
+					})
+				</script>
+			</div>
+		</c:when>
+<c:otherwise>
+			<!-- 비로그인  -->
+			<div class="offcanvas offcanvas-end" data-bs-scroll="true"
+				tabindex="-1" id="offcanvasWithBothOptions"
+				aria-labelledby="offcanvasWithBothOptionsLabel">
+				<div class="offcanvas-header">
+					<button type="button" data-bs-dismiss="offcanvas" id="colsebtn"
+						aria-label="Close">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+				<div class="offcanvas-body">
+					<div class="profilebox" style="background: #BDBDBD;">
+						<img src="/img/logo.png" id="profileimg">
+					</div>
+					<div class="profiletext">익명의 누군가</div>
+					<div class="profiletext">
+						<a href="/member/signin.jsp">
+							<button id="signinBtn">로그인</button>
+						</a>
+					</div>
+					<div id="linksec">
+        <a href="#">
+            <div class="menulink noLoginMenu">영화 드라마 게시판</div>
+        </a></div>
+				</div>
+				<script>
+					$(".noLoginMenu").on("click",function(){
+						alert("로그인을 해주세요");
+					})
+				</script>
+			</div>
+		</c:otherwise>
+	</c:choose>
+>>>>>>> 0601a47842d0b5bba65c17bb5bb71b518a5d2eef
          
 </body>
 </html>
