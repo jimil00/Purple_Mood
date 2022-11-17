@@ -304,6 +304,9 @@
             ;
         }
 
+.navi>a{
+color:black;
+}
         a {
             color: white;
             text-decoration: none;
@@ -416,10 +419,9 @@
                 </div>
             </div>
 
-            <div class="row navi">
-
+            <div class="row navi" align="center">
+                              ${navi }
             </div>
-
             <form action="/boardSearchList.board?cpage=1" method="post">
                 <div class="row boardSearchList">
                     <div class="col-12 ">
