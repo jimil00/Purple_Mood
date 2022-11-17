@@ -492,7 +492,7 @@ button {
 							<a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
 						</div>
 						<div class="col-9 col-md-5 col-lg-4 searchbox">
-							<input type="text" class="searchboxin" id="d_searchtext" name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin" id="d_searchbtn"></i>
+							<input type="text" class="searchboxin" id="d_searchtext" name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin searchbtn" id="d_searchbtn"></i>
 						</div>
 						<div class="col-3 col-md-1 col-lg-1 menuicon">
 							<i class="fas fa-bars fa-2x" id="menuicon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
@@ -711,7 +711,7 @@ button {
 							<a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
 						</div>
 						<div class="col-9 col-md-5 col-lg-4 searchbox">
-							<input type="text" class="searchboxin" id="wv_searchtext" name="wv_searchtext" placeholder="웨이브 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin" id="wv_searchbtn"></i>
+							<input type="text" class="searchboxin" id="wv_searchtext" name="wv_searchtext" placeholder="웨이브 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin searchbtn" id="wv_searchbtn"></i>
 						</div>
 						<div class="col-3 col-md-1 col-lg-1 menuicon">
 							<i class="fas fa-bars fa-2x" id="menuicon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
@@ -935,7 +935,7 @@ button {
 							<a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
 						</div>
 						<div class="col-9 col-md-5 col-lg-4 searchbox">
-							<input type="text" class="searchboxin" id="wc_searchtext" name="wc_searchtext" placeholder="왓챠 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin" id="wc_searchbtn"></i>
+							<input type="text" class="searchboxin" id="wc_searchtext" name="wc_searchtext" placeholder="왓챠 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin searchbtn" id="wc_searchbtn"></i>
 						</div>
 						<div class="col-3 col-md-1 col-lg-1 menuicon">
 							<i class="fas fa-bars fa-2x" id="menuicon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
