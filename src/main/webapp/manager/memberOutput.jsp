@@ -80,7 +80,7 @@ button {
 	<div class="container">
 		<div class="header">
 			<div>
-				관리자 페이지 <a href="index.jsp"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
+				관리자 페이지 <a href="/main"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
 			</div>
 		</div>
 		<div class="navi">
@@ -97,7 +97,7 @@ button {
 					</ul></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: black;">게시판관리</a>
 					<ul class="dropdown-menu">
-						<li id="boardComplainOutputLi"><a class="dropdown-item" href="#"> <strong>신고게시글조회</strong>
+						<li id="boardComplainOutputLi"><a class="dropdown-item" href="/boardComplainOutput.manager"> <strong>신고게시글조회</strong>
 						</a></li>
 						<li id="commentComplainOutputLi"><a class="dropdown-item" href="#"> <strong>신고댓글조회</strong>
 						</a></li>

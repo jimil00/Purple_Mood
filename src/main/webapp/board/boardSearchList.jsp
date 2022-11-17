@@ -171,7 +171,7 @@ a {
 			<div class="header col-12">logo</div>
 		</div>
 		<div class="row">
-			<div class="boardTitle col-12">영화/드라마 게시판</div>
+			<a href="/boardList.board?cpage=1"><div class="boardTitle col-12">영화/드라마 게시판</div></a>
 		</div>
 		<div class="row">
 			<div class="boardContainer" style="min-width: 350px;">
@@ -230,11 +230,6 @@ a {
 						</div>
 						<hr>
 						<div align="center" class="navi">
-
-							<a href="/boardSearchList.board?cpage=1"><button
-									type="button">처음으로</button></a> ${navi} <a
-								href="boardSearchList.board?cpage=${endNavi}"><button
-									type="button">끝으로</button></a> 
 						</div>
 						<hr>
 						<form action="/boardSearchList.board?cpage=1" method="post">
