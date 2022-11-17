@@ -24,7 +24,7 @@
 }
 
 
-.ott_logo>a>img {
+.ott_logo>img {
    width: 250px;
    margin: 30px;
 }
@@ -52,9 +52,6 @@ body {
    overflow: hidden;
 }
 
-.card-text {
-   height: fit-content;
-}
 
 .card-text:hover {
    color: #7303c0
@@ -77,24 +74,37 @@ span>img {
    width: 200px;
    height: 300px;
    background-color: #03001e;
+   
 }
 
+.card :hover{ color: #7303c0;}
+
+.card-text{	
+text-decoration:none;
+	overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;}
 
 .poster>img {
+	border-radius: 5px;
    width: 200px;
    height: 280px;
    transition: all 0.2s linear;
 }
 
-.poster:hover{}
+
+.poster:hover{color: #7303c0;}
+
 
 .poster>img:hover {
    transform: scale(1.2);
    color: #7303c0
+
 }
 
 #dsbtn:hover{
 cursor: pointer;
+
 }
 
 /* header */
@@ -293,13 +303,13 @@ button {
 
       <form action="/d_search.content">
          <div class="row header">
-            <div class="col-12 col-md-7 col-lg-8" id="logo">
+            <div class="col-12 col-md-6 col-lg-7" id="logo">
                <a href="/main"><img src="/img/title.png" class="titleimg" id="titleimg"></a>
             </div>
-            <div class="col-8 col-md-4 col-lg-3 searchbox">
+            <div class="col-9 col-md-5 col-lg-4  searchbox">
                <input type="text" class="searchboxin" id="searchtext" name="d_searchtext" placeholder="디즈니플러스 내 검색"> <i class="fa-solid fa-magnifying-glass searchboxin" id="searchbtn"></i>
             </div>
-            <div class="col-4 col-md-1 col-lg-1 menuicon">
+            <div class="col-3 col-md-1 col-lg-1 menuicon">
                <i class="fas fa-bars fa-2x" id="menuicon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
             </div>
             <script>
@@ -312,6 +322,7 @@ button {
       </form>
 
       <div class="ott_logo col-12">
+
          <img src="/img/disbf.png" id="dsbtn">
          <script>
 				$("#dsbtn").on("click",function(){
@@ -408,7 +419,7 @@ button {
    </c:choose>
    <div class="row footer">
       <div class="col-12 footerAtag">
-         <a href="#">회사소개</a> &nbsp&nbsp <a href="#">고객센터</a> &nbsp&nbsp <a href="#">이용약관</a> &nbsp&nbsp <a href="#">개인정보 처리방침</a>
+        <a href="#">회사소개</a>&nbsp&nbsp<a href="#">고객센터</a> &nbsp&nbsp<a href="#">이용약관</a> &nbsp&nbsp<a href="#">개인정보 처리방침</a>
       </div>
       <div class="col-12 footerImpormation">(주)퍼플무드 | 대표이사 : 성태조</div>
       <div class="col-12 footerImpormation">이메일 주소 : purpleMood@purplemood.com</div>

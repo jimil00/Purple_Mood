@@ -73,7 +73,7 @@ input [type="submit"] {
 
 .titleimg{
 	height:100%;
-	width:45%;
+	width:40%;
 }
 
 @media(max-width:750px){
@@ -90,16 +90,9 @@ padding-bottom:60px;
 
 a {
 	text-decoration: none;
-	color: grey
+	color: grey;
 }
 
-.card-text {
-	height: fit-content;
-}
-
-.card-text:hover{
-	color: #7303c0
-}
 
 #searchbtn:hover {
 	cursor: pointer;
@@ -118,9 +111,22 @@ span>img {
 	width: 200px;
 	height: 300px;
 	background-color: #03001e;
+	
+}
+.card :hover{ color: inherit;color: #7303c0;}
+
+
+.card-text{height:fit-content;  
+	overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;}
+
+.card-text:hover{
+	color: #7303c0
 }
 
 .poster>img {
+	border-radius: 5px;
 	width: 200px;
 	height: 280px;
 	transition: all 0.2s linear;
@@ -128,8 +134,9 @@ span>img {
 
 .poster>img:hover {
 	transform: scale(1.2);
-	color: #7303c0
 }
+
+
 </style>
 <body>
 	<div class="container w-xl text-center">
@@ -213,7 +220,7 @@ span>img {
 
 	<c:choose>
 		<c:when test="${not empty dr_list}">
-			<div class="row" id="drama_bar">
+			<div class="row p-3" id="drama_bar">
 				<hr>
 				<div class="list_title">
 					드라마 검색 결과<span> ${dr_list.size()}개</span>

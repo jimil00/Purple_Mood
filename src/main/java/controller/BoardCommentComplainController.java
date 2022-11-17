@@ -36,14 +36,15 @@ public class BoardCommentComplainController extends HttpServlet {
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("/error.jsp");
-
-			}
+				response.sendRedirect("/error.jsp");}
 		}
 
 	}
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
 }
+

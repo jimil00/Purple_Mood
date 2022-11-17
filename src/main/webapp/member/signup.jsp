@@ -125,8 +125,8 @@ input {
 				<div class="id col-12">
 					<span class="dongfont">아이디<span class="requiredField">*<span></span>
 							<div class="margin_top col-12">
-								<input type="text" name="id" id="id"
-									placeholder="6~20자의 영문 소문자, 숫자와 특수기호(_)">
+								<input type="text" name="id" id="id" maxlength="16"
+									placeholder="6~16자의 영문 소문자, 숫자와 특수기호(_)">
 								<div id="duplResultID"></div>
 							</div>
 				</div>
@@ -235,6 +235,8 @@ input {
 											document.getElementById("address1").value = data.jibunAddress;
 										}
 									}).open();
+							postcodeCheck = true;
+							address1Check = true;
 						})
 		//비번 체크            
 		$("#pw,#checkpw").on("input", function() {
@@ -290,6 +292,18 @@ input {
 				}
 			})
 		})
+
+		$("#postcode").on("input", function() {
+			alert("우편번호 찾기 버튼을 클릭해주세요.");
+		    $(this).val("");
+
+		})
+		$("#address1").on("input", function() {
+			alert("우편번호 찾기 버튼을 클릭해주세요.");
+			 $(this).val("");
+
+		})
+		
 		//회원가입 버튼을 눌렀을때
 		$("#signup").on(
 				"click",
@@ -302,6 +316,7 @@ input {
 						alert("아이디, 패스워드, 닉네임, 이름, 전화번호, 이메일은 필수입력값입니다.");
 						return false;
 					}
+
 					if (!idCheck) {
 						alert("아이디 중복체크를 먼저 수행해주세요.");
 						return false;
@@ -347,12 +362,6 @@ input {
 					if ($("#phone").val() != "") {
 						if (!phoneRegex.test($("#phone").val())) {
 							alert("전화번호 형식을 확인해주세요.");
-							return false;
-						}
-					}
-					if ($("#email").val() != "") {
-						if (!emailRegex.test($("#email").val())) {
-							alert("이메일 형식을 확인해주세요.");
 							return false;
 						}
 					}
