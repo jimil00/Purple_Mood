@@ -26,7 +26,9 @@ public class ManagerController extends HttpServlet {
 		String uri = request.getRequestURI();
 		System.out.println(uri);
 		String loginID = (String)request.getSession().getAttribute("loginID");
-		if (loginID == "admin123") {
+		System.out.println(loginID);
+		if (loginID.equals("admin123")) {
+			
 			try {
 
 				// 회원 전체 조회
@@ -79,7 +81,7 @@ public class ManagerController extends HttpServlet {
 
 			}catch (Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("error.jsp");
+				response.sendRedirect("/error.jsp");
 			}
 		}else {
 			response.sendRedirect("/error.jsp");
