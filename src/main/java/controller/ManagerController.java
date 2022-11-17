@@ -83,18 +83,20 @@ public class ManagerController extends HttpServlet {
 					request.setAttribute("list", list);
 					request.getRequestDispatcher("manager/boardComplainOutput.jsp").forward(request, response);
 					
-					// 게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제
-				}else if(uri.equals("/boardComplainDelete.manager")) {
 					
-					// 게시글 삭제
-					int b_seq = Integer.parseInt(request.getParameter("b_seq"));
-					int result1 = BoardComplainDAO.getInstance().delete(b_seq);
-					
-					// 게시글 신고 테이블 행 삭제
-					int bcp_seq = Integer.parseInt(request.getParameter("bcp_seq"));
-					int result2 = BoardComplainDAO.getInstance().complainTableDelete(bcp_seq);
-					
-					response.sendRedirect("/boardComplainOutput.manager");
+					// 실패함,,
+//					// 게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제 
+//				}else if(uri.equals("/boardComplainDelete.manager")) {
+//					
+//					// 게시글 삭제
+//					int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+//					int result1 = BoardComplainDAO.getInstance().delete(b_seq);
+//					
+//					// 게시글 신고 테이블 행 삭제
+//					int bcp_seq = Integer.parseInt(request.getParameter("bcp_seq"));
+//					int result2 = BoardComplainDAO.getInstance().complainTableDelete(bcp_seq);
+//					
+//					response.sendRedirect("/boardComplainOutput.manager");
 					
 				}
 
