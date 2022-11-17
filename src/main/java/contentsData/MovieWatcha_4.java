@@ -21,7 +21,7 @@ public class MovieWatcha_4 {
 
 		try {
 
-			for(int pageCount=1; pageCount<=3; pageCount++) {
+			for(int pageCount=1; pageCount<=10; pageCount++) {
 
 				URL firstURL = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4b5fa5612cda62f4af304556025d6fc5&language=ko&region=KR&sort_by=popularity.desc&include_adult=ture&include_video=false&page="+pageCount+"&with_watch_providers=97&watch_region=KR&with_watch_monetization_types=flatrate");
 				BufferedReader bf1;
@@ -94,11 +94,11 @@ public class MovieWatcha_4 {
 
 				//Step 2. DBMS 접속하기		
 				String dbURL = "jdbc:oracle:thin:@3.39.199.102:1521:xe"; // 접속 공식
-				String dbID = "pm_test";
-				String dbPW = "pm_test";
+				String dbID = "pm";
+				String dbPW = "pm";
 				Connection con = DriverManager.getConnection(dbURL, dbID, dbPW);
 
-				String sql = "MERGE INTO movie_test USING DUAL ON (mv_id = ?) WHEN MATCHED THEN UPDATE SET mv_ottWC = 'Y' WHEN NOT MATCHED THEN INSERT (mv_id,mv_title,mv_genre,mv_release_date,mv_vote_average,mv_runtime,mv_ottNF,mv_ottWV,mv_ottDZ,mv_ottWC,mv_like,mv_poster_path,mv_overview) VALUES (?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,'Y',DEFAULT,?,?)";
+				String sql = "MERGE INTO movie USING DUAL ON (mv_id = ?) WHEN MATCHED THEN UPDATE SET mv_ottWC = 'Y' WHEN NOT MATCHED THEN INSERT (mv_id,mv_title,mv_genre,mv_release_date,mv_vote_average,mv_runtime,mv_ottNF,mv_ottWV,mv_ottDZ,mv_ottWC,mv_like,mv_poster_path,mv_overview) VALUES (?,?,?,?,?,?,DEFAULT,DEFAULT,DEFAULT,'Y',DEFAULT,?,?)";
 
 				for (int k=0 ; k<resultsList.size(); k++) {
 					PreparedStatement pstat = con.prepareStatement(sql);

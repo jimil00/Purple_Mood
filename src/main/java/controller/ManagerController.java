@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.BoardComplainDAO;
 import dao.DramaDAO;
 import dao.MemberDAO;
 import dao.MovieDAO;
+import dto.BoardComplainDTO;
 import dto.DramaDTO;
 import dto.MemberDTO;
 import dto.MovieDTO;
@@ -76,7 +78,24 @@ public class ManagerController extends HttpServlet {
 
 					// 신고 게시글 조회
 				}else if(uri.equals("/boardComplainOutput.manager")) {
-					System.out.println("여기");
+					
+					List<BoardComplainDTO> list = BoardComplainDAO.getInstance().selectBoardComplain();
+					request.setAttribute("list", list);
+					request.getRequestDispatcher("manager/boardComplainOutput.jsp").forward(request, response);
+					
+					// 게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제
+				}else if(uri.equals("/boardComplainDelete.manager")) {
+					
+					// 게시글 삭제
+					int b_seq = Integer.parseInt(request.getParameter("b_seq"));
+					int result1 = BoardComplainDAO.getInstance().delete(b_seq);
+					
+					// 게시글 신고 테이블 행 삭제
+					int bcp_seq = Integer.parseInt(request.getParameter("bcp_seq"));
+					int result2 = BoardComplainDAO.getInstance().complainTableDelete(bcp_seq);
+					
+					response.sendRedirect("/boardComplainOutput.manager");
+					
 				}
 
 			}catch (Exception e) {

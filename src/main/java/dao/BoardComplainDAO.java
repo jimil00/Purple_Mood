@@ -66,15 +66,41 @@ public class BoardComplainDAO {
 				dto.setB_writer_nn(rs.getString("b_writer_nn"));
 				dto.setB_title(rs.getString("b_title"));
 				dto.setB_content(rs.getString("b_content"));
+				
+				list.add(dto);
 
 			}
 			return list;
 		}
 	}
+	
+	// 관리자페이지_신고테이블 삭제
+		public int complainTableDelete(int bcp_seq) throws Exception{
+			String sql = "delete from board_complain where bcp_seq = ?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, bcp_seq);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
+		
+		// 관리자페이지_게시글 삭제
+				public int delete(int b_seq) throws Exception{
+					String sql = "delete from BOARD where b_seq = ?";
+					try(Connection con = this.getConnection();
+							PreparedStatement pstat = con.prepareStatement(sql);){
+						pstat.setInt(1, b_seq);
+						int result = pstat.executeUpdate();
+						con.commit();
+						return result;
+					}
+				}
+
 }
 
-
-// 게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제(D)
+//게시글 신고 테이블 행 삭제, 동일 행 삭제, 게시글 삭제(D)
 //	public int deleteBoardComplain(int bcp_seq) throws Exception{
 ////		String sql = "delete * from board_complain where " 조인을..
 //	}

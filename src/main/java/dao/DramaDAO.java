@@ -36,7 +36,7 @@ public class DramaDAO {
 
 	public List<DramaDTO> selectByLike() throws Exception{
 
-		String sql="select dr_id, dr_title, dr_poster_path from drama_test where rownum <= 6 order by dr_like";
+		String sql="select dr_id, dr_title, dr_poster_path from drama where rownum <= 6 order by dr_like";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
@@ -62,7 +62,7 @@ public class DramaDAO {
 
 	public List <DramaDTO> searchBytitle(String dr_title) throws Exception {
 
-		String sql="select dr_id, dr_title, dr_poster_path from drama_test where dr_title like ?";
+		String sql="select dr_id, dr_title, dr_poster_path from drama where dr_title like ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -90,7 +90,7 @@ public class DramaDAO {
 	//ott별 검색 1) 넷플릭스
 	public List <DramaDTO> searchByNF_title(String dr_title) throws Exception {
 
-		String sql="select dr_id, dr_title, dr_poster_path from drama_test where dr_ottNF='Y' and dr_title like ?";
+		String sql="select dr_id, dr_title, dr_poster_path from drama where dr_ottNF='Y' and dr_title like ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -118,7 +118,7 @@ public class DramaDAO {
 	//ott별 검색 2) 디즈니 플러스
 		public List <DramaDTO> searchByDZ_title(String dr_title) throws Exception {
 
-			String sql="select dr_id, dr_poster_path, dr_title from drama_test where dr_ottDZ='Y' and dr_title like ?";
+			String sql="select dr_id, dr_poster_path, dr_title from drama where dr_ottDZ='Y' and dr_title like ?";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -146,7 +146,7 @@ public class DramaDAO {
 		//ott별 검색 3) 웨이브
 		public List <DramaDTO> searchByWV_title(String dr_title) throws Exception {
 
-			String sql="select dr_id,dr_title,dr_poster_path from drama_test where dr_ottWV='Y' and dr_title like ?";
+			String sql="select dr_id,dr_title,dr_poster_path from drama where dr_ottWV='Y' and dr_title like ?";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -174,7 +174,7 @@ public class DramaDAO {
 		//ott별 검색 4) 왓챠
 		public List <DramaDTO> searchByWC_title(String dr_title) throws Exception {
 
-			String sql="select dr_id, dr_title,dr_poster_path from drama_test where dr_ottWC='Y' and dr_title like ?";
+			String sql="select dr_id, dr_title,dr_poster_path from drama where dr_ottWC='Y' and dr_title like ?";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -221,7 +221,7 @@ public class DramaDAO {
 	//상세 페이지 출력
 	public  DramaDTO selectByDr_id(int dr_id) throws Exception { 
 
-		String sql="select * from drama_test where dr_id=?";
+		String sql="select * from drama where dr_id=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -259,7 +259,7 @@ public class DramaDAO {
 	public  List <DramaDTO> selectByNF_date() throws Exception { 
 
 
-		String sql="select * from drama_test where dr_ottNF='Y' order by 4 desc";
+		String sql="select * from drama where dr_ottNF='Y' order by 4 desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -286,7 +286,7 @@ public class DramaDAO {
 		public  List <DramaDTO> selectByNF_avg() throws Exception { 
 
 
-			String sql="select * from drama_test where dr_ottNF='Y' order by dr_vote_average desc";
+			String sql="select * from drama where dr_ottNF='Y' order by dr_vote_average desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -315,7 +315,7 @@ public class DramaDAO {
 		public  List <DramaDTO> selectByDZ_date() throws Exception { 
 
 
-			String sql="select * from drama_test where dr_ottDZ='Y' order by 4 desc";
+			String sql="select * from drama where dr_ottDZ='Y' order by 4 desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -343,7 +343,7 @@ public class DramaDAO {
 	public  List <DramaDTO> selectByDZ_avg() throws Exception { 
 
 
-		String sql="select * from drama_test where dr_ottDZ='Y' order by dr_vote_average desc";
+		String sql="select * from drama where dr_ottDZ='Y' order by dr_vote_average desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -371,7 +371,7 @@ public class DramaDAO {
 	public  List <DramaDTO> selectByWV_date() throws Exception { 
 
 
-		String sql="select * from drama_test where dr_ottWV='Y' order by 4 desc";
+		String sql="select * from drama where dr_ottWV='Y' order by 4 desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -400,7 +400,7 @@ public class DramaDAO {
 		public  List <DramaDTO> selectByWV_avg() throws Exception { 
 
 
-			String sql="select * from drama_test where dr_ottWV='Y' order by dr_vote_average desc";
+			String sql="select * from drama where dr_ottWV='Y' order by dr_vote_average desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -428,7 +428,7 @@ public class DramaDAO {
 	public  List <DramaDTO> selectByWC_date() throws Exception { 
 
 
-		String sql="select * from drama_test where dr_ottWC='Y' order by dr_vote_average desc";
+		String sql="select * from drama where dr_ottWC='Y' order by dr_vote_average desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -456,7 +456,7 @@ public class DramaDAO {
 		public  List <DramaDTO> selectByWC_avg() throws Exception { 
 
 
-			String sql="select * from drama_test where dr_ottWC='Y' order by 4 desc";
+			String sql="select * from drama where dr_ottWC='Y' order by 4 desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -486,7 +486,7 @@ public class DramaDAO {
 	//아이콘 출력용 메서드( 수정 중)
 	public DramaDTO selectOtt_icon(int dr_id) throws Exception{
 
-		String sql="select dr_ottNF, dr_ottWV,dr_ottDZ,dr_ottWC from drama_test where dr_id = ?";
+		String sql="select dr_ottNF, dr_ottWV,dr_ottDZ,dr_ottWC from drama where dr_id = ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -512,7 +512,7 @@ public class DramaDAO {
 	//최신드라마 출력
 	public List <DramaDTO> searchByDate() throws Exception {
 
-		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_FIRST_AIR_DATE  desc)\"개봉일자\" from drama_test) WHERE \"개봉일자\" BETWEEN 1 AND 18";
+		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_FIRST_AIR_DATE  desc)\"개봉일자\" from drama) WHERE \"개봉일자\" BETWEEN 1 AND 18";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -533,7 +533,7 @@ public class DramaDAO {
 	//평점드라마 출력
 	public List <DramaDTO> searchByAvg() throws Exception {
 
-		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average  desc)\"평점\" from drama_test) WHERE \"평점\" BETWEEN 1 AND 18";
+		String sql="SELECT * from(select dr_id, dr_poster_path, rank() over(ORDER BY DR_vote_average  desc)\"평점\" from drama) WHERE \"평점\" BETWEEN 1 AND 18";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -551,7 +551,7 @@ public class DramaDAO {
 	
 	// 관리자페이지_드라마 전체 조회
 		public List<DramaDTO> selectAllDrama() throws Exception{
-			String sql = "select * from drama_test";
+			String sql = "select * from drama";
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);
 					ResultSet rs = pstat.executeQuery();){
@@ -581,7 +581,7 @@ public class DramaDAO {
 		
 		// 관리자페이지_드라마 삭제
 		public int delete(int dr_id) throws Exception{
-			String sql = "delete from drama_test where dr_id = ?";
+			String sql = "delete from drama where dr_id = ?";
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);){
 				pstat.setInt(1, dr_id);

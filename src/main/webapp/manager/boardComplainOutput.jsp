@@ -74,6 +74,10 @@
 button {
 	margin-top: 10px;
 }
+
+div{
+border: 1px solid;
+}
 </style>
 
 </head>
@@ -81,7 +85,7 @@ button {
 	<div class="container">
 		<div class="header">
 			<div>
-				관리자 페이지 <a href="index.jsp"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
+				관리자 페이지 <a href="/main"><img src="img/title.png" style="width: 180px; height: 70px;"></a>
 			</div>
 		</div>
 		<div class="navi">
@@ -108,38 +112,39 @@ button {
 		<div class="main">
 			<div class="">
 				<div class="title">
-					<strong>콘텐츠관리 > 드라마조회</strong>
+					<strong>게시판관리 > 신고게시글조회</strong>
 				</div>
 				<div class="contentTitles">
-					<div class="contentTitle" style="width: 10%;">아이디</div>
-					<div class="contentTitle" style="width: 50%;">제목</div>
-					<div class="contentTitle" style="width: 7%;">장르</div>
-					<div class="contentTitle" style="width: 7%;">넷플릭스</div>
-					<div class="contentTitle" style="width: 7%;">웨이브</div>
-					<div class="contentTitle" style="width: 7%;">디즈니</div>
-					<div class="contentTitle" style="width: 7%;">왓챠</div>
-					<div class="contentTitle" style="width: 5%;">삭제</div>
+					<div class="contentTitle" style="width: 5%;">번호</div>
+					<div class="contentTitle" style="width: 10%;">신고자</div>
+					<div class="contentTitle" style="width: 7%;">신고날짜</div>
+					<div class="contentTitle" style="width: 9%;">게시글번호</div>
+					<div class="contentTitle" style="width: 12%;">게시글작성자아이디</div>
+					<div class="contentTitle" style="width: 12%;">게시글작성자닉네임</div>
+					<div class="contentTitle" style="width: 38%;">게시글제목</div>
+					<div class="contentTitle" style="width: 7%;">게시글삭제</div>
 				</div>
 
-				<!-- 드라마 조회 -->
+				<!-- 신고 게시글 조회 -->
 				<c:forEach var="i" items="${list}">
 					<div class="contents">
-						<div class="content" style="width: 10%;">${i.dr_id}</div>
-						<div class="content" style="width: 50%;">${i.dr_title}</div>
-						<div class="content" style="width: 7%;">${i.dr_genre}</div>
-						<div class="content" style="width: 7%;">${i.dr_ottNF}</div>
-						<div class="content" style="width: 7%;">${i.dr_ottWV}</div>
-						<div class="content" style="width: 7%;">${i.dr_ottDZ}</div>
-						<div class="content" style="width: 7%;">${i.dr_ottWC}</div>
-						<div class="content" style="width: 5%;">
-							<button type="button" id="${i.dr_id}">삭제</button>
+						<div class="content" style="width: 5%;">${i.bcp_seq}</div>
+						<div class="content" style="width: 10%;">${i.bcp_complainer}</div>
+						<div class="content" style="width: 7%;">${i.formedDate}</div>
+						<div class="content" style="width: 9%;">${i.b_seq}</div>
+						<div class="content" style="width: 12%;">${i.b_writer_id}</div>
+						<div class="content" style="width: 12%;">${i.b_writer_nn}</div>
+						<div class="content" style="width: 38%;">${i.b_title}</div>
+						<div class="content" style="width: 7%;">
+							<button type="button" id="${i.b_seq}">삭제</button>
 						</div>
 					</div>
 					<script>
 					$(function() {
-						$("#${i.dr_id}").on("click", function() {
-							if (confirm(${i.dr_id}+"번의 콘텐츠를 삭제하시겠습니까?")) {
-								 location.href="/dramaDelete.manager?dr_id="+${i.dr_id}
+						$("#${i.b_seq}").on("click", function() {
+							if (confirm(${i.b_seq}+"번의 게시글을 삭제하시겠습니까?")) {
+								 location.href="/boardComplainDelete.manager?b_seq="+${i.b_seq}
+								 location.href="/boardComplainDelete.manager?b_seq="+${i.bcp_seq}
 								alert("삭제되었습니다.");
 							} else {
 								alert("취소되었습니다.");
@@ -150,5 +155,6 @@ button {
 				</c:forEach>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

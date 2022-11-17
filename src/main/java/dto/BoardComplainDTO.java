@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class BoardComplainDTO {
 
@@ -12,8 +13,8 @@ public class BoardComplainDTO {
 	private String b_writer_nn;
 	private String b_title;
 	private String b_content;
-	
-	
+
+
 	public BoardComplainDTO() {
 		super();
 	}
@@ -28,8 +29,8 @@ public class BoardComplainDTO {
 		this.b_title = b_title;
 		this.b_content = b_content;
 	}
-	
-	
+
+
 	public int getBcp_seq() {
 		return bcp_seq;
 	}
@@ -78,5 +79,11 @@ public class BoardComplainDTO {
 	public void setB_content(String b_content) {
 		this.b_content = b_content;
 	}
-	
+
+	// 날짜 변환 메소드
+	public String getFormedDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(this.bcp_date);
+	}
+
 }

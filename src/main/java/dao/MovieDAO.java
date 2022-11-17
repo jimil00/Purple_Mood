@@ -35,7 +35,7 @@ public class MovieDAO {
 	public List<MovieDTO> selectByLike() throws Exception{
 
 		//테스트용
-		String sql="select mv_id, mv_title, mv_poster_path from movie_test where rownum <=6 order by mv_like";
+		String sql="select mv_id, mv_title, mv_poster_path from movie where rownum <=6 order by mv_like";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
@@ -64,7 +64,7 @@ public class MovieDAO {
 	public  List<MovieDTO> searchBytitle(String mv_title) throws Exception {
 
 		//테스트용
-		String sql="select mv_id, mv_title, mv_poster_path from movie_test where mv_title like ?";
+		String sql="select mv_id, mv_title, mv_poster_path from movie where mv_title like ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -95,7 +95,7 @@ public class MovieDAO {
 	//ott별 검색 1) 넷플릭스
 	public List <MovieDTO> searchByNF_title(String mv_title) throws Exception {
 
-		String sql="select mv_id, mv_poster_path, mv_title from movie_test where mv_ottNF='Y' and mv_title like ?";
+		String sql="select mv_id, mv_poster_path, mv_title from movie where mv_ottNF='Y' and mv_title like ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -123,7 +123,7 @@ public class MovieDAO {
 	//ott별 검색 2) 디즈니 플러스
 		public List <MovieDTO> searchByDZ_title(String mv_title) throws Exception {
 
-			String sql="select mv_id, mv_poster_path, mv_title from movie_test where mv_ottDZ='Y' and mv_title like ?";
+			String sql="select mv_id, mv_poster_path, mv_title from movie where mv_ottDZ='Y' and mv_title like ?";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -152,7 +152,7 @@ public class MovieDAO {
 		//ott별 검색 3) 웨이브
 				public List <MovieDTO> searchByWV_title(String mv_title) throws Exception {
 
-					String sql="select mv_id, mv_poster_path, mv_title from movie_test where mv_ottWV='Y' and mv_title like ?";
+					String sql="select mv_id, mv_poster_path, mv_title from movie where mv_ottWV='Y' and mv_title like ?";
 
 					try(Connection con = this.getConnection();
 							PreparedStatement pstat = con.prepareStatement(sql);)
@@ -181,7 +181,7 @@ public class MovieDAO {
 			//ott별 검색 4) 왓챠
 			public List <MovieDTO> searchByWC_title(String mv_title) throws Exception {
 
-					String sql="select mv_id, mv_poster_path, mv_title from movie_test where mv_ottWC='Y' and mv_title like ?";
+					String sql="select mv_id, mv_poster_path, mv_title from movie where mv_ottWC='Y' and mv_title like ?";
 
 					try(Connection con = this.getConnection();
 							PreparedStatement pstat = con.prepareStatement(sql);)
@@ -211,7 +211,7 @@ public class MovieDAO {
 	public  MovieDTO selectByMv_seq(int mv_id) throws Exception { 
 
 		//테스트용
-		String sql="select * from movie_test where mv_id=?";
+		String sql="select * from movie where mv_id=?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -248,7 +248,7 @@ public class MovieDAO {
 	public  List <MovieDTO> selectByNF_date() throws Exception { 
 
 
-		String sql="select * from movie_test where mv_ottNF='Y' order by 4 desc";
+		String sql="select * from movie where mv_ottNF='Y' order by 4 desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -276,7 +276,7 @@ public class MovieDAO {
 			public  List <MovieDTO> selectByNF_avg() throws Exception { 
 
 
-				String sql="select * from movie_test where mv_ottNF='Y' order by mv_vote_average desc";
+				String sql="select * from movie where mv_ottNF='Y' order by mv_vote_average desc";
 
 				try(Connection con = this.getConnection();
 						PreparedStatement pstat = con.prepareStatement(sql);)
@@ -304,7 +304,7 @@ public class MovieDAO {
 	public  List <MovieDTO> selectByDZ_date() throws Exception { 
 
 
-		String sql="select * from movie_test where mv_ottDZ='Y' order by 4 desc";
+		String sql="select * from movie where mv_ottDZ='Y' order by 4 desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -334,7 +334,7 @@ public class MovieDAO {
 		public  List <MovieDTO> selectByDZ_avg() throws Exception { 
 
 
-			String sql="select * from movie_test where mv_ottDZ='Y' order by mv_vote_average desc";
+			String sql="select * from movie where mv_ottDZ='Y' order by mv_vote_average desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -365,7 +365,7 @@ public class MovieDAO {
 		public  List <MovieDTO> selectByWV_date() throws Exception { 
 
 
-			String sql="select * from movie_test where mv_ottWV='Y' order by 4 desc";
+			String sql="select * from movie where mv_ottWV='Y' order by 4 desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -394,7 +394,7 @@ public class MovieDAO {
 				public  List <MovieDTO> selectByWV_avg() throws Exception { 
 
 
-					String sql="select * from movie_test where mv_ottWV='Y'order by mv_vote_average desc";
+					String sql="select * from movie where mv_ottWV='Y'order by mv_vote_average desc";
 
 					try(Connection con = this.getConnection();
 							PreparedStatement pstat = con.prepareStatement(sql);)
@@ -422,7 +422,7 @@ public class MovieDAO {
 		public  List <MovieDTO> selectByWC_avg() throws Exception { 
 
 
-			String sql="select * from movie_test where mv_ottWC='Y' order by 4 desc";
+			String sql="select * from movie where mv_ottWC='Y' order by 4 desc";
 
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);)
@@ -450,7 +450,7 @@ public class MovieDAO {
 	public  List <MovieDTO> selectByWC_date() throws Exception { 
 
 
-		String sql="select * from movie_test where mv_ottWC='Y' order by mv_vote_average desc";
+		String sql="select * from movie where mv_ottWC='Y' order by mv_vote_average desc";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);)
@@ -481,7 +481,7 @@ public class MovieDAO {
 	//최신영화 출력
 	public List <MovieDTO> searchByDate() throws Exception {
 
-		String sql="SELECT * from(select mv_id, mv_poster_path, rank() over(ORDER BY mv_release_date  desc)\"개봉일자\" from MOVIE_TEST) WHERE \"개봉일자\" BETWEEN 1 AND 18";
+		String sql="SELECT * from(select mv_id, mv_poster_path, rank() over(ORDER BY mv_release_date  desc)\"개봉일자\" from movie) WHERE \"개봉일자\" BETWEEN 1 AND 18";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -500,7 +500,7 @@ public class MovieDAO {
 	//평점영화 출력
 	public List <MovieDTO> searchByAvg() throws Exception {
 
-		String sql="SELECT * from(select mv_id, mv_poster_path, rank() over(ORDER BY mv_vote_average  desc)\"평점\" from MOVIE_TEST) WHERE \"평점\" BETWEEN 1 AND 18";
+		String sql="SELECT * from(select mv_id, mv_poster_path, rank() over(ORDER BY mv_vote_average  desc)\"평점\" from movie) WHERE \"평점\" BETWEEN 1 AND 18";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -518,7 +518,7 @@ public class MovieDAO {
 
 	// 관리자페이지_영화 전체 조회
 	public List<MovieDTO> selectAllMovie() throws Exception{
-		String sql = "select * from movie_test";
+		String sql = "select * from movie";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();){
@@ -549,7 +549,7 @@ public class MovieDAO {
 
 	// 관리자페이지_영화 삭제
 	public int delete(int mv_id) throws Exception{
-		String sql = "delete from movie_test where mv_id = ?";
+		String sql = "delete from movie where mv_id = ?";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, mv_id);
