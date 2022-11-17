@@ -368,7 +368,7 @@ button {
 							</div>
 						</div>
 				</div>
-			</div>
+			
 			</c:when>
 			<c:otherwise>
 			
