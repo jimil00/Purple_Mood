@@ -90,7 +90,7 @@ padding-bottom:60px;
 
 a {
 	text-decoration: none;
-	color: grey;
+	color: white;
 }
 
 
@@ -113,7 +113,7 @@ span>img {
 	background-color: #03001e;
 	
 }
-.card :hover{ color: inherit;color: #7303c0;}
+.card :hover{ color: inherit;color: #ec38bc;}
 
 
 .card-text{height:fit-content;  
@@ -122,7 +122,7 @@ span>img {
       white-space:nowrap;}
 
 .card-text:hover{
-	color: #7303c0
+	color: #ec38bc;
 }
 
 .poster>img {
@@ -134,6 +134,7 @@ span>img {
 
 .poster>img:hover {
 	transform: scale(1.2);
+	border-radius:5px;
 }
 
 
