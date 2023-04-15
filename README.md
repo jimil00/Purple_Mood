@@ -93,10 +93,10 @@
 ## 프로젝트 설명
 
 ### [로그인 및 회원가입]
-# <div align=center><img src="" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/232251978-75993a40-09b4-47a9-876e-19c25599ca37.png" width="" height=""></div>
 
 ### [메인 페이지]
-# <div align=center><img src="" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/232252074-e98ee0e7-b5c7-4ffa-822a-9b21e459727e.gif" width="" height=""></div>
 
 ### [마이 페이지]
 # <div align=center><img src="" width="" height=""></div>
