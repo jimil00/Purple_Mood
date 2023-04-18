@@ -99,7 +99,7 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/232252074-e98ee0e7-b5c7-4ffa-822a-9b21e459727e.gif" width="" height=""></div>
 
 ### [마이 페이지]
-# <div align=center><img src="" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/232701813-560213fc-7937-4a70-889d-7be3b8c10028.gif" width="" height=""></div>
 
 ### [OTT별 콘텐츠 페이지] 
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/232252297-2be05a12-90cb-4efd-b94f-f4cd0ba56c95.png" width="" height=""></div>
@@ -112,7 +112,8 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/232253063-6445a310-5f2f-4ebb-8656-925a69db736d.png" width="" height=""></div>
 
 ### [영화/드라마 게시판] 
-# <div align=center><img src="" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/232700971-4de08621-ed60-4ad7-8886-8154b55f85e3.png" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/232702409-325d119f-643d-4961-ae83-0a00514ddc69.gif" width="" height=""></div>
 
 ### [관리자 페이지] - 담당
-# <div align=center><img src="" width="" height=""></div>
+# <div align=center><img src="https://user-images.githubusercontent.com/104720372/232703610-a8480f4f-693f-4593-87a9-309435a1baa2.gif" width="" height=""></div>
