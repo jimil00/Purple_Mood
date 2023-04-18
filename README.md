@@ -117,3 +117,8 @@
 
 ### [관리자 페이지] - 담당
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/232703610-a8480f4f-693f-4593-87a9-309435a1baa2.gif" width="" height=""></div>
+
++ **메뉴 카테고리화**
++ **회원 전체 출력 및 삭제 기능**
++ **콘텐츠 전체 출력 및 삭제 기능**
++ **신고된 게시글과 댓글 출력 및 삭제 기능**
