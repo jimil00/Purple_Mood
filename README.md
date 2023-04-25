@@ -1,5 +1,5 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/232249793-c01b8d9a-70cb-40e6-bf7f-587b9d812a93.jpg" width="200" height=""></div><br>퍼플 무드
-> OTT 별 영화와 드라마의 정보를 제공하며 커뮤니티의 기능을 갖고 있는 웹사이트
+> 퍼플 무드는 OTT 별 영화와 드라마의 정보를 제공하며, 커뮤니티의 기능을 갖고 있는 웹사이트입니다.
 
 ## 개요
 > 개발 기간: 2022년 10월 31일~2022년 11월 18일<br>
