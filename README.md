@@ -31,9 +31,6 @@
   + Apache-Tomcat 8.5
 
 + **Framework & Library**
-  + Kakao API(map)
-  + TMDB API
-  + Summer Note API
   + BootStrap
   + Gson
   + Json
