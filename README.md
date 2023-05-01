@@ -1,5 +1,5 @@
 # <div align=center><img src="https://user-images.githubusercontent.com/104720372/232249793-c01b8d9a-70cb-40e6-bf7f-587b9d812a93.jpg" width="200" height=""></div><br>퍼플 무드
-> 퍼플 무드는 OTT별 영화와 드라마의 정보를 제공하며, 커뮤니티의 기능을 가진 웹사이트입니다.
+> 퍼플 무드는 넷플릭스, 디즈니플러스, 왓챠, 웨이브 등 주요 OTT의 콘텐츠를 통합 검색할 수 있으며, 자유로운 커뮤니티의 기능을 가진 웹사이트입니다.
 
 ## 개요
 > 개발 기간: 2022년 10월 31일~2022년 11월 18일<br>
@@ -14,30 +14,35 @@
 
 ## 개발환경
 
-+ **Language**
-  + JAVA 11
++ **Back-End**
+  + JDK 11
+  + OracleDB(ojdbc8)
+  
++ **Front-End**
   + HTML5
   + CSS
   + JavaScript
-  + JSP
-  + SQL
-
-+ **Database**
-  + Oracle
-
-+ **Web Server & WAS**
-  + Apache-Tomcat 8.5
-  + AWS EC2(Windows)
-
-+ **Framework & Library**
   + jQuery
-  + Gson
-  + Json
-  + JSTL Core
-  + EL
+  + JSP
   + Ajax
 
-+ **협업 툴**
++ **Web Server & WAS**
+  + AWS EC2(Windows)
+  + Apache-Tomcat 8.5
+
++ **Framework & Library**
+  + Kakao API(map)
+  + TMDB API
+  + Summer Note API
+  + BootStrap
+  + Gson
+  + Json
+  + JSTL
+
++ **Tools & ETC**
+  + Eclipse
+  + VSCode
+  + SQL Developer
   + GitHub
   + SourceTree
   + GoogleDrive
